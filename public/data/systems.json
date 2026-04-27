@@ -1,0 +1,412 @@
+{
+  "systems": [
+    {
+      "id": "companies-alfabank",
+      "origin": "domestic",
+      "title": "Альфа-Банк",
+      "description": "Дизайн-команда одного из ведущих банков.",
+      "logo": "assets/logos/companies-alfabank.png",
+      "links": {
+        "site": null,
+        "github": "https://github.com/alfa-laboratory/arui-feather",
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-barsgroup",
+      "origin": "domestic",
+      "title": "БАРС Груп",
+      "description": "Дизайн-команда крупного федерального разработчика работает над унификацией продуктов для государства и бизнеса.",
+      "logo": "assets/logos/companies-barsgroup.png",
+      "links": {
+        "site": "https://design.bars.group/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-vk",
+      "origin": "domestic",
+      "title": "Вконтакте",
+      "description": "Крупнейшая отечественная социальная сеть.",
+      "logo": "assets/logos/companies-vk.png",
+      "links": {
+        "site": "https://vkcom.github.io/VKUI/",
+        "github": "https://github.com/VKCOM/VKUI",
+        "figma": "https://www.figma.com/@vk"
+      }
+    },
+    {
+      "id": "companies-gazpromneft",
+      "origin": "domestic",
+      "title": "Газпром нефть",
+      "description": "Дизайн-система технологического лидера нефтегазового рынка России.",
+      "logo": "assets/logos/companies-gazpromneft.jpeg",
+      "links": {
+        "site": null,
+        "github": "https://github.com/consta-design-system",
+        "figma": "https://www.figma.com/@Consta"
+      }
+    },
+    {
+      "id": "companies-gosuslugi",
+      "origin": "domestic",
+      "title": "Госуслуги",
+      "description": "Гайды Госуслуг по интерфейсу и тексту. Рекомендованы для всех государственных сервисов.",
+      "logo": "assets/logos/companies-gosuslugi.jpg",
+      "links": {
+        "site": "https://guides.gosuslugi.ru/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-gov",
+      "origin": "domestic",
+      "title": "Дизайн государственных систем",
+      "description": "Единая платформа для сайтов государственных органов и учреждений.",
+      "logo": "assets/logos/companies-gov.png",
+      "links": {
+        "site": "http://gov.design/",
+        "github": "https://github.com/govdesign",
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-kontur",
+      "origin": "domestic",
+      "title": "Контур",
+      "description": "Экосистема продуктов для бизнеса.",
+      "logo": "assets/logos/companies-kontur.png",
+      "links": {
+        "site": "https://tech.skbkontur.ru/react-ui/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-megafon",
+      "origin": "domestic",
+      "title": "МегаФон",
+      "description": "Дизайн-система МегаФона.",
+      "logo": "assets/logos/companies-megafon.jpg",
+      "links": {
+        "site": "https://ui.megafon.ru",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-raif",
+      "origin": "domestic",
+      "title": "Райффайзенбанк",
+      "description": "Дизайн-система одного из заметных российских банков.",
+      "logo": "assets/logos/companies-raif.png",
+      "links": {
+        "site": null,
+        "github": "https://github.com/Raiffeisen-DGTL/ViennaUI",
+        "figma": "https://www.figma.com/@raifdesign"
+      }
+    },
+    {
+      "id": "companies-rambler",
+      "origin": "domestic",
+      "title": "Рамблер",
+      "description": "Дизайн-команда одного из крупнейших отечественных порталов.",
+      "logo": "assets/logos/companies-rambler.png",
+      "links": {
+        "site": "https://ui-kit.rambler.ru/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-rosatom",
+      "origin": "domestic",
+      "title": "Росатом",
+      "description": "Дизайн-система Росатома.",
+      "logo": "assets/logos/companies-rosatom.png",
+      "links": {
+        "site": "https://design.rusatom.dev",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-rt",
+      "origin": "domestic",
+      "title": "Ростелеком",
+      "description": "Один из крупнейших телекоммов.",
+      "logo": "assets/logos/companies-rt.png",
+      "links": {
+        "site": "https://design.rt.ru/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-tinkoff",
+      "origin": "domestic",
+      "title": "Тинькофф",
+      "description": "Компонентная дизайн-система с открытым кодом: библиотека UI и гайдлайны для продуктовых интерфейсов.",
+      "logo": "assets/logos/companies-tinkoff.png",
+      "links": {
+        "site": null,
+        "github": "https://github.com/TinkoffCreditSystems/taiga-ui",
+        "figma": "https://www.figma.com/community/file/966347242613098831"
+      }
+    },
+    {
+      "id": "companies-cft",
+      "origin": "domestic",
+      "title": "Центр Финансовых Технологий",
+      "description": "Дизайн-система для веб-приложений ведущего российского финтех-провайдера.",
+      "logo": "assets/logos/companies-cft.png",
+      "links": {
+        "site": null,
+        "github": "https://github.com/cft-group/elephas",
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-yandex",
+      "origin": "domestic",
+      "title": "Яндекс",
+      "description": "Платформа от создателей БЭМ для унификации продуктов компании.",
+      "logo": "assets/logos/companies-yandex.png",
+      "links": {
+        "site": "https://yastatic.net/s3/frontend/lego/storybook/index.html?path=/docsx/guides-documentation--readme",
+        "github": "https://github.com/bem/yandex-ui",
+        "figma": null
+      }
+    },
+    {
+      "id": "airbnb-dls",
+      "origin": "foreign",
+      "title": "Airbnb Design Language System",
+      "description": "Принципы и визуальный язык бренда ARBNB, продукта в сфере аренды жилья.",
+      "logo": "assets/logos/foreign/airbnb-dls.jpg",
+      "links": {
+        "site": "https://karrisaarinen.com/dls/",
+        "github": null,
+        "figma": "https://www.figma.com/community/file/1141243932242668736"
+      }
+    },
+    {
+      "id": "apple-ui-kits",
+      "origin": "foreign",
+      "title": "Apple UI Kits",
+      "description": "Экосистема Apple, крупного технического бренда.",
+      "logo": "assets/logos/foreign/apple-ui-kits.png",
+      "links": {
+        "site": "https://developer.apple.com/design/human-interface-guidelines/",
+        "github": null,
+        "figma": "https://www.figma.com/community/file/1527721578857867021/ios-and-ipados-26-ui-kit"
+      }
+    },
+    {
+      "id": "atlassian-ads",
+      "origin": "foreign",
+      "title": "Atlassian Design System",
+      "description": "Принципы, компоненты и паттерны для продуктов Atlassian и их экосистемы.",
+      "logo": "assets/logos/foreign/atlassian-ads.jpg",
+      "links": {
+        "site": "https://atlassian.design/design-system/",
+        "github": null,
+        "figma": "https://www.figma.com/@atlassian"
+      }
+    },
+    {
+      "id": "companies-b2bcenter",
+      "origin": "domestic",
+      "title": "B2B Center",
+      "description": "Отечественная площадка торгов для бизнеса.",
+      "logo": "assets/logos/companies-b2bcenter.png",
+      "links": {
+        "site": "https://cds.b2b-center.ru/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "companies-bss",
+      "origin": "domestic",
+      "title": "BSS",
+      "description": "d2design — Библиотека компонентов для построения банковских приложений.",
+      "logo": "assets/logos/companies-bss.png",
+      "links": {
+        "site": "https://d2design.bssys.com",
+        "github": null,
+        "figma": "https://www.figma.com/file/gwn48upbR6E5pWORDeKeIM/D2Go-library?node-id=15053%3A19256"
+      }
+    },
+    {
+      "id": "ibm-carbon",
+      "origin": "foreign",
+      "title": "Carbon",
+      "description": "Дизайн-система IBM, крупного разработчика ПО и производителя гаджетов.",
+      "logo": "assets/logos/foreign/ibm-carbon.jpg",
+      "links": {
+        "site": "https://carbondesignsystem.com/",
+        "github": "https://github.com/carbon-design-system/carbon",
+        "figma": "https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/-v11--Carbon-Design-System?m=auto"
+      }
+    },
+    {
+      "id": "companies-cloud-ru",
+      "origin": "domestic",
+      "title": "Cloud.ru",
+      "description": "Snack Uikit — библиотека компонентов компании Cloud.ru и сообщества TeamSnack,.",
+      "logo": "assets/logos/companies-cloud-ru.png",
+      "links": {
+        "site": "https://cloud-ru-tech.github.io/snack-uikit/",
+        "github": "https://github.com/cloud-ru-tech/snack-uikit",
+        "figma": "https://www.figma.com/@TeamSnack"
+      }
+    },
+    {
+      "id": "microsoft-fluent-2",
+      "origin": "foreign",
+      "title": "Fluent 2",
+      "description": "Дизайн-язык Microsoft и её продуктов.",
+      "logo": "assets/logos/foreign/microsoft-fluent-2.jpg",
+      "links": {
+        "site": "https://fluent2.microsoft.design/",
+        "github": null,
+        "figma": "https://www.figma.com/community/file/836828295772957889/Microsoft-Fluent-2-Web"
+      }
+    },
+    {
+      "id": "companies-gravity-ui",
+      "origin": "domestic",
+      "title": "Gravity UI",
+      "description": "Дизайн-система с открытым исходным кодом для разработки современных интерфейсов.",
+      "logo": "assets/logos/companies-gravity-ui.png",
+      "links": {
+        "site": "https://gravity-ui.com/",
+        "github": "https://github.com/gravity-ui",
+        "figma": "https://www.figma.com/community/file/1271150067798118027/Gravity-UI-Design-System-(Beta)"
+      }
+    },
+    {
+      "id": "companies-hse-design-system",
+      "origin": "domestic",
+      "title": "HSE",
+      "description": "Дизайн-система ВШЭ.",
+      "logo": "assets/logos/companies-hse-design-system.png",
+      "links": {
+        "site": "https://design-system.hse.ru/v1.4.0/",
+        "github": null,
+        "figma": "https://www.figma.com/file/cBHD57QcCt9WDT4e7e2B3w/hse_general_library"
+      }
+    },
+    {
+      "id": "companies-ispsystem",
+      "origin": "domestic",
+      "title": "ISPsystem",
+      "description": "Российский разработчик платформ для управления IT-инфраструктурой во всем мире.",
+      "logo": "assets/logos/companies-ispsystem.png",
+      "links": {
+        "site": "https://design.ispsystem.ru/",
+        "github": null,
+        "figma": "http://figma.com/@ispsystem"
+      }
+    },
+    {
+      "id": "companies-ivi",
+      "origin": "domestic",
+      "title": "IVI",
+      "description": "Кросплатформенная версия дизайн-системы от команды онлайн-кинотеатра.",
+      "logo": "assets/logos/companies-ivi.png",
+      "links": {
+        "site": "https://design.ivi.ru/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "salesforce-lightning",
+      "origin": "foreign",
+      "title": "Lightning",
+      "description": "Компоненты и токены Salesforce для единых корпоративных интерфейсов.",
+      "logo": "assets/logos/foreign/salesforce-lightning.png",
+      "links": {
+        "site": "https://www.lightningdesignsystem.com/",
+        "github": null,
+        "figma": "https://www.figma.com/@salesforce"
+      }
+    },
+    {
+      "id": "companies-mailru",
+      "origin": "domestic",
+      "title": "Mail.ru Group",
+      "description": "Портальная дизайн-команда постепенно унифицирует продукты.",
+      "logo": "assets/logos/companies-mailru.png",
+      "links": {
+        "site": "https://paradigm.mail.ru/",
+        "github": null,
+        "figma": "https://www.figma.com/@paradigm"
+      }
+    },
+    {
+      "id": "material-design",
+      "origin": "foreign",
+      "title": "Material Design",
+      "description": "Дизайн-система Google: правила, компоненты и токены для интерфейсов на Android и в вебе.",
+      "logo": "assets/logos/foreign/material-design.png",
+      "links": {
+        "site": "https://m3.material.io/",
+        "github": null,
+        "figma": "https://www.figma.com/community/file/1035203688168086460/material-3-design-kit"
+      }
+    },
+    {
+      "id": "shopify-polaris",
+      "origin": "foreign",
+      "title": "Polaris",
+      "description": "Система Shopify для админки и приложений — компоненты, стили и иконки для быстрого старта.",
+      "logo": "assets/logos/foreign/shopify-polaris.webp",
+      "links": {
+        "site": "https://polaris.shopify.com/",
+        "github": "https://github.com/Shopify/polaris",
+        "figma": "https://www.figma.com/community/file/1293611962331823010/polaris-components"
+      }
+    },
+    {
+      "id": "github-primer",
+      "origin": "foreign",
+      "title": "Primer",
+      "description": "Дизайн-система GitHub — компоненты и стили для продуктовых интерфейсов и документации.",
+      "logo": "assets/logos/foreign/github-primer.png",
+      "links": {
+        "site": "https://primer.style/",
+        "github": "https://github.com/primer/figma",
+        "figma": "https://www.figma.com/@primer"
+      }
+    },
+    {
+      "id": "companies-semrush",
+      "origin": "domestic",
+      "title": "Semrush",
+      "description": "Глобальная онлайн-платформа для интернет-маркетологов.",
+      "logo": "assets/logos/companies-semrush.png",
+      "links": {
+        "site": "https://i.semrush.com/",
+        "github": "https://github.com/semrush/intergalactic",
+        "figma": "https://www.figma.com/@semrush"
+      }
+    },
+    {
+      "id": "companies-t2",
+      "origin": "domestic",
+      "title": "t2",
+      "description": "Федеральный оператор мобильной связи.",
+      "logo": "assets/logos/companies-t2.png",
+      "links": {
+        "site": "https://t2.digital/",
+        "github": null,
+        "figma": "https://www.figma.com/@t2digital"
+      }
+    }
+  ]
+}

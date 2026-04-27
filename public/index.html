@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Актуальный каталог дизайн‑систем — Design Systems Guide</title>
+    <meta
+      name="description"
+      content="Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma, краткие описания и логотипы."
+    />
+    <meta name="theme-color" content="#0b0f19" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="/" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Актуальный каталог дизайн‑систем" />
+    <meta
+      property="og:description"
+      content="Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma."
+    />
+    <meta property="og:image" content="/assets/brand/logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Актуальный каталог дизайн‑систем" />
+    <meta
+      name="twitter:description"
+      content="Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__row">
+        <a class="brand" href="./" aria-label="Design Systems Guide">
+          <img class="brand__logo" src="./assets/brand/logo.svg" alt="" />
+          <span class="brand__name">Design Systems Guide</span>
+        </a>
+
+        <div class="header__actions">
+          <button class="toggle" type="button" aria-label="Фильтр каталога">
+            <span class="toggle__item toggle__item--active" data-origin="domestic"
+              >Отечественные</span
+            >
+            <span class="toggle__item" data-origin="foreign">Зарубежные</span>
+          </button>
+          <a class="btn btn--primary" id="add-system-top" href="#" target="_blank"
+            >Добавить систему</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container main">
+      <div class="grid" id="cards" aria-live="polite"></div>
+      <div class="empty" id="empty" hidden>
+        В этой категории пока нет карточек.
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__row">
+          <div class="footer__title">
+            <div class="footer__h">Актуальный каталог дизайн-систем</div>
+          </div>
+
+          <div class="footer__actions">
+            <a class="btn btn--primary" id="add-system-bottom" href="#" target="_blank"
+              >Добавить дизайн-систему</a
+            >
+            <a class="btn btn--ghost" id="support-project" href="#" target="_blank"
+              >Поддержать проект</a
+            >
+          </div>
+        </div>
+
+        <div class="footer__meta">
+          Разработчик
+          <a
+            class="footer__link"
+            href="https://t.me/zelenykh_denis"
+            target="_blank"
+            rel="noreferrer"
+            >Зеленых Денис</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <template id="card-template">
+      <article class="card">
+        <div class="card__top">
+          <img class="card__logo" alt="" width="56" height="56" decoding="async" />
+          <div class="card__logo-fallback" aria-hidden="true"></div>
+          <div class="card__meta">
+            <h3 class="card__title"></h3>
+            <p class="card__desc"></p>
+          </div>
+        </div>
+
+        <div class="card__links" aria-label="Ссылки">
+          <a class="icon-link" data-kind="site" target="_blank" rel="noreferrer">
+            <span class="icon" aria-hidden="true">🌐</span><span>Сайт</span>
+          </a>
+          <a class="icon-link" data-kind="github" target="_blank" rel="noreferrer">
+            <span class="icon" aria-hidden="true">💻</span><span>GitHub</span>
+          </a>
+          <a class="icon-link" data-kind="figma" target="_blank" rel="noreferrer">
+            <span class="icon" aria-hidden="true">🖌️</span><span>Figma</span>
+          </a>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="./app.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Design Systems Guide",
+        "description": "Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma.",
+        "inLanguage": "ru"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Design Systems Guide",
+        "url": "/",
+        "sameAs": ["https://t.me/zelenykh_denis"]
+      }
+    </script>
+  </body>
+</html>

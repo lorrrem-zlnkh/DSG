@@ -1,0 +1,16 @@
+{
+  "name": "Design Systems Guide",
+  "short_name": "DS Guide",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#0b0f19",
+  "icons": [
+    {
+      "src": "/assets/brand/logo.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+
