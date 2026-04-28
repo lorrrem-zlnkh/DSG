@@ -4,7 +4,11 @@
   "type": "module",
   "scripts": {
     "scrape": "sh scripts/scrape.sh",
-    "dev": "python3 -m http.server 5173 -d public"
+    "fetch:blog": "sh scripts/fetch-blog.sh",
+    "build:digests": "node scripts/build-digests.mjs",
+    "rebuild:medium": "node scripts/rebuild-medium-descriptions.mjs",
+    "dev": "node server.mjs",
+    "start": "node server.mjs"
   },
   "dependencies": {
     "cheerio": "^1.1.2"

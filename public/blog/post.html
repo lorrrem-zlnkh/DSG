@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="./" />
+    <title>Дайджест — DSG</title>
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta
+      name="keywords"
+      content="дизайн-системы, дизайн система, product design, продуктовый дизайн, ux, ui, ux/ui, ui kit, design tokens, figma, компоненты, паттерны, интерфейсы"
+    />
+    <link rel="icon" href="../assets/brand/logo.png" type="image/png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .post-wrap {
+        padding: 18px 0 40px;
+      }
+      .post-close {
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        z-index: 30;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(11, 15, 25, 0.72);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow);
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1;
+      }
+      .post-h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: 0.2px;
+        line-height: 1.15;
+      }
+      .post-meta {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .post-body {
+        margin-top: 14px;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 15px;
+      }
+      .post-body p {
+        margin: 0 0 12px;
+      }
+      .src {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .src .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.02);
+        font-size: 12px;
+        color: var(--text);
+      }
+      .src a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .src a:hover {
+        border-bottom-color: rgba(255, 255, 255, 0.4);
+      }
+      @media (max-width: 620px), (hover: none) and (pointer: coarse) {
+        .post-wrap {
+          padding-bottom: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="blog-post">
+    <a class="post-close" href="./" aria-label="Закрыть и вернуться в блог">×</a>
+    <header class="header">
+      <div class="container header__row">
+        <a class="brand" href="../" aria-label="DSG">
+          <img class="brand__logo" src="../assets/brand/logo.png" alt="Логотип DSG" />
+          <span class="brand__name">DSG</span>
+        </a>
+        <div class="header__actions">
+          <a class="btn btn--ghost btn--active" href="./" aria-current="page">Дайджесты</a>
+          <a class="btn btn--ghost" href="../">Каталог</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container post-wrap">
+      <h1 class="post-h1" id="title"></h1>
+      <div class="post-meta" id="meta"></div>
+      <article class="post-body" id="body"></article>
+      <div class="src" id="src"></div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__row">
+          <div class="footer__title">
+            <div class="footer__h">Актуальный каталог дизайн-систем</div>
+          </div>
+
+          <div class="footer__actions">
+            <a class="btn btn--primary" data-link="add-system" href="https://t.me/denis_zelenykh" target="_blank">
+              Добавить дизайн-систему
+            </a>
+            <a class="btn btn--ghost" data-link="support" href="https://pay.cloudtips.ru/p/27204e72" target="_blank">
+              Поддержать проект
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__meta">
+          Разработчик
+          <a
+            class="footer__link"
+            href="https://t.me/zelenykh_denis"
+            target="_blank"
+            rel="noreferrer"
+            >Зеленых Денис</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="../nav.js"></script>
+
+    <script type="module">
+      const qs = new URLSearchParams(location.search);
+      const id = qs.get("id");
+
+      const titleEl = document.getElementById("title");
+      const metaEl = document.getElementById("meta");
+      const bodyEl = document.getElementById("body");
+      const srcEl = document.getElementById("src");
+
+      if (!id) {
+        titleEl.textContent = "Статья не найдена";
+      } else {
+        const res = await fetch("./posts.json", { cache: "no-store" });
+        const data = await res.json();
+        const post = (data.posts || []).find((p) => String(p.id) === String(id));
+
+        if (!post) {
+          titleEl.textContent = "Статья не найдена";
+        } else {
+          document.title = `${post.title} — DSG`;
+          titleEl.textContent = post.title;
+          metaEl.innerHTML = [
+            post.publishedAt ? `<span>${new Date(post.publishedAt).toLocaleDateString("ru-RU")}</span>` : "",
+            post.author ? `<span>Автор: ${post.author}</span>` : ""
+          ].filter(Boolean).join("<span>•</span>");
+
+          const paragraphs = (post.rewrite || "")
+            .split(/\n{2,}/)
+            .map((p) => p.trim())
+            .filter(Boolean)
+            .map((p) => `<p>${p}</p>`)
+            .join("");
+          bodyEl.innerHTML = paragraphs || "<p>Текст статьи будет добавлен после сборки данных.</p>";
+
+          srcEl.innerHTML = `
+            <span class="badge">Источник: ${post.sourceLabel || post.source}</span>
+            <span class="badge">Автор: ${post.author || "—"}</span>
+            <a class="badge" href="${post.url}" target="_blank" rel="noreferrer">Открыть оригинал</a>
+          `;
+        }
+      }
+    </script>
+  </body>
+</html>

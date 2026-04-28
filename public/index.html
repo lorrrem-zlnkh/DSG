@@ -3,52 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Актуальный каталог дизайн‑систем — Design Systems Guide</title>
+    <title>DSG — актуальный каталог популярных дизайн‑систем</title>
     <meta
       name="description"
       content="Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma, краткие описания и логотипы."
     />
+    <meta
+      name="keywords"
+      content="дизайн-система, дизайн система, design system, ui kit, ux ui, продуктовый дизайн, дизайн токены, компоненты, библиотека компонентов, figma, storybook, гайдлайны"
+    />
     <meta name="theme-color" content="#0b0f19" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <link rel="canonical" href="/" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="./" />
+    <link rel="icon" href="./assets/brand/logo.png" type="image/png" />
+    <link rel="manifest" href="./site.webmanifest" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Актуальный каталог дизайн‑систем" />
+    <meta property="og:title" content="DSG — актуальный каталог популярных дизайн‑систем" />
     <meta
       property="og:description"
       content="Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma."
     />
-    <meta property="og:image" content="/assets/brand/logo.svg" />
+    <meta property="og:image" content="./assets/brand/logo.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Актуальный каталог дизайн‑систем" />
+    <meta name="twitter:title" content="DSG — актуальный каталог популярных дизайн‑систем" />
     <meta
       name="twitter:description"
       content="Каталог дизайн‑систем: российские и зарубежные. Ссылки на гайдлайны, GitHub и Figma."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body data-page="catalog">
     <header class="header">
       <div class="container header__row">
         <a class="brand" href="./" aria-label="Design Systems Guide">
-          <img class="brand__logo" src="./assets/brand/logo.svg" alt="" />
+          <img class="brand__logo" src="./assets/brand/logo.png" alt="Логотип DSG" />
           <span class="brand__name">Design Systems Guide</span>
         </a>
 
         <div class="header__actions">
-          <button class="toggle" type="button" aria-label="Фильтр каталога">
-            <span class="toggle__item toggle__item--active" data-origin="domestic"
-              >Отечественные</span
-            >
-            <span class="toggle__item" data-origin="foreign">Зарубежные</span>
-          </button>
-          <a class="btn btn--primary" id="add-system-top" href="#" target="_blank"
-            >Добавить систему</a
+          <a class="btn btn--ghost btn--active" href="./" aria-current="page">Каталог</a>
+          <a class="btn btn--ghost" href="./blog/">Дайджесты</a>
+          <a
+            class="btn btn--ghost"
+            data-link="support"
+            href="https://pay.cloudtips.ru/p/27204e72"
+            target="_blank"
+            rel="noreferrer"
           >
+            Поддержать
+          </a>
         </div>
       </div>
     </header>
+
+    <div class="container catalog-toolbar">
+      <h1 class="catalog-title">Каталог актуальных дизайн-систем</h1>
+      <div class="catalog-toolbar__right">
+        <button class="toggle" type="button" aria-label="Фильтр каталога">
+          <span class="toggle__item toggle__item--active" data-origin="domestic"
+            >Отечественные</span
+          >
+          <span class="toggle__item" data-origin="foreign">Зарубежные</span>
+        </button>
+      </div>
+    </div>
 
     <main class="container main">
       <div class="grid" id="cards" aria-live="polite"></div>
@@ -56,6 +75,38 @@
         В этой категории пока нет карточек.
       </div>
     </main>
+
+    <div class="mobile-nav-shell">
+      <div class="catalog-switch catalog-switch--mobile">
+        <button class="toggle" type="button" aria-label="Фильтр каталога">
+          <span class="toggle__item toggle__item--active" data-origin="domestic"
+            >Отечественные</span
+          >
+          <span class="toggle__item" data-origin="foreign">Зарубежные</span>
+        </button>
+      </div>
+
+      <nav class="mobile-nav" aria-label="Основная навигация">
+        <a class="mobile-nav__link mobile-nav__link--active" href="./" aria-current="page"
+          ><span class="mobile-nav__icon" aria-hidden="true">▦</span
+          ><span class="mobile-nav__label">Каталог</span></a
+        >
+        <a class="mobile-nav__link" href="./blog/"
+          ><span class="mobile-nav__icon" aria-hidden="true">◫</span
+          ><span class="mobile-nav__label">Дайджесты</span></a
+        >
+        <a
+          class="mobile-nav__link"
+          data-link="support"
+          href="https://pay.cloudtips.ru/p/27204e72"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span class="mobile-nav__icon" aria-hidden="true">♥</span>
+          <span class="mobile-nav__label">Поддержать</span>
+        </a>
+      </nav>
+    </div>
 
     <footer class="footer">
       <div class="container">
@@ -65,12 +116,22 @@
           </div>
 
           <div class="footer__actions">
-            <a class="btn btn--primary" id="add-system-bottom" href="#" target="_blank"
-              >Добавить дизайн-систему</a
+            <a
+              class="btn btn--primary"
+              data-link="add-system"
+              href="https://t.me/denis_zelenykh"
+              target="_blank"
             >
-            <a class="btn btn--ghost" id="support-project" href="#" target="_blank"
-              >Поддержать проект</a
+              Добавить дизайн-систему
+            </a>
+            <a
+              class="btn btn--ghost"
+              data-link="support"
+              href="https://pay.cloudtips.ru/p/27204e72"
+              target="_blank"
             >
+              Поддержать проект
+            </a>
           </div>
         </div>
 
@@ -112,6 +173,7 @@
       </article>
     </template>
 
+    <script type="module" src="./nav.js"></script>
     <script type="module" src="./app.js"></script>
     <script type="application/ld+json">
       {
