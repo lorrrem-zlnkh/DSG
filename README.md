@@ -7,7 +7,8 @@
 - `GET /api/digests` — returns `public/blog/digests.json`.
 - `POST /api/digests/rebuild` — rebuilds digests through OpenAI Responses API and rewrites `public/blog/digests.json`.
 - `GET /api/automation/status` — returns the latest autonomous content run status.
-- `POST /api/automation/run` — starts the full autonomous pipeline: fetch sources, rewrite/build digests through OpenAI, and publish updated files into `public`.
+- `POST /api/automation/run` — starts the full autonomous pipeline: fetch sources and build a private draft through OpenAI into `.cache/draft`.
+- `POST /api/telegram/webhook` — receives Telegram bot updates.
 
 If `CONTENT_AUTOMATION_TOKEN` is set, send it in `x-automation-token`. The older digest rebuild endpoint still accepts `DIGEST_REBUILD_TOKEN` in `x-digest-token`.
 
@@ -27,34 +28,7 @@ npm run fetch:blog
 
 ## Telegram digest review bot
 
-The bot sends the latest monthly digest to the owner for review, lets individual articles be marked as "in rework", blocks publishing until rework is cleared, then updates `public/blog/digests.json` and posts the digest to a Telegram channel.
-
-Set these server-side environment variables:
-
-```bash
-TELEGRAM_BOT_TOKEN=123456:telegram-bot-token
-TELEGRAM_ADMIN_CHAT_ID=123456789
-TELEGRAM_CHANNEL_ID=@your_channel
-PUBLIC_SITE_URL=https://your-domain.example
-DIGEST_REVIEW_DAY=1
-DIGEST_REVIEW_HOUR=10
-```
-
-Run the bot as a long-lived process:
-
-```bash
-npm run digest:bot
-```
-
-Bot commands:
-
-- `/draft` — send the latest digest for review.
-- `/draft 2026-04` — send a specific digest.
-- `/status` — show articles marked for rework.
-- `/publish` — publish to the site and Telegram channel if nothing is in rework.
-- `/publish_force` — publish even with rework items.
-
-For site deployment after approval, run the bot on the same host that serves the site, or set `DIGEST_SITE_PUBLISH_URL` to a protected deploy hook. Do not point it to `/api/automation/run`: that endpoint rebuilds content and can bypass the reviewed draft. As an alternative, set `DIGEST_SITE_PUBLISH_COMMAND` to a host-local deploy command that only publishes the reviewed `public` files.
+The monthly automation creates a private draft in `.cache/draft`. The draft is not visible on the site. The Telegram webhook bot sends the full draft to the owner, lets any material be sent back to ChatGPT for rewriting, and publishes the approved digest to the site and channel only after the `Опубликовать` button is pressed.
 
 ## Host-side automation
 
@@ -67,13 +41,13 @@ npm install
 npm run start
 ```
 
-Add a hosting cron job, for example daily:
+Add a hosting cron job once a month, for example at 10:00 on the first day of each month. It creates a private draft and sends it to the admin bot chat:
 
 ```bash
-curl -fsS -X POST -H "x-automation-token: $CONTENT_AUTOMATION_TOKEN" https://your-domain.example/api/automation/run
+0 10 1 * * curl -fsS -X POST -H "x-automation-token: $CONTENT_AUTOMATION_TOKEN" http://dsg.lorrrem.ru/api/automation/run
 ```
 
-The endpoint returns immediately with `202 Accepted`; check `/api/automation/status` for completion. If your hosting cron supports long requests, add `?wait=1` to wait for the run result.
+The endpoint returns immediately with `202 Accepted`; check `/api/automation/status` for completion. If your hosting cron supports long requests, add `?wait=1` to wait for the run result. The public site is updated only after the admin presses `Опубликовать` in Telegram.
 
 If the site is served as static files, run this command in the deployed project directory and publish the `public` directory with your host's deployment mechanism:
 
@@ -82,3 +56,43 @@ npm run content:automation
 ```
 
 The OpenAI API key is used only server-side, so it is never exposed in browser code.
+
+## Telegram bot and channel
+
+Required server-side variables:
+
+```bash
+TELEGRAM_BOT_TOKEN=...
+TELEGRAM_ADMIN_CHAT_ID=...
+TELEGRAM_CHANNEL_ID=@lorrrem
+TELEGRAM_WEBHOOK_SECRET=long-random-secret
+PUBLIC_SITE_URL=http://dsg.lorrrem.ru
+# Telegram requires HTTPS for webhooks. Use this when PUBLIC_SITE_URL is HTTP:
+# TELEGRAM_WEBHOOK_URL=https://dsg.lorrrem.ru/api/telegram/webhook
+```
+
+Add the bot as an administrator in the Telegram channel and allow it to post messages. Telegram requires HTTPS for webhooks, so enable SSL for `dsg.lorrrem.ru` or set `TELEGRAM_WEBHOOK_URL` to another HTTPS endpoint that routes to this app. Then register the webhook:
+
+```bash
+curl -fsS "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/setWebhook" \
+  -H "Content-Type: application/json" \
+  -d "{\"url\":\"$PUBLIC_SITE_URL/api/telegram/webhook\",\"secret_token\":\"$TELEGRAM_WEBHOOK_SECRET\"}"
+```
+
+Useful bot commands:
+
+```text
+/start
+/draft
+/latest
+/site
+/id
+```
+
+`/draft` works only for `TELEGRAM_ADMIN_CHAT_ID`. The bot sends the full private draft with buttons: `Переработать через ChatGPT` for each material and `Опубликовать` for the whole digest. Publishing copies the draft into `public` and sends 10 materials to `TELEGRAM_CHANNEL_ID` with the configured intro and the `Смотреть больше новостей` link to `http://dsg.lorrrem.ru/blog`.
+
+To configure the bot through Telegram API from the host, set the Telegram env variables and run:
+
+```bash
+npm run telegram:setup
+```

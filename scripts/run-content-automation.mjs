@@ -4,11 +4,14 @@ import { pathToFileURL } from "node:url";
 import { buildDigests } from "./build-digests.mjs";
 import { fetchBlogPosts } from "./fetch-blog.mjs";
 import { loadEnv } from "./lib/load-env.mjs";
+import { sendLatestDraftToAdmin } from "./lib/telegram-digest.mjs";
 
 loadEnv();
 
 const STATUS_PATH = new URL("../public/automation/status.json", import.meta.url);
 const LOCK_PATH = new URL("../.cache/content-automation.lock", import.meta.url);
+const DRAFT_POSTS_PATH = new URL("../.cache/draft/posts.json", import.meta.url);
+const DRAFT_DIGESTS_PATH = new URL("../.cache/draft/digests.json", import.meta.url);
 
 let inProcessRun = null;
 
@@ -83,16 +86,24 @@ async function runWithLock() {
   });
 
   try {
-    const postsPayload = await fetchBlogPosts();
-    const digestsPayload = await buildDigests();
+    const postsPayload = await fetchBlogPosts({ outPath: DRAFT_POSTS_PATH });
+    const digestsPayload = await buildDigests({
+      postsPath: DRAFT_POSTS_PATH,
+      digestsPath: DRAFT_DIGESTS_PATH,
+    });
+    const telegram = await sendLatestDraftToAdmin().catch((error) => ({
+      sent: false,
+      reason: error.message,
+    }));
     const finishedAt = new Date().toISOString();
     const status = {
       ok: true,
-      state: "published",
+      state: "draft_ready",
       startedAt,
       finishedAt,
       updatedAt: finishedAt,
       ...publicSummary(postsPayload, digestsPayload),
+      telegram,
     };
     await writeStatus(status);
     return status;
