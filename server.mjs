@@ -9,6 +9,11 @@ import {
   getContentAutomationStatus,
   runContentAutomation,
 } from "./scripts/run-content-automation.mjs";
+import {
+  checkTelegramWebhookSecret,
+  handleTelegramUpdate,
+  readRequestJson,
+} from "./scripts/lib/telegram-digest.mjs";
 
 loadEnv();
 
@@ -64,7 +69,25 @@ async function handleApi(req, res, url) {
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
       latestModel: process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini",
       automationConfigured: Boolean(process.env.CONTENT_AUTOMATION_TOKEN || process.env.DIGEST_REBUILD_TOKEN),
+      telegramConfigured: Boolean(process.env.TELEGRAM_BOT_TOKEN),
+      telegramChannelConfigured: Boolean(process.env.TELEGRAM_CHANNEL_ID),
     });
+    return true;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/telegram/webhook") {
+    if (!checkTelegramWebhookSecret(req)) {
+      sendJson(res, 401, { error: "unauthorized" });
+      return true;
+    }
+
+    try {
+      const update = await readRequestJson(req);
+      const result = await handleTelegramUpdate(update);
+      sendJson(res, 200, result);
+    } catch (error) {
+      sendJson(res, 500, { error: "telegram_webhook_failed", message: error.message });
+    }
     return true;
   }
 

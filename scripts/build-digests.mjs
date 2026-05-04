@@ -5,8 +5,8 @@ import { loadEnv } from "./lib/load-env.mjs";
 
 loadEnv();
 
-const POSTS_PATH = new URL("../public/blog/posts.json", import.meta.url);
-const DIGESTS_PATH = new URL("../public/blog/digests.json", import.meta.url);
+const DEFAULT_POSTS_PATH = new URL("../public/blog/posts.json", import.meta.url);
+const DEFAULT_DIGESTS_PATH = new URL("../public/blog/digests.json", import.meta.url);
 
 const MONTH_NAMES = [
   "январь",
@@ -837,8 +837,8 @@ function mergeGeneratedItems(selectedPosts, generated) {
   return items;
 }
 
-export async function buildDigests() {
-  const source = JSON.parse(await fs.readFile(POSTS_PATH, "utf8"));
+export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath = DEFAULT_DIGESTS_PATH } = {}) {
+  const source = JSON.parse(await fs.readFile(postsPath, "utf8"));
   const now = new Date();
 
   const posts = (source.posts || []).filter((post) => !isBlockedBlogPost(post));
@@ -906,7 +906,8 @@ export async function buildDigests() {
       latestKey: digests[digests.length - 1]?.key || null,
       digests: [...digests].sort((left, right) => right.key.localeCompare(left.key)),
     };
-    await fs.writeFile(DIGESTS_PATH, `${JSON.stringify(partialPayload, null, 2)}\n`, "utf8");
+    await fs.mkdir(new URL(".", digestsPath), { recursive: true });
+    await fs.writeFile(digestsPath, `${JSON.stringify(partialPayload, null, 2)}\n`, "utf8");
     cursor.setUTCMonth(cursor.getUTCMonth() + 1);
   }
 
@@ -918,7 +919,8 @@ export async function buildDigests() {
     digests,
   };
 
-  await fs.writeFile(DIGESTS_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+  await fs.mkdir(new URL(".", digestsPath), { recursive: true });
+  await fs.writeFile(digestsPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
   return payload;
 }
 

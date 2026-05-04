@@ -4,7 +4,7 @@ import { pathToFileURL } from "node:url";
 import * as cheerio from "cheerio";
 import { DSGNERS_SAMPLE_URLS } from "./lib/dsgners-urls.mjs";
 
-const OUT_PATH = new URL("../public/blog/posts.json", import.meta.url);
+const DEFAULT_OUT_PATH = new URL("../public/blog/posts.json", import.meta.url);
 const LOOKBACK_MS = 1000 * 60 * 60 * 24 * 365 * 3;
 const REQUEST_TIMEOUT_MS = 25_000;
 const MAX_POSTS = 1400;
@@ -762,7 +762,7 @@ function sortPosts(left, right) {
   return String(left.title || "").localeCompare(String(right.title || ""), "ru");
 }
 
-export async function fetchBlogPosts() {
+export async function fetchBlogPosts({ outPath = DEFAULT_OUT_PATH } = {}) {
   const posts = dedupePosts([
     ...(await collectFeeds()),
     ...(await collectPages()),
@@ -773,9 +773,9 @@ export async function fetchBlogPosts() {
     .slice(0, MAX_POSTS);
   const generatedAt = new Date().toISOString();
 
-  await fs.mkdir(new URL(".", OUT_PATH), { recursive: true });
+  await fs.mkdir(new URL(".", outPath), { recursive: true });
   await fs.writeFile(
-    OUT_PATH,
+    outPath,
     `${JSON.stringify({ generatedAt, posts }, null, 2)}\n`,
     "utf8"
   );
