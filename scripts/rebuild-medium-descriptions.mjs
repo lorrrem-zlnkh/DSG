@@ -77,12 +77,22 @@ function looksEnglish(text) {
   return cyrillic === 0 && latin > 3 * cyrillic;
 }
 
+function hasRussianText(text) {
+  return /[А-Яа-яЁё]/.test(String(text || ""));
+}
+
+function sentenceCount(text) {
+  return (String(text || "").match(/[.!?…](?=\s|$)/g) || []).length;
+}
+
 function isGoodOutput(summary, excerpt) {
   const s = sanitize(summary);
   const e = sanitize(excerpt);
-  if (isWeak(s) || isWeak(e)) return false;
+  if (isWeak(s)) return false;
   if (s.length < 160) return false;
-  if (e.length < 80) return false;
+  if (!hasRussianText(s)) return false;
+  if (sentenceCount(s) !== 3) return false;
+  if (e && (!hasRussianText(e) || isWeak(e))) return false;
   const combined = `${s}\n${e}`;
   for (const re of BANNED_PATTERNS) {
     if (re.test(combined)) return false;
@@ -136,10 +146,12 @@ async function requestRewrite(items) {
               type: "input_text",
               text:
                 "Ты редактор дайджестов по продуктовому дизайну. Тебе дают заголовок и сырой текст/аннотацию статьи. " +
-                "Сгенерируй полезный анонс: summary (2-3 предложения) и excerpt (1-2 предложения) на русском. " +
+                "Сгенерируй полезный анонс: summary ровно из 3 связных предложений на русском. " +
+                "Переводи на русский с любого исходного языка. Заголовок не переводи. " +
+                "excerpt оставляй пустой строкой, если summary уже раскрывает суть статьи. " +
                 "Нельзя использовать мусор и шаблоны: 'About Me', 'Continue reading on Medium', 'Member-only story', призывы подписаться, ссылки, 'Краткая суть'. " +
-                "Если исходный язык именно английский — переводи на русский и ставь languageBadge='Eng'. Если язык не английский (например, португальский) — languageBadge=null. " +
-                "Если текст слишком пустой, по доступным сигналам (заголовок + 1-2 фразы) сделай аккуратный, правдоподобный анонс без выдуманных фактов.",
+                "Если исходный язык именно английский — ставь languageBadge='Eng'. Если язык не английский (например, португальский) — languageBadge=null. " +
+                "Если текст слишком пустой, верни связный русский анонс только по доступным сигналам без выдуманных фактов.",
             },
           ],
         },
@@ -253,7 +265,15 @@ async function main() {
       results.push(...result.items);
     }
 
-    const map = new Map(results.map((x) => [String(x.id), x]));
+    const map = new Map();
+    for (const result of results) {
+      if (isGoodOutput(result.summary, result.excerpt || "")) {
+        map.set(String(result.id), result);
+      } else {
+        dropIds.add(String(result.id));
+        droppedCount += 1;
+      }
+    }
 
     for (const item of digest.items || []) {
       if (item.source !== "Medium") continue;

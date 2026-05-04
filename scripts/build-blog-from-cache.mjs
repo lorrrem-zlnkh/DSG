@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { isBlockedBlogPost } from "./lib/blog-quality.mjs";
 
 const LOOKBACK_MS = 1000 * 60 * 60 * 24 * 365 * 2;
 const now = Date.now();
@@ -23,15 +24,40 @@ function unwrapCdata(value) {
   return String(value).replace(/^<!\[CDATA\[([\s\S]*?)\]\]>$/i, "$1");
 }
 
+function decodeHtmlEntities(value) {
+  return String(value)
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(Number.parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
+    .replace(/&nbsp;/g, " ")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function sanitizeArticleText(text) {
+  return decodeHtmlEntities(text)
+    .replace(/Continue reading on [^.»]+[».]?/gi, " ")
+    .replace(/\bAbout Me\b[\s—-]*/gi, " ")
+    .replace(/^\s*(?:Привет|Всем привет)[!,]?\s*(?:Хабр[!.]?\s*)?/i, " ")
+    .replace(/^(?:Меня зовут|Я основатель|Я [^.!?…]{1,80}(?:дизайнер|разработчик|директор|основатель))[^.!?…]*[.!?…]\s*/i, " ")
+    .replace(/\s+(?:Привет|Всем привет)[!,]?\s*(?:Хабр[!.]?\s*)?/gi, " ")
+    .replace(/\s*(?:Меня зовут|Я основатель|Я [^.!?…]{1,80}(?:дизайнер|разработчик|директор|основатель))[^.!?…]*[.!?…]\s*/gi, " ")
+    .replace(/[.!?…](?=[А-ЯЁA-Z])/g, "$& ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function toSummary(text) {
-  const t = stripHtml(text);
+  const t = sanitizeArticleText(stripHtml(text));
   if (!t) return "";
   const cut = t.length > 220 ? t.slice(0, 220).trim() + "…" : t;
   return cut;
 }
 
 function toRewrite(text) {
-  const t = stripHtml(text);
+  const t = sanitizeArticleText(stripHtml(text));
   if (!t) return "";
   const sentences = t
     .split(/(?<=[.!?…])\s+/)
@@ -140,15 +166,6 @@ function extractByMeta(html, keys) {
   return "";
 }
 
-function decodeHtmlEntities(value) {
-  return String(value)
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">");
-}
-
 function toIsoDate(value) {
   if (!value) return null;
   const date = new Date(String(value).trim());
@@ -196,6 +213,13 @@ function extractTitle(html) {
   return m ? stripHtml(m[1]) : "";
 }
 
+function cleanSourceTitle(value) {
+  return String(value || "")
+    .replace(/\s+[-—]\s*дизайнерс\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function parseCacheMeta(raw) {
   try {
     return JSON.parse(raw);
@@ -228,7 +252,7 @@ async function parseHtmlFile(filePath, source, sourceLabel, url) {
     id: makeId(normalizedUrl),
     source,
     sourceLabel,
-    title: stripHtml(title),
+    title: cleanSourceTitle(stripHtml(title)),
     url: normalizedUrl,
     author: author ? stripHtml(author) : null,
     publishedAt,
@@ -290,7 +314,7 @@ async function main() {
       const htmlPath = path.join(dir, `${meta.id}.html`);
       let item = null;
       if (src.sub === "medium") {
-        const feedTitle = stripHtml(meta.title || "");
+        const feedTitle = cleanSourceTitle(stripHtml(meta.title || ""));
         const feedAuthor = stripHtml(meta.author || "");
         const desc = stripHtml(meta.description || "");
         item = {
@@ -318,6 +342,7 @@ async function main() {
   const seen = new Set();
   posts.sort(sortPostsByDateDesc);
   const unique = posts.filter((p) => {
+    if (isBlockedBlogPost(p)) return false;
     if (!p.url || !p.title || !p.sourceLabel || seen.has(p.url)) return false;
     seen.add(p.url);
     return true;

@@ -4,6 +4,7 @@ const hero = document.getElementById("digest-hero");
 const digestTitle = document.getElementById("digest-title");
 const digestMeta = document.getElementById("digest-meta");
 const digestList = document.getElementById("digest-list");
+const digestSubscribe = document.getElementById("digest-subscribe");
 const digestEmpty = document.getElementById("digest-empty");
 const sentinel = document.getElementById("digest-sentinel");
 
@@ -68,7 +69,6 @@ function renderNextBatch() {
     const badges = document.createElement("div");
     badges.className = "digest-item__badges";
     badges.append(createBadge(item.rubric, "digest-badge--rubric"));
-    badges.append(createBadge(item.author));
     badges.append(createBadge(item.source));
     if (item.languageBadge) {
       badges.append(createBadge(item.languageBadge, "digest-badge--language"));
@@ -92,6 +92,9 @@ function renderDigest(digest) {
   if (!digest) {
     hero.hidden = true;
     digestList.hidden = true;
+    if (digestSubscribe) {
+      digestSubscribe.hidden = true;
+    }
     digestEmpty.hidden = false;
     return;
   }
@@ -101,6 +104,9 @@ function renderDigest(digest) {
 
   hero.hidden = false;
   digestList.hidden = false;
+  if (digestSubscribe) {
+    digestSubscribe.hidden = false;
+  }
   digestEmpty.hidden = true;
 
   renderNextBatch();
@@ -120,7 +126,7 @@ function syncMonthOptions() {
   const months = digests
     .filter((digest) => digest.year === selectedYear)
     .map((digest) => ({ value: digest.month, label: digest.monthLabel }))
-    .sort((a, b) => b.value - a.value);
+    .sort((a, b) => a.value - b.value);
 
   const currentMonth = Number(monthSelect.value);
   monthSelect.innerHTML = "";

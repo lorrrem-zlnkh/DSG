@@ -378,9 +378,6 @@ body[data-page="blog"] .header__actions .btn--active {
     font-size: 12px;
   }
 
-  .footer {
-    padding-bottom: 400px;
-  }
 }
 
 @media (min-width: 621px) and (max-width: 980px) {
@@ -542,6 +539,10 @@ body[data-page="blog"] .header__actions .btn--active {
   border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 
+.footer__copyright {
+  margin-top: 6px;
+}
+
 .footer__h {
   font-weight: 800;
   letter-spacing: 0.2px;
@@ -572,6 +573,12 @@ body[data-page="blog"] .header__actions .btn--active {
 }
 
 @media (max-width: 620px) {
+  .footer {
+    padding-bottom: calc(
+      26px + env(safe-area-inset-bottom) + var(--mobile-nav-shell-padding) * 2 +
+        var(--mobile-nav-button-height) + 32px
+    );
+  }
   .footer__title {
     width: 100%;
     justify-content: center;

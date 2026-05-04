@@ -1,6 +1,17 @@
 {
-  "generatedAt": "2026-04-28T14:37:07.281Z",
+  "generatedAt": "2026-05-04T16:01:26.533Z",
   "posts": [
+    {
+      "id": "4fa582e72d64",
+      "source": "medium",
+      "sourceLabel": "Medium",
+      "title": "ai ai ai AI, todo dia um produto feito por AI",
+      "url": "https://medium.com/@felipevedova/ai-ai-ai-ai-todo-dia-um-produto-feito-por-ai-a547ba2c3789",
+      "author": "Renan F. Vedova",
+      "publishedAt": "2026-04-28T10:41:38.000Z",
+      "summary": "Se você acha que AI está criando produtos melhores, você está olhando errado. AI ai ai ai AI.",
+      "rewrite": "Se você acha que AI está criando produtos melhores, você está olhando errado."
+    },
     {
       "id": "173d5ae9b19e",
       "source": "medium",
@@ -9,8 +20,8 @@
       "url": "https://medium.com/design-bootcamp/designing-the-pickup-experience-in-the-united-states-5efc6c72bdab",
       "author": "Arya Das",
       "publishedAt": "2026-04-28T10:33:35.000Z",
-      "summary": "As part of a 24-hour design challenge, I was tasked with designing a food takeaway experience focused on pickup in the United States. Continue reading on Bootcamp »",
-      "rewrite": "As part of a 24-hour design challenge, I was tasked with designing a food takeaway experience focused on pickup in the United States. Continue reading on Bootcamp »"
+      "summary": "As part of a 24-hour design challenge, I was tasked with designing a food takeaway experience focused on pickup in the United States.",
+      "rewrite": "As part of a 24-hour design challenge, I was tasked with designing a food takeaway experience focused on pickup in the United States."
     },
     {
       "id": "475ca49866fe",
@@ -20,8 +31,8 @@
       "url": "https://amarkevitch.medium.com/how-i-learned-to-stop-worrying-and-love-wordpress-as-cms-95bd1f3d1068",
       "author": "Alexander Markevitch",
       "publishedAt": "2026-04-28T10:11:37.000Z",
-      "summary": "This article marks the start of a short series on how we&#x2019;re turning WordPress into a CMS that&#x2019;s easy to adapt for localization purposes. Continue reading on Medium »",
-      "rewrite": "This article marks the start of a short series on how we&#x2019;re turning WordPress into a CMS that&#x2019;s easy to adapt for localization purposes. Continue reading on Medium »"
+      "summary": "This article marks the start of a short series on how we’re turning WordPress into a CMS that’s easy to adapt for localization purposes.",
+      "rewrite": "This article marks the start of a short series on how we’re turning WordPress into a CMS that’s easy to adapt for localization purposes."
     },
     {
       "id": "d9e35f9cf75d",
@@ -31,8 +42,8 @@
       "url": "https://medium.com/@merje/research-that-sticks-part-2-f33c56958e99",
       "author": "Merje Shaw",
       "publishedAt": "2026-04-28T10:11:01.000Z",
-      "summary": "Last week I wrote about the way I promote research sessions before they take place to enable embedding the insights from the sessions. The&#x2026; Continue reading on Medium »",
-      "rewrite": "Last week I wrote about the way I promote research sessions before they take place to enable embedding the insights from the sessions. The&#x2026; Continue reading on Medium »"
+      "summary": "Last week I wrote about the way I promote research sessions before they take place to enable embedding the insights from the sessions. The…",
+      "rewrite": "Last week I wrote about the way I promote research sessions before they take place to enable embedding the insights from the sessions. The…"
     },
     {
       "id": "73d9821f3d33",
@@ -42,8 +53,19 @@
       "url": "https://medium.com/@hiteshanshani04/why-we-almost-used-microsoft-orleans-for-trial-balance-and-what-we-learned-when-we-didnt-ca7e46964fa7",
       "author": "Hiteshanshani",
       "publishedAt": "2026-04-28T09:52:20.000Z",
-      "summary": "&#x2014; A real exploration inside a financial product, where the obvious solution wasn&#x2019;t the right one. Continue reading on Medium »",
-      "rewrite": "&#x2014; A real exploration inside a financial product, where the obvious solution wasn&#x2019;t the right one. Continue reading on Medium »"
+      "summary": "— A real exploration inside a financial product, where the obvious solution wasn’t the right one.",
+      "rewrite": "— A real exploration inside a financial product, where the obvious solution wasn’t the right one."
+    },
+    {
+      "id": "91348b987309",
+      "source": "medium",
+      "sourceLabel": "Medium",
+      "title": "How We Reduced 90% of Defects by Building an Analyzer Mode",
+      "url": "https://medium.com/@ShivaManuka/how-we-reduced-90-of-defects-by-building-an-analyzer-mode-0c4097fba937",
+      "author": "Shiva Manuka",
+      "publishedAt": "2026-04-28T09:48:53.000Z",
+      "summary": "Turning complex business logic into transparent, debuggable workflows",
+      "rewrite": "Turning complex business logic into transparent, debuggable workflows"
     },
     {
       "id": "222c71ee9bf9",
@@ -53,8 +75,8 @@
       "url": "https://uiximran.medium.com/designing-high-converting-app-store-screenshots-for-an-ai-trip-planner-app-36f81c969a6e",
       "author": "Imran Jakir",
       "publishedAt": "2026-04-28T09:32:00.000Z",
-      "summary": "A UI/UX case study on crafting engaging, conversion-focused visuals for an AI-powered travel experience. Continue reading on Medium »",
-      "rewrite": "A UI/UX case study on crafting engaging, conversion-focused visuals for an AI-powered travel experience. Continue reading on Medium »"
+      "summary": "A UI/UX case study on crafting engaging, conversion-focused visuals for an AI-powered travel experience.",
+      "rewrite": "A UI/UX case study on crafting engaging, conversion-focused visuals for an AI-powered travel experience."
     },
     {
       "id": "d17b91620c8c",
@@ -64,8 +86,8 @@
       "url": "https://medium.com/@emma.aldington/im-a-content-designer-who-tried-product-design-here-s-what-i-learned-bf3ce7a5f339",
       "author": "Emma Aldington",
       "publishedAt": "2026-04-28T09:20:21.000Z",
-      "summary": "Disclaimer: I&#x2019;m re-publishing this as of April 2026, after originally publishing in May 2025. I haven&#x2019;t changed any of the content, but I&#x2026; Continue reading on Medium »",
-      "rewrite": "Disclaimer: I&#x2019;m re-publishing this as of April 2026, after originally publishing in May 2025. I haven&#x2019;t changed any of the content, but I&#x2026; Continue reading on Medium »"
+      "summary": "Disclaimer: I’m re-publishing this as of April 2026, after originally publishing in May 2025. I haven’t changed any of the content, but I…",
+      "rewrite": "Disclaimer: I’m re-publishing this as of April 2026, after originally publishing in May 2025. I haven’t changed any of the content, but I…"
     },
     {
       "id": "01a1791cd543",
@@ -75,8 +97,8 @@
       "url": "https://medium.com/@ic-eight/when-pix-works-but-your-system-doesnt-0703df542707",
       "author": "IC Eight",
       "publishedAt": "2026-04-28T08:58:00.000Z",
-      "summary": "The payment cleared. The ticket never arrived. Air France&#x2019;s response? &#x201C;We have not received the payment. Please contact your bank.&#x201D; Continue reading on Medium »",
-      "rewrite": "The ticket never arrived. Air France&#x2019;s response?\n\n&#x201C;We have not received the payment. Please contact your bank.&#x201D; Continue reading on Medium »"
+      "summary": "The payment cleared. The ticket never arrived. Air France’s response? “We have not received the payment. Please contact your bank.”",
+      "rewrite": "The ticket never arrived. Air France’s response?\n\n“We have not received the payment. Please contact your bank.”"
     },
     {
       "id": "d355c57e5df1",
@@ -86,8 +108,8 @@
       "url": "https://medium.com/@ssd_design/claude-design-is-impressive-its-still-not-a-designer-b94f82b7218e",
       "author": "Sigma Software Design",
       "publishedAt": "2026-04-28T08:23:40.000Z",
-      "summary": "A design team&#x2019;s perspective on the tool everyone&#x2019;s testing right now. What it gets right, and where it lets you down. Continue reading on Medium »",
-      "rewrite": "A design team&#x2019;s perspective on the tool everyone&#x2019;s testing right now. What it gets right, and where it lets you down.\n\nContinue reading on Medium »"
+      "summary": "A design team’s perspective on the tool everyone’s testing right now. What it gets right, and where it lets you down.",
+      "rewrite": "A design team’s perspective on the tool everyone’s testing right now. What it gets right, and where it lets you down."
     },
     {
       "id": "1f361e7db12f",
@@ -97,8 +119,8 @@
       "url": "https://medium.com/@pavanpitthdiya/dependency-injection-in-c-complete-guide-with-real-examples-constructor-setter-method-ad879b45acff",
       "author": "Pavan pitthdiya",
       "publishedAt": "2026-04-28T08:21:55.000Z",
-      "summary": "If you&#x2019;re building scalable .NET applications, Dependency Injection (DI) is not optional &#x2014; it&#x2019;s foundational. Continue reading on Medium »",
-      "rewrite": "If you&#x2019;re building scalable .NET applications, Dependency Injection (DI) is not optional &#x2014; it&#x2019;s foundational. Continue reading on Medium »"
+      "summary": "If you’re building scalable . NET applications, Dependency Injection (DI) is not optional — it’s foundational.",
+      "rewrite": "If you’re building scalable . NET applications, Dependency Injection (DI) is not optional — it’s foundational."
     },
     {
       "id": "dce215c426ca",
@@ -108,8 +130,8 @@
       "url": "https://medium.com/@andreacama92/designing-hmi-that-truly-matters-f433229c03a2",
       "author": "Andrea Cama",
       "publishedAt": "2026-04-28T08:18:36.000Z",
-      "summary": "Most UX mistakes are annoying. In HMI, they have consequences. Continue reading on Medium »",
-      "rewrite": "Most UX mistakes are annoying. In HMI, they have consequences.\n\nContinue reading on Medium »"
+      "summary": "Most UX mistakes are annoying. In HMI, they have consequences.",
+      "rewrite": "Most UX mistakes are annoying. In HMI, they have consequences."
     },
     {
       "id": "645131cf2980",
@@ -119,8 +141,8 @@
       "url": "https://medium.com/@liuyuan_12729/why-most-system-migrations-fail-and-how-to-do-it-safely-ccacc731a550",
       "author": "Ricardo@Shinetech",
       "publishedAt": "2026-04-28T08:16:29.000Z",
-      "summary": "If you&#x2019;re planning a system migration, you&#x2019;re probably not trying to understand what it is &#x2014; you&#x2019;re trying to understand how risky it&#x2026; Continue reading on Medium »",
-      "rewrite": "If you&#x2019;re planning a system migration, you&#x2019;re probably not trying to understand what it is &#x2014; you&#x2019;re trying to understand how risky it&#x2026; Continue reading on Medium »"
+      "summary": "If you’re planning a system migration, you’re probably not trying to understand what it is — you’re trying to understand how risky it…",
+      "rewrite": "If you’re planning a system migration, you’re probably not trying to understand what it is — you’re trying to understand how risky it…"
     },
     {
       "id": "8eaa9952f337",
@@ -130,8 +152,8 @@
       "url": "https://medium.com/design-bootcamp/the-best-human-ai-systems-are-designed-for-mutual-adaptationthe-future-is-not-humans-versus-ai-4b546c62b5bd",
       "author": "Jennifer Rousey",
       "publishedAt": "2026-04-28T07:49:17.000Z",
-      "summary": "It is systems that help each contribute where they are strongest. Continue reading on Bootcamp »",
-      "rewrite": "It is systems that help each contribute where they are strongest. Continue reading on Bootcamp »"
+      "summary": "It is systems that help each contribute where they are strongest.",
+      "rewrite": "It is systems that help each contribute where they are strongest."
     },
     {
       "id": "fed111fbbb67",
@@ -141,8 +163,8 @@
       "url": "https://medium.com/design-bootcamp/the-ceiling-is-the-same-for-everyone-74151a06bb2d",
       "author": "Russ Seidametov",
       "publishedAt": "2026-04-28T07:48:57.000Z",
-      "summary": "My girlfriend showed me an AI that writes full songs. Beats, voice, lyrics. Not demos. Real, finished songs. Continue reading on Bootcamp »",
-      "rewrite": "My girlfriend showed me an AI that writes full songs. Beats, voice, lyrics.\n\nReal, finished songs. Continue reading on Bootcamp »"
+      "summary": "My girlfriend showed me an AI that writes full songs. Beats, voice, lyrics. Not demos. Real, finished songs.",
+      "rewrite": "My girlfriend showed me an AI that writes full songs. Beats, voice, lyrics.\n\nReal, finished songs."
     },
     {
       "id": "b5570b4945b2",
@@ -152,8 +174,8 @@
       "url": "https://medium.com/design-bootcamp/cities-are-interfaces-bc00025565f8",
       "author": "Sibi Aadharsh",
       "publishedAt": "2026-04-28T07:48:51.000Z",
-      "summary": "Why treating cities like digital products can improve everyday life. Continue reading on Bootcamp »",
-      "rewrite": "Why treating cities like digital products can improve everyday life. Continue reading on Bootcamp »"
+      "summary": "Why treating cities like digital products can improve everyday life.",
+      "rewrite": "Why treating cities like digital products can improve everyday life."
     },
     {
       "id": "4587b077f349",
@@ -163,8 +185,8 @@
       "url": "https://medium.com/womenintechnology/pay-no-attention-to-the-latency-behind-the-curtain-3dd7d7638739",
       "author": "Monika Tomanek",
       "publishedAt": "2026-04-28T05:26:01.000Z",
-      "summary": "A UX story about Wizard of Oz prototypes, trust, and the moment the illusion breaks Continue reading on Women in Technology »",
-      "rewrite": "A UX story about Wizard of Oz prototypes, trust, and the moment the illusion breaks Continue reading on Women in Technology »"
+      "summary": "A UX story about Wizard of Oz prototypes, trust, and the moment the illusion breaks",
+      "rewrite": "A UX story about Wizard of Oz prototypes, trust, and the moment the illusion breaks"
     },
     {
       "id": "3fbee4234282",
@@ -174,30 +196,30 @@
       "url": "https://medium.com/@ed-lou/design-debt-is-technical-debt-treat-it-the-same-way-a2bc36257b2f",
       "author": "Eddie Lou",
       "publishedAt": "2026-04-28T05:01:21.000Z",
-      "summary": "Most engineering organizations track technical debt on a dashboard. Continue reading on Medium »",
-      "rewrite": "Most engineering organizations track technical debt on a dashboard. Continue reading on Medium »"
+      "summary": "Most engineering organizations track technical debt on a dashboard.",
+      "rewrite": "Most engineering organizations track technical debt on a dashboard."
     },
     {
       "id": "e7270316347f",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Вовлечённость начинается с контента, от статичного сайта к живому общению — дизайнерс",
+      "title": "Вовлечённость начинается с контента, от статичного сайта к живому общению",
       "url": "https://dsgners.ru/golfui/42981-vovlechjonnost-nachinaetsya-s-kontenta-ot-statichnogo-sayta-k-jivomu-obscheniyu",
       "author": null,
       "publishedAt": "2026-04-27T17:40:50.000Z",
       "summary": "Многие уверены: блог — это «умирающий формат». На самом деле умирают только изолированные блоги. Те, где нет связки «сайт → соцсети → живой диалог». Сегодня расскажу, как превратить статичный сайт в центр притяжения, исп…",
-      "rewrite": "На самом деле умирают только изолированные блоги. Те, где нет связки «сайт → соцсети → живой диалог».\n\nСегодня расскажу, как превратить статичный сайт в центр притяжения, используя одну тему для нескольких соцсетей , связку Hugo + GitHub Actions и немного маркетинговой гибкости. Не нужно писать с нуля для каждой соцсети Главная ошибка — пробовать везде одинаково.\n\nВторая по величине — писать уникальный пост для Telegram, VK и блога отдельно. Это путь в выгорание.\n\nПравильная стратегия: один смысловой стержень → разные формы . Берём одну тему (например, «Как мы внедрили CI/CD для контента»).\n\nИз неё рождаются: &gt; Вы не пишете 4 поста. Вы пишете 1 смысл + 3 адаптации.\n\nРазница по времени — 20 минут против 4 часов. А главное — вы сначала тестируете тему в соцсетях по просмотрам и реакциям, и только потом отправляете « зрелую » версию в блог.\n\nHugo + GitHub Pages — идеальный двигатель для такой стратегии Статический генератор сайтов Hugo — это скорость и безопасность. Никакой базы данных, никакой атаки на CMS."
+      "rewrite": "На самом деле умирают только изолированные блоги. Те, где нет связки «сайт → соцсети → живой диалог».\n\nСегодня расскажу, как превратить статичный сайт в центр притяжения, используя одну тему для нескольких соцсетей , связку Hugo + GitHub Actions и немного маркетинговой гибкости. Не нужно писать с нуля для каждой соцсети Главная ошибка — пробовать везде одинаково.\n\nВторая по величине — писать уникальный пост для Telegram, VK и блога отдельно. Это путь в выгорание.\n\nПравильная стратегия: один смысловой стержень → разные формы . Берём одну тему (например, «Как мы внедрили CI/CD для контента»).\n\nИз неё рождаются: > Вы не пишете 4 поста. Вы пишете 1 смысл + 3 адаптации.\n\nРазница по времени — 20 минут против 4 часов. А главное — вы сначала тестируете тему в соцсетях по просмотрам и реакциям, и только потом отправляете « зрелую » версию в блог.\n\nHugo + GitHub Pages — идеальный двигатель для такой стратегии Статический генератор сайтов Hugo — это скорость и безопасность. Никакой базы данных, никакой атаки на CMS."
     },
     {
       "id": "a706b0822e65",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Фокус — самый ограниченный ресурс, о котором почти никто не говорит — дизайнерс",
+      "title": "Фокус — самый ограниченный ресурс, о котором почти никто не говорит",
       "url": "https://dsgners.ru/tiho.design/42992-fokus-samyiy-ogranichennyiy-resurs-o-kotorom-pochti-nikto-ne-govorit",
       "author": null,
       "publishedAt": "2026-04-27T14:55:27.000Z",
       "summary": "Последнее время я особенно остро чувствую ограниченность собственного фокуса. И чем старше становлюсь, тем меньше верю в истории про «правильно организуй время — и всё успеешь».",
-      "rewrite": "И чем старше становлюсь, тем меньше верю в истории про «правильно организуй время — и всё успеешь». Потому что проблема вообще не во времени.\n\nКак только в жизни появляется что-то новое, оно почти автоматически начинает вытеснять что-то другое — не менее важное. Начинаешь глубже уходить в технологии или новое увлечение — проседает отдых.\n\nУходишь в работу — становится меньше ресурса на людей. Появляются отношения — выпадает что-то ещё, что тоже было ценно.\n\nЗапускаешь новый проект — внезапно перестаёшь читать, заниматься спортом или просто нормально молчать в тишине. И самое неприятное — это почти не чинится тайм-менеджментом.\n\nТайм-менеджмент не создаёт энергию Мне кажется, индустрия продуктивности немного нас обманула. Все эти:— календари,— таск-трекеры,— GTD,— time-blocking,— Pomodoro,— «5 утра успешного человека».\n\nОни помогают управлять временем.Но не помогают создавать внутренний ресурс. А это вообще разные вещи.\n\nМожно идеально разложить день по слотам и всё равно сидеть с ощущением, что мозг больше не способен качественно удерживать внимание. Не потому что ленивый."
+      "rewrite": "И чем старше становлюсь, тем меньше верю в истории про «правильно организуй время — и всё успеешь». Потому что проблема вообще не во времени.\n\nКак только в жизни появляется что-то новое, оно почти автоматически начинает вытеснять что-то другое — не менее важное. Начинаешь глубже уходить в технологии или новое увлечение — проседает отдых.\n\nУходишь в работу — становится меньше ресурса на людей. Появляются отношения — выпадает что-то ещё, что тоже было ценно.\n\nЗапускаешь новый проект — внезапно перестаёшь читать, заниматься спортом или просто нормально молчать в тишине. И самое неприятное — это почти не чинится тайм-менеджментом.\n\nТайм-менеджмент не создаёт энергию Мне кажется, индустрия продуктивности немного нас обманула. Все эти:— календари,— таск-трекеры,— GTD,— time-blocking,— Pomodoro,— «5 утра успешного человека».\n\nОни помогают управлять временем. Но не помогают создавать внутренний ресурс. А это вообще разные вещи.\n\nМожно идеально разложить день по слотам и всё равно сидеть с ощущением, что мозг больше не способен качественно удерживать внимание. Не потому что ленивый."
     },
     {
       "id": "57aa8408dec3",
@@ -262,8 +284,8 @@
       "url": "https://habr.com/ru/companies/otus/articles/965618/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=965618",
       "author": "MaxRokatansky (OTUS)",
       "publishedAt": "2025-11-12T09:26:19.000Z",
-      "summary": "Многие инженеры годами работают над реальными системами, но&nbsp;теряются на&nbsp;собеседованиях, когда их просят спроектировать архитектуру с&nbsp;нуля. Причина проста: System Design&nbsp;— это не&nbsp;про&nbsp;технолог…",
-      "rewrite": "Многие инженеры годами работают над реальными системами, но&nbsp;теряются на&nbsp;собеседованиях, когда их просят спроектировать архитектуру с&nbsp;нуля. Причина проста: System Design&nbsp;— это не&nbsp;про&nbsp;технологии.\n\nЭто про умение видеть контекст , задавать правильные вопросы , взвешивать последствия решений и находить обоснованные компромиссы . В&nbsp;этой статье мы расскажем, как&nbsp;развить именно эти навыки&nbsp;— те самые, которые отличают Senior‑инженера от&nbsp;Middle, и которые ценятся в&nbsp;топовых компаниях.\n\nЭто не&nbsp;просто руководство к&nbsp;прохождению собеседований. Это приглашение освоить фундаментальный профессиональный навык, который пригодится вам каждый день на&nbsp;работе."
+      "summary": "Многие инженеры годами работают над реальными системами, но теряются на собеседованиях, когда их просят спроектировать архитектуру с нуля. Причина проста: System Design — это не про технолог…",
+      "rewrite": "Многие инженеры годами работают над реальными системами, но теряются на собеседованиях, когда их просят спроектировать архитектуру с нуля. Причина проста: System Design — это не про технологии.\n\nЭто про умение видеть контекст , задавать правильные вопросы , взвешивать последствия решений и находить обоснованные компромиссы . В этой статье мы расскажем, как развить именно эти навыки — те самые, которые отличают Senior‑инженера от Middle, и которые ценятся в топовых компаниях.\n\nЭто не просто руководство к прохождению собеседований. Это приглашение освоить фундаментальный профессиональный навык, который пригодится вам каждый день на работе."
     },
     {
       "id": "763545ad3d64",
@@ -273,8 +295,8 @@
       "url": "https://habr.com/ru/companies/hh/articles/962420/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=962420",
       "author": "McDee (hh.ru)",
       "publishedAt": "2025-11-05T06:00:10.000Z",
-      "summary": "Привет! Меня зовут Андрей Максимкин. Я iOS-разработчик в hh.ru . В своих статьях ( тут , тут и не только) мы уже не раз говорили о большой любви к тестам и их важной роли в нашем процессе разработки. В этой статье хочу п…",
-      "rewrite": "Меня зовут Андрей Максимкин. Я iOS-разработчик в hh.ru .\n\nВ своих статьях ( тут , тут и не только) мы уже не раз говорили о большой любви к тестам и их важной роли в нашем процессе разработки. В этой статье хочу поделиться опытом использования snapshot-тестов, начиная с этапа внедрения.\n\nСтатья будет полезна для QA и iOS-разработчиков разных уровней. Обсудим не только теорию, но и напишем реальный snapshot-тест — как в нашей практике.\n\nВместо вступления Сначала расскажем про snapshot-тесты и для чего они нужны. Snapshot тесты — это метод тестирования, который используется для защиты внешнего вида компонентов и интерфейсов от незапланированных изменений.\n\nОни позволяют зафиксировать эталонное состояние компонента и в дальнейшем использовать как образец. Это помогает выявлять изменения в пользовательском интерфейсе, которые могут возникнуть в результате обновлений кода.\n\nВ hh.ru мы активно разрабатываем нашу собственную дизайн-систему (ДС). Дело в том, что компоненты ДС могут иметь широкий набор свойств: цвета, размеры, скругления.\n\nПроверять корректность, например, цветов обычным ручным тестировщикам на длинной дистанции невозможно, поэтому возникла потребность автоматизировать проверки. Кроме того, при рефакторинге кода некоторые компоненты могут сломаться — хотелось бы находить такие проблемы сразу."
+      "summary": "ru . В своих статьях ( тут , тут и не только) мы уже не раз говорили о большой любви к тестам и их важной роли в нашем процессе разработки. В этой статье хочу п…",
+      "rewrite": "ru .\n\nВ своих статьях ( тут , тут и не только) мы уже не раз говорили о большой любви к тестам и их важной роли в нашем процессе разработки. В этой статье хочу поделиться опытом использования snapshot-тестов, начиная с этапа внедрения.\n\nСтать Обсудим не только теорию, но и напишем реальный snapshot-тест — как в нашей практике.\n\nВместо вступления Сначала расскажем про snapshot-тесты и для чего они нужны. Snapshot тесты — это метод тестирования, который используется для защиты внешнего вида компонентов и интерфейсов от незапланированных изменений.\n\nОни позволяют зафиксировать эталонное состояние компонента и в дальнейшем использовать как образец. Это помогает выявлять изменения в пользовательском интерфейсе, которые могут возникнуть в результате обновлений кода.\n\nВ hh.ru мы активно разрабатываем нашу собственную дизайн-систему (ДС). Дело в том, что компоненты ДС могут иметь широкий набор свойств: цвета, размеры, скругления.\n\nПроверять корректность, например, цветов обычным ручным тестировщикам на длинной дистанции невозможно, поэтому возникла потребность автоматизировать проверки. Кроме того, при рефакторинге кода некоторые компоненты могут сломаться — хотелось бы находить такие проблемы сразу."
     },
     {
       "id": "c18f7c9e05ba",
@@ -284,8 +306,8 @@
       "url": "https://habr.com/ru/articles/962286/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=962286",
       "author": "avovana7",
       "publishedAt": "2025-11-01T07:36:40.000Z",
-      "summary": "События разворачивались в нескольких реальностях. &nbsp;В первой заказ не пришёл. Во второй - произошло несколько списаний средств. В третьей система упала посередине процесса, оставив данные в не консистентном состоянии…",
-      "rewrite": "События разворачивались в нескольких реальностях. &nbsp;В первой заказ не пришёл.\n\nВо второй - произошло несколько списаний средств. В третьей система упала посередине процесса, оставив данные в не консистентном состоянии.\n\nА четвертая оказалось самой интересной. Где даже с неполадками сети и падениями сервиса был сделан лишь один заказ.\n\nИ произведена одна оплата. Благодаря чему пришла желаемая теплая пицца.\n\nКоторую хотел наш дорогой покупатель. Погрузимся в проблематику оформления заказа, консистентности данных.\n\nИ схлопнем все реальности в нужную с помощью&nbsp; Outbox Pattern . Смотреть разбор со схемами"
+      "summary": "События разворачивались в нескольких реальностях. В первой заказ не пришёл. Во второй - произошло несколько списаний средств. В третьей система упала посередине процесса, оставив данные в не консистентном состоянии…",
+      "rewrite": "События разворачивались в нескольких реальностях. В первой заказ не пришёл.\n\nВо второй - произошло несколько списаний средств. В третьей система упала посередине процесса, оставив данные в не консистентном состоянии.\n\nА четвертая оказалось самой интересной. Где даже с неполадками сети и падениями сервиса был сделан лишь один заказ.\n\nИ произведена одна оплата. Благодаря чему пришла желаемая теплая пицца.\n\nКоторую хотел наш дорогой покупатель. Погрузимся в проблематику оформления заказа, консистентности данных.\n\nИ схлопнем все реальности в нужную с помощью Outbox Pattern . Смотреть разбор со схемами"
     },
     {
       "id": "ece6d32c110b",
@@ -306,14 +328,14 @@
       "url": "https://habr.com/ru/companies/mango_telecom/articles/950578/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=950578",
       "author": "MangoOffice (MANGO OFFICE)",
       "publishedAt": "2025-09-25T12:41:22.000Z",
-      "summary": "Практический опыт MANGO OFFICE в оценке архитекторов и старших разработчиков Привет, Хабр! Наш спикер — Константин Густов, руководитель отдела развития архитектуры и IT бизнес-партнёр MANGO OFFICE. И он недавно принял уч…",
-      "rewrite": "Практический опыт MANGO OFFICE в оценке архитекторов и старших разработчиков Привет, Хабр! Наш спикер — Константин Густов, руководитель отдела развития архитектуры и IT бизнес-партнёр MANGO OFFICE.\n\nИ он недавно принял участие в подкасте Деплой. В компании он выстраивает производственные процессы разработки и руководит командой из 13 архитекторов на 400 IT-специалистов.\n\nМы сделали подборку лучших моментов выпуска с практическими рекомендациями по подготовке и прохождению архитектурного интервью."
+      "summary": "Практический опыт MANGO OFFICE в оценке архитекторов и старших разработчиков Наш спикер — Константин Густов, руководитель отдела развития архитектуры и IT бизнес-партнёр MANGO OFFICE. И он недавно принял уч…",
+      "rewrite": "Практический опыт MANGO OFFICE в оценке архитекторов и старших разработчиков Наш спикер — Константин Густов, руководитель отдела развития архитектуры и IT бизнес-партнёр MANGO OFFICE.\n\nИ он недавно принял участие в подкасте Деплой. В компании он выстраивает производственные процессы разработки и руководит командой из 13 архитекторов на 400 IT-специалистов.\n\nМы сделали подборку лучших моментов выпуска с практическими рекомендациями по подготовке и прохождению архитектурного интервью."
     },
     {
       "id": "cba033e56e2a",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Верстаем обложку эфира с двумя спикерами — дизайнерс",
+      "title": "Верстаем обложку эфира с двумя спикерами",
       "url": "https://dsgners.ru/Ilyauxuidesign/11548-verstaem-oblojku-efira-s-dvumya-spikerami",
       "author": null,
       "publishedAt": "2025-08-18T06:18:17.000Z",
@@ -324,40 +346,40 @@
       "id": "a4c606fe56df",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "5 задач, которые UX-исследователи Авито решают с помощью нейросетей — дизайнерс",
+      "title": "5 задач, которые UX-исследователи Авито решают с помощью нейросетей",
       "url": "https://dsgners.ru/avito/11995-5-zadach-kotoryie-ux-issledovateli-avito-reshayut-s-pomoschyu-neyrosetey",
       "author": null,
       "publishedAt": "2025-08-08T07:25:31.000Z",
-      "summary": "Привет! Меня зовут Маша Московкина, я UX-исследователь в Авито Работе. В UX часть задач — это рутина, а ИИ отлично с таким справляется. Поэтому иногда с его помощью мы упрощаем работу себе и коллегам из других функций.",
-      "rewrite": "Меня зовут Маша Московкина, я UX-исследователь в Авито Работе. В&nbsp;UX&nbsp;часть задач — это рутина, а ИИ отлично с таким справляется.\n\nПоэтому иногда с его помощью мы&nbsp;упрощаем работу себе и коллегам из&nbsp;других функций. В статье поделюсь идеями, как вы тоже сможете использовать ИИ в работе, и покажу 5 примеров наших промптов.\n\nДумаю, статью будет прежде всего интересно почитать исследователям и дизайнерам. Предисловие: что важно уметь, чтобы работать с ИИ&nbsp; &nbsp; Чтобы корректно применять ИИ в исследовательской работе, нужны некоторые навыки и знания.\n\nВ статье мы не будем подробно их описывать, а, скорее, сосредоточимся уже на примерах наших задач. Но если что-то из этого списка покажется вам совсем незнакомым, стоит подтянуть знания: 👉 Уметь писать промпты.\n\nНедостаточно просто загрузить информацию в нейросеть и написать «реши мою задачу». Промпты нужно писать в соответствии с&nbsp;определённой структурой, расписывая порядок действий и ограничивая правилами свободу ИИ.\n\nНиже в статье поделюсь примерами. 👉 Уметь проверять источники информации , откуда ИИ берёт данные для своих выводов.\n\nОсновная задача — отсеять статьи, которые созданы для SEO, а не для читателей. 👉 Понимать, чем отличаются разные нейросети , чтобы правильно выбрать модель для исследований."
+      "summary": "В UX часть задач — это рутина, а ИИ отлично с таким справляется. Поэтому иногда с его помощью мы упрощаем работу себе и коллегам из других функций.",
+      "rewrite": "В UX часть задач — это рутина, а ИИ отлично с таким справляется.\n\nПоэтому иногда с его помощью мы упрощаем работу себе и коллегам из других функций. В статье поделюсь идеями, как вы тоже сможете использовать ИИ в работе, и покажу 5 примеров наших промптов.\n\nДумаю, статью будет прежде всего интересно почитать исследователям и дизайнерам. Предисловие: что важно уметь, чтобы работать с ИИ Чтобы корректно применять ИИ в исследовательской работе, нужны некоторые навыки и знания.\n\nВ статье мы не будем подробно их описывать, а, скорее, сосредоточимся уже на примерах наших задач. Но если что-то из этого списка покажется вам совсем незнакомым, стоит подтянуть знания: 👉 Уметь писать промпты.\n\nНедостаточно просто загрузить информацию в нейросеть и написать «реши мою задачу». Промпты нужно писать в соответствии с определённой структурой, расписывая порядок действий и ограничивая правилами свободу ИИ.\n\nНиже в статье поделюсь примерами. 👉 Уметь проверять источники информации , откуда ИИ берёт данные для своих выводов.\n\nОсновная задача — отсеять статьи, которые созданы для SEO, а не для читателей. 👉 Понимать, чем отличаются разные нейросети , чтобы правильно выбрать модель для исследований."
     },
     {
       "id": "7d74adc0fbe8",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Системные продажи в агентстве — миф или реальность? — дизайнерс",
+      "title": "Системные продажи в агентстве — миф или реальность?",
       "url": "https://dsgners.ru/azagency.design/11850-sistemnyie-prodaji-v-agentstve-mif-ili-realnost",
       "author": null,
       "publishedAt": "2025-07-30T11:09:11.000Z",
-      "summary": "Привет! На связи Настя, фаундер AZ Agency. Сегодня расскажу, как мы выстраиваем системные продажи в агентстве — без выгорания, беготни и вечного «пожарного режима».",
+      "summary": "На связи Настя, фаундер AZ Agency. Сегодня расскажу, как мы выстраиваем системные продажи в агентстве — без выгорания, беготни и вечного «пожарного режима».",
       "rewrite": "Системные продажи в агентстве — миф или реальность? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены AZ Agency Статья · 30.07.25 Подписаться Подписаться Системные продажи в агентстве — миф или реальность?\n\nВозможно ли без отдела продаж выстроить системный подход, который приносит тебе лиды и заявки стабильно каждый месяц, а не только когда заканчиваются проекты? На связи Настя, фаундер AZ Agency.\n\nСегодня расскажу, как мы выстраиваем системные продажи в агентстве — без выгорания, беготни и вечного «пожарного режима». Если ты тоже ловил себя на том, что продажи в агентстве идут волнами — то паника, то затишье, — этот материал будет полезен.\n\nПокажу, какие инструменты мы используем, как запускаем автоматизацию и держим воронку теплой даже тогда, когда все в отпусках. LinkedIn: стратегия + автоматизация вместо отдела продаж В агентстве мы давно искали способ выстроить продажи.\n\nБез отдела продаж и лишнего менеджмента. Решение нашли в связке: стратегия + LinkedIn Helper.\n\nЧто сделали: Я сама прописываю стратегию под целевые сегменты: стартапы, SaaS, e-commerce. Запустили 3 аккаунта — каждый под свою аудиторию и гипотезу.\n\nКонтент: посты и статьи каждую неделю Параллельно ведём контент в LinkedIn , Телеграм — 2–3 поста в неделю. Это не про «славу» в ленте, а про узнаваемость и доверие."
     },
     {
       "id": "51a3f43f72ad",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Эвристики UX — фундамент для успешного цифрового продукта — дизайнерс",
+      "title": "Эвристики UX — фундамент для успешного цифрового продукта",
       "url": "https://dsgners.ru/proddesiign/11859-evristiki-ux-fundament-dlya-uspeshnogo-tsifrovogo-produkta",
       "author": null,
       "publishedAt": "2025-07-29T14:02:12.000Z",
       "summary": "Иногда, чтобы сделать продукт лучше, не нужны глубинные интервью, тесты или кастомные метрики. Достаточно посмотреть на интерфейс глазами здравого смысла — но системно.",
-      "rewrite": "Достаточно посмотреть на интерфейс глазами здравого смысла — но системно.&nbsp; Эвристики Нильсена — это и есть такой системный здравый смысл. Они помогают быстро заметить, где интерфейс запутывает, не помогает, или вообще молчит, когда должен говорить.\n\nМы собрали 10 эвристик, переформулировали их понятным языком и показали, как использовать их прямо в работе: при проектировании, ревью или в конце спринта. Это не про UX-теорию, это про то, как не зарываться в слои кнопок и модалок, а вовремя свериться с человеком.\n\n👉 Больше про продуктовый дизайн в тг:&nbsp; дневники разработчиц 1. Видимость состояния системы Пользователь всегда должен понимать, что происходит.\n\nИнтерфейс не должен молчать. Каждый раз, когда человек нажимает кнопку, заполняет форму или просто жмёт «назад», он как бы спрашивает у системы: «Ты меня услышала?» Если интерфейс не отвечает — пользователь теряется.\n\nОн начинает гадать: форма не отправилась или интернет завис? Сохранено ли то, что я ввёл?\n\nПочему кнопка вдруг стала серой? Человеческим языком 2.\n\nСоответствие между системой и реальным миром Интерфейс говорит на том языке, который понятен человеку. Без внутреннего жаргона и машинных слов."
+      "rewrite": "Достаточно посмотреть на интерфейс глазами здравого смысла — но системно. Эвристики Нильсена — это и есть такой системный здравый смысл. Они помогают быстро заметить, где интерфейс запутывает, не помогает, или вообще молчит, когда должен говорить.\n\nМы собрали 10 эвристик, переформулировали их понятным языком и показали, как использовать их прямо в работе: при проектировании, ревью или в конце спринта. Это не про UX-теорию, это про то, как не зарываться в слои кнопок и модалок, а вовремя свериться с человеком.\n\n👉 Больше про продуктовый дизайн в тг: дневники разработчиц 1. Видимость состояния системы Пользователь всегда должен понимать, что происходит.\n\nИнтерфейс не должен молчать. Каждый раз, когда человек нажимает кнопку, заполняет форму или просто жмёт «назад», он как бы спрашивает у системы: «Ты меня услышала?» Если интерфейс не отвечает — пользователь теряется.\n\nОн начинает гадать: форма не отправилась или интернет завис? Сохранено ли то, что я ввёл?\n\nПочему кнопка вдруг стала серой? Человеческим языком 2.\n\nСоответствие между системой и реальным миром Интерфейс говорит на том языке, который понятен человеку. Без внутреннего жаргона и машинных слов."
     },
     {
       "id": "8cbc057698eb",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Лекторий Dprofile в Саратове — дизайнерс",
+      "title": "Лекторий Dprofile в Саратове",
       "url": "https://dsgners.ru/cherkasov_uxui/11847-lektoriy-dprofile-v-saratove",
       "author": null,
       "publishedAt": "2025-07-28T16:34:39.000Z",
@@ -368,304 +390,304 @@
       "id": "419142a9e3ff",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как улучшить UX в 1С, не переписывая код — дизайнерс",
+      "title": "Как улучшить UX в 1С, не переписывая код",
       "url": "https://dsgners.ru/evgeniashamray/11762-kak-uluchshit-ux-v-1s-ne-perepisyivaya-kod",
       "author": null,
       "publishedAt": "2025-07-28T06:01:33.000Z",
       "summary": "Что можно настроить в типовой 1С, чтобы людям стало проще работать ⤵️",
-      "rewrite": "Но в реальности — многое можно улучшить даже без изменений в коде. Интерфейс 1С гибкий, и если подойти с UX-головой, можно сильно облегчить работу сотрудников.&nbsp;Привет!\n\nМеня зовут Евгения Шамрай. Рассказываю, что мы настраиваем на проектах, когда у клиента типовая 1С и нет бюджета на глубокую доработку.\n\nПочему вообще важно улучшать UX в 1С 1С — это не просто софт, это рабочее место . Люди проводят в нём часы: создают документы, сверяют остатки, закрывают месяцы.\n\nИ то, насколько удобен этот интерфейс, напрямую влияет на скорость, ошибки и стресс в команде . Что можно улучшить — без кода&nbsp;&nbsp; Если система типовая, код трогать нельзя, но хочется навести порядок — это не повод сдаваться.\n\nВ 1С есть множество настроек “поверх” , которые влияют на удобство работы. Вот что мы настраиваем на проектах.\n\nНастройка форм под конкретные роли У каждой роли — свои задачи. Но в типовой 1С всем часто показывают одно и то же.\n\nВ итоге бухгалтеру мешают поля, нужные логисту, а менеджер по продажам заполняет то, что ему не нужно. Что делаем: убираем лишние поля выносим главное в начало настраиваем видимость блоков под роли 🔹 Пример:&nbsp; У бухгалтера — один вид формы, у логиста — другой."
+      "rewrite": "Но в реальности — многое можно улучшить даже без изменений в коде. Интерфейс 1С гибкий, и если подойти с UX-головой, можно сильно облегчить работу сотрудников. Рассказываю, что мы настраиваем на проектах, когда у клиента типовая 1С и нет бюджета на глубокую доработку.\n\nПочему вообще важно улучшать UX в 1С 1С — это не просто софт, это рабочее место . Люди проводят в нём часы: создают документы, сверяют остатки, закрывают месяцы.\n\nИ то, насколько удобен этот интерфейс, напрямую влияет на скорость, ошибки и стресс в команде . Что можно улучшить — без кода Если система типовая, код трогать нельзя, но хочется навести порядок — это не повод сдаваться.\n\nВ 1С есть множество настроек “поверх” , которые влияют на удобство работы. Вот что мы настраиваем на проектах.\n\nНастройка форм под конкретные роли У каждой роли — свои задачи. Но в типовой 1С всем часто показывают одно и то же.\n\nВ итоге бухгалтеру мешают поля, нужные логисту, а менеджер по продажам заполняет то, что ему не нужно. Что делаем: убираем лишние поля выносим главное в начало настраиваем видимость блоков под роли 🔹 Пример: У бухгалтера — один вид формы, у логиста — другой."
     },
     {
       "id": "b813a96472b1",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как улучшить UX в 1С, не переписывая код — дизайнерс",
+      "title": "Как улучшить UX в 1С, не переписывая код",
       "url": "https://dsgners.ru/b2bdesign/11762-kak-uluchshit-ux-v-1s-ne-perepisyivaya-kod",
       "author": null,
       "publishedAt": "2025-07-28T06:01:33.000Z",
       "summary": "Что можно настроить в типовой 1С, чтобы людям стало проще работать ⤵️",
-      "rewrite": "Но в реальности — многое можно улучшить даже без изменений в коде. Интерфейс 1С гибкий, и если подойти с UX-головой, можно сильно облегчить работу сотрудников.&nbsp;Привет!\n\nМеня зовут Евгения Шамрай. Рассказываю, что мы настраиваем на проектах, когда у клиента типовая 1С и нет бюджета на глубокую доработку.\n\nПочему вообще важно улучшать UX в 1С 1С — это не просто софт, это рабочее место . Люди проводят в нём часы: создают документы, сверяют остатки, закрывают месяцы.\n\nИ то, насколько удобен этот интерфейс, напрямую влияет на скорость, ошибки и стресс в команде . Что можно улучшить — без кода&nbsp;&nbsp; Если система типовая, код трогать нельзя, но хочется навести порядок — это не повод сдаваться.\n\nВ 1С есть множество настроек “поверх” , которые влияют на удобство работы. Вот что мы настраиваем на проектах.\n\nНастройка форм под конкретные роли У каждой роли — свои задачи. Но в типовой 1С всем часто показывают одно и то же.\n\nВ итоге бухгалтеру мешают поля, нужные логисту, а менеджер по продажам заполняет то, что ему не нужно. Что делаем: убираем лишние поля выносим главное в начало настраиваем видимость блоков под роли 🔹 Пример:&nbsp; У бухгалтера — один вид формы, у логиста — другой."
+      "rewrite": "Но в реальности — многое можно улучшить даже без изменений в коде. Интерфейс 1С гибкий, и если подойти с UX-головой, можно сильно облегчить работу сотрудников. Рассказываю, что мы настраиваем на проектах, когда у клиента типовая 1С и нет бюджета на глубокую доработку.\n\nПочему вообще важно улучшать UX в 1С 1С — это не просто софт, это рабочее место . Люди проводят в нём часы: создают документы, сверяют остатки, закрывают месяцы.\n\nИ то, насколько удобен этот интерфейс, напрямую влияет на скорость, ошибки и стресс в команде . Что можно улучшить — без кода Если система типовая, код трогать нельзя, но хочется навести порядок — это не повод сдаваться.\n\nВ 1С есть множество настроек “поверх” , которые влияют на удобство работы. Вот что мы настраиваем на проектах.\n\nНастройка форм под конкретные роли У каждой роли — свои задачи. Но в типовой 1С всем часто показывают одно и то же.\n\nВ итоге бухгалтеру мешают поля, нужные логисту, а менеджер по продажам заполняет то, что ему не нужно. Что делаем: убираем лишние поля выносим главное в начало настраиваем видимость блоков под роли 🔹 Пример: У бухгалтера — один вид формы, у логиста — другой."
     },
     {
       "id": "11ad0bbaf928",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Почему в интерфейсах со сложной логикой недостаточно показать макеты в Figma? — дизайнерс",
+      "title": "Почему в интерфейсах со сложной логикой недостаточно показать макеты в Figma?",
       "url": "https://dsgners.ru/cherkasov_uxui/11804-pochemu-v-interfeysah-so-slojnoy-logikoy-nedostatochno-pokazat-maketyi-v-figma",
       "author": null,
       "publishedAt": "2025-07-27T09:17:10.000Z",
       "summary": "В принципе, в меме всё честно ) Но я всё же решила расширить объяснение почему не кидаю ссылку на Figma по первому запросу.",
-      "rewrite": "Почему в интерфейсах со сложной логикой недостаточно показать макеты в Figma? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Елена Плинер Статья · 27.07.25 Подписаться Подписаться Почему в интерфейсах со сложной логикой недостаточно показать макеты в Figma?\n\nВ принципе, в меме всё честно ) Но я всё же решила расширить объяснение почему не кидаю ссылку на Figma по первому запросу. Автор мема мне неизвестен, но искреннее спасибо) Немного обо&nbsp;мне.\n\nМеня зовут Лена Плинер. Я проектирую интерфейсы для сложных продуктов: CRM, ERP, SaaS‑платформ и сервисов, веб‑ и мобильных приложений.\n\nЗанимаюсь дизайном больше 15-ти лет, с 2009&nbsp;года работаю как попроектный дизайнер. В этой небольшой статье я хочу рассказать: почему я не отправляю макеты вслепую; почему перед созвоном всегда запрашиваю информацию о проекте; о чем говорю и что показываю на созвоне знакомства.\n\n— Дайте ссылку на Figma! В портфолио у меня сотни проектов.\n\nСотни макетов, ссылок на Figma, различных тематик, задач, решений. Только визуальная часть редко даёт представление о масштабе проделанной работы.\n\nЧтобы понять, как и какие принимались решения, почему сценарии выстроены именно так и какие задачи стояли за интерфейсом, нужно погрузить клиента в контекст. Без погружения в контекст сложно оценить подход к проектированию и опыту дизайнера."
+      "rewrite": "Почему в интерфейсах со сложной логикой недостаточно показать макеты в Figma? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Елена Плинер Статья · 27.07.25 Подписаться Подписаться Почему в интерфейсах со сложной логикой недостаточно показать макеты в Figma?\n\nВ принципе, в меме всё честно ) Но я всё же решила расширить объяснение почему не кидаю ссылку на Figma по первому запросу. Автор мема мне неизвестен, но искреннее спасибо) Немного обо мне. Я проектирую интерфейсы для сложных продуктов: CRM, ERP, SaaS‑платформ и сервисов, веб‑ и мобильных приложений.\n\nЗанимаюсь дизайном больше 15-ти лет, с 2009 года работаю как попроектный дизайнер. В этой небольшой статье я хочу рассказать: почему я не отправляю макеты вслепую; почему перед созвоном всегда запрашиваю информацию о проекте; о чем говорю и что показываю на созвоне знакомства.\n\n— Дайте ссылку на Figma! В портфолио у меня сотни проектов.\n\nСотни макетов, ссылок на Figma, различных тематик, задач, решений. Только визуальная часть редко даёт представление о масштабе проделанной работы.\n\nЧтобы понять, как и какие принимались решения, почему сценарии выстроены именно так и какие задачи стояли за интерфейсом, нужно погрузить клиента в контекст. Без погружени"
     },
     {
       "id": "d8f76925cd41",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "«Pixso — это новая Figma?» или год страданий — дизайнерс",
+      "title": "«Pixso — это новая Figma?» или год страданий",
       "url": "https://dsgners.ru/cherkasov_uxui/11810-pixso-eto-novaya-figma-ili-god-stradaniy",
       "author": null,
       "publishedAt": "2025-07-26T10:04:54.000Z",
       "summary": "Figma уже давно стала стандартом для дизайнеров, но в последнее время российские компании всё чаще переходят на «тёмную сторону» — Pixso. Его называют «убийцей Figma». Я провёл год, работая в обоих инструментах, и теперь…",
-      "rewrite": "Его называют «убийцей Figma». Я провёл год, работая в обоих инструментах, и теперь могу честно сказать: это революция или год страданий?\n\nДелюсь опытом без фильтров&nbsp; Почему компании переходят на китайский аналог Figma? Можно оплачивать корпоративные подписки российскими картами Огромная часть функционала, в том числе работа с командой – бесплатно.\n\nКажется, что всё идеально: экономия, множество AI-функций, знакомый интерфейс, почти копия Figma — переход кажется лёгким. Но на практике минусов оказалось больше, чем плюсов Что не так с&nbsp;Pixso?\n\n(спойлер – всё) Для крупных продуктов может быть большой проблемой – отсутствие variables. Да, в Pixso их пока не завезли.\n\nСоответственно, работа с токенами становится невозможной. Решение: только стили – только хардкор Слабое комьюнити.\n\nВы не найдете в открытом доступе библиотеки IOS, Android, дизайн системы крупных IT-продуктов или паки иконок. Решение: экспортировать их из фигмы, благо это возможно сделать в Pixso))) Очень мало полезных плагинов.\n\nЕсть дофига ИИшек, которые кстати говоря, работают плохо. Решение: опять же использовать инструменты фигмы и экспортировать в Pixso Нельзя сделать неразрывный пробел, как в фигме через option/alt + space."
+      "rewrite": "Его называют «убийцей Figma». Я провёл год, работая в обоих инструментах, и теперь могу честно сказать: это революция или год страданий?\n\nДелюсь опытом без фильтров Почему компании переходят на китайский аналог Figma? Можно оплачивать корпоративные подписки российскими картами Огромная часть функционала, в том числе работа с командой – бесплатно.\n\nКажется, что всё идеально: экономия, множество AI-функций, знакомый интерфейс, почти копия Figma — переход кажется лёгким. Но на практике минусов оказалось больше, чем плюсов Что не так с Pixso?\n\n(спойлер – всё) Для крупных продуктов может быть большой проблемой – отсутствие variables. Да, в Pixso их пока не завезли.\n\nСоответственно, работа с токенами становится невозможной. Решение: только стили – только хардкор Слабое комьюнити.\n\nВы не найдете в открытом доступе библиотеки IOS, Android, дизайн системы крупных IT-продуктов или паки иконок. Решение: экспортировать их из фигмы, благо это возможно сделать в Pixso))) Очень мало полезных плагинов.\n\nЕсть дофига ИИшек, которые кстати говоря, работают плохо. Решение: опять же использовать инструменты фигмы и экспортировать в Pixso Нельзя сделать неразрывный пробел, как в фигме через option/alt + space."
     },
     {
       "id": "73e97010559f",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "ИИ-генератор интерфейсов от Figma вышел в открытый доступ — дизайнерс",
+      "title": "ИИ-генератор интерфейсов от Figma вышел в открытый доступ",
       "url": "https://dsgners.ru/theburmistrov/11801-ii-generator-interfeysov-ot-figma-vyishel-v-otkryityiy-dostup",
       "author": null,
       "publishedAt": "2025-07-25T13:16:59.000Z",
       "summary": "Речь о Figma Make — это инструмент внутри Figma, который позволяет создавать рабочие прототипы с помощью ИИ. Теперь он доступен на всех тарифах, включая бесплатный.",
-      "rewrite": "Теперь он доступен на всех тарифах, включая бесплатный. Промо к Figma Make Сгенерированный прототип можно сразу отредактировать или получить его код.&nbsp; Хоть генерировать можно на всех тарифах — опубликовать созданный проект смогут только пользователи с полной подпиской Full Seat.\n\n7 2 6292 Dribbble удалил аккаунт одного из самых активных пользователей Речь идёт о Глебе Кузнецове — его профиль насчитывал больше 100 000 ежемесячных пользователей и больше 12 000 шотов. Он был зарегистрирован 15 лет назад.\n\n10 6 6618 Figma вышла на биржу и привлекла в ходе IPO $1,22 млрд Акции продавались по цене от 30 до 32 долларов. Всего удалось продать 36,9 миллиона акций.\n\nКомпания будет торговаться на Нью-Йоркской фондовой бирже под тикером FIG. 5 2 1 4483 Рекомендуем почитать"
+      "rewrite": "Теперь он доступен на всех тарифах, включая бесплатный. Промо к Figma Make Сгенерированный прототип можно сразу отредактировать или получить его код. Хоть генерировать можно на всех тарифах — опубликовать созданный проект смогут только пользователи с полной подпиской Full Seat.\n\n7 2 6292 Dribbble удалил аккаунт одного из самых активных пользователей Речь идёт о Глебе Кузнецове — его профиль насчитывал больше 100 000 ежемесячных пользователей и больше 12 000 шотов. Он был зарегистрирован 15 лет назад.\n\n10 6 6618 Figma вышла на биржу и привлекла в ходе IPO $1,22 млрд Акции продавались по цене от 30 до 32 долларов. Всего удалось продать 36,9 миллиона акций.\n\nКомпания будет торговаться на Нью-Йоркской фондовой бирже под тикером FIG. 5 2 1 4483 Рекомендуем почитать"
     },
     {
       "id": "19398f9125a3",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Теперь стеклянным будет ВСЁ? Apple выпустила бета-версию интерфейса со стеклом, а Figma уже добавили этот инструмент в свой функционал — дизайнерс",
+      "title": "Теперь стеклянным будет ВСЁ? Apple выпустила бета-версию интерфейса со стеклом, а Figma уже добавили этот инструмент в свой функционал",
       "url": "https://dsgners.ru/atwinta/11796-teper-steklyannyim-budet-vsjo-apple-vyipustila-beta-versiyu-interfeysa-so-steklom-a-figma-uje-dobavili-etot-instrument-v-svoy-funktsional",
       "author": null,
       "publishedAt": "2025-07-25T11:59:30.000Z",
       "summary": "Дизайн-директор Атвинты рассказал, завирусится эффект стекла или останется лишь на айфонах и маках.",
-      "rewrite": "Теперь стеклянным будет ВСЁ? Apple выпустила бета-версию интерфейса со стеклом, а Figma уже добавили этот инструмент в свой функционал Дизайн-директор&nbsp; Атвинты &nbsp;рассказал, завирусится эффект стекла или останется лишь на айфонах и маках.\n\nИнструмент для создания стеклянного эффекта в Figma Недавно Apple заявила о выходе стеклянного интерфейса и буквально через пару недель после этого анонса Figma тут же добавили инструмент для создания эффекта стекла в свой софт. А уже сегодня Apple дропнула бета-версию с новым дизайном.\n\nПроизойдет ли тотальный камбек глассморфизма? Мнением поделился наш дизайн-директор Алексей Нибо.\n\nО стеклянном инструменте Figma Благодаря этому обновлению мы получили возможность настраивать параметры для стеклянного эффекта и сразу видеть результат на макетах. Инструмент расположен интуитивно понятно и с ним легко работать, что соответствует привычным решениям Figma.\n\nОтмечу гибкость настроек: можно варьировать эффект, адаптируя его под конкретный интерфейс, а это даёт простор для креативных решений. Функция пришлась на радость тем, кто до сих пор пытался вручную воссоздать данный эффект или использовал для этого плагины.\n\nМасс-маркет вместо уникальности Любая команда или дизайнер — от начинающих до экспертов — может воспроизвести стекло без лишних усилий. Эффект стал доступным для широкого круга пользователей, и теперь это не эксклюзив, а инструмент для повседневного использования.\n\n«Теперь это не эксклюзив, а инструмент для повседневного использования. Простота реализации снизила уникальность идеи»."
+      "rewrite": "Теперь стеклянным будет ВСЁ? Apple выпустила бета-версию интерфейса со стеклом, а Figma уже добавили этот инструмент в свой функционал Дизайн-директор Атвинты рассказал, завирусится эффект стекла или останется лишь на айфонах и маках.\n\nИнструмент для создания стеклянного эффекта в Figma Недавно Apple заявила о выходе стеклянного интерфейса и буквально через пару недель после этого анонса Figma тут же добавили инструмент для создания эффекта стекла в свой софт. А уже сегодня Apple дропнула бета-версию с новым дизайном.\n\nПроизойдет ли тотальный камбек глассморфизма? Мнением поделилс О стеклянном инструменте Figma Благодаря этому обновлению мы получили возможность настраивать параметры для стеклянного эффекта и сразу видеть результат на макетах. Инструмент расположен интуитивно понятно и с ним легко работать, что соответствует привычным решениям Figma.\n\nОтмечу гибкость настроек: можно варьировать эффект, адаптируя его под конкретный интерфейс, а это даёт простор для креативных решений. Функция пришлась на радость тем, кто до сих пор пытался вручную воссоздать данный эффект или использовал для этого плагины.\n\nМасс-маркет вместо уникальности Люба Эффект стал доступным для широкого круга пользователей, и теперь это не эксклюзив, а инструмент для повседневного использования.\n\n«Теперь это не эксклюзив, а инструмент для повседневного использования. Простота реализации снизила уникальность идеи»."
     },
     {
       "id": "6a634db6fbf3",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Провели редизайн касс самообслуживания: от концепции к дизайну, или почему итоговый дизайн так не похож на прототип — дизайнерс",
+      "title": "Провели редизайн касс самообслуживания: от концепции к дизайну, или почему итоговый дизайн так не похож на прототип",
       "url": "https://dsgners.ru/beladzed/11572-proveli-redizayn-kass-samoobslujivaniya-ot-kontseptsii-k-dizaynu-ili-pochemu-itogovyiy-dizayn-tak-ne-pohoj-na-prototip",
       "author": null,
       "publishedAt": "2025-07-24T11:13:14.000Z",
-      "summary": "Привет! Я Женя Белодед, ex-арт-директор в студии Райт. Это третья и заключительная статья о том, как мы обновляли интерфейс касс самообслуживания CSI K.",
-      "rewrite": "Я Женя Белодед, ex-арт-директор в студии Райт. Это третья и заключительная статья о том, как мы обновляли интерфейс касс самообслуживания CSI K.\n\nВ первой статье я рассказывал&nbsp; про исследования , во второй —&nbsp; о прототипировании . После этих этапов у нас был солидный багаж артефактов: Анализ конкурентов.\n\nДетальный аудит текущего интерфейса. Сценарии и кейсы того, как воруют на кассах самообслуживания.\n\nСформированные принципы будущего интерфейса. Прототипы, которые покрывают 98% основных кейсов и пользовательских сценариев.\n\nНовые сценарии, например, процесс списания баллов с карты лояльности. Расскажу, как мы разрабатывали концепцию и дизайн проекта по редизайну касс самообслуживания и искали баланс между требованиями бизнеса, пользовательским опытом и визуальным стилем.\n\nПролог Прежде чем перейти к истории о том, как мы работали над концепцией, хочу рассказать об одной сложности, с которой мы столкнулись в самом конце этапа проектирования. Изначально мы предполагали, что касс с контрольно-весовой платформой (КВП) большинство.\n\nРеальность оказалась противоположной: у 80% касс не было КВП. Но не бывает худа без добра."
+      "summary": "Это третья и заключительная статья о том, как мы обновляли интерфейс касс самообслуживания CSI K.",
+      "rewrite": "Это третья и заключительная статья о том, как мы обновляли интерфейс касс самообслуживания CSI K.\n\nВ первой статье я рассказывал про исследования , во второй — о прототипировании . После этих этапов у нас был солидный багаж артефактов: Анализ конкурентов.\n\nДетальный аудит текущего интерфейса. Сценарии и кейсы того, как воруют на кассах самообслуживания.\n\nСформированные принципы будущего интерфейса. Прототипы, которые покрывают 98% основных кейсов и пользовательских сценариев.\n\nНовые сценарии, например, процесс списания баллов с карты лояльности. Расскажу, как мы разрабатывали концепцию и дизайн проекта по редизайну касс самообслуживания и искали баланс между требованиями бизнеса, пользовательским опытом и визуальным стилем.\n\nПролог Прежде чем перейти к истории о том, как мы работали над концепцией, хочу рассказать об одной сложности, с которой мы столкнулись в самом конце этапа проектирования. Изначально мы предполагали, что касс с контрольно-весовой платформой (КВП) большинство.\n\nРеальность оказалась противоположной: у 80% касс не было КВП. Но не бывает худа без добра."
     },
     {
       "id": "e477fe6b3d43",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "25 тенденций веб-дизайна в 2025 году (часть первая) — дизайнерс",
+      "title": "25 тенденций веб-дизайна в 2025 году (часть первая)",
       "url": "https://dsgners.ru/lidesign_pro/11300-25-tendentsiy-veb-dizayna-v-2025-godu-chast-pervaya",
       "author": null,
       "publishedAt": "2025-07-23T19:18:58.000Z",
       "summary": "Забудьте о статике! В 2025 году сайт — это живая проекция вашего бренда, который должен не просто информировать, а захватывать, интриговать и провоцировать. Я собрала не просто тренды, а стратегии, которые превратят ваш…",
-      "rewrite": "В 2025 году сайт — это живая проекция вашего бренда, который должен не просто информировать, а захватывать, интриговать и провоцировать. Я собрала не просто тренды, а стратегии, которые превратят ваш цифровой продукт в магнит для клиентов.\n\n👉 Хочешь больше таких находок? &nbsp;LiDesign_inside — мой канал, где я не просто обсуждаю тренды, а внедряю их в свои проекты.\n\nМикроанимации, Увеличивающие Конверсию: 12-15% Роста CTR Микроанимации — это не просто \"вау-эффект\", а мощный инструмент UX. Они направляют взгляд, подтверждают действие и снижают когнитивную нагрузку.\n\nТехническое решение: Отдавайте предпочтение CSS-анимациям и Lottie-файлам для сложных элементов. Они легковесны и производительны, в отличие от тяжелых GIF.\n\nПроизводительность: Хорошо оптимизированные микроанимации практически не влияют на скорость загрузки (CLS &lt; 0.1). Эмоциональный Брендинг через Визуальное Повествование: +25% к Времени на Сайте Ваш сайт должен рассказывать историю, а не просто выдавать информацию.\n\nЭмоциональный дизайн создает глубокую связь с пользователем. Техническое решение: Используйте WebP и AVIF форматы для изображений и видео, чтобы сохранить качество при минимальном весе.\n\nОптимизируйте lazy loading для всего медиаконтента. Персонализированная Навигация: Снижение Отказов на 18% Стандартное меню — это функционально, но скучно."
+      "rewrite": "В 2025 году сайт — это живая проекция вашего бренда, который должен не просто информировать, а захватывать, интриговать и провоцировать. Я собрала не просто тренды, а стратегии, которые превратят ваш цифровой продукт в магнит для клиентов.\n\n👉 Хочешь больше таких находок? LiDesign_inside — мой канал, где я не просто обсуждаю тренды, а внедряю их в свои проекты.\n\nМикроанимации, Увеличивающие Конверсию: 12-15% Роста CTR Микроанимации — это не просто \"вау-эффект\", а мощный инструмент UX. Они направляют взгляд, подтверждают действие и снижают когнитивную нагрузку.\n\nТехническое решение: Отдавайте предпочтение CSS-анимациям и Lottie-файлам для сложных элементов. Они легковесны и производительны, в отличие от тяжелых GIF.\n\nПроизводительность: Хорошо оптимизированные микроанимации практически не влияют на скорость загрузки (CLS < 0.1). Эмоциональный Брендинг через Визуальное Повествование: +25% к Времени на Сайте Ваш сайт должен рассказывать историю, а не просто выдавать информацию.\n\nЭмоциональный дизайн создает глубокую связь с пользователем. Техническое решение: Используйте WebP и AVIF форматы для изображений и видео, чтобы сохранить качество при минимальном весе.\n\nОптимизируйте lazy loading для всего медиаконтента. Персонализированная Навигация: Снижение Отказов на 18% Стандартное меню — это функционально, но скучно."
     },
     {
       "id": "0613f29d209b",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как дизайнеру выйти на доход 300 000 рублей в месяц — дизайнерс",
+      "title": "Как дизайнеру выйти на доход 300 000 рублей в месяц",
       "url": "https://dsgners.ru/iskros/11580-kak-dizayneru-vyiyti-na-dohod-300-000-rubley-v-mesyats",
       "author": null,
       "publishedAt": "2025-07-23T07:29:21.000Z",
       "summary": "300к в месяц – реальная цифра, к которой должен стремиться каждый. Да, это не произойдет сразу, но если вы системно развиваетесь, работаете в нужной сфере и умеете подать свой опыт – вы к ней придете. В этой статье – три…",
-      "rewrite": "Да, это не произойдет сразу, но если вы системно развиваетесь, работаете в нужной сфере и умеете подать свой опыт – вы к ней придете. В этой статье – три главных составляющих, которые помогут достичь этой цели: сфера , навыки и подача .\n\nСфера – где работать Один и тот же уровень навыков в разных сферах может приносить совершенно разный доход . Поэтому рост начинается с выбора сферы.\n\nФинтех, B2B, digital-сервисы – платят больше остальных. У таких бизнесов масштабируемость выше, а значит, он готов серьезно вкладываться в дизайн, так как от удобства продукта зависит успех компании.\n\nНо важно учитывать не только сферу, но и стадию. Стартап в финтехе и крупный банк – это разные бюджеты и разная стабильность.\n\nЯ получал в стартапе выше рынка, но не у каждого такого проекта есть инвестиции или прибыль. Если вы чувствуете, что не растете в доходе, несмотря на рост навыков – возможно, дело в том, что вы не в той сфере.\n\nКак сменить сферу: Упакуйте текущий опыт в кейсы, даже если он небольшой. Проанализируйте, какие навыки требуются в новой сфере, и закройте пробелы через дополнительный проект в портфолио.\n\nНавыки – что нужно уметь Навыки дизайнера должны решать задачи бизнеса. По сути, есть три уровня задач, с которыми дизайнер может сталкиваться: Уровень 1 – Доработка интерфейсов."
+      "rewrite": "Да, это не произойдет сразу, но если вы системно развиваетесь, работаете в нужной сфере и умеете подать свой опыт – вы к ней придете. В этой статье – три главных составляющих, которые помогут достичь этой цели: сфера , навыки и подача .\n\nСфера – где работать Один и тот же уровень навыков в разных сферах может приносить совершенно разный доход . Поэтому рост начинается с выбора сферы.\n\nФинтех, B2B, digital-сервисы – платят больше остальных. У таких бизнесов масштабируемость выше, а значит, он готов серьезно вкладываться в дизайн, так как от удобства продукта зависит успех компании.\n\nНо важно учитывать не только сферу, но и стадию. Стартап в финтехе и крупный банк – это разные бюджеты и разная стабильность.\n\nЯ получал в стартапе выше рынка, но не у каждого такого проекта есть инвестиции или прибыль. Если вы чувствуете, что не растете в доходе, несмотря на рост навыков – возможно, дело в том, что вы не в той сфере.\n\nКак сменить сферу: Упакуйте текущий опыт в кейсы, даже если он небольшой. Проанализируйте, какие навыки требуются в новой сфере, и закройте пробелы через дополнительный проект в портфолио.\n\nНавыки – что нужно уметь Навыки дизайнера должны решать задачи бизнеса. По сути, есть три уровн"
     },
     {
       "id": "9c375d914fa1",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как дизайнер гайдов (лид-магнитов) экономит ваше время и деньги? — дизайнерс",
+      "title": "Как дизайнер гайдов (лид-магнитов) экономит ваше время и деньги?",
       "url": "https://dsgners.ru/dushelubova/11577-kak-dizayner-gaydov-lid-magnitov-ekonomit-vashe-vremya-i-dengi",
       "author": null,
       "publishedAt": "2025-07-23T02:26:15.000Z",
       "summary": "Вы заказываете дизайн не просто для красоты — вам нужен рабочий инструмент, который сэкономит время, упростит процессы и поможет сотрудникам быстрее вникнуть в задачи. Вот как дизайнер решает эти задачи:",
-      "rewrite": "Как дизайнер гайдов (лид-магнитов) экономит ваше время и деньги? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Александра Душелюбова Статья · 23.07.25 Подписаться Подписаться Как дизайнер гайдов (лид-магнитов) экономит ваше время и деньги?\n\nВы заказываете дизайн не просто для красоты — вам нужен рабочий инструмент, который сэкономит время, упростит процессы и поможет сотрудникам быстрее вникнуть в задачи. Вот как дизайнер решает эти задачи: 1.\n\nРезультат:&nbsp;Вы получаете готовый макет за 1–2 дня, а не за неделю мучений. Сокращает время на согласование и правки- Дизайнер сразу понимает, что нужно бизнесу – не будет кричащих цветов или непрактичного оформления.- Чёткая иерархия – важные пункты выделены, второстепенное не перегружает глаза.\n\nРезультат:&nbsp;Вы утверждаете дизайн с первого или второго раза, а не в 10-й итерации. Освобождает вас для важных дел- Не нужно контролировать каждый этап – дизайнер сам предлагает решения.- Не надо объяснять «как должно выглядеть» – он знает стандарты удобного дизайна.- Не придётся переделывать – работа сдаётся в готовом к использованию виде.\n\nРезультат:&nbsp;Вы не тратите часы на micromanagement, а просто получаете готовый продукт. Итог: в 2 раза быстрее и без головной болиС дизайнером вы:&nbsp;Экономите 5–10 часов своей работы на каждом документе.&nbsp;Получаете профессиональный результат без проб и ошибок.\n\nДизайнер окупает себя уже на первом проекте. #Графический дизайн #Мнение 324 Комментарии Сначала новые Написать комментарий Отправить Поделитесь мнением, и ваш комментарий станет первым Другие публикации автора Смерть «Стены текста» Почему ваши гениальные гайды закрывают на второй странице?\n\n1 346 «Это же бесплатно, и так сойдет». Почему эта фраза убивает ваши продажи ещё до их начала?"
+      "rewrite": "Как дизайнер гайдов (лид-магнитов) экономит ваше время и деньги? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Александра Душелюбова Статья · 23.07.25 Подписатьс Вы заказываете дизайн не просто для красоты — вам нужен рабочий инструмент, который сэкономит время, упростит процессы и поможет сотрудникам быстрее вникнуть в задачи. Вот как дизайнер решает эти задачи: 1.\n\nРезультат: Вы получаете готовый макет за 1–2 дня, а не за неделю мучений. Сокращает врем - Чёткая иерархия – важные пункты выделены, второстепенное не перегружает глаза.\n\nРезультат: Вы утверждаете дизайн с первого или второго раза, а не в 10-й итерации. Освобождает вас дл - Не надо объяснять «как должно выглядеть» – он знает стандарты удобного дизайна.- Не придётся переделывать – работа сдаётся в готовом к использованию виде.\n\nРезультат: Вы не тратите часы на micromanagement, а просто получаете готовый продукт. Итог: в 2 раза быстрее и без головной болиС дизайнером вы: Экономите 5–10 часов своей работы на каждом документе. Получаете профессиональный результат без проб и ошибок.\n\nДизайнер окупает себя уже на первом проекте. #Графический дизайн #Мнение 324 Комментарии Сначала новые Написать комментарий Отправить Поделитесь мнением, и ваш комментарий станет первым Другие публикации автора Смерть «Стены текста» Почему ваши гениальные гайды закрывают на второй странице?\n\n1 346 «Это же бесплатно, и так сойдет». Почему эта фраза убивает ваши продажи ещё до их начала?"
     },
     {
       "id": "1fddecf6944a",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Дизайн-система ИТЕКО: Как мы ускорили разработку и повысили качество продуктов — дизайнерс",
+      "title": "Дизайн-система ИТЕКО: Как мы ускорили разработку и повысили качество продуктов",
       "url": "https://dsgners.ru/kartsev-artjom/11517-dizayn-sistema-iteko-kak-myi-uskorili-razrabotku-i-povyisili-kachestvo-produktov",
       "author": null,
       "publishedAt": "2025-07-22T21:30:58.000Z",
       "summary": "Изначально в нашей компании каждый цифровой продукт разрабатывался обособленно. У каждого проекта были свои «локальные» компоненты, применимые только в конкретном приложении или сервисе. Такой подход приводил к ряду проб…",
-      "rewrite": "Изначально в нашей компании каждый цифровой продукт разрабатывался обособленно. У каждого проекта были свои «локальные» компоненты, применимые только в конкретном приложении или сервисе.\n\nТакой подход приводил к ряду проблем: Дублирование работы: При разработке каждого нового проекта приходилось заново создавать одни и те же компоненты и их состояния под этот проект. Отсутствие консистентности: Компоненты разных продуктов выглядели и вели себя по-разному, не было единого стиля и логики.\n\nОшибки: Одни и те же огрехи кочевали из проекта в проект. Исправив ошибку в одном приложении, мы могли вновь столкнуться с ней в другом.\n\nВ результате росли затраты времени на реализацию базового функционала, а качество интерфейсов страдало. Нам нужен был подход, позволяющий ускорить создание нового функционала и сократить количество ошибок.\n\nТак возникла потребность разработки собственной дизайн-системы. Интерфейс приложения «ITECO.Водитель» до унификации компонентов Чем помогает дизайн-система Дизайн-система – это библиотека готовых UI-компонентов и набор чётких правил по их использованию для дизайнеров и разработчиков.\n\nОна стала решением перечисленных проблем, поскольку: «С дизайн-системой» → «Без дизайн-системы» Экономия времени на рутинных задачах. Не нужно каждый раз искать или изобретать решение для типовых элементов.\n\nДизайнеры и разработчики сразу берут готовые компоненты из библиотеки и могут сосредоточиться на продуктовых задачах, быстрее переходя к решению бизнес-задач. Единообразие и целостность продуктов."
+      "rewrite": "Изначально в нашей компании каждый цифровой продукт разрабатывался обособленно. У каждого проекта были свои «локальные» компоненты, применимые только в конкретном приложении или сервисе.\n\nТакой подход приводил к ряду проблем: Дублирование работы: При разработке каждого нового проекта приходилось заново создавать одни и те же компоненты и их состояния под этот проект. Отсутствие консистентности: Компоненты разных продуктов выглядели и вели себя по-разному, не было единого стиля и логики.\n\nОшибки: Одни и те же огрехи кочевали из проекта в проект. Исправив ошибку в одном приложении, мы могли вновь столкнуться с ней в другом.\n\nВ результате росли затраты времени на реализацию базового функционала, а качество интерфейсов страдало. Нам нужен был подход, позволяющий ускорить создание нового функционала и сократить количество ошибок.\n\nТак возникла потребность разработки собственной дизайн-системы. Интерфейс приложения «ITECO. Водитель» до унификации компонентов Чем помогает дизайн-система Дизайн-система – это библиотека готовых UI-компонентов и набор чётких правил по их использованию дл Она стала решением перечисленных проблем, поскольку: «С дизайн-системой» → «Без дизайн-системы» Экономия времени на рутинных задачах. Не нужно каждый раз искать или изобретать решение для типовых элементов.\n\nДизайнеры и разработчики сразу берут готовые компоненты из библиотеки и могут сосредоточиться на продуктовых задачах, быстрее переходя к решению бизнес-задач. Единообразие и целостность продуктов."
     },
     {
       "id": "a2668b70b1a0",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "🌀Как дизайнеру работать с неопределённостью: от тумана к фреймворку — дизайнерс",
+      "title": "🌀Как дизайнеру работать с неопределённостью: от тумана к фреймворку",
       "url": "https://dsgners.ru/proddesiign/11568-kak-dizayneru-rabotat-s-neopredeljonnostyu-ot-tumana-k-freymvorku",
       "author": null,
       "publishedAt": "2025-07-22T13:44:21.000Z",
       "summary": "Нет точного ТЗ. Исследования не проведены. Бриф зыбкий. У команды нет общего языка. Всё кажется важным — и ничего не понятно. Это не редкость, это почти норма. Особенно в продуктовой среде, где старт часто происходит в т…",
-      "rewrite": "Исследования не проведены. У команды нет общего языка.\n\nВсё кажется важным — и ничего не понятно. Это не редкость, это почти норма.\n\nОсобенно в продуктовой среде, где старт часто происходит в тумане: гипотезы туманны, ожидания размыты, границы проекта неочевидны. 👉 Больше контента про дизайн в тг:&nbsp; дневники разработчиц Когда всё неопределённо, хочется замереть или, наоборот, действовать хаотично — рисовать экраны, чтобы хоть как-то «начать».\n\nНо это движение вслепую, которое может увести ещё дальше от сути. Туман вызывает тревогу, и у этой тревоги много лиц: прокрастинация, раздражение, перфекционизм, сомнения в себе.\n\nВсё это мешает нам делать свою работу — решать задачи, которые ещё не оформились. Но у неопределённости есть структура.&nbsp; Чтобы работать с туманом, нужно не гнаться за «ясностью», а научиться ориентироваться в неясном.\n\nЭто навык, который развивается — через мышление, ритмы, инструменты. Необязательно ждать, когда всё прояснится.\n\nМожно построить внутренний фреймворк — чтобы двигаться шаг за шагом, даже если горизонт не виден. Понимание, с каким именно видом неопределённости вы столкнулись, помогает быстрее найти рабочее решение."
+      "rewrite": "Исследования не проведены. У команды нет общего языка.\n\nВсё кажется важным — и ничего не понятно. Это не редкость, это почти норма.\n\nОсобенно в продуктовой среде, где старт часто происходит в тумане: гипотезы туманны, ожидания размыты, границы проекта неочевидны. 👉 Больше контента про дизайн в тг: дневники разработчиц Когда всё неопределённо, хочется замереть или, наоборот, действовать хаотично — рисовать экраны, чтобы хоть как-то «начать».\n\nНо это движение вслепую, которое может увести ещё дальше от сути. Туман вызывает тревогу, и у этой тревоги много лиц: прокрастинация, раздражение, перфекционизм, сомнения в себе.\n\nВсё это мешает нам делать свою работу — решать задачи, которые ещё не оформились. Но у неопределённости есть структура. Чтобы работать с туманом, нужно не гнаться за «ясностью», а научиться ориентироваться в неясном.\n\nЭто навык, который развивается — через мышление, ритмы, инструменты. Необязательно ждать, когда всё прояснится.\n\nМожно построить внутренний фреймворк — чтобы двигаться шаг за шагом, даже если горизонт не виден. Понимание, с каким именно видом неопределённости вы столкнулись, помогает быстрее найти рабочее решение."
     },
     {
       "id": "0cbe3c92f332",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "С чего начать ценообразование дизайнера? — дизайнерс",
+      "title": "С чего начать ценообразование дизайнера?",
       "url": "https://dsgners.ru/korsakova_design/11566-s-chego-nachat-tsenoobrazovanie-dizaynera",
       "author": null,
       "publishedAt": "2025-07-22T12:40:41.000Z",
       "summary": "Это вопрос, который может парализовать. Особенно в начале. Особенно, когда у всех разные цены, а ты сидишь и думаешь: «А вдруг я слишком много прошу? А вдруг, наоборот, слишком мало?»",
-      "rewrite": "С чего начать ценообразование дизайнера? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Анастасия Корсакова Статья · 22.07.25 Подписаться Подписаться С чего начать ценообразование дизайнера?\n\nЭто вопрос, который может парализовать. Особенно, когда у всех разные цены, а ты сидишь и думаешь: «А вдруг я слишком много прошу?\n\nА вдруг, наоборот, слишком мало?» Вопрос действительно сложный, потому что, когда начинаешь мониторить рынок, понимаешь, что разброс цен очень большой. Я сама через это проходила и хочу поделиться, что беру во внимание при установке цены на свои услуги: 1) Начни с честного ответа себе.\n\nОтветь, за какую сумму ты действительно готова выполнить задачу. При этом не должно возникать внутреннего сопротивления.\n\nЕсли, озвучивая стоимость, ты не боишься не оправдать ожидания и у тебя нет ощущения, что работаешь за еду — это уже половина успеха. Прямой путь к выгоранию — работать за минимальную цену, по дружбе или просто чтобы «взять проект любой ценой».\n\nЛучше заранее обозначить для себя нижний порог, переступать который категорически нельзя. Это про уважение к себе.\n\nМожно просто написать другим дизайнерам и запросить стоимость их услуг. В этом нет ничего страшного — мы охотно делимся внутренней кухней с коллегами."
+      "rewrite": "С чего начать ценообразование дизайнера? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Анастасия Корсакова Статья · 22.07.25 Подписатьс Это вопрос, который может парализовать. Особенно, когда у всех разные цены, а ты сидишь и думаешь: «А вдруг я слишком много прошу?\n\nА вдруг, наоборот, слишком мало?» Вопрос действительно сложный, потому что, когда начинаешь мониторить рынок, понимаешь, что разброс цен очень большой. Я сама через это проходила и хочу поделиться, что беру во внимание при установке цены на свои услуги: 1) Начни с честного ответа себе.\n\nОтветь, за какую сумму ты действительно готова выполнить задачу. При этом не должно возникать внутреннего сопротивления.\n\nЕсли, озвучивая стоимость, ты не боишься не оправдать ожидания и у тебя нет ощущения, что работаешь за еду — это уже половина успеха. Прямой путь к выгоранию — работать за минимальную цену, по дружбе или просто чтобы «взять проект любой ценой».\n\nЛучше заранее обозначить для себя нижний порог, переступать который категорически нельзя. Это про уважение к себе.\n\nМожно просто написать другим дизайнерам и запросить стоимость их услуг. В этом нет ничего страшного — мы охотно делимся внутренней кухней с коллегами."
     },
     {
       "id": "80250b592c04",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Нужен ли приложению редизайн и какие исследования провести, чтобы это выяснить — дизайнерс",
+      "title": "Нужен ли приложению редизайн и какие исследования провести, чтобы это выяснить",
       "url": "https://dsgners.ru/CleverPumpkin/11558-nujen-li-prilojeniyu-redizayn-i-kakie-issledovaniya-provesti-chtobyi-eto-vyiyasnit",
       "author": null,
       "publishedAt": "2025-07-22T09:55:59.000Z",
-      "summary": "Привет! Меня зовут Фёдор Миронов, я дизайнер интерфейсов в компании CleverPumpkin. Мы занимаемся разработкой мобильных приложений и цифровых продуктов, берём на себя весь цикл — от идеи до запуска и поддержки.",
-      "rewrite": "Меня зовут Фёдор Миронов, я дизайнер интерфейсов в компании CleverPumpkin . Мы занимаемся разработкой мобильных приложений и цифровых продуктов, берём на себя весь цикл — от идеи до запуска и поддержки.\n\nРедизайн — это инструмент, с помощью которого можно решать конкретные задачи: улучшать пользовательский опыт, устранять накопившиеся проблемы в продукте и влиять на ключевые бизнес-метрики. Он приносит результат только тогда, когда основан на данных и встроен в стратегию развития продукта.\n\nВажно понимать, что редизайн бывает разного типа и каждый из них решает свои задачи. Чтобы не потратить бюджет впустую, нужно чётко определить, какие изменения действительно необходимы именно вашему приложению.\n\nВ этой статье, опираясь на опыт работы в CleverPumpkin, я расскажу, какие бывают типы редизайна, как определить целесообразность изменений, какие исследования важно провести до начала работ и как избежать ошибок, которые могут стоить слишком дорого. Косметический редизайн Это легкое обновление, которое помогает приложению или сайту выглядеть современно и поддерживать единый стиль на всех платформах.\n\nОн меняет только визуальную часть продукта.&nbsp; Что подразумевает косметический редизайн: Обновление цветовой палитры, иконок, иллюстраций и шрифтов. Все основные пути выполнения задач остаются прежними.\n\nМеняется только «упаковка», которая влияет на первое впечатление от продукта. Пример редизайна Kassir.ru.\n\nВажные элементы сделали крупнее, дополнительные данные пользователя скрыли Когда пора делать косметический редизайн : Продукт визуально устарел, но остается удобным и эффективным с точки зрения пользовательского пути. Нужно привести дизайн к единому стилю бренда — например, после обновления фирменного стиля."
+      "summary": "Мы занимаемся разработкой мобильных приложений и цифровых продуктов, берём на себя весь цикл — от идеи до запуска и поддержки.",
+      "rewrite": "Мы занимаемся разработкой мобильных приложений и цифровых продуктов, берём на себя весь цикл — от идеи до запуска и поддержки.\n\nРедизайн — это инструмент, с помощью которого можно решать конкретные задачи: улучшать пользовательский опыт, устранять накопившиеся проблемы в продукте и влиять на ключевые бизнес-метрики. Он приносит результат только тогда, когда основан на данных и встроен в стратегию развития продукта.\n\nВажно понимать, что редизайн бывает разного типа и каждый из них решает свои задачи. Чтобы не потратить бюджет впустую, нужно чётко определить, какие изменения действительно необходимы именно вашему приложению.\n\nВ этой статье, опираясь на опыт работы в CleverPumpkin, я расскажу, какие бывают типы редизайна, как определить целесообразность изменений, какие исследования важно провести до начала работ и как избежать ошибок, которые могут стоить слишком дорого. Косметический редизайн Это легкое обновление, которое помогает приложению или сайту выглядеть современно и поддерживать единый стиль на всех платформах.\n\nОн меняет только визуальную часть продукта. Что подразумевает косметический редизайн: Обновление цветовой палитры, иконок, иллюстраций и шрифтов. Все основные пути выполнения задач остаются прежними.\n\nМеняется только «упаковка», которая влияет на первое впечатление от продукта. Пример редизайна Kassir.ru.\n\nВажные элементы сделали крупнее, дополнительные данные пользователя скрыли Когда пора делать косметический редизайн : Продукт визуально устарел, но остается удобным и эффективным с точки зрения пользовательского пути. Нужно привести дизайн к единому стилю бренда — например, после обновления фирменного стиля."
     },
     {
       "id": "44a8e9b530b3",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как мы превратили барахолку в дизайн-вдохновение (и что пошло не так) — дизайнерс",
+      "title": "Как мы превратили барахолку в дизайн-вдохновение (и что пошло не так)",
       "url": "https://dsgners.ru/aicxyic/11545-kak-myi-prevratili-baraholku-v-dizayn-vdohnovenie-i-chto-poshlo-ne-tak",
       "author": null,
       "publishedAt": "2025-07-22T07:08:06.000Z",
       "summary": "Ретроспектива арт-экспедиции на Удельный рынок",
-      "rewrite": "Получится новый формат творческого события — живого, странного, совершенно петербургского. С экспедиции прошло немало времени: мы успели выдохнуть, сделать десяток других проектов, что-то забыть и снова вспомнить.\n\nТеперь, когда эмоции улеглись, а воспоминания обрели чёткость, мы рассказываем, как устроили событие, которое начиналось как импульс, а превратилось в дизайн-приключение.&nbsp; Зачем мы пошли на Уделку и назвали это «попковать блоху» Всё началось с желания выйти из привычного. После долгой осени и череды новогодних дедлайнов нам захотелось глотка свежего воздуха: чего-то живого, странного, но осмысленного.\n\nКоманда как раз открыла новый офис в Петербурге — и появилось ощущение, что хочется как-то отметиться, но не митапом, не презентацией, а каким-то осмысленным форматом. Сигнал к старту дал разговор с Сергеем Попковым — основателем aic, дизайнером и преподавателем, чьи разборы в своё время вдохновили не одно поколение.\n\nОказалось, он тоже соскучился по живому взаимодействию. Так всё и закрутилось.\n\nПочти сразу появилось определение — арт-экспедиция: что-то между вылазкой, исследованием и перформансом. Чтобы всё это сработало, нужно было место как символ и точка притяжения: тогда в идее и возникла Уделка — блошиный рынок, где каждый второй прилавок похож на визуальный крик: пыльные игрушки, облезлые таблички, японские фонарики, керамические клоуны, вывески с закосом под 90-е.\n\nВизуальный шум, который не хочется исправлять, но хочется зафиксировать. Так родилась структура: экспедиция на рынок, сбор визуальных артефактов, конкурс атмосферных концептов на тему винтажа и хаоса.\n\nВ один из вечеров, когда команда думала над названием, кто-то случайно нагуглил фото блохи. «А что если попковать блоху?», подумали мы, и вдруг всё встало на места."
+      "rewrite": "Получится новый формат творческого события — живого, странного, совершенно петербургского. С экспедиции прошло немало времени: мы успели выдохнуть, сделать десяток других проектов, что-то забыть и снова вспомнить.\n\nТеперь, когда эмоции улеглись, а воспоминания обрели чёткость, мы рассказываем, как устроили событие, которое начиналось как импульс, а превратилось в дизайн-приключение. Зачем мы пошли на Уделку и назвали это «попковать блоху» Всё началось с желания выйти из привычного. После долгой осени и череды новогодних дедлайнов нам захотелось глотка свежего воздуха: чего-то живого, странного, но осмысленного.\n\nКоманда как раз открыла новый офис в Петербурге — и появилось ощущение, что хочется как-то отметиться, но не митапом, не презентацией, а каким-то осмысленным форматом. Сигнал к старту дал разговор с Сергеем Попковым — основателем aic, дизайнером и преподавателем, чьи разборы в своё время вдохновили не одно поколение.\n\nОказалось, он тоже соскучился по живому взаимодействию. Так всё и закрутилось.\n\nПочти сразу появилось определение — арт-экспедиция: что-то между вылазкой, исследованием и перформансом. Чтобы всё это сработало, нужно было место как символ и точка притяжения: тогда в идее и возникла Уделка — блошиный рынок, где каждый второй прилавок похож на визуальный крик: пыльные игрушки, облезлые таблички, японские фонарики, керамические клоуны, вывески с закосом под 90-е.\n\nВизуальный шум, который не хочется исправлять, но хочется зафиксировать. Так родилась структура: экспедиция на рынок, сбор визуальных артефактов, конкурс атмосферных концептов на тему винтажа и хаоса.\n\nВ один из вечеров, когда команда думала над названием, кто-то случайно нагуглил фото блохи. «А что если попковать блоху?», подумали мы, и вдруг всё встало на места."
     },
     {
       "id": "b5fefc761c91",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Фича-хаос наступает: как дизайнеру не утонуть в сложных B2B интерфейсах — дизайнерс",
+      "title": "Фича-хаос наступает: как дизайнеру не утонуть в сложных B2B интерфейсах",
       "url": "https://dsgners.ru/b2bdesign/11551-ficha-haos-nastupaet-kak-dizayneru-ne-utonut-v-slojnyih-b2b-interfeysah",
       "author": null,
       "publishedAt": "2025-07-22T06:05:06.000Z",
       "summary": "Продукты всегда рождаются простыми. Но через пару лет добавить новую кнопку — целый квест. Команда кидается фичами, пользователи просят «маленькую настройку», а потом она обрастает пятью сценариями и отдельным справочник…",
-      "rewrite": "Но через пару лет добавить новую кнопку — целый квест. Команда кидается фичами, пользователи просят «маленькую настройку», а потом она обрастает пятью сценариями и отдельным справочником.\n\nВ B2B всё особенно весело: чем сложнее система, тем больше поводов «а вдруг пригодится». Аккуратные прототипы быстро становятся слоёным тортом, который тяжело редактировать, дизайнеры начинают пить валерьянку литрами.\n\nОбрастание фичами — не баг, а неизбежная стадия жизни продукта. Давайте разберёмся, как дизайнер может бороться с этим хаосом.\n\nБизнесВсегда хочет «ещё и ещё»: фильтры, отчёты, диаграммы. На вопрос «зачем?» обычно аргумент — «у конкурентов есть» или «а вдруг надо будет».\n\nЭксперты и продактыНакидывать хотелки у ним в крови. Часто это происходит, когда уже все отрисовано и согласовано: «давайте ещё фильтр», «тут еще кнопочку», «а если добавить ещё и вот это?».\n\nМенять интерфейс&nbsp;в последний момент&nbsp;— боль многих дизайнеров. Обратная связь от 5% «активных» польз ователейСуперпользователи — главные генераторы новых запросов.\n\nОни пишут во все чаты о своих хотелках. Остальные 95% просто молча страдают от перегруженного интерфейса."
+      "rewrite": "Но через пару лет добавить новую кнопку — целый квест. Команда кидается фичами, пользователи просят «маленькую настройку», а потом она обрастает пятью сценариями и отдельным справочником.\n\nВ B2B всё особенно весело: чем сложнее система, тем больше поводов «а вдруг пригодится». Аккуратные прототипы быстро становятс Обрастание фичами — не баг, а неизбежная стадия жизни продукта. Давайте разберёмся, как дизайнер может бороться с этим хаосом.\n\nБизнесВсегда хочет «ещё и ещё»: фильтры, отчёты, диаграммы. На вопрос «зачем?» обычно аргумент — «у конкурентов есть» или «а вдруг надо будет».\n\nЭксперты и продактыНакидывать хотелки у ним в крови. Часто это происходит, когда уже все отрисовано и согласовано: «давайте ещё фильтр», «тут еще кнопочку», «а если добавить ещё и вот это?».\n\nМенять интерфейс в последний момент — боль многих дизайнеров. Обратная связь от 5% «активных» польз ователейСуперпользователи — главные генераторы новых запросов.\n\nОни пишут во все чаты о своих хотелках. Остальные 95% просто молча страдают от перегруженного интерфейса."
     },
     {
       "id": "9b50968d3420",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Редизайн Paytool: как MVP в Telegram превратился в полноценный сервис — дизайнерс",
+      "title": "Редизайн Paytool: как MVP в Telegram превратился в полноценный сервис",
       "url": "https://dsgners.ru/AffArts/11541-redizayn-paytool-kak-mvp-v-telegram-prevratilsya-v-polnotsennyiy-servis",
       "author": null,
       "publishedAt": "2025-07-21T13:09:30.000Z",
       "summary": "В октябре 2023 CEO PayTool Даниил Фам понял, что нужна удобная альтернатива, а в ноябре уже запустил бот в телеграме, чтобы проверить спрос. Он был настолько высоким, что к сентябрю 2024 сервис собрал более 8000 положите…",
-      "rewrite": "Он появился, когда из‑за санкций российским геймерам и подписчикам стримингов стало сложно платить за привычные сервисы.&nbsp;&nbsp; В октябре 2023 CEO PayTool Даниил Фам понял, что нужна удобная альтернатива, а в ноябре уже запустил бот в телеграме, чтобы проверить спрос. Он был настолько высоким, что к сентябрю 2024 сервис собрал более 8000 положительных отзывов.\n\nВ статье рассказываем, как мы сделали редизайн, который усилил доверие. Стараемся быть на одной волне&nbsp; В AffArts мы работаем с каждым клиентом как с партнёром: вовлечены все.\n\nТолько так он получает результат, который двигает вперёд бизнес. Благодаря такому подходу мы входим в топ-10 среди студий по дизайну интерфейсов сайтов и веб-сервисов по версии Рейтинга Рунета и создаём проекты , которые выигрывают премии .\n\nО клиенте и задаче&nbsp;&nbsp; Paytool запустили как MVP — чат-бот в Телеграме, через который можно было быстро пополнить баланс кошелька на игровых площадках Steam или PS Store, оплатить подписку в онлайн-магазинах Apple и Google. Запуск прошёл успешно, но ключевые задачи сайт не решал: не выделялся на фоне конкурентов, не был ориентирован на мобильные устройства, а для оплаты переводил пользователей обратно в Телеграм.\n\nПростой дизайн не вызывал доверия и не был удобным и функциональным для пользователей. Чтобы это исправить, ребята обратились к нам, потому что мы глубоко погружаемся в UX и понимаем, как дизайн влияет на SEO.\n\nПроект был контентно‑ориентированным: важны были поисковые позиции и органический трафик. Мы применили SEO‑friendly подход: опирались на методологию EEAT и заложили в структуру ключевые факторы — от иерархии и юзабилити до трастовых элементов.\n\nТЗ на 126 страниц&nbsp; &nbsp; Запрос был максимально проработанным и чётким. В ТЗ — 126 страниц с подробным описанием каждой, требованиями к структуре, элементам и визуальному стилю."
+      "rewrite": "Он появился, когда из‑за санкций российским геймерам и подписчикам стримингов стало сложно платить за привычные сервисы. В октябре 2023 CEO PayTool Даниил Фам понял, что нужна удобная альтернатива, а в ноябре уже запустил бот в телеграме, чтобы проверить спрос. Он был настолько высоким, что к сентябрю 2024 сервис собрал более 8000 положительных отзывов.\n\nВ статье рассказываем, как мы сделали редизайн, который усилил доверие. Стараемся быть на одной волне В AffArts мы работаем с каждым клиентом как с партнёром: вовлечены все.\n\nТолько так он получает результат, который двигает вперёд бизнес. Благодаря такому подходу мы входим в топ-10 среди студий по дизайну интерфейсов сайтов и веб-сервисов по версии Рейтинга Рунета и создаём проекты , которые выигрывают премии .\n\nО клиенте и задаче Paytool запустили как MVP — чат-бот в Телеграме, через который можно было быстро пополнить баланс кошелька на игровых площадках Steam или PS Store, оплатить подписку в онлайн-магазинах Apple и Google. Запуск прошёл успешно, но ключевые задачи сайт не решал: не выделялся на фоне конкурентов, не был ориентирован на мобильные устройства, а для оплаты переводил пользователей обратно в Телеграм.\n\nПростой дизайн не вызывал доверия и не был удобным и функциональным для пользователей. Чтобы это исправить, ребята обратились к нам, потому что мы глубоко погружаемся в UX и понимаем, как дизайн влияет на SEO.\n\nПроект был контентно‑ориентированным: важны были поисковые позиции и органический трафик. Мы применили SEO‑friendly подход: опирались на методологию EEAT и заложили в структуру ключевые факторы — от иерархии и юзабилити до трастовых элементов.\n\nТЗ на 126 страниц Запрос был максимально проработанным и чётким. В ТЗ — 126 страниц с подробным описанием каждой, требованиями к структуре, элементам и визуальному стилю."
     },
     {
       "id": "f2602d8f0850",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Летний дизайн-завтрак в AGIMA — дизайнерс",
+      "title": "Летний дизайн-завтрак в AGIMA",
       "url": "https://dsgners.ru/agima/11538-letniy-dizayn-zavtrak-v-agima",
       "author": null,
       "publishedAt": "2025-07-21T11:28:44.000Z",
       "summary": "24 июля (в четверг) собираемся в нашем офисе на дизайн-завтрак, который мы вновь организовали совместно со «Средой»: https://vk.cc/cNRC3l",
-      "rewrite": "За последний год наша команда провела больше десятка исследований пользовательского поведения. Накопился пул интересных наблюдений — и мы решили ими поделиться.\n\nНа встрече обсудим: что пользователи считают «нормой» в интерфейсе сегодня; где их всё еще можно удивить; какие паттерны стали типичными; а где дизайнеру легко промахнуться. Спикер: &nbsp; Виктория Левена, руководитель отдела продуктовой аналитики AGIMA.\n\nУчастие бесплатное, но нужна регистрация по ссылке выше. Я Сергей Багрецов, коммуникационный дизайнер в AGIMA.\n\nЧтобы выделиться на фоне всеобщей стерильности и минимализма, многие мировые бренды всё время ищут новых подходов к дизайну. И свежие решения, как ни странно, иногда находятся в прошлом.\n\nОдно из них — классический сюрреализм, идеи которого еще в начале XX века разрабатывали Сальвадор Дали и Андре Бретон. В этой статье поговорим, что же это за идеи и почему они так хорошо себя чувствуют в современном дизайне.\n\n2 2 1377 Зачем нам трейлер к несуществующему фантастическому фильму, или Как создать нескучный шоурил Всем привет! На связи Олег Зильберг, дизайн-директор AGIMA.\n\nКаждый год мы выпускаем шоурил — короткий ролик, в котором показываем наши лучшие проекты за последнее время. Но в этот раз мы решили отойти от стандартов этого жанра и придумать что-то кардинально иное."
+      "rewrite": "За последний год наша команда провела больше десятка исследований пользовательского поведения. Накопился пул интересных наблюдений — и мы решили ими поделиться.\n\nНа встрече обсудим: что пользователи считают «нормой» в интерфейсе сегодня; где их всё еще можно удивить; какие паттерны стали типичными; а где дизайнеру легко промахнуться. Спикер: Виктория Левена, руководитель отдела продуктовой аналитики AGIMA.\n\nУчастие бесплатное, но нужна регистрация по ссылке выше. Чтобы выделиться на фоне всеобщей стерильности и минимализма, многие мировые бренды всё время ищут новых подходов к дизайну. И свежие решения, как ни странно, иногда находятся в прошлом.\n\nОдно из них — классический сюрреализм, идеи которого еще в начале XX века разрабатывали Сальвадор Дали и Андре Бретон. В этой статье поговорим, что же это за идеи и почему они так хорошо себя чувствуют в современном дизайне.\n\n2 2 1377 Зачем нам трейлер к несуществующему фантастическому фильму, или Как создать нескучный шоурил На связи Олег Зильберг, дизайн-директор AGIMA.\n\nКаждый год мы выпускаем шоурил — короткий ролик, в котором показываем наши лучшие проекты за последнее время. Но в этот раз мы решили отойти от стандартов этого жанра и придумать что-то кардинально иное."
     },
     {
       "id": "a839455af171",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Только дизайн или сайт «под ключ»: зачем дизайнеру развивать смежные навыки — дизайнерс",
+      "title": "Только дизайн или сайт «под ключ»: зачем дизайнеру развивать смежные навыки",
       "url": "https://dsgners.ru/taptop/11534-tolko-dizayn-ili-sayt-pod-klyuch-zachem-dizayneru-razvivat-smejnyie-navyiki",
       "author": null,
       "publishedAt": "2025-07-21T10:09:18.000Z",
-      "summary": "Сегодня от веб-дизайнера ждут не просто красивый макет сайта, а полноценное решение задачи. Клиенту важно получить работающий продукт, а не бегать между дизайнером, маркетологом и разработчиком.",
-      "rewrite": "Клиенту важно получить работающий продукт, а не бегать между дизайнером, маркетологом и разработчиком.&nbsp; Поэтому все больше специалистов осваивают смежные навыки и берут проекты целиком — от идеи до готового результата. Такой подход дает больше свободы: вы сами управляете процессом, не зависите от других исполнителей и не теряете время на лишние согласования.\n\nА еще — зарабатываете больше. В чем выгода проектов «под ключ» для дизайнера Больше дохода: Проекты «под ключ» стоят в 2-3 раза дороже, чем просто дизайн.\n\nВместо 30–50 тысяч рублей за сайт вы можете заработать 80-150 тысяч. Вы получаете 100% оплаты, а не 30-40%, как при работе в команде.\n\nБольше эффективности: Согласования занимают на 70% меньше времени. Запускать проекты можно за дни, а не за недели.\n\nБольше опыта и постоянных клиентов: Растет ваша экспертиза в глазах заказчиков. Клиенты возвращаются: 70% выбирают тех, кто закрывает задачу целиком.\n\nВот реальный кейс дизайнера из комьюнити Taptop : он сделал проект «под ключ» и заработал 150 000 рублей, из которых почти половина — оплата за верстку: Какие навыки стоит прокачать дизайнеру 1. Маркетинговый взгляд: понимание целей и аудитории Если вы хотите создавать проекты, которые работают на результат, начните с маркетинга — с анализа.\n\nВаша задача как дизайнера — не просто «визуально оформить», а понять, на кого рассчитан веб-ресурс и чем бизнес вашего клиента отличается от других. Допустим, вы делаете лендинг для стоматологии."
+      "summary": "Сегодн Клиенту важно получить работающий продукт, а не бегать между дизайнером, маркетологом и разработчиком.",
+      "rewrite": "Клиенту важно получить работающий продукт, а не бегать между дизайнером, маркетологом и разработчиком. Поэтому все больше специалистов осваивают смежные навыки и берут проекты целиком — от идеи до готового результата. Такой подход дает больше свободы: вы сами управляете процессом, не зависите от других исполнителей и не теряете время на лишние согласования.\n\nА еще — зарабатываете больше. В чем выгода проектов «под ключ» для дизайнера Больше дохода: Проекты «под ключ» стоят в 2-3 раза дороже, чем просто дизайн.\n\nВместо 30–50 тысяч рублей за сайт вы можете заработать 80-150 тысяч. Вы получаете 100% оплаты, а не 30-40%, как при работе в команде.\n\nБольше эффективности: Согласования занимают на 70% меньше времени. Запускать проекты можно за дни, а не за недели.\n\nБольше опыта и постоянных клиентов: Растет ваша экспертиза в глазах заказчиков. Клиенты возвращаются: 70% выбирают тех, кто закрывает задачу целиком.\n\nВот реальный кейс дизайнера из комьюнити Taptop : он сделал проект «под ключ» и заработал 150 000 рублей, из которых почти половина — оплата за верстку: Какие навыки стоит прокачать дизайнеру 1. Маркетинговый взгляд: понимание целей и аудитории Если вы хотите создавать проекты, которые работают на результат, начните с маркетинга — с анализа.\n\nВаша задача как дизайнера — не просто «визуально оформить», а понять, на кого рассчитан веб-ресурс и чем бизнес вашего клиента отличается от других. Допустим, вы делаете лендинг для стоматологии."
     },
     {
       "id": "55a534eb3cb3",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как я проверяю UX формы с помощью нейросети — дизайнерс",
+      "title": "Как я проверяю UX формы с помощью нейросети",
       "url": "https://dsgners.ru/evgeniashamray/11254-kak-ya-proveryayu-ux-formyi-s-pomoschyu-neyroseti",
       "author": null,
       "publishedAt": "2025-07-21T06:20:23.000Z",
       "summary": "Показываю, как найти слабые места без тестирования ⤵️",
-      "rewrite": "Форма может быть аккуратной, но при этом отпугивать пользователя, сбивать фокус или просто не работать . Если вижу, что форму никто не заполняет — сначала не редизайню.\n\nСначала смотрю, где именно проседает сценарий. Подключаю нейросеть и прошу её пройтись по форме как пользователь.\n\nНиже — структура формы (поля, подписи, кнопки).&nbsp; Форма размещена на [где именно: главная, попап, внутри сервиса].&nbsp; Цель — [например: оставить заявку, запросить демо, подписаться].&nbsp; Разбери: 1. Какие поля могут вызывать страх, недоверие или путаницу?&nbsp; 2.\n\nГде не хватает пояснений?&nbsp; 3. Какие тексты кнопок и заголовков можно улучшить?&nbsp; 4.\n\nЧто поможет повысить доверие и упростить заполнение? Оформи таблицу:&nbsp; Элемент → Что может мешать → Как можно улучшить&nbsp; Если нужно — задай уточняющие вопросы.\n\nПример результата Что становится понятно Где у пользователя появляются сомнения или напряжение Какие тексты и детали форм выглядят «базово» и не вызывают доверия Что можно улучшить, не меняя дизайн, а просто уточнив слова и контекст 💡Вывод Форма — это момент принятия решения. Если человек уходит, не начав её заполнять — значит, что-то не сработало.\n\nС нейросетью можно быстро увидеть, что именно сбивает или пугает, и спокойно это поправить. Евгения Шамрай, CEO дизайн-студии «Проект» ❤️ Больше практик и промтов — в Telegram&nbsp;&nbsp; @zenishamray &nbsp;&nbsp;&nbsp;&nbsp; Хочешь обсудить форму или редизайн?"
+      "rewrite": "Форма может быть аккуратной, но при этом отпугивать пользователя, сбивать фокус или просто не работать . Если вижу, что форму никто не заполняет — сначала не редизайню.\n\nСначала смотрю, где именно проседает сценарий. Подключаю нейросеть и прошу её пройтись по форме как пользователь.\n\nНиже — структура формы (поля, подписи, кнопки). Форма размещена на [где именно: главная, попап, внутри сервиса]. Цель — [например: оставить заявку, запросить демо, подписаться]. Разбери: 1. Какие поля могут вызывать страх, недоверие или путаницу? 2.\n\nГде не хватает пояснений? 3. Какие тексты кнопок и заголовков можно улучшить? 4.\n\nЧто поможет повысить доверие и упростить заполнение? Оформи таблицу: Элемент → Что может мешать → Как можно улучшить Если нужно — задай уточняющие вопросы.\n\nПример результата Что становится понятно Где у пользователя появляются сомнения или напряжение Какие тексты и детали форм выглядят «базово» и не вызывают доверия Что можно улучшить, не меняя дизайн, а просто уточнив слова и контекст 💡Вывод Форма — это момент принятия решения. Если человек уходит, не начав её заполнять — значит, что-то не сработало.\n\nС нейросетью можно быстро увидеть, что именно сбивает или пугает, и спокойно это поправить. Евгения Шамрай, CEO дизайн-студии «Проект» ❤️ Больше практик и промтов — в Telegram @zenishamray Хочешь обсудить форму или редизайн?"
     },
     {
       "id": "f10571f4d209",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Где и как учиться дизайну бесплатно: гайд для начинающих UI/UX-дизайнеров — дизайнерс",
+      "title": "Где и как учиться дизайну бесплатно: гайд для начинающих UI/UX-дизайнеров",
       "url": "https://dsgners.ru/Kirdiaev/11527-gde-i-kak-uchitsya-dizaynu-besplatno-gayd-dlya-nachinayuschih-ui-ux-dizaynerov",
       "author": null,
       "publishedAt": "2025-07-20T21:47:15.000Z",
       "summary": "Начинающие UI/UX-дизайнеры часто задаются вопросом: реально ли научиться дизайну бесплатно и качественно? Курсы стоят дорого, информации в интернете море – как понять, что действительно поможет в профессии? В этой статье…",
-      "rewrite": "Курсы стоят дорого, информации в интернете море – как понять, что действительно поможет в профессии? В этой статье мы разберём, где найти бесплатные и структурированные ресурсы для обучения продуктового дизайна, и как выжать из них максимум.\n\nПолучится своего рода дорожная карта – от теории к практике – чтобы вы могли развиваться в дизайне без бюджета, но с пользой. Онлайн-курсы и образовательные платформы Структурированные онлайн-курсы&nbsp;– отличный старт для тех, кто ценит систему в обучении.\n\nМногие платформы предлагают бесплатные вводные курсы по UX/UI-дизайну: они дают базу и пошаговый план обучения. Вот несколько примеров: Stepik (рус)&nbsp;– платформа с бесплатными курсами.\n\nНапример, курсы&nbsp;« Основы дизайна интерфейсов »&nbsp;(19 уроков) и&nbsp; «Введение в дизайн» &nbsp;(24 урока) на русском языке познакомят с базовыми понятиями UX/UI и принципами разработки интерфейсов. Эти курсы короткие, их реально пройти за несколько вечеров, но они дают хорошее понимание основ.\n\nCoursera и edX (англ)&nbsp;– многие университетские курсы по UX/UI доступны бесплатно или со скидкой для просмотра (без сертификата). Например,&nbsp; Introduction to User Experience Design &nbsp;от Georgia Tech – классический вводный курс для тех, кто только слышал про UX/UI и хочет разобраться в основах.\n\nВы можете&nbsp;аудировать&nbsp;курс бесплатно: смотреть лекции и выполнять задания. Кроме того, на Coursera есть и целые специализированные программы – контент бесплатен, если не гнаться за сертификатом.\n\nТак же вы можете запросить спонсирование от самой платформы и получить скидку до 75%. Подробнее о том как это сделать писал в прошлой статье.&nbsp; \"Как получить UX-сертификацию от Google бесплатно — подробное руководство.\" Udacity (англ)&nbsp;– предлагает бесплатный курс&nbsp; UX Design for Mobile &nbsp;от Google."
+      "rewrite": "Курсы стоят дорого, информации в интернете море – как понять, что действительно поможет в профессии? В этой статье мы разберём, где найти бесплатные и структурированные ресурсы для обучения продуктового дизайна, и как выжать из них максимум.\n\nПолучится своего рода дорожная карта – от теории к практике – чтобы вы могли развиваться в дизайне без бюджета, но с пользой. Онлайн-курсы и образовательные платформы Структурированные онлайн-курсы – отличный старт для тех, кто ценит систему в обучении.\n\nМногие платформы предлагают бесплатные вводные курсы по UX/UI-дизайну: они дают базу и пошаговый план обучения. Вот несколько примеров: Stepik (рус) – платформа с бесплатными курсами.\n\nНапример, курсы « Основы дизайна интерфейсов » (19 уроков) и «Введение в дизайн» (24 урока) на русском языке познакомят с базовыми понятиями UX/UI и принципами разработки интерфейсов. Эти курсы короткие, их реально пройти за несколько вечеров, но они дают хорошее понимание основ.\n\nCoursera и edX (англ) – многие университетские курсы по UX/UI доступны бесплатно или со скидкой для просмотра (без сертификата). Например, Introduction to User Experience Design от Georgia Tech – классический вводный курс для тех, кто только слышал про UX/UI и хочет разобраться в основах.\n\nВы можете аудировать курс бесплатно: смотреть лекции и выполнять задания. Кроме того, на Coursera есть и целые специализированные программы – контент бесплатен, если не гнаться за сертификатом.\n\nТак же вы можете запросить спонсирование от самой платформы и получить скидку до 75%. Подробнее о том как это сделать писал в прошлой статье. \"Как получить UX-сертификацию от Google бесплатно — подробное руководство.\" Udacity (англ) – предлагает бесплатный курс UX Design for Mobile от Google."
     },
     {
       "id": "9b2e4f7445bc",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как дизайнеру стать лидом? — дизайнерс",
+      "title": "Как дизайнеру стать лидом?",
       "url": "https://dsgners.ru/na_produkte/11526-kak-dizayneru-stat-lidom",
       "author": null,
       "publishedAt": "2025-07-20T11:02:20.000Z",
       "summary": "У дизайнера, который хочет стать дизайн-лидом, два пути: перейти в другую организацию на эту должность или вырасти в лида у себя в компании. Впрочем, слово «вырасти», пожалуй, не совсем верное: скорее, тут стоит говорить…",
-      "rewrite": "Как дизайнеру стать лидом? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Андрей Богданов Статья · 20.07.25 Подписаться Подписаться Как дизайнеру стать лидом?\n\nДва пути У дизайнера, который хочет стать дизайн-лидом, два пути: перейти в другую организацию на эту должность или&nbsp;вырасти в лида у себя в компании . Впрочем, слово «вырасти», пожалуй, не совсем верное: скорее, тут стоит говорить о переходе в&nbsp;другую профессию, потому что лид — должность во&nbsp;многом менеджерская, а не дизайнерская.\n\nПервый — выход на открытый рынок — кажется, дает больше пространства для маневра. Но в реальности все непросто, ведь мало кто готов дать зеленый свет человеку, не попадающему под&nbsp;классический критерий «с опытом работы от...».\n\nВторой вариант — смена роли внутри компании — вроде бы более дружелюбный, но тут тоже все сложно. Окно возможностей (в виде открытой ставки) появляется не так часто, да и предпочтение скорее всего тоже отдадут человеку с опытом.\n\nВ итоге все сводится к этому самому пресловутому опыту, но где его набраться, если пусть к лидовским позициям перекрыт? Можно, конечно, попытать удачу и, невзирая на&nbsp;отсутствие опыта, пооткликаться на разные вакансии или&nbsp;поискать «внутренние» варианты, уповая на то, что кто-то оценит ваши заслуги в&nbsp;дизайне и&nbsp;авансом поставит управлять командой.\n\nНо есть более перспективный вариант — получить лидовские компетенции без формальной смены роли . Это усилит ваши позиции в случае внутренней ротации, а в резюме вы смело сможете написать что-то вроде «исполнял функции дизайн-лида» или&nbsp; «внедрил процессы...» .\n\nЯ дизайн-лид и автор&nbsp; книги «Как сделать дизайнеров счастливыми» . Другие мои посты вы можете найти в телеграм-канале&nbsp; @na_produkte .&nbsp; Помощь другим Важная задача дизайн-лида — помогать участникам своей команды работать эффективно и продуктивно."
+      "rewrite": "Как дизайнеру стать лидом? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Андрей Богданов Статья · 20.07.25 Подписатьс Два пути У дизайнера, который хочет стать дизайн-лидом, два пути: перейти в другую организацию на эту должность или вырасти в лида у себя в компании . Впрочем, слово «вырасти», пожалуй, не совсем верное: скорее, тут стоит говорить о переходе в другую профессию, потому что лид — должность во многом менеджерская, а не дизайнерская.\n\nПервый — выход на открытый рынок — кажется, дает больше пространства для маневра. Но в реальности все непросто, ведь мало кто готов дать зеленый свет человеку, не попадающему под классический критерий «с опытом работы от...».\n\nВторой вариант — смена роли внутри компании — вроде бы более дружелюбный, но тут тоже все сложно. Окно возможностей (в виде открытой ставки) появляется не так часто, да и предпочтение скорее всего тоже отдадут человеку с опытом.\n\nВ итоге все сводится к этому самому пресловутому опыту, но где его набраться, если пусть к лидовским позициям перекрыт? Можно, конечно, попытать удачу и, невзирая на отсутствие опыта, пооткликаться на разные вакансии или поискать «внутренние» варианты, уповая на то, что кто-то оценит ваши заслуги в дизайне и авансом поставит управлять командой.\n\nНо есть более перспективный вариант — получить лидовские компетенции без формальной смены роли . Это усилит ваши позиции в случае внутренней ротации, а в резюме вы смело сможете написать что-то вроде «исполнял функции дизайн-лида» или «внедрил процессы...» . Другие мои посты вы можете найти в телеграм-канале @na_produkte . Помощь другим Важная задача дизайн-лида — помогать участникам своей команды работать эффективно и продуктивно."
     },
     {
       "id": "7196041ceecc",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Что произошло в мире дизайна и маркетинга на этой неделе?👀 — дизайнерс",
+      "title": "Что произошло в мире дизайна и маркетинга на этой неделе?👀",
       "url": "https://dsgners.ru/proddesiign/11525-chto-proizoshlo-v-mire-dizayna-i-marketinga-na-etoy-nedele",
       "author": null,
       "publishedAt": "2025-07-20T10:47:50.000Z",
       "summary": "За последние две недели мы увидели, как крупные бренды перестают быть просто сообщениями — они становятся средой: физической, тактильной, эмоциональной. Вместо визуального шума — жест, который хочется потрогать. Это не м…",
-      "rewrite": "Вместо визуального шума — жест, который хочется потрогать. Это не маркетинговая уловка, а культурный ответ на цифровую усталость.\n\nСейчас бренд — это не только айдентика и голос, но и точка реального контакта. Все четыре кейса ниже объединяет одно: переход от экранного присутствия к телесному опыту 🫂 1.\n\nЯндекс.Поиск — шелушащиеся плакаты На улицах Москвы появились постеры, графика которых имитирует обгоревшую кожу. Их можно потрогать — и почувствовать, насколько реклама стала буквально осязаемой.\n\nВ центре — идея о защите от солнца и поиск летних товаров Почему это работает? Потому что физический триггер вызывает гораздо более плотное внимание.\n\nЭто не просто баннер, а опыт — особенно на фоне городской жары + это реакция на выгорание от экрана: бренду важно быть почувствованным, а не просто увиденным :) 2. Pure Leaf — автомат, отключающий от телефона В Нью-Йорке бренд холодного чая установил вендинговый аппарат, который выдаёт напиток только если ты оставляешь в нём телефон на 10 минут.\n\nПока чай охлаждает тебя, ты отдыхаешь в кресле и просто смотришь по сторонам Это не реклама — это антивирус от цифровой зависимости. Pure Leaf не говорит: «покупай» — он предлагает телесный ритуал замедления, и делает это в локации, где темп и шум особенно навязчивы.\n\nМиллионы просмотров и лайков в Instagram — показатель культурного запроса: люди устали быть в онлайне и благодарны бренду за возможность отключиться :) 3. Туту.ру — информационные билборды, превращающие дорогу в путешествие На маршрутах Золотого кольца Туту.ру разместил билборды с неожиданными фактами о локациях: не «купите билет», а «знаете ли вы, что…»."
+      "rewrite": "Вместо визуального шума — жест, который хочется потрогать. Это не маркетинговая уловка, а культурный ответ на цифровую усталость.\n\nСейчас бренд — это не только айдентика и голос, но и точка реального контакта. Все четыре кейса ниже объединяет одно: переход от экранного присутствия к телесному опыту 🫂 1.\n\nЯндекс. Поиск — шелушащиеся плакаты На улицах Москвы появились постеры, графика которых имитирует обгоревшую кожу. Их можно потрогать — и почувствовать, насколько реклама стала буквально осязаемой.\n\nВ центре — идея о защите от солнца и поиск летних товаров Почему это работает? Потому что физический триггер вызывает гораздо более плотное внимание.\n\nЭто не просто баннер, а опыт — особенно на фоне городской жары + это реакция на выгорание от экрана: бренду важно быть почувствованным, а не просто увиденным :) 2. Pure Leaf — автомат, отключающий от телефона В Нью-Йорке бренд холодного чая установил вендинговый аппарат, который выдаёт напиток только если ты оставляешь в нём телефон на 10 минут.\n\nПока чай охлаждает тебя, ты отдыхаешь в кресле и просто смотришь по сторонам Это не реклама — это антивирус от цифровой зависимости. Pure Leaf не говорит: «покупай» — он предлагает телесный ритуал замедления, и делает это в локации, где темп и шум особенно навязчивы.\n\nМиллионы просмотров и лайков в Instagram — показатель культурного запроса: люди устали быть в онлайне и благодарны бренду за возможность отключиться :) 3. Туту.ру — информационные билборды, превращающие дорогу в путешествие На маршрутах Золотого кольца Туту.ру разместил билборды с неожиданными фактами о локациях: не «купите билет», а «знаете ли вы, что…»."
     },
     {
       "id": "77320a0ae49e",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Figma Variables. Как пользоваться переменными и токенами — дизайнерс",
+      "title": "Figma Variables. Как пользоваться переменными и токенами",
       "url": "https://dsgners.ru/orshakserg/11524-figma-variables-kak-polzovatsya-peremennymi-i-tokenami",
       "author": null,
       "publishedAt": "2025-07-20T03:07:28.000Z",
       "summary": "Предзапись на следующий поток дизайн-наставничества: https://design-squad.ru/ Бусти: https://boosty.to/orshak_dsgn Взрывной пак дизайнера (30000+ материалов): https://t.me/orshak_bot?start=56906 Мой партнер Таск-трекер O…",
-      "rewrite": "Как пользоваться переменными и токенами — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Сергей Оршак Урок · 20.07.25 Подписаться Подписаться Figma Variables. Если ты дизайнер, фрилансер или управляешь проектами, этот сервис стоит попробовать Мой телеграм-канал - https://t.me/+RxL5wSKpJoE0NGVi Мой VK - https://vk.com/club227442342 Behance - https://www.behance.net/orshakss Dpr...\n\n2 1161 Любой видеоролик для сайта с помощью нейросетей. Пошаговая инструкция Предзапись на моё наставничество: https://t.me/+mrgwxoyuhoRmYzIy 1 917 Дизайн интернет-магазина от подписчика: ошибки, которые делает каждый Предзапись на моё наставничество: https://t.me/+jCGK2HuMWVY5MmIy 2 1811 Рекомендуем почитать"
+      "rewrite": "Как пользоватьс 07.25 Подписаться Подписаться Figma Variables. Если ты дизайнер, фрилансер или управляешь проектами, этот сервис стоит попробовать Мой телеграм-канал - https://t.me/+RxL5wSKpJoE0NGVi Мой VK - https://vk.com/club227442342 Behance - https://www.behance.net/orshakss Dpr...\n\n2 1161 Любой видеоролик для сайта с помощью нейросетей. Пошаговая инструкция Предзапись на моё наставничество: https://t.me/+mrgwxoyuhoRmYzIy 1 917 Дизайн интернет-магазина от подписчика: ошибки, которые делает каждый Предзапись на моё наставничество: https://t.me/+jCGK2HuMWVY5MmIy 2 1811 Рекомендуем почитать"
     },
     {
       "id": "fc94fc05bcc1",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Figma Variables. Как пользоваться переменными и токенами — дизайнерс",
+      "title": "Figma Variables. Как пользоваться переменными и токенами",
       "url": "https://dsgners.ru/orshakserg/11524-figma-variables-kak-polzovatsya-peremennyimi-i-tokenami",
       "author": null,
       "publishedAt": "2025-07-20T03:07:28.000Z",
       "summary": "Предзапись на следующий поток дизайн-наставничества: https://design-squad.ru/ Бусти: https://boosty.to/orshak_dsgn Взрывной пак дизайнера (30000+ материалов): https://t.me/orshak_bot?start=56906 Мой партнер Таск-трекер O…",
-      "rewrite": "Как пользоваться переменными и токенами — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Сергей Оршак Урок · 20.07.25 Подписаться Подписаться Figma Variables. Если ты дизайнер, фрилансер или управляешь проектами, этот сервис стоит попробовать Мой телеграм-канал - https://t.me/+RxL5wSKpJoE0NGVi Мой VK - https://vk.com/club227442342 Behance - https://www.behance.net/orshakss Dpr...\n\n2 1163 Любой видеоролик для сайта с помощью нейросетей. Пошаговая инструкция Предзапись на моё наставничество: https://t.me/+mrgwxoyuhoRmYzIy 1 918 Дизайн интернет-магазина от подписчика: ошибки, которые делает каждый Предзапись на моё наставничество: https://t.me/+jCGK2HuMWVY5MmIy 2 1811 Рекомендуем почитать"
+      "rewrite": "Как пользоватьс 07.25 Подписаться Подписаться Figma Variables. Если ты дизайнер, фрилансер или управляешь проектами, этот сервис стоит попробовать Мой телеграм-канал - https://t.me/+RxL5wSKpJoE0NGVi Мой VK - https://vk.com/club227442342 Behance - https://www.behance.net/orshakss Dpr...\n\n2 1163 Любой видеоролик для сайта с помощью нейросетей. Пошаговая инструкция Предзапись на моё наставничество: https://t.me/+mrgwxoyuhoRmYzIy 1 918 Дизайн интернет-магазина от подписчика: ошибки, которые делает каждый Предзапись на моё наставничество: https://t.me/+jCGK2HuMWVY5MmIy 2 1811 Рекомендуем почитать"
     },
     {
       "id": "44288ed683fe",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Как поймать желаемый оффер? Страдания дизайнера — дизайнерс",
+      "title": "Как поймать желаемый оффер? Страдания дизайнера",
       "url": "https://dsgners.ru/raz_dva_tri/11519-kak-poymat-jelaemyiy-offer-stradaniya-dizaynera",
       "author": null,
       "publishedAt": "2025-07-19T17:00:54.000Z",
       "summary": "Честно говоря, после полутора месяцев поиска работы хотелось написать душещипательную статью о ненависти к hr и работодателям, которые пытаются навязать тебе игру в кальмара за прожиточный минимум. Но это только усилит в…",
-      "rewrite": "Как поймать желаемый оффер? Страдания дизайнера — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены Раз Два Три Статья · 19.07.25 Подписаться Подписаться Как поймать желаемый оффер?\n\nСтрадания дизайнера Честно говоря, после полутора месяцев поиска работы хотелось написать душещипательную статью о ненависти к hr и работодателям, которые пытаются навязать тебе игру в кальмара за прожиточный минимум. Но это только усилит ваши страдания и не приведёт к результату.\n\nПоэтому я решила поделиться дельными советами по поиску, которые помогли лично мне. Предыстория&nbsp;&nbsp; Я попала в эту ловушку поиска работы, так как опрометчиво решила уйти с основного места, не получив оффер от другой компании.\n\n(!) Спойлер, не делайте так, если у вас нет финансовой подушки на 2-3 месяца или проектной работы на фрилансе. Моей основной и, наверное, единственной причиной ухода с предыдущего места был значительный рост обязанностей, ответственности и часов переработок без повышения грейда и заработной платы.\n\nЭто казалось мне невозможной несправедливостью и я решила уйти, разорвав этот круг сансары. Поиск заветного оффера Я не претендую на звание лучшего дизайнера, рекрутера или ментора, поэтому все пункты, изложенные ниже, это только мой опыт.\n\nНо я надеюсь, что вы унесете с собой что-то ценное. Портфолио Многие арт-диры навязывают мысль, что с портфолио в виде презентации невозможно найти работу.\n\nЕсли у вас есть возможность кидать портфолио в виде ссылки на dprofile — круто, но если вы связаны узами NDA с предыдущем работодателем — не бойтесь, делайте презентацию. Не награждайте себя лишними муками, придумывая дизайн для портфолио."
+      "rewrite": "Как поймать желаемый оффер? Страдани 07.25 Подписаться Подписаться Как поймать желаемый оффер?\n\nСтрадания дизайнера Честно говоря, после полутора месяцев поиска работы хотелось написать душещипательную статью о ненависти к hr и работодателям, которые пытаются навязать тебе игру в кальмара за прожиточный минимум. Но это только усилит ваши страдания и не приведёт к результату.\n\nПоэтому я решила поделиться дельными советами по поиску, которые помогли лично мне. Предыстория Я попала в эту ловушку поиска работы, так как опрометчиво решила уйти с основного места, не получив оффер от другой компании.\n\n(!) Спойлер, не делайте так, если у вас нет финансовой подушки на 2-3 месяца или проектной работы на фрилансе. Моей основной и, наверное, единственной причиной ухода с предыдущего места был значительный рост обязанностей, ответственности и часов переработок без повышения грейда и заработной платы.\n\nЭто казалось мне невозможной несправедливостью и я решила уйти, разорвав этот круг сансары. Поиск заветного оффера Но я надеюсь, что вы унесете с собой что-то ценное. Портфолио Многие арт-диры навязывают мысль, что с портфолио в виде презентации невозможно найти работу.\n\nЕсли у вас есть возможность кидать портфолио в виде ссылки на dprofile — круто, но если вы связаны узами NDA с предыдущем работодателем — не бойтесь, делайте презентацию. Не награждайте себя лишними муками, придумывая дизайн для портфолио."
     },
     {
       "id": "25211b0ed280",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "TBird: кейс редизайна первого в России сервиса торгов за аренду — дизайнерс",
+      "title": "TBird: кейс редизайна первого в России сервиса торгов за аренду",
       "url": "https://dsgners.ru/katshelkov/11508-tbird-keys-redizayna-pervogo-v-rossii-servisa-torgov-za-arendu",
       "author": null,
       "publishedAt": "2025-07-18T16:25:25.000Z",
       "summary": "TBird – первый в России агрегатор жилья с торгами за аренду. Путешественник предлагает цену, хозяин соглашается или торгуется. Новый подход, который позволяет арендаторам экономить до 30% бюджета на жилье, а собственника…",
-      "rewrite": "Путешественник предлагает цену, хозяин соглашается или торгуется. Новый подход, который позволяет арендаторам экономить до 30% бюджета на жилье, а собственникам – получать дополнительную площадку для размещения с гибким ценообразованием.\n\n&nbsp; Представьте: вы в путешествии, нашли квартиру в Питере за 40 000, а платите 30 000. Потому что поторговались.\n\nУстановили свои условия, а арендодатель на них согласился.&nbsp; Крутая механика. Что показал UX-аудит UX-аудит показал критические проблемы в архитектуре: пути арендаторов и арендодателей пересекались в 70% экранов, пользователи заходили в тупики из-за отсутствия четкой навигации, а объяснение механики торгов было спрятано в глубинах сайта.\n\nСистемные ошибки в логике переходов усугубляли проблему. Стало ясно: редизайн должен упростить структуру.\n\nЧасть аудита - анализ пользовательского пути. Параллельно с UX-аудитом проанализировали бренды-бенчмарки: Airbnb (визуальная подача и доверие), Booking (простота бронирования), Суточно.ру (адаптация под российский рынок), RUSPASS (работа с туристами).\n\nРезультат анализа и аудита – новая карта сайта с четким разделением аудиторий: Главная: с продающей маркетинговой структурой, где объяснили что получит пользователь, подсветили выгоды и добавили блоки доверия (отзывы, гарантии, статьи). Путешественник: с преимуществами и инфографикой, объясняющей как пользоваться платформой.\n\nАрендодатель: с преимуществами и инфографикой, объясняющей как пользоваться платформой. О компании: где собрали боли аудитории и инструкции по их решению с помощью сервиса, а также миссию компании."
+      "rewrite": "Путешественник предлагает цену, хозяин соглашается или торгуется. Новый подход, который позволяет арендаторам экономить до 30% бюджета на жилье, а собственникам – получать дополнительную площадку для размещения с гибким ценообразованием.\n\nПредставьте: вы в путешествии, нашли квартиру в Питере за 40 000, а платите 30 000. Потому что поторговались.\n\nУстановили свои условия, а арендодатель на них согласился. Крутая механика. Что показал UX-аудит UX-аудит показал критические проблемы в архитектуре: пути арендаторов и арендодателей пересекались в 70% экранов, пользователи заходили в тупики из-за отсутствия четкой навигации, а объяснение механики торгов было спрятано в глубинах сайта.\n\nСистемные ошибки в логике переходов усугубляли проблему. Стало ясно: редизайн должен упростить структуру.\n\nЧасть аудита - анализ пользовательского пути. Параллельно с UX-аудитом проанализировали бренды-бенчмарки: Airbnb (визуальная подача и доверие), Booking (простота бронирования), Суточно.ру (адаптация под российский рынок), RUSPASS (работа с туристами).\n\nРезультат анализа и аудита – новая карта сайта с четким разделением аудиторий: Главная: с продающей маркетинговой структурой, где объяснили что получит пользователь, подсветили выгоды и добавили блоки доверия (отзывы, гарантии, статьи). Путешественник: с преимуществами и инфографикой, объясняющей как пользоваться платформой.\n\nАрендодатель: с преимуществами и инфографикой, объясняющей как пользоваться платформой. О компании: где собрали боли аудитории и инструкции по их решению с помощью сервиса, а также миссию компании."
     },
     {
       "id": "b5558d2669c6",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Интерфейсный экран 3D - Cinema 4D + Redshift Scene на Boosty — дизайнерс",
+      "title": "Интерфейсный экран 3D - Cinema 4D + Redshift Scene на Boosty",
       "url": "https://dsgners.ru/najibullo-samiev/11424-interfeysnyiy-ekran-3d-cinema-4d-redshift-scene-na-boosty",
       "author": null,
       "publishedAt": "2025-07-18T13:21:43.000Z",
@@ -676,7 +698,7 @@
       "id": "d584f222fcf0",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Дизайн вне мониторов: как наша студия создала кружок коллажа — дизайнерс",
+      "title": "Дизайн вне мониторов: как наша студия создала кружок коллажа",
       "url": "https://dsgners.ru/sloy/11421-dizayn-vne-monitorov-kak-nasha-studiya-sozdala-krujok-kollaja",
       "author": null,
       "publishedAt": "2025-07-18T12:52:29.000Z",
@@ -687,40 +709,40 @@
       "id": "fa5bea8325d8",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Эмоциональный UX на всех этапах разработки цифрового продукта: от исследований до микровзаимодействий — дизайнерс",
+      "title": "Эмоциональный UX на всех этапах разработки цифрового продукта: от исследований до микровзаимодействий",
       "url": "https://dsgners.ru/proddesiign/11330-emotsionalnyiy-ux-na-vseh-etapah-razrabotki-tsifrovogo-produkta-ot-issledovaniy-do-mikrovzaimodeystviy",
       "author": null,
       "publishedAt": "2025-07-18T12:24:14.000Z",
       "summary": "В интерфейсах всё чаще побеждают не те, кто делает быстрее или дешевле, а те, кто создаёт ощущение. Мы выбираем банковское приложение не потому, что оно просто считает деньги — это делают все, — а потому что одно из них…",
-      "rewrite": "Мы выбираем банковское приложение не потому, что оно просто считает деньги — это делают все, — а потому что одно из них даёт ощущение контроля, прозрачности и спокойствия . Мы возвращаемся в Ozon не потому, что там дешевле, а потому что это удобный,&nbsp;узнаваемый и уверенный&nbsp;опыт.\n\nЭмоции в UX — это не тренд, это инструмент. Они работают&nbsp;на глубинные смыслы и мотивации, создают память, вызывают доверие .\n\nПродукт может быть красивым, быстрым и функциональным, но если он не даёт ощущения, которое человек ищет в этой точке жизни — его забудут. Эмоции не создаются на этапе \"добавим анимацию\" — они проектируются&nbsp;с самого первого шага , на этапе исследования и конструирования пользовательских сценариев.\n\nИ именно здесь начинаются ошибки: команды фокусируются на \"фичах\", а не на чувствах. А потом удивляются, почему после релиза никто не радуется продукту.\n\n📎&nbsp; Брендинг сегодня — это продукт: как визуальные смысля управляют нашим выбором Исследования как основа эмоционального UX 1. CJM — эмоциональная карта контакта Пример CJM для мобильного приложения, слева прописаны стадии жизненного цикла продукта, справа – параметры каждой стадии Customer Journey Map — это не просто последовательность шагов.\n\nЭто карта того,&nbsp;что чувствует человек в каждом касании с продуктом. Если вы не знаете, какие эмоции испытывает пользователь на этапе регистрации, выбора тарифа или возврата товара, вы проектируете вслепую .\n\nJTBD, Job Story, User Story — и зачем нам вся эта пачка Мы используем не один, а&nbsp;набор фреймворков, потому что каждый из них отвечает на разные уровни мотивации . 1️⃣ JTBD (Jobs To Be Done) — глубинная причина Пользователь не «хочет купить билет» , он «пытается уверенно добраться на концерт, не опоздать и не переживать» JTBD помогает понять,&nbsp;что человек нанимает продукт делать в своей жизни."
+      "rewrite": "Мы выбираем банковское приложение не потому, что оно просто считает деньги — это делают все, — а потому что одно из них даёт ощущение контроля, прозрачности и спокойствия . Мы возвращаемся в Ozon не потому, что там дешевле, а потому что это удобный, узнаваемый и уверенный опыт.\n\nЭмоции в UX — это не тренд, это инструмент. Они работают на глубинные смыслы и мотивации, создают память, вызывают доверие .\n\nПродукт может быть красивым, быстрым и функциональным, но если он не даёт ощущения, которое человек ищет в этой точке жизни — его забудут. Эмоции не создаются на этапе \"добавим анимацию\" — они проектируются с самого первого шага , на этапе исследования и конструирования пользовательских сценариев.\n\nИ именно здесь начинаются ошибки: команды фокусируются на \"фичах\", а не на чувствах. А потом удивляются, почему после релиза никто не радуется продукту.\n\n📎 Брендинг сегодня — это продукт: как визуальные смысля управляют нашим выбором Исследования как основа эмоционального UX 1. CJM — эмоциональная карта контакта Пример CJM для мобильного приложения, слева прописаны стадии жизненного цикла продукта, справа – параметры каждой стадии Customer Journey Map — это не просто последовательность шагов.\n\nЭто карта того, что чувствует человек в каждом касании с продуктом. Если вы не знаете, какие эмоции испытывает пользователь на этапе регистрации, выбора тарифа или возврата товара, вы проектируете вслепую .\n\nJTBD, Job Story, User Story — и зачем нам вся эта пачка Мы используем не один, а набор фреймворков, потому что каждый из них отвечает на разные уровни мотивации . 1️⃣ JTBD (Jobs To Be Done) — глубинная причина Пользователь не «хочет купить билет» , он «пытается уверенно добраться на концерт, не опоздать и не переживать» JTBD помогает понять, что человек нанимает продукт делать в своей жизни."
     },
     {
       "id": "043e852793e0",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Унификация тостов в дизайн-системе: как мы решали архитектурный конфликт в компоненте — дизайнерс",
+      "title": "Унификация тостов в дизайн-системе: как мы решали архитектурный конфликт в компоненте",
       "url": "https://dsgners.ru/ffdd2d/11251-unifikatsiya-tostov-v-dizayn-sisteme-kak-myi-reshali-arhitekturnyiy-konflikt-v-komponente",
       "author": null,
       "publishedAt": "2025-07-18T12:00:38.000Z",
       "summary": "Дизайн-система команды Т-Банка поддерживается на 5 платформах — нативных и веб. Мы стремимся к тому, чтобы пользовательский опыт и внешний вид интерфейса был единым, вне зависимости от устройства и платформы. На практике…",
-      "rewrite": "Мы стремимся к тому, чтобы пользовательский опыт и внешний вид интерфейса был единым, вне зависимости от устройства и платформы. На практике это означает, что даже у простого компонента могут возникнуть архитектурные и поведенческие противоречия.\n\nЯ — Аня Скользнева , дизайнер в команде дизайн-системы. В этой статье расскажу о том, как мы решали такие задачи, и чему научились по пути.\n\nКонтекст и постановка задачи&nbsp; В мобильном приложении Т-банка и его веб-версии всплывающие уведомления — тосты — выглядят и ведут себя по-разному. Это связано с тем, что изначально веб-версия компонента разрабатывалась для десктопа с учётом других UX-паттернов (например, компонент не поддерживал управление жестами).\n\nМы собрали основные отличия в визуале и поведении:&nbsp; Наша цель заключалась не только в том, чтобы привести визуал к единому виду. Мы хотели разработать архитектурное решение, подходящее для мобильного и десктопного веба.\n\nВажно было не просто перенести внешний вид из нативного приложения, а создать общий фундамент для разных реализаций. Анализ текущих решений Мы начали с изучения того, как тост работает в разных продуктах — и клиентских, и внутренних, так как дизайн-система внутри Т-Банка — единая, и компонент должен работать во всех контекстах.\n\nЧто подсказали другие дизайн-системы Прежде чем перейти к концептам, мы проанализировали решения в других дизайн-системах. Их изучение подтвердило, что наш текущий десктопный компонент скорее информер (насыщенное подробное уведомление), а не тост (моментальный отклик системы на действие пользователя, сообщающий о результате: успех или ошибка).\n\nПодготовка концептов На основе анализа и собранных референсов мы подготовили первую волну концептов. Переработкой архитектуры текущего компонента, мы бы сломали сценарии продуктов, поэтому нужно было искать «обходной путь»."
+      "rewrite": "Мы стремимся к тому, чтобы пользовательский опыт и внешний вид интерфейса был единым, вне зависимости от устройства и платформы. На практике это означает, что даже у простого компонента могут возникнуть архитектурные и поведенческие противоречия. В этой статье расскажу о том, как мы решали такие задачи, и чему научились по пути.\n\nКонтекст и постановка задачи В мобильном приложении Т-банка и его веб-версии всплывающие уведомления — тосты — выглядят и ведут себя по-разному. Это связано с тем, что изначально веб-версия компонента разрабатывалась для десктопа с учётом других UX-паттернов (например, компонент не поддерживал управление жестами).\n\nМы собрали основные отличия в визуале и поведении: Наша цель заключалась не только в том, чтобы привести визуал к единому виду. Мы хотели разработать архитектурное решение, подходящее для мобильного и десктопного веба.\n\nВажно было не просто перенести внешний вид из нативного приложения, а создать общий фундамент для разных реализаций. Анализ текущих решений Мы начали с изучения того, как тост работает в разных продуктах — и клиентских, и внутренних, так как дизайн-система внутри Т-Банка — единая, и компонент должен работать во всех контекстах.\n\nЧто подсказали другие дизайн-системы Прежде чем перейти к концептам, мы проанализировали решения в других дизайн-системах. Их изучение подтвердило, что наш текущий десктопный компонент скорее информер (насыщенное подробное уведомление), а не тост (моментальный отклик системы на действие пользователя, сообщающий о результате: успех или ошибка).\n\nПодготовка концептов На основе анализа и собранных референсов мы подготовили первую волну концептов. Переработкой архитектуры текущего компонента, мы бы сломали сценарии продуктов, поэтому нужно было искать «обходной путь»."
     },
     {
       "id": "2c63e4909d8e",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Реакция дизайн-сообщества на приложение Рокетбанка — дизайнерс",
+      "title": "Реакция дизайн-сообщества на приложение Рокетбанка",
       "url": "https://dsgners.ru/theburmistrov/11417-reaktsiya-dizayn-soobschestva-na-prilojenie-roketbanka",
       "author": null,
       "publishedAt": "2025-07-18T10:49:59.000Z",
-      "summary": "Сегодня Рокетбанк выпустил официальное приложение для Android. Пройти мимо нового дизайна вернувшегося банка дизайнеры не смогли.",
-      "rewrite": "Пройти мимо нового дизайна вернувшегося банка дизайнеры не смогли. Я конечно всякое говно видел в жизни, но такой кромешный пиздец впервые.\n\nмда, старый рокет и про дизайн и про юзабельность... Это дриббло высер какой-то Serhio Это какой то треш.\n\nЭто же кто то делал, кто то согласовал и даже на конференции потом выступит как они провели 100500 исследований. Миша Пиминова А как вам приложение Рокетбанка?\n\nЧто-то новое — понравилось! Пойдёт Удалите это...\n\n7 2 6293 Dribbble удалил аккаунт одного из самых активных пользователей Речь идёт о Глебе Кузнецове — его профиль насчитывал больше 100 000 ежемесячных пользователей и больше 12 000 шотов. Он был зарегистрирован 15 лет назад.\n\n10 6 6620 Figma вышла на биржу и привлекла в ходе IPO $1,22 млрд Акции продавались по цене от 30 до 32 долларов. Всего удалось продать 36,9 миллиона акций.\n\nКомпания будет торговаться на Нью-Йоркской фондовой бирже под тикером FIG. 5 2 1 4483 Рекомендуем почитать"
+      "summary": "Сегодня Рокетбанк выпустил официальное приложение для Android. Пройти мимо нового дизайна вернувшегос",
+      "rewrite": "Пройти мимо нового дизайна вернувшегос Я конечно всякое говно видел в жизни, но такой кромешный пиздец впервые.\n\nмда, старый рокет и про дизайн и про юзабельность... Это дриббло высер какой-то Serhio Это какой то треш.\n\nЭто же кто то делал, кто то согласовал и даже на конференции потом выступит как они провели 100500 исследований. Миша Пиминова А как вам приложение Рокетбанка?\n\nЧто-то новое — понравилось! Пойдёт Удалите это...\n\n7 2 6293 Dribbble удалил аккаунт одного из самых активных пользователей Речь идёт о Глебе Кузнецове — его профиль насчитывал больше 100 000 ежемесячных пользователей и больше 12 000 шотов. Он был зарегистрирован 15 лет назад.\n\n10 6 6620 Figma вышла на биржу и привлекла в ходе IPO $1,22 млрд Акции продавались по цене от 30 до 32 долларов. Всего удалось продать 36,9 миллиона акций.\n\nКомпания будет торговаться на Нью-Йоркской фондовой бирже под тикером FIG. 5 2 1 4483 Рекомендуем почитать"
     },
     {
       "id": "1e74f415b6cb",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Нетворкинг вместо отклика: как связи закрывают 70% вакансий — дизайнерс",
+      "title": "Нетворкинг вместо отклика: как связи закрывают 70% вакансий",
       "url": "https://dsgners.ru/designslot/11327-netvorking-vmesto-otklika-kak-svyazi-zakryivayut-70-vakansiy",
       "author": null,
       "publishedAt": "2025-07-18T09:58:34.000Z",
@@ -731,7 +753,7 @@
       "id": "526531f4acd6",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Figma добавила эффект стекла как на iOS 26 — дизайнерс",
+      "title": "Figma добавила эффект стекла как на iOS 26",
       "url": "https://dsgners.ru/atwinta/11415-figma-dobavila-effekt-stekla-kak-na-ios-26",
       "author": null,
       "publishedAt": "2025-07-18T07:45:16.000Z",
@@ -742,7 +764,7 @@
       "id": "73b81e5da0c3",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Figma добавила эффект стекла как на iOS 26 — дизайнерс",
+      "title": "Figma добавила эффект стекла как на iOS 26",
       "url": "https://dsgners.ru/theburmistrov/11415-figma-dobavila-effekt-stekla-kak-na-ios-26",
       "author": null,
       "publishedAt": "2025-07-18T07:45:16.000Z",
@@ -753,29 +775,29 @@
       "id": "45cb60f9b506",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Дизайн по подписке, AI-продукты и рекрутинг: как мы развиваем агентство в разгар отпусков — дизайнерс",
+      "title": "Дизайн по подписке, AI-продукты и рекрутинг: как мы развиваем агентство в разгар отпусков",
       "url": "https://dsgners.ru/azagency.design/11307-dizayn-po-podpiske-ai-produktyi-i-rekruting-kak-myi-razvivaem-agentstvo-v-razgar-otpuskov",
       "author": null,
       "publishedAt": "2025-07-17T10:56:24.000Z",
-      "summary": "Привет! На связи Настя, фаундер международного digital-агентства AZ Agency. Сегодня расскажу, как мы в агентстве продолжаем развивать продажи и запускать новые направления, даже когда кажется, что все вокруг ушли в отпус…",
-      "rewrite": "На связи Настя, фаундер международного digital-агентства AZ Agency . Сегодня расскажу, как мы в агентстве продолжаем развивать продажи и запускать новые направления, даже когда кажется, что все вокруг ушли в отпуск.\n\nВ этой статье поделюсь, какие шаги мы предпринимаем летом, чтобы не просто «держаться на плаву», а развивать бизнес: от запуска нового формата услуг до подготовки агентства к осеннему сезону. Расскажу и про наш подход в Veranto — как мы усиливаем команду и запускаем новые направления, связанные с AI и рекрутингом.\n\nПервое правило летнего выживания в агентстве — продолжаем работать. Второе — желательно делать это в комфортных условиях.\n\nЯ, например, всгегда уезжаю на месяц из Италии — потому что продуктивность при +40 падает быстрее, чем желание работать. Сиесты испанцев и итальянцев я теперь понимаю как никогда: в такую жару единственное, что хочется — чилить у моря, а не вести звонки с клиентами.\n\nНо, как вы понимаете, чил на пляже вряд ли способствует росту продаж. Так что переходим к делу — расскажу, что мы делаем летом, чтобы агентство продолжало расти.\n\nПодписка на дизайн вместо отпуска С середины июня мы начали работу над новым направлением —&nbsp; «Дизайн-отдел по подписке»‎. Это не просто дизайн-поддержка, и уж точно не «пачка баннеров в месяц».\n\nЭто гибкий и долгосрочный формат, который сочетает в себе удобство аутстаффа и структурированность аутсорса, но при этом гораздо дешевле и структурированнее по процессу. Идея родилась после анализа западного рынка: многие агентства в США и Канаде давно предлагают подобные модели."
+      "summary": "На связи Настя, фаундер международного digital-агентства AZ Agency. Сегодня расскажу, как мы в агентстве продолжаем развивать продажи и запускать новые направления, даже когда кажется, что все вокруг ушли в отпус…",
+      "rewrite": "На связи Настя, фаундер международного digital-агентства AZ Agency . Сегодня расскажу, как мы в агентстве продолжаем развивать продажи и запускать новые направления, даже когда кажется, что все вокруг ушли в отпуск.\n\nВ этой статье поделюсь, какие шаги мы предпринимаем летом, чтобы не просто «держаться на плаву», а развивать бизнес: от запуска нового формата услуг до подготовки агентства к осеннему сезону. Расскажу и про наш подход в Veranto — как мы усиливаем команду и запускаем новые направления, связанные с AI и рекрутингом.\n\nПервое правило летнего выживания в агентстве — продолжаем работать. Второе — желательно делать это в комфортных условиях.\n\nЯ, например, всгегда уезжаю на месяц из Италии — потому что продуктивность при +40 падает быстрее, чем желание работать. Сиесты испанцев и итальянцев я теперь понимаю как никогда: в такую жару единственное, что хочется — чилить у моря, а не вести звонки с клиентами.\n\nНо, как вы понимаете, чил на пляже вряд ли способствует росту продаж. Так что переходим к делу — расскажу, что мы делаем летом, чтобы агентство продолжало расти.\n\nПодписка на дизайн вместо отпуска С середины июня мы начали работу над новым направлением — «Дизайн-отдел по подписке»‎. Это не просто дизайн-поддержка, и уж точно не «пачка баннеров в месяц».\n\nЭто гибкий и долгосрочный формат, который сочетает в себе удобство аутстаффа и структурированность аутсорса, но при этом гораздо дешевле и структурированнее по процессу. Идея родилась после анализа западного рынка: многие агентства в США и Канаде давно предлагают подобные модели."
     },
     {
       "id": "724f502c92a1",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Бесплатный митап про дизайнеров и для дизайнеров — дизайнерс",
+      "title": "Бесплатный митап про дизайнеров и для дизайнеров",
       "url": "https://dsgners.ru/tilda/11310-besplatnyiy-mitap-pro-dizaynerov-i-dlya-dizaynerov",
       "author": null,
       "publishedAt": "2025-07-17T10:02:04.000Z",
       "summary": "Тильда проведёт бесплатный онлайн-митап для дизайнеров. Опытные фрилансеры и владельцы студий поделятся своим взглядом на профессию и развитие в ней. Это возможность получить работающие советы от профессионалов, чтобы уч…",
-      "rewrite": "Опытные фрилансеры и владельцы студий поделятся своим взглядом на профессию и развитие в ней. Это возможность получить работающие советы от профессионалов, чтобы учиться на чужих ошибках и не тратить время на проверку карьерных гипотез.\n\nБудет полезно всем, кто хочет расти и развиваться. Tilda Designer Day — это митап о дизайне как он есть.\n\nОт тех, кто сам идёт этот путь и хочет поделиться важными наблюдениями и профессиональной экспертизой.&nbsp; Участников встречи ждут коротки выступления, только реальная польза и работающие приёмы, возможность задать вопросы экспертам, а самые активные получат призы. Дизайнеры расскажут о личном опыте и затронут важные для каждого темы:&nbsp; Какие страхи тормозят развитие карьеры и как их преодолевать.\n\nКак дизайнеру не стать заложником одного стиля. Какие использовать AI инструменты, когда нет бюджета и времени.\n\nКак стабильно выдавать качественные результаты без ожидания вдохновения. Как в погоне за деньгами не потерять себя и почему важно делать проекты, которые просто нравятся.\n\nКак продавать свой дизайн дорого и постоянно увеличивать средний чек. Зачем участвовать Веб-дизайнерам для поиска вдохновения и новых идей для развития.\n\nГрафическим дизайнерам , чтобы выйти за рамки привычных задач. Начинающим специалистам , чтобы разобраться, как устроена профессия без прикрас."
+      "rewrite": "Опытные фрилансеры и владельцы студий поделятся своим взглядом на профессию и развитие в ней. Это возможность получить работающие советы от профессионалов, чтобы учиться на чужих ошибках и не тратить время на проверку карьерных гипотез.\n\nБудет полезно всем, кто хочет расти и развиваться. Tilda Designer Day — это митап о дизайне как он есть.\n\nОт тех, кто сам идёт этот путь и хочет поделиться важными наблюдениями и профессиональной экспертизой. Участников встречи ждут коротки выступления, только реальная польза и работающие приёмы, возможность задать вопросы экспертам, а самые активные получат призы. Дизайнеры расскажут о личном опыте и затронут важные для каждого темы: Какие страхи тормозят развитие карьеры и как их преодолевать.\n\nКак дизайнеру не стать заложником одного стиля. Какие использовать AI инструменты, когда нет бюджета и времени.\n\nКак стабильно выдавать качественные результаты без ожидания вдохновения. Как в погоне за деньгами не потерять себя и почему важно делать проекты, которые просто нравятся.\n\nКак продавать свой дизайн дорого и постоянно увеличивать средний чек. Зачем участвовать Веб-дизайнерам для поиска вдохновения и новых идей для развития.\n\nГрафическим дизайнерам , чтобы выйти за рамки привычных задач. Начинающим специалистам , чтобы разобраться, как устроена профессия без прикрас."
     },
     {
       "id": "0ed513c04e0d",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Топ инструментов для работы над дизайн-проектами (2 часть) — дизайнерс",
+      "title": "Топ инструментов для работы над дизайн-проектами (2 часть)",
       "url": "https://dsgners.ru/chimnaz13/11241-top-instrumentov-dlya-rabotyi-nad-dizayn-proektami-2-chast",
       "author": null,
       "publishedAt": "2025-07-17T09:44:08.000Z",
@@ -786,51 +808,51 @@
       "id": "2410711f870e",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Зачем дизайнеру психология цвета? — дизайнерс",
+      "title": "Зачем дизайнеру психология цвета?",
       "url": "https://dsgners.ru/design_with_gmo/11304-zachem-dizayneru-psihologiya-tsveta",
       "author": null,
       "publishedAt": "2025-07-17T06:30:00.000Z",
       "summary": "Каждый день мы выбираем цвета для кнопок, фонов, логотипов. И часто делаем это на интуиции или потому что «так красиво». Но что если я скажу, что выбор каждого цвета можно обосновать реальными научными данными?",
-      "rewrite": "Зачем дизайнеру психология цвета? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены евжень Статья · 17.07.25 Подписаться Подписаться Зачем дизайнеру психология цвета?\n\nПочему дизайнеру стоит разбираться в психологии цвета Каждый день мы выбираем цвета для кнопок, фонов, логотипов. И часто делаем это на интуиции или потому что «так красиво».&nbsp;Но что если я скажу, что выбор каждого цвета можно обосновать реальными научными данными?\n\nКрасный свет «длиннее», синий — «короче». Наши глаза ловят эти волны и отправляют сигналы в мозг.\n\nВ сетчатке есть три типа «датчиков»: Одни лучше видят красный Другие — зеленый Третьи — синий Мозг смешивает эти сигналы и создает все многообразие цветов, которые мы видим. И вот тут начинается самое интересное — разные цвета по-разному влияют на наше состояние.\n\nСиний, зеленый, фиолетовый работают наоборот: Успокаивают Помогают сосредоточиться Снижают тревожность Создают ощущение стабильности Вот почему экраны загрузки часто синие — так ожидание переносится легче. Исследования показывают, что низкая цветовая температура (теплый свет) создает плавное снижение активности центральной нервной системы.\n\nКак это использовать в работе В интерфейсах Хотите повысить конверсию? Теплые яркие цвета для кнопок действий Контрастные сочетания для важных элементов Светлые тона для форм и регистраций Нужно удержать внимание?\n\nЭто называется «нарушением цветовых ожиданий» — мы ожидаем, что еда будет выглядеть определенным образом. Контекст решает все Эксперименты с настоящим платьем (помните #TheDress?) показали, что восприятие цвета сильно зависит от фона и освещения."
+      "rewrite": "Зачем дизайнеру психология цвета? — дизайнерс Написать Войти Лента Рейтинг Подписки Избранное О проекте Реклама Правила Поддержка © 2023-2026 Все права защищены евжень Статья · 17.07.25 Подписатьс Почему дизайнеру стоит разбираться в психологии цвета Каждый день мы выбираем цвета для кнопок, фонов, логотипов. И часто делаем это на интуиции или потому что «так красиво». Но что если я скажу, что выбор каждого цвета можно обосновать реальными научными данными?\n\nКрасный свет «длиннее», синий — «короче». Наши глаза ловят эти волны и отправляют сигналы в мозг.\n\nВ сетчатке есть три типа «датчиков»: Одни лучше видят красный Другие — зеленый Третьи — синий Мозг смешивает эти сигналы и создает все многообразие цветов, которые мы видим. И вот тут начинается самое интересное — разные цвета по-разному влияют на наше состояние.\n\nСиний, зеленый, фиолетовый работают наоборот: Успокаивают Помогают сосредоточиться Снижают тревожность Создают ощущение стабильности Вот почему экраны загрузки часто синие — так ожидание переносится легче. Исследования показывают, что низкая цветовая температура (теплый свет) создает плавное снижение активности центральной нервной системы.\n\nКак это использовать в работе В интерфейсах Хотите повысить конверсию? Теплые яркие цвета для кнопок действий Контрастные сочетания для важных элементов Светлые тона для форм и регистраций Нужно удержать внимание?\n\nЭто называется «нарушением цветовых ожиданий» — мы ожидаем, что еда будет выглядеть определенным образом. Контекст решает все Эксперименты с настоящим платьем (помните #TheDress?) показали, что восприятие цвета сильно зависит от фона и освещения."
     },
     {
       "id": "1619e1cdea6d",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "11 техник ИИ, которые экономят время продуктовому дизайнеру — дизайнерс",
+      "title": "11 техник ИИ, которые экономят время продуктовому дизайнеру",
       "url": "https://dsgners.ru/b2bdesign/11226-11-tehnik-ii-kotoryie-ekonomyat-vremya-produktovomu-dizayneru",
       "author": null,
       "publishedAt": "2025-07-17T06:16:49.000Z",
       "summary": "ИИ — не волшебная палочка, а рабочий инструмент. Но чтобы он приносил пользу, нужно уметь правильно ставить задачи и выбирать подходящую технику. В этой статье — 11 приёмов, которые помогают дизайнерам использовать ИИ в…",
-      "rewrite": "Но чтобы он приносил пользу, нужно уметь правильно ставить задачи и выбирать подходящую технику. В этой статье — 11 приёмов, которые помогают дизайнерам использовать ИИ в реальных задачах: от генерации черновиков до проектирования интерфейсов и валидации решений.\n\nВсё с примерами, по делу и без иллюзий. Подойдёт как новичкам, так и опытным специалистам, которые хотят включить ИИ в процесс осознанно.\n\nМеня зовут Лиана, я продуктовый дизайнер с 25-летним опытом, последние годы работаю в крупной B2B-платформе федерального масштаба. За карьеру прошла путь от фриланса до системной продуктовой разработки: госсайты, логистика, маркетплейсы, внутренние системы и всё, где есть сложный бизнес-процесс и неочевидный пользователь.\n\nПоследние пару лет активно внедряю ИИ в свою работу — не ради тренда, а чтобы реально ускорять принятие решений, структурировать задачи и экономить ресурс. Когда я только начинала использовать ИИ, всё выглядело так: — «Сделай текст красивее».\n\n— «А теперь покороче». — «Ну ты понял…» А он не понял.\n\nИ я тоже — пока не осознала, что ИИ работает отлично, если с ним не сюсюкать, а четко рулить по правилам. Расскажу вам техники использования ИИ в работе дизайнера на реальных примерах.\n\nSpecific Role (SR) Specific Role (SR), наверное, самая главная техника. По умолчанию ИИ — это как собеседник без контекста: он вроде и вежливый, и старается, но часто лепит советы в стиле «зачем вам ноги, если можно летать»."
+      "rewrite": "Но чтобы он приносил пользу, нужно уметь правильно ставить задачи и выбирать подходящую технику. В этой статье — 11 приёмов, которые помогают дизайнерам использовать ИИ в реальных задачах: от генерации черновиков до проектирования интерфейсов и валидации решений.\n\nВсё с примерами, по делу и без иллюзий. Подойдёт как новичкам, так и опытным специалистам, которые хотят включить ИИ в процесс осознанно. За карьеру прошла путь от фриланса до системной продуктовой разработки: госсайты, логистика, маркетплейсы, внутренние системы и всё, где есть сложный бизнес-процесс и неочевидный пользователь.\n\nПоследние пару лет активно внедряю ИИ в свою работу — не ради тренда, а чтобы реально ускорять принятие решений, структурировать задачи и экономить ресурс. Когда я только начинала использовать ИИ, всё выглядело так: — «Сделай текст красивее».\n\n— «А теперь покороче». — «Ну ты понял…» А он не понял.\n\nИ я тоже — пока не осознала, что ИИ работает отлично, если с ним не сюсюкать, а четко рулить по правилам. Расскажу вам техники использовани Specific Role (SR) Specific Role (SR), наверное, самая главная техника. По умолчанию ИИ — это как собеседник без контекста: он вроде и вежливый, и старается, но часто лепит советы в стиле «зачем вам ноги, если можно летать»."
     },
     {
       "id": "fa84c60648dd",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "11 техник ИИ, которые экономят время продуктовому дизайнеру — дизайнерс",
+      "title": "11 техник ИИ, которые экономят время продуктовому дизайнеру",
       "url": "https://dsgners.ru/designslot/11226-11-tehnik-ii-kotoryie-ekonomyat-vremya-produktovomu-dizayneru",
       "author": null,
       "publishedAt": "2025-07-17T06:16:49.000Z",
       "summary": "ИИ — не волшебная палочка, а рабочий инструмент. Но чтобы он приносил пользу, нужно уметь правильно ставить задачи и выбирать подходящую технику. В этой статье — 11 приёмов, которые помогают дизайнерам использовать ИИ в…",
-      "rewrite": "Но чтобы он приносил пользу, нужно уметь правильно ставить задачи и выбирать подходящую технику. В этой статье — 11 приёмов, которые помогают дизайнерам использовать ИИ в реальных задачах: от генерации черновиков до проектирования интерфейсов и валидации решений.\n\nВсё с примерами, по делу и без иллюзий. Подойдёт как новичкам, так и опытным специалистам, которые хотят включить ИИ в процесс осознанно.\n\nМеня зовут Лиана, я продуктовый дизайнер с 25-летним опытом, последние годы работаю в крупной B2B-платформе федерального масштаба. За карьеру прошла путь от фриланса до системной продуктовой разработки: госсайты, логистика, маркетплейсы, внутренние системы и всё, где есть сложный бизнес-процесс и неочевидный пользователь.\n\nПоследние пару лет активно внедряю ИИ в свою работу — не ради тренда, а чтобы реально ускорять принятие решений, структурировать задачи и экономить ресурс. Когда я только начинала использовать ИИ, всё выглядело так: — «Сделай текст красивее».\n\n— «А теперь покороче». — «Ну ты понял…» А он не понял.\n\nИ я тоже — пока не осознала, что ИИ работает отлично, если с ним не сюсюкать, а четко рулить по правилам. Расскажу вам техники использования ИИ в работе дизайнера на реальных примерах.\n\nSpecific Role (SR) Specific Role (SR), наверное, самая главная техника. По умолчанию ИИ — это как собеседник без контекста: он вроде и вежливый, и старается, но часто лепит советы в стиле «зачем вам ноги, если можно летать»."
+      "rewrite": "Но чтобы он приносил пользу, нужно уметь правильно ставить задачи и выбирать подходящую технику. В этой статье — 11 приёмов, которые помогают дизайнерам использовать ИИ в реальных задачах: от генерации черновиков до проектирования интерфейсов и валидации решений.\n\nВсё с примерами, по делу и без иллюзий. Подойдёт как новичкам, так и опытным специалистам, которые хотят включить ИИ в процесс осознанно. За карьеру прошла путь от фриланса до системной продуктовой разработки: госсайты, логистика, маркетплейсы, внутренние системы и всё, где есть сложный бизнес-процесс и неочевидный пользователь.\n\nПоследние пару лет активно внедряю ИИ в свою работу — не ради тренда, а чтобы реально ускорять принятие решений, структурировать задачи и экономить ресурс. Когда я только начинала использовать ИИ, всё выглядело так: — «Сделай текст красивее».\n\n— «А теперь покороче». — «Ну ты понял…» А он не понял.\n\nИ я тоже — пока не осознала, что ИИ работает отлично, если с ним не сюсюкать, а четко рулить по правилам. Расскажу вам техники использовани Specific Role (SR) Specific Role (SR), наверное, самая главная техника. По умолчанию ИИ — это как собеседник без контекста: он вроде и вежливый, и старается, но часто лепит советы в стиле «зачем вам ноги, если можно летать»."
     },
     {
       "id": "63a310e48203",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Почему хороший дизайн не обязан «нравиться всем» — дизайнерс",
+      "title": "Почему хороший дизайн не обязан «нравиться всем»",
       "url": "https://dsgners.ru/lyubov-budrina/11239-pochemu-horoshiy-dizayn-ne-obyazan-nravitsya-vsem",
       "author": null,
       "publishedAt": "2025-07-16T13:25:00.000Z",
       "summary": "— «А давайте спросим ещё у соседки, у мамы и у бывшего мужа. Вдруг им тоже не понравится?»",
-      "rewrite": "Вдруг им тоже не понравится?» — «Давайте сделаем логотип, который нравится и детям, и байерам, и, на всякий случай, коту…» Знакомо? Но мы же не делаем пончики «на всякий случай для всех».\n\nМы делаем именно те, которые нужны твоей &nbsp;аудитории. То же самое и с визуалом: дизайн не для того, чтобы понравиться всему свету.\n\nОн для того, чтобы зацепить тех, кому реально нужен твой продукт . Из практики и реальных кейсов: Когда я делала айдентику для бренда свечей, заказчик сначала очень хотел «универсальный стиль».\n\nПосле серии встреч мы вместе честно посмотрели: его реальная аудитория — молодые девушки-фрилансеры и мамы в декрете, которые живут в ритме «24/7» и мечтают о двух минутах для себя. Мы не делали свечу «для всех».\n\nМы сделали визуал с самоиронией, чуть дерзкий, но тёплый. Те, кто наши, сказали: «Это про нас!» А те, кто не наши…\n\nЛюбовь, основатель и дизайнер DD Studio Результат упаковки свечей бренда 24/7 Что я делаю, чтобы провести эту грань как профи: 🔸 Вместе с клиентом обсуждаем: кто твоя реальная аудитория, а не гипотетическая «женщины от 25 до 55, интересы: всё». 🔸 Прямо в брифе прописываем: «Этот дизайн не для всех» 🔸 Тестируем: не «нравится/не нравится», а «передаёт ли он нужное ощущение и смысл для твоих людей».\n\nДизайн — это не конкурс красоты Иногда мы делаем дизайн, и клиент говорит: «Мне не очень, но заказчики в восторге, и за первый месяц конверсия выросла». И вот это — самая честная победа."
+      "rewrite": "Вдруг им тоже не понравится?» — «Давайте сделаем логотип, который нравится и детям, и байерам, и, на всякий случай, коту…» Знакомо? Но мы же не делаем пончики «на всякий случай для всех».\n\nМы делаем именно те, которые нужны твоей аудитории. То же самое и с визуалом: дизайн не для того, чтобы понравиться всему свету.\n\nОн для того, чтобы зацепить тех, кому реально нужен твой продукт . Из практики и реальных кейсов: Когда я делала айдентику для бренда свечей, заказчик сначала очень хотел «универсальный стиль».\n\nПосле серии встреч мы вместе честно посмотрели: его реальная аудитория — молодые девушки-фрилансеры и мамы в декрете, которые живут в ритме «24/7» и мечтают о двух минутах для себя. Мы не делали свечу «для всех».\n\nМы сделали визуал с самоиронией, чуть дерзкий, но тёплый. Те, кто наши, сказали: «Это про нас!» А те, кто не наши…\n\nЛюбовь, основатель и дизайнер DD Studio Результат упаковки свечей бренда 24/7 Что я делаю, чтобы провести эту грань как профи: 🔸 Вместе с клиентом обсуждаем: кто твоя реальная аудитория, а не гипотетическая «женщины от 25 до 55, интересы: всё». 🔸 Прямо в брифе прописываем: «Этот дизайн не для всех» 🔸 Тестируем: не «нравится/не нравится», а «передаёт ли он нужное ощущение и смысл для твоих людей».\n\nДизайн — это не конкурс красоты Иногда мы делаем дизайн, и клиент говорит: «Мне не очень, но заказчики в восторге, и за первый месяц конверсия выросла». И вот это — самая честная победа."
     },
     {
       "id": "6f986ecbac1b",
       "source": "designers",
       "sourceLabel": "Dsgners",
-      "title": "Пропаганда, на которую я не поведусь как дизайнер лид-магнитов — дизайнерс",
+      "title": "Пропаганда, на которую я не поведусь как дизайнер лид-магнитов",
       "url": "https://dsgners.ru/dushelubova/11279-propaganda-na-kotoruyu-ya-ne-povedus-kak-dizayner-lid-magnitov",
       "author": null,
       "publishedAt": "2025-07-15T16:25:25.000Z",
@@ -846,7 +868,7 @@
       "author": "IvanZiv972003",
       "publishedAt": "2025-07-04T16:04:39.000Z",
       "summary": "Собеседование по System Design — это не просто проверка технических знаний, а настоящее испытание вашего инженерного мышления. В отличие от алгоритмических задач, где есть чёткие правильные и неправильные ответы, здесь в…",
-      "rewrite": "Собеседование по System Design — это не просто проверка технических знаний, а настоящее испытание вашего инженерного мышления. В отличие от алгоритмических задач, где есть чёткие правильные и неправильные ответы, здесь всё строится на умении анализировать, взвешивать компромиссы и предвидеть проблемы до их появления.\n\nИрония в том, что даже опытные разработчики часто проваливают эти собеседования, потому что сосредотачиваются не на том. Они могут идеально знать, как работает Kafka или Cassandra, но если не умеют структурировать свои мысли и задавать правильные вопросы, их шансы резко падают."
+      "rewrite": "Собеседование по System Design — это не просто проверка технических знаний, а настоящее испытание вашего инженерного мышления. В отличие от алгоритмических задач, где есть чёткие правильные и неправильные ответы, здесь всё строится на умении анализировать, взвешивать компромиссы и предвидеть проблемы до их появления.\n\nИрони Они могут идеально знать, как работает Kafka или Cassandra, но если не умеют структурировать свои мысли и задавать правильные вопросы, их шансы резко падают."
     },
     {
       "id": "7d36821aad6a",
@@ -856,8 +878,8 @@
       "url": "https://habr.com/ru/articles/919826/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=919826",
       "author": "avovana7",
       "publishedAt": "2025-06-19T09:05:20.000Z",
-      "summary": "Вам не&nbsp;нужно изучать какую‑либо теорию, кроме этой статьи, чтобы начать собеседоваться. После прочтения смело приступайте к&nbsp;решению типовых&nbsp; System Design &nbsp;задач. Изучая&nbsp; System Design , вы часто…",
-      "rewrite": "Вам не&nbsp;нужно изучать какую‑либо теорию, кроме этой статьи, чтобы начать собеседоваться. После прочтения смело приступайте к&nbsp;решению типовых&nbsp; System Design &nbsp;задач.\n\nИзучая&nbsp; System Design , вы часто видите только теоретические материалы. В&nbsp;этой статье я постарался показать в&nbsp;том числе практическую реализацию многих вещей, чтобы вы не&nbsp;просто готовились к&nbsp;собеседованиям, но&nbsp;и знали, как&nbsp;эти вещи используются в&nbsp;реальном мире."
+      "summary": "Вам не нужно изучать какую‑либо теорию, кроме этой статьи, чтобы начать собеседоваться. После прочтения смело приступайте к решению типовых System Design задач. Изучая System Design , вы часто…",
+      "rewrite": "Вам не нужно изучать какую‑либо теорию, кроме этой статьи, чтобы начать собеседоваться. После прочтения смело приступайте к решению типовых System Design задач.\n\nИзучая System Design , вы часто видите только теоретические материалы. В этой статье я постарался показать в том числе практическую реализацию многих вещей, чтобы вы не просто готовились к собеседованиям, но и знали, как эти вещи используются в реальном мире."
     },
     {
       "id": "40a9170e731d",
@@ -878,8 +900,8 @@
       "url": "https://habr.com/ru/articles/908782/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=908782",
       "author": "innokentyBo",
       "publishedAt": "2025-05-12T18:15:36.000Z",
-      "summary": "Всем привет! Меня зовут Бодров Иннокентий. Я — продакт, аналитик и архитектор с более чем 17-летним опытом в разработке информационных систем, построении успешных продуктов в телеком-индустрии, финтехе, электронном докум…",
-      "rewrite": "Меня зовут Бодров Иннокентий. Я — продакт, аналитик и архитектор с более чем 17-летним опытом в разработке информационных систем, построении успешных продуктов в телеком-индустрии, финтехе, электронном документообороте и корпоративных порталах.\n\nПоследние несколько лет я активно продвигаю идеи работы на основе здравого смысла, бережливости и современного, гибкого (в хорошем смысле слова) продуктового подхода. И один из инструментов, который мне помогает в этом — это Domain-Driven Design (DDD).\n\nМногие считают DDD чем-то исключительно для разработчиков. Я же уверен: это прежде всего коллаборативная техника.\n\nОна полезна аналитикам, продактам, архитекторам, менеджерам. Но особенно важно, чтобы в DDD погружались те, кто ближе к бизнесу.\n\nПотому что именно у них есть шанс выстроить мост между миром предметной области и кодом. О том, как это сделать — и будет эта статья."
+      "summary": "Я — продакт, аналитик и архитектор с более чем 17-летним опытом в разработке информационных систем, построении успешных продуктов в телеком-индустрии, финтехе, электронном докум…",
+      "rewrite": "Я — продакт, аналитик и архитектор с более чем 17-летним опытом в разработке информационных систем, построении успешных продуктов в телеком-индустрии, финтехе, электронном документообороте и корпоративных порталах.\n\nПоследние несколько лет я активно продвигаю идеи работы на основе здравого смысла, бережливости и современного, гибкого (в хорошем смысле слова) продуктового подхода. И один из инструментов, который мне помогает в этом — это Domain-Driven Design (DDD).\n\nМногие считают DDD чем-то исключительно для разработчиков. Я же уверен: это прежде всего коллаборативная техника.\n\nОна полезна аналитикам, продактам, архитекторам, менеджерам. Но особенно важно, чтобы в DDD погружались те, кто ближе к бизнесу.\n\nПотому что именно у них есть шанс выстроить мост между миром предметной области и кодом. О том, как это сделать — и будет эта статья."
     },
     {
       "id": "786c6bd6e64b",
@@ -911,8 +933,8 @@
       "url": "https://habr.com/ru/companies/pgk/articles/865650/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=865650",
       "author": "iliaslasten (ПГК Диджитал)",
       "publishedAt": "2024-12-12T08:32:01.000Z",
-      "summary": "Привет, Хабр. Я Илья Сластен, продуктовый дизайнер интерактивной карты Первой грузовой компании, о создании, которой я рассказывал в своей предыдущей статье. Разработка современных цифровых продуктов требует системного п…",
-      "rewrite": "Я Илья Сластен, продуктовый дизайнер интерактивной карты Первой грузовой компании, о создании, которой я рассказывал в своей предыдущей статье. Разработка современных цифровых продуктов требует системного подхода, обеспечивающего их гибкость, масштабируемость и согласованность.\n\nВ этой статье будут рассмотрены ключевые аспекты работы с локальными переменными в Figma и подход Atomic Design, который позволяет упорядочить процесс проектирования. «Декарта» визуализирует дислокационную информацию об объектах, позволяет запрашивать детальную информацию по ним с помощью сквозного поиска и предоставляет возможности персонализации при работе с инструментом."
+      "summary": "Разработка современных цифровых продуктов требует системного п…",
+      "rewrite": "Разработка современных цифровых продуктов требует системного подхода, обеспечивающего их гибкость, масштабируемость и согласованность.\n\nВ этой статье будут рассмотрены ключевые аспекты работы с локальными переменными в Figma и подход Atomic Design, который позволяет упорядочить процесс проектирования. «Декарта» визуализирует дислокационную информацию об объектах, позволяет запрашивать детальную информацию по ним с помощью сквозного поиска и предоставляет возможности персонализации при работе с инструментом."
     },
     {
       "id": "85051c2a0f05",
@@ -923,7 +945,7 @@
       "author": "kabalkins (VK)",
       "publishedAt": "2024-09-12T12:16:40.000Z",
       "summary": "Мультипродуктовая дизайн-система должна обеспечивать консистентность всех продуктов компании, а также ускорять и удешевлять их разработку. Однако в реальной жизни мы видим другое: мультипродуктовые дизайн-системы лишь от…",
-      "rewrite": "Мультипродуктовая дизайн-система должна обеспечивать консистентность всех продуктов компании, а также ускорять и удешевлять их разработку. Выходит, что мультипродуктовые дизайн-системы работают, но с большими оговорками.\n\nМожно ли сделать так, чтобы они работали лучше? Меня зовут Анастасия Кабалкина, я руковожу дизайном направления FinOps в VK Tech.\n\nВ этой статье мы с вами разберем проблемы мультипродуктовых дизайн-систем и попробуем их решить небольшой доработкой архитектуры. А если не решить, то хотя бы минимизировать :) Читать далее"
+      "rewrite": "Мультипродуктовая дизайн-система должна обеспечивать консистентность всех продуктов компании, а также ускорять и удешевлять их разработку. Выходит, что мультипродуктовые дизайн-системы работают, но с большими оговорками.\n\nМожно ли сделать так, чтобы они работали лучше? В этой статье мы с вами разберем проблемы мультипродуктовых дизайн-систем и попробуем их решить небольшой доработкой архитектуры. А если не решить, то хотя бы минимизировать :) Читать далее"
     },
     {
       "id": "6e2c90721f09",
@@ -933,8 +955,8 @@
       "url": "https://habr.com/ru/articles/840804/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=840804",
       "author": "APPKODE",
       "publishedAt": "2024-09-04T10:02:59.000Z",
-      "summary": "Меня зовут Игорь Пешков, я дизайнер в KODE — IT-компании, которая занимается коммерческой разработкой. Хочу рассказать вам, как исправлял проблемы с контрастом в дизайн-системе одной крупнейшей в своей области экосистемы…",
-      "rewrite": "Меня зовут Игорь Пешков, я дизайнер в KODE — IT-компании, которая занимается коммерческой разработкой. Хочу рассказать вам, как исправлял проблемы с контрастом в дизайн-системе одной крупнейшей в своей области экосистемы IT-продуктов (сами понимаете — NDA).&nbsp; Этот материал — обобщение и описание практического опыта.\n\nТеории здесь минимум, так что в первую очередь это будет полезно новичкам в работе с дизайн-системами и палитрами. Но надеюсь, что бывалые опытные дизайнеры тоже найдут здесь что-то полезное.\n\nИли хотя бы лишний раз в чём-то убедятся) Читать далее"
+      "summary": "Хочу рассказать вам, как исправлял проблемы с контрастом в дизайн-системе одной крупнейшей в своей области экосистемы…",
+      "rewrite": "Хочу рассказать вам, как исправлял проблемы с контрастом в дизайн-системе одной крупнейшей в своей области экосистемы IT-продуктов (сами понимаете — NDA). Этот материал — обобщение и описание практического опыта.\n\nТеории здесь минимум, так что в первую очередь это будет полезно новичкам в работе с дизайн-системами и палитрами. Но надеюсь, что бывалые опытные дизайнеры тоже найдут здесь что-то полезное.\n\nИли хотя бы лишний раз в чём-то убедятся) Читать далее"
     },
     {
       "id": "58bd71d8e322",
@@ -944,7 +966,7 @@
       "url": "https://habr.com/ru/companies/slurm/news/826458/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=826458",
       "author": "bellazo (Слёрм)",
       "publishedAt": "2024-07-03T12:42:32.000Z",
-      "summary": "Привет, это Слёрм! Сделали для вас подборку материалов, которые помогут разобраться в ключевых аспектах System Design. Читать далее",
+      "summary": "это Слёрм! Сделали для вас подборку материалов, которые помогут разобраться в ключевых аспектах System Design. Читать далее",
       "rewrite": "Сделали для вас подборку материалов, которые помогут разобраться в ключевых аспектах System Design."
     },
     {
@@ -955,8 +977,8 @@
       "url": "https://medium.com/@liadolev01/before-you-hire-a-designer-4d2d9e0712c4",
       "author": "Lia Dolev",
       "publishedAt": null,
-      "summary": "Six things you can do right now to audit, understand, and improve your own product Continue reading on Medium »",
-      "rewrite": "Six things you can do right now to audit, understand, and improve your own product Continue reading on Medium »"
+      "summary": "Six things you can do right now to audit, understand, and improve your own product",
+      "rewrite": "Six things you can do right now to audit, understand, and improve your own product"
     },
     {
       "id": "503b430a03b4",
@@ -966,8 +988,8 @@
       "url": "https://medium.com/@liadolev01/designing-in-the-unknown-be8773a62139",
       "author": "Lia Dolev",
       "publishedAt": null,
-      "summary": "Not every product comes with a clear user base, an established market, and a shelf of research to borrow from. Continue reading on Medium »",
-      "rewrite": "Not every product comes with a clear user base, an established market, and a shelf of research to borrow from. Continue reading on Medium »"
+      "summary": "Not every product comes with a clear user base, an established market, and a shelf of research to borrow from.",
+      "rewrite": "Not every product comes with a clear user base, an established market, and a shelf of research to borrow from."
     },
     {
       "id": "a3a55f40eaf4",
@@ -977,8 +999,8 @@
       "url": "https://medium.com/@apmero/everyday-intelligence-an-ai-in-education-podcast-project-b12901bf27f7",
       "author": "Ashley Mensah Robbins",
       "publishedAt": null,
-      "summary": "Bridging the Gap between AI and College and University Communities Continue reading on Medium »",
-      "rewrite": "Bridging the Gap between AI and College and University Communities Continue reading on Medium »"
+      "summary": "Bridging the Gap between AI and College and University Communities",
+      "rewrite": "Bridging the Gap between AI and College and University Communities"
     },
     {
       "id": "7ff9980559d3",
@@ -988,8 +1010,8 @@
       "url": "https://medium.com/design-bootcamp/evidence-based-design-fb4f5eb239a7",
       "author": "Alina朋友舒颜",
       "publishedAt": null,
-      "summary": "We have more data than ever. Why is it still hard to make decisions? Continue reading on Bootcamp »",
-      "rewrite": "We have more data than ever. Why is it still hard to make decisions?\n\nContinue reading on Bootcamp »"
+      "summary": "We have more data than ever. Why is it still hard to make decisions?",
+      "rewrite": "We have more data than ever. Why is it still hard to make decisions?"
     },
     {
       "id": "fef98d518f4b",
@@ -999,8 +1021,8 @@
       "url": "https://medium.com/@boranikolic/i-predicted-the-product-cycle-would-compress-i-was-too-conservative-2d8c01e38921",
       "author": "Bora Nikolic",
       "publishedAt": null,
-      "summary": "The AI product cycle is compressing faster than most leaders can process. Continue reading on Medium »",
-      "rewrite": "The AI product cycle is compressing faster than most leaders can process. Continue reading on Medium »"
+      "summary": "The AI product cycle is compressing faster than most leaders can process.",
+      "rewrite": "The AI product cycle is compressing faster than most leaders can process."
     },
     {
       "id": "0d6e6ca5f42d",
@@ -1010,8 +1032,8 @@
       "url": "https://medium.com/@DilSalaKamina/if-you-understand-these-ai-terms-youre-ahead-of-90-of-designers-ce7a0e7592ee",
       "author": "Tushar Kalan",
       "publishedAt": null,
-      "summary": "The days of just pushing pixels are behind us. We&#x2019;re now moving into an era where we arrange AI systems. For the past ten years, product&#x2026; Continue reading on Medium »",
-      "rewrite": "The days of just pushing pixels are behind us. We&#x2019;re now moving into an era where we arrange AI systems.\n\nFor the past ten years, product&#x2026; Continue reading on Medium »"
+      "summary": "The days of just pushing pixels are behind us. We’re now moving into an era where we arrange AI systems. For the past ten years, product…",
+      "rewrite": "The days of just pushing pixels are behind us. We’re now moving into an era where we arrange AI systems.\n\nFor the past ten years, product…"
     },
     {
       "id": "39de87f16cb2",
@@ -1021,8 +1043,8 @@
       "url": "https://medium.com/@asmae.vandinh/making-public-transport-tickets-simple-again-a-ux-case-study-88605a832cce",
       "author": "Asmae Van Dinh",
       "publishedAt": null,
-      "summary": "Over the past few years, I&#x2019;ve been paying more attention to everyday frustrations people experience &#x2014; especially in situations that should&#x2026; Continue reading on Medium »",
-      "rewrite": "Over the past few years, I&#x2019;ve been paying more attention to everyday frustrations people experience &#x2014; especially in situations that should&#x2026; Continue reading on Medium »"
+      "summary": "Over the past few years, I’ve been paying more attention to everyday frustrations people experience — especially in situations that should…",
+      "rewrite": "Over the past few years, I’ve been paying more attention to everyday frustrations people experience — especially in situations that should…"
     },
     {
       "id": "87a705e1b89e",
@@ -1032,8 +1054,8 @@
       "url": "https://medium.com/@koltesanskar.1406/rate-limiting-algorithms-explained-for-real-backend-systems-41f22274d08c",
       "author": "Sanskar Kolte",
       "publishedAt": null,
-      "summary": "Understanding how different rate limiting strategies behave under real traffic &#x2014; not just theory. Continue reading on Medium »",
-      "rewrite": "Understanding how different rate limiting strategies behave under real traffic &#x2014; not just theory. Continue reading on Medium »"
+      "summary": "Understanding how different rate limiting strategies behave under real traffic — not just theory.",
+      "rewrite": "Understanding how different rate limiting strategies behave under real traffic — not just theory."
     },
     {
       "id": "c518147b2e29",
@@ -1043,8 +1065,8 @@
       "url": "https://andra-cimpan.medium.com/retrain-or-hire-ai-native-eeab1d4af1be",
       "author": "Andra Cimpan",
       "publishedAt": null,
-      "summary": "The question every manager will face, and what it actually means to hire someone AI-native Continue reading on Medium »",
-      "rewrite": "The question every manager will face, and what it actually means to hire someone AI-native Continue reading on Medium »"
+      "summary": "The question every manager will face, and what it actually means to hire someone AI-native",
+      "rewrite": "The question every manager will face, and what it actually means to hire someone AI-native"
     },
     {
       "id": "0b8673ee2c3b",
@@ -1054,8 +1076,8 @@
       "url": "https://medium.com/@hadi.massoud56099/system-design-02-performance-vs-scalability-3902366829a9",
       "author": "Hadi Massoud",
       "publishedAt": null,
-      "summary": "In the previous post, I introduced System Design as the process of thinking about a system at a higher level: its components, how they&#x2026; Continue reading on Medium »",
-      "rewrite": "In the previous post, I introduced System Design as the process of thinking about a system at a higher level: its components, how they&#x2026; Continue reading on Medium »"
+      "summary": "In the previous post, I introduced System Design as the process of thinking about a system at a higher level: its components, how they…",
+      "rewrite": "In the previous post, I introduced System Design as the process of thinking about a system at a higher level: its components, how they…"
     },
     {
       "id": "b9696c5b7291",
@@ -1065,8 +1087,8 @@
       "url": "https://thearnabsaha.medium.com/system-design-made-simple-the-notes-youll-actually-remember-bc23d9139c73",
       "author": "Arnab Saha",
       "publishedAt": null,
-      "summary": "Designing a system that survives real&#x2011;world traffic isn&#x2019;t a fantasy &#x2014; it&#x2019;s a disciplined practice. Whether you&#x2019;re building a hobby project&#x2026; Continue reading on Medium »",
-      "rewrite": "Designing a system that survives real&#x2011;world traffic isn&#x2019;t a fantasy &#x2014; it&#x2019;s a disciplined practice. Whether you&#x2019;re building a hobby project&#x2026; Continue reading on Medium »"
+      "summary": "Designing a system that survives real‑world traffic isn’t a fantasy — it’s a disciplined practice. Whether you’re building a hobby project…",
+      "rewrite": "Designing a system that survives real‑world traffic isn’t a fantasy — it’s a disciplined practice. Whether you’re building a hobby project…"
     },
     {
       "id": "75874e2ee495",
@@ -1076,8 +1098,8 @@
       "url": "https://medium.com/@enespalaio7/the-jumping-button-a-frustrating-portal-experience-faa8a77d8c88",
       "author": "Enes Pala",
       "publishedAt": null,
-      "summary": "As a computer engineering student, I use our university portal almost every day. Most of the time, my main goal is simple: I want to click&#x2026; Continue reading on Medium »",
-      "rewrite": "As a computer engineering student, I use our university portal almost every day. Most of the time, my main goal is simple: I want to click&#x2026; Continue reading on Medium »"
+      "summary": "As a computer engineering student, I use our university portal almost every day. Most of the time, my main goal is simple: I want to click…",
+      "rewrite": "As a computer engineering student, I use our university portal almost every day. Most of the time, my main goal is simple: I want to click…"
     }
   ]
 }

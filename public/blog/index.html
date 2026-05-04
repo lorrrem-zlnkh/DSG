@@ -43,10 +43,14 @@
       }
       .digest-select {
         min-width: 120px;
-        padding: 10px 12px;
+        appearance: none;
+        padding: 10px 36px 10px 12px;
         border-radius: 14px;
         border: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.04);
+        background:
+          linear-gradient(45deg, transparent 50%, var(--text) 50%) right 16px center / 6px 6px no-repeat,
+          linear-gradient(135deg, var(--text) 50%, transparent 50%) right 10px center / 6px 6px no-repeat,
+          rgba(255, 255, 255, 0.04);
         color: var(--text);
         font: inherit;
       }
@@ -144,6 +148,49 @@
         border-radius: 18px;
         color: var(--muted);
       }
+      .digest-subscribe {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 18px;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: var(--shadow);
+        color: var(--text);
+        line-height: 1.45;
+        font-size: 16px;
+        font-weight: 650;
+        transition:
+          background 140ms ease,
+          transform 140ms ease;
+      }
+      .digest-subscribe:hover {
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-1px);
+      }
+      .digest-subscribe[hidden] {
+        display: none;
+      }
+      .digest-subscribe__icon {
+        flex: 0 0 auto;
+        font-size: 22px;
+        line-height: 1;
+      }
+      .digest-subscribe__text {
+        flex: 1 1 auto;
+        margin: 0;
+      }
+      .digest-subscribe__chevron {
+        flex: 0 0 auto;
+        margin-left: auto;
+        color: var(--muted);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1;
+        opacity: 0.72;
+      }
       .digest-sentinel {
         height: 1px;
       }
@@ -160,16 +207,23 @@
         .digest-page {
           padding-top: 18px;
         }
+        .digest-toolbar {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 12px;
+        }
         .digest-title {
           font-size: 22px;
         }
         .digest-filters {
           gap: 8px;
+          width: 100%;
         }
         .digest-select {
           min-width: 0;
-          flex: 0 1 auto;
-          padding: 8px 10px;
+          flex: 1 1 0;
+          width: 100%;
+          padding: 8px 34px 8px 10px;
         }
         .digest-hero {
           padding: 16px;
@@ -179,6 +233,13 @@
         }
         .digest-item {
           padding: 16px;
+        }
+        .digest-subscribe {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .digest-subscribe__chevron {
+          display: none;
         }
       }
     </style>
@@ -221,6 +282,20 @@
       </section>
 
       <section class="digest-list" id="digest-list" hidden></section>
+      <a
+        class="digest-subscribe"
+        id="digest-subscribe"
+        href="https://t.me/lorrrem"
+        target="_blank"
+        rel="noreferrer"
+        hidden
+      >
+        <span class="digest-subscribe__icon" aria-hidden="true">📬</span>
+        <p class="digest-subscribe__text">
+          Подписывайся на наш канал Lorrrem, там больше дайджестов и новостей дизайна привычных вещей!
+        </p>
+        <span class="digest-subscribe__chevron" aria-hidden="true">&gt;</span>
+      </a>
       <div class="digest-empty" id="digest-empty" hidden>Для выбранного периода пока нет дайджеста.</div>
       <div class="digest-sentinel" id="digest-sentinel" aria-hidden="true"></div>
     </main>
@@ -228,11 +303,11 @@
     <div class="mobile-nav-shell">
       <nav class="mobile-nav" aria-label="Основная навигация">
         <a class="mobile-nav__link" href="../"
-          ><span class="mobile-nav__icon" aria-hidden="true">▦</span
+          ><span class="mobile-nav__icon" aria-hidden="true">🗂️</span
           ><span class="mobile-nav__label">Каталог</span></a
         >
         <a class="mobile-nav__link mobile-nav__link--active" href="./" aria-current="page"
-          ><span class="mobile-nav__icon" aria-hidden="true">◫</span
+          ><span class="mobile-nav__icon" aria-hidden="true">📰</span
           ><span class="mobile-nav__label">Дайджесты</span></a
         >
         <a
@@ -242,7 +317,7 @@
           target="_blank"
           rel="noreferrer"
         >
-          <span class="mobile-nav__icon" aria-hidden="true">♥</span>
+          <span class="mobile-nav__icon" aria-hidden="true">❤️</span>
           <span class="mobile-nav__label">Поддержать</span>
         </a>
       </nav>
@@ -257,7 +332,7 @@
 
           <div class="footer__actions">
             <a class="btn btn--primary" data-link="add-system" href="https://t.me/denis_zelenykh" target="_blank">
-              Добавить дизайн-систему
+              Добавить систему или публикацию
             </a>
             <a class="btn btn--ghost" data-link="support" href="https://pay.cloudtips.ru/p/27204e72" target="_blank">
               Поддержать проект
@@ -269,11 +344,12 @@
           Разработчик
           <a
             class="footer__link"
-            href="https://t.me/zelenykh_denis"
+            href="https://zelenykh.ru/"
             target="_blank"
             rel="noreferrer"
             >Зеленых Денис</a
           >
+          <div class="footer__copyright">Ростов-на-Дону 2026 © Все права защищены</div>
         </div>
       </div>
     </footer>

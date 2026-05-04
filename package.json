@@ -5,7 +5,9 @@
   "scripts": {
     "scrape": "sh scripts/scrape.sh",
     "fetch:blog": "sh scripts/fetch-blog.sh",
+    "content:automation": "node scripts/run-content-automation.mjs",
     "build:digests": "node scripts/build-digests.mjs",
+    "digest:bot": "node scripts/telegram-digest-bot.mjs",
     "rebuild:medium": "node scripts/rebuild-medium-descriptions.mjs",
     "dev": "node server.mjs",
     "start": "node server.mjs"
