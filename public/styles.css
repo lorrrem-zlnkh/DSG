@@ -171,6 +171,14 @@ a {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.catalog-desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+  max-width: 560px;
+}
+
 .main {
   padding: 26px 0 48px;
 }
