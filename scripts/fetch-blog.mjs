@@ -161,6 +161,12 @@ const PAGE_SOURCES = [
     pages: ["https://alistapart.com/articles/"],
     include: (url) => /alistapart\.com\/article\/.+/i.test(url),
   },
+  {
+    source: "figma",
+    sourceLabel: "Figma",
+    pages: ["https://www.figma.com/release-notes/"],
+    include: (url) => /figma\.com\/release-notes\/.+/i.test(url),
+  },
 ];
 
 const DIRECT_ARTICLE_SOURCES = [
