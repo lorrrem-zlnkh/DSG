@@ -562,7 +562,8 @@ body[data-page="blog"] .header__actions .btn--active {
 
 @media (max-width: 820px) {
   .brand__logo {
-    height: 28px;
+    height: 28px !important;
+    width: auto !important;
   }
 
   .footer__row {
