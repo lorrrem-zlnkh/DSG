@@ -841,6 +841,19 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
   const source = JSON.parse(await fs.readFile(postsPath, "utf8"));
   const now = new Date();
 
+  // Load existing digests to skip already-generated months
+  const existingDigestsMap = new Map();
+  try {
+    const existing = JSON.parse(await fs.readFile(digestsPath, "utf8"));
+    for (const digest of existing.digests || []) {
+      if (digest.count > 0 && digest.items?.length > 0) {
+        existingDigestsMap.set(digest.key, digest);
+      }
+    }
+  } catch {
+    // No existing file — generate everything
+  }
+
   const posts = (source.posts || []).filter((post) => !isBlockedBlogPost(post));
   const digests = [];
   const usedEvergreenKeys = new Set();
@@ -850,9 +863,21 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
   const usedDigestKeys = new Set([...historicalSelections.values()].flat().map(articleKey));
   const cursor = new Date(Date.UTC(FIRST_DIGEST_YEAR, FIRST_DIGEST_MONTH - 1, 1));
   const lastMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const currentMonthKey = monthKeyFromDate(lastMonth);
 
   while (cursor <= lastMonth) {
     const monthKey = monthKeyFromDate(cursor);
+
+    // Skip already-generated months (keep only current month regeneration)
+    if (monthKey !== currentMonthKey && existingDigestsMap.has(monthKey)) {
+      digests.push(existingDigestsMap.get(monthKey));
+      // Still register used keys to avoid duplicates in current month
+      for (const item of existingDigestsMap.get(monthKey).items || []) {
+        if (item.url) usedDigestKeys.add(`url:${normalizeUrl(item.url)}`);
+      }
+      cursor.setUTCMonth(cursor.getUTCMonth() + 1);
+      continue;
+    }
     const number =
       (cursor.getUTCFullYear() - FIRST_DIGEST_YEAR) * 12 +
       (cursor.getUTCMonth() - (FIRST_DIGEST_MONTH - 1)) +
