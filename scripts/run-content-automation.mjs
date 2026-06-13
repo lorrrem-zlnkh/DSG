@@ -4,7 +4,6 @@ import { pathToFileURL } from "node:url";
 import { buildDigests } from "./build-digests.mjs";
 import { fetchBlogPosts } from "./fetch-blog.mjs";
 import { loadEnv } from "./lib/load-env.mjs";
-import { sendLatestDraftToAdmin } from "./lib/telegram-digest.mjs";
 
 loadEnv();
 
@@ -91,10 +90,6 @@ async function runWithLock() {
       postsPath: DRAFT_POSTS_PATH,
       digestsPath: DRAFT_DIGESTS_PATH,
     });
-    const telegram = await sendLatestDraftToAdmin().catch((error) => ({
-      sent: false,
-      reason: error.message,
-    }));
     const finishedAt = new Date().toISOString();
     const status = {
       ok: true,
@@ -103,7 +98,6 @@ async function runWithLock() {
       finishedAt,
       updatedAt: finishedAt,
       ...publicSummary(postsPayload, digestsPayload),
-      telegram,
     };
     await writeStatus(status);
     return status;
