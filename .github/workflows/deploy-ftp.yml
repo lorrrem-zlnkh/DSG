@@ -19,13 +19,14 @@ jobs:
           TELEGRAM_MY_ID: ${{ secrets.TELEGRAM_MY_ID }}
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
         run: |
-          cat > public/bot/config.php <<EOF
-          <?php
-          define('BOT_TOKEN',      '${TELEGRAM_BOT_TOKEN}');
-          define('MY_CHAT_ID',     '${TELEGRAM_MY_ID}');
-          define('CHANNEL_ID',     '@lorrrem');
-          define('WEBHOOK_SECRET', '${WEBHOOK_SECRET}');
-          EOF
+          {
+            echo "<?php"
+            echo "define('BOT_TOKEN',      '${TELEGRAM_BOT_TOKEN}');"
+            echo "define('MY_CHAT_ID',     '${TELEGRAM_MY_ID}');"
+            echo "define('CHANNEL_ID',     '@lorrrem');"
+            echo "define('WEBHOOK_SECRET', '${WEBHOOK_SECRET}');"
+          } > public/bot/config.php
+          echo "Config generated: $(wc -c < public/bot/config.php) bytes"
 
       - name: Deploy public/ to dsg.lorrrem.ru
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -44,7 +45,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
         run: |
-          curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook" \
+          RESPONSE=$(curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook" \
             -d "url=https://dsg.lorrrem.ru/bot/webhook.php" \
             -d "secret_token=${WEBHOOK_SECRET}" \
-            -d "allowed_updates=[\"callback_query\"]"
+            -d "allowed_updates=[\"callback_query\"]")
+          echo "Webhook response: $RESPONSE"
