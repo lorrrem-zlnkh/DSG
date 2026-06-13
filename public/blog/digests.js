@@ -100,7 +100,7 @@ function renderDigest(digest) {
   }
 
   digestTitle.textContent = digest.number ? `Выпуск №${digest.number}` : digest.title;
-  digestMeta.textContent = `${digest.count} материалов · ${digest.monthLabel}, ${digest.year}`;
+  digestMeta.textContent = `${digest.count} материалов · ${digest.monthLabel} ${digest.year}`;
 
   hero.hidden = false;
   digestList.hidden = false;
