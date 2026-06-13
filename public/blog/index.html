@@ -205,6 +205,68 @@
       .digest-sentinel {
         height: 1px;
       }
+      .digest-skeleton {
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        margin-top: 4px;
+      }
+      .digest-skeleton[hidden] {
+        display: none;
+      }
+      .digest-skeleton__item {
+        padding: 18px;
+      }
+      .digest-skeleton__item + .digest-skeleton__item {
+        border-top: 1px solid var(--border);
+      }
+      .digest-skeleton__line {
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        animation: skeleton-pulse 1.4s ease-in-out infinite;
+      }
+      .digest-skeleton__line--title {
+        height: 20px;
+        width: 72%;
+        margin-bottom: 12px;
+      }
+      .digest-skeleton__line--text {
+        height: 14px;
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      .digest-skeleton__line--text-short {
+        height: 14px;
+        width: 55%;
+        margin-bottom: 12px;
+      }
+      .digest-skeleton__badges {
+        display: flex;
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .digest-skeleton__badge {
+        height: 28px;
+        width: 72px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        animation: skeleton-pulse 1.4s ease-in-out infinite;
+      }
+      .digest-skeleton__badge:nth-child(2) { animation-delay: 0.15s; }
+      .digest-skeleton__badge:nth-child(3) { animation-delay: 0.3s; }
+      @keyframes skeleton-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      .digest-item {
+        animation: digest-item-in 180ms ease both;
+      }
+      @keyframes digest-item-in {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
       @media (max-width: 820px) {
         .digest-toolbar {
           flex-direction: row;
@@ -292,6 +354,36 @@
         <div class="digest-hero__meta" id="digest-meta"></div>
       </section>
 
+      <div class="digest-skeleton" id="digest-skeleton">
+        <div class="digest-skeleton__item">
+          <div class="digest-skeleton__line digest-skeleton__line--title"></div>
+          <div class="digest-skeleton__line digest-skeleton__line--text"></div>
+          <div class="digest-skeleton__line digest-skeleton__line--text-short"></div>
+          <div class="digest-skeleton__badges">
+            <div class="digest-skeleton__badge"></div>
+            <div class="digest-skeleton__badge"></div>
+          </div>
+        </div>
+        <div class="digest-skeleton__item">
+          <div class="digest-skeleton__line digest-skeleton__line--title"></div>
+          <div class="digest-skeleton__line digest-skeleton__line--text"></div>
+          <div class="digest-skeleton__line digest-skeleton__line--text-short"></div>
+          <div class="digest-skeleton__badges">
+            <div class="digest-skeleton__badge"></div>
+            <div class="digest-skeleton__badge"></div>
+          </div>
+        </div>
+        <div class="digest-skeleton__item">
+          <div class="digest-skeleton__line digest-skeleton__line--title"></div>
+          <div class="digest-skeleton__line digest-skeleton__line--text"></div>
+          <div class="digest-skeleton__line digest-skeleton__line--text-short"></div>
+          <div class="digest-skeleton__badges">
+            <div class="digest-skeleton__badge"></div>
+            <div class="digest-skeleton__badge"></div>
+            <div class="digest-skeleton__badge"></div>
+          </div>
+        </div>
+      </div>
       <section class="digest-list" id="digest-list" hidden></section>
       <a
         class="digest-subscribe"
