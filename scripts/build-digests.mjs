@@ -864,7 +864,7 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
   const historicalSelections = buildHistoricalSelectionMap(posts);
   const usedDigestKeys = new Set([...historicalSelections.values()].flat().map(articleKey));
   const cursor = new Date(Date.UTC(FIRST_DIGEST_YEAR, FIRST_DIGEST_MONTH - 1, 1));
-  const lastMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const lastMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
   const currentMonthKey = monthKeyFromDate(lastMonth);
 
   while (cursor <= lastMonth) {
