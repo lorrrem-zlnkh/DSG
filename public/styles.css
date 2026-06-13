@@ -57,6 +57,10 @@ a {
   .container {
     width: min(1120px, calc(100% - 28px));
   }
+
+  .brand__logo {
+    height: 28px;
+  }
 }
 
 @media (max-width: 420px) {
