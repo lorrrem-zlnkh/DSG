@@ -591,6 +591,10 @@ body[data-page="blog"] .header__actions .btn--active {
   border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 
+.footer__meta .catalog-desc {
+  margin-bottom: 4px;
+}
+
 .footer__copyright {
   margin-top: 6px;
 }
