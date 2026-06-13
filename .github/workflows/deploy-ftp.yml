@@ -18,7 +18,9 @@ jobs:
         with:
           server: 31.31.198.114
           port: 21
+          protocol: ftps
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./public/
           server-dir: /www/dsg.lorrrem.ru/
+          timeout: 60000
