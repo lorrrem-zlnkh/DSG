@@ -40,6 +40,11 @@ const FEED_SOURCES = [
     urls: ["https://alistapart.com/main/feed/"],
   },
   {
+    source: "apple-events",
+    sourceLabel: "Apple Events",
+    urls: ["https://rss.art19.com/apple-events"],
+  },
+  {
     source: "infogra",
     sourceLabel: "Infogra",
     urls: ["https://infogra.ru/feed"],
@@ -90,6 +95,12 @@ const PAGE_SOURCES = [
     sourceLabel: "Apple Design",
     pages: ["https://developer.apple.com/design/"],
     include: (url) => /developer\.apple\.com\/design\/.+/i.test(url),
+  },
+  {
+    source: "apple-events",
+    sourceLabel: "Apple Events",
+    pages: ["https://www.apple.com/apple-events/"],
+    include: (url) => /apple\.com\/(apple-events\/|newsroom\/|[a-z]{2}\/newsroom\/)/i.test(url) && !/apple\.com\/apple-events\/$/.test(url),
   },
   {
     source: "material",
