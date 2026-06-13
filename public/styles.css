@@ -394,6 +394,50 @@ body[data-page="blog"] .header__actions .btn--active {
 
 /* Footer: "add system" available on all breakpoints */
 
+@keyframes card-sk-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.card-sk {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  animation: card-sk-pulse 1.4s ease-in-out infinite;
+}
+.card-sk--logo {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 999px;
+}
+.card-sk--title {
+  height: 16px;
+  width: 55%;
+  margin-bottom: 10px;
+  animation-delay: 0.1s;
+}
+.card-sk--text {
+  height: 12px;
+  width: 90%;
+  margin-bottom: 6px;
+  animation-delay: 0.2s;
+}
+.card-sk--text-short {
+  height: 12px;
+  width: 65%;
+  animation-delay: 0.3s;
+}
+.card-sk--btn {
+  height: 28px;
+  width: 72px;
+  border-radius: 8px;
+  animation-delay: 0.15s;
+}
+.card--skeleton {
+  pointer-events: none;
+  user-select: none;
+}
+
 .card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
