@@ -1,6 +1,7 @@
 const monthSelect = document.getElementById("month-select");
 const yearSelect = document.getElementById("year-select");
 const hero = document.getElementById("digest-hero");
+const heroSk = document.getElementById("digest-hero-sk");
 const digestTitle = document.getElementById("digest-title");
 const digestMeta = document.getElementById("digest-meta");
 const digestList = document.getElementById("digest-list");
@@ -88,6 +89,7 @@ function renderNextBatch() {
 function renderDigest(digest) {
   currentDigest = digest;
   resetList();
+  if (heroSk) heroSk.hidden = true;
 
   if (!digest) {
     hero.hidden = true;

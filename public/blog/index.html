@@ -219,6 +219,15 @@
       .digest-sentinel {
         height: 1px;
       }
+      .digest-hero-sk {
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: var(--shadow);
+        padding: 18px 18px 16px;
+        margin-bottom: 4px;
+      }
+      .digest-hero-sk[hidden] { display: none; }
       .digest-skeleton {
         border: 1px solid var(--border);
         border-radius: 22px;
@@ -361,6 +370,11 @@
           <select class="digest-select" id="month-select" aria-label="Выбор месяца"></select>
           <select class="digest-select" id="year-select" aria-label="Выбор года"></select>
         </div>
+      </div>
+
+      <div class="digest-hero-sk" id="digest-hero-sk" aria-hidden="true">
+        <div class="digest-skeleton__line digest-skeleton__line--title" style="width:48%;margin-bottom:10px"></div>
+        <div class="digest-skeleton__line" style="height:12px;width:28%"></div>
       </div>
 
       <section class="digest-hero" id="digest-hero" hidden>
