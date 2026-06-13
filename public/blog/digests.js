@@ -6,7 +6,6 @@ const digestMeta = document.getElementById("digest-meta");
 const digestList = document.getElementById("digest-list");
 const digestSubscribe = document.getElementById("digest-subscribe");
 const digestEmpty = document.getElementById("digest-empty");
-const digestSkeleton = document.getElementById("digest-skeleton");
 const sentinel = document.getElementById("digest-sentinel");
 
 const BATCH_SIZE = 5;
@@ -91,7 +90,6 @@ function renderDigest(digest) {
   resetList();
 
   if (!digest) {
-    if (digestSkeleton) digestSkeleton.hidden = true;
     hero.hidden = true;
     digestList.hidden = true;
     if (digestSubscribe) {
@@ -104,7 +102,6 @@ function renderDigest(digest) {
   digestTitle.textContent = digest.number ? `Выпуск №${digest.number}` : digest.title;
   digestMeta.textContent = `${digest.count} материалов · ${digest.monthLabel} ${digest.year}`;
 
-  if (digestSkeleton) digestSkeleton.hidden = true;
   hero.hidden = false;
   digestList.hidden = false;
   if (digestSubscribe) {
