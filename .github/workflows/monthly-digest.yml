@@ -39,6 +39,15 @@ jobs:
           OPENAI_DIGEST_MODEL: gpt-4o-mini
         run: node scripts/run-content-automation.mjs
 
+      - name: Rewrite descriptions (quality pass)
+        # Переписываем описания нового выпуска по правилам качества: свежий фетч
+        # статей, параграфная экстракция, новый промпт, анти-штамп gate, gpt-5.4-mini.
+        # Работает по черновику (.cache/draft), который уходит боту на модерацию.
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_DIGEST_MODEL: gpt-5.4-mini
+        run: node scripts/rewrite-digest-descriptions.mjs --latest --draft
+
       - name: Commit published-state snapshot
         # Коммитим зеркало опубликованного состояния (база с хоста) как бэкап.
         # Сгенерированный новый месяц в git НЕ попадает — он уходит боту на

@@ -9,6 +9,7 @@ import { loadEnv } from "./lib/load-env.mjs";
 loadEnv();
 
 const DIGESTS_PATH = new URL("../public/blog/digests.json", import.meta.url);
+const DRAFT_DIGESTS_PATH = new URL("../.cache/draft/digests.json", import.meta.url);
 
 const DEFAULT_MODEL = process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini";
 const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL || "https://api.openai.com/v1";
@@ -56,9 +57,11 @@ async function fetchHtml(url, attempt = 0) {
 // --- CLI ---------------------------------------------------------------------
 
 function parseArgs(argv) {
-  const args = { before: "2026-06", only: null, limit: null, dry: false };
+  const args = { before: "2026-06", only: null, limit: null, dry: false, latest: false, draft: false };
   for (const arg of argv) {
     if (arg === "--dry") args.dry = true;
+    else if (arg === "--latest") args.latest = true;
+    else if (arg === "--draft") args.draft = true;
     else if (arg.startsWith("--before=")) args.before = arg.slice(9);
     else if (arg.startsWith("--only=")) args.only = arg.slice(7);
     else if (arg.startsWith("--limit=")) args.limit = Number(arg.slice(8)) || null;
@@ -416,7 +419,9 @@ async function processDigest(digest, args, stats) {
       console.log(`    СТАЛО: ${sanitize(out.summary)}`);
     }
     item.summary = sanitize(out.summary);
-    item.excerpt = sanitize(out.excerpt);
+    // excerpt оставляем только если он по-русски — иначе в карточку течёт английский.
+    const excerpt = sanitize(out.excerpt);
+    item.excerpt = hasRussianText(excerpt) ? excerpt : "";
     item.languageBadge = out.languageBadge;
     stats.rewritten += 1;
   }
@@ -429,16 +434,20 @@ async function processDigest(digest, args, stats) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const payload = JSON.parse(await fs.readFile(DIGESTS_PATH, "utf8"));
+  const digestsPath = args.draft ? DRAFT_DIGESTS_PATH : DIGESTS_PATH;
+  const payload = JSON.parse(await fs.readFile(digestsPath, "utf8"));
   const all = payload.digests || [];
 
-  const targets = all.filter((d) => {
-    if (args.only) return d.key === args.only;
-    return d.key < args.before;
-  });
+  // --latest: только самый свежий выпуск (для ежемесячной автосборки).
+  const targets = args.latest
+    ? all.slice(0, 1)
+    : all.filter((d) => {
+        if (args.only) return d.key === args.only;
+        return d.key < args.before;
+      });
 
   if (targets.length === 0) {
-    console.log("Нет выпусков под условие. Проверь --only / --before.");
+    console.log("Нет выпусков под условие. Проверь --latest / --only / --before.");
     return;
   }
 
@@ -451,7 +460,7 @@ async function main() {
   for (const digest of targets) {
     await processDigest(digest, args, stats);
     if (!args.dry) {
-      await fs.writeFile(DIGESTS_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+      await fs.writeFile(digestsPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
     }
   }
 
