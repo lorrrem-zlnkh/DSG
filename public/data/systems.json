@@ -409,18 +409,6 @@
       }
     },
     {
-      "id": "bbc-gel",
-      "origin": "foreign",
-      "title": "BBC GEL",
-      "description": "Global Experience Language — дизайн-система BBC, объединяющая принципы, компоненты и паттерны для согласованного опыта пользователей на всех платформах медиакорпорации.",
-      "logo": "assets/logos/foreign/bbc-gel.png",
-      "links": {
-        "site": "https://www.bbc.co.uk/gel",
-        "github": null,
-        "figma": null
-      }
-    },
-    {
       "id": "buzzfeed-solid",
       "origin": "foreign",
       "title": "Buzzfeed Solid",
@@ -457,18 +445,6 @@
       }
     },
     {
-      "id": "lonely-planet-rizzo",
-      "origin": "foreign",
-      "title": "Lonely Planet Rizzo",
-      "description": "Дизайн-система туристического издания Lonely Planet — компоненты и стили для веб-продуктов крупнейшего путеводителя в мире.",
-      "logo": "assets/logos/foreign/lonely-planet-rizzo.png",
-      "links": {
-        "site": "https://rizzo.lonelyplanet.com",
-        "github": "https://github.com/lonelyplanet/rizzo",
-        "figma": null
-      }
-    },
-    {
       "id": "mailchimp",
       "origin": "foreign",
       "title": "MailChimp",
@@ -500,18 +476,6 @@
       "logo": "assets/logos/foreign/ubuntu.png",
       "links": {
         "site": "https://design.ubuntu.com",
-        "github": null,
-        "figma": null
-      }
-    },
-    {
-      "id": "wework-plasma",
-      "origin": "foreign",
-      "title": "WeWork Plasma",
-      "description": "Дизайн-система компании WeWork — компоненты и стили для цифровых продуктов в сфере гибких рабочих пространств.",
-      "logo": "assets/logos/foreign/wework-plasma.png",
-      "links": {
-        "site": "https://plasma.guide",
         "github": null,
         "figma": null
       }
