@@ -29,7 +29,7 @@ function tg(string $method, array $params): array {
         // Перегрузка — подождать и повторить.
         if ((int) ($json['error_code'] ?? 0) === 429) {
             $retry = (int) ($json['parameters']['retry_after'] ?? 1);
-            sleep(min(max($retry, 1), 30)); // полностью выжидаем флуд-лимит
+            sleep(min(max($retry, 1), 10)); // выжидаем флуд-лимит Telegram
             continue;
         }
         error_log("Telegram {$method} error: " . json_encode($json));
@@ -95,6 +95,11 @@ function buildFinalDigest(array $draft): array {
 // Рендер карточек и клавиатур
 // =====================================================================
 
+// Экранирование значения HTML-атрибута (включая кавычки) — для href.
+function attrEsc(string $s): string {
+    return str_replace(['&', '<', '>', '"'], ['&amp;', '&lt;', '&gt;', '&quot;'], $s);
+}
+
 function renderCard(array $item, array $draft): string {
     $id       = $item['id'] ?? '';
     $excluded = in_array($id, $draft['excluded'] ?? [], true);
@@ -104,9 +109,13 @@ function renderCard(array $item, array $draft): string {
     $rubric = h($item['rubric'] ?? 'Без рубрики');
     $lang   = !empty($item['languageBadge']) ? ' <i>(' . h($item['languageBadge']) . ')</i>' : '';
     $title  = h($item['sourceTitle'] ?? '');
-    $url    = h($item['url'] ?? '');
+    $url    = (string) ($item['url'] ?? '');
 
-    $head = "<b>{$rubric}</b>\n<a href=\"{$url}\">{$title}</a>{$lang}\n";
+    // Ссылку оформляем только для валидного http(s)-URL, иначе — заголовок текстом.
+    $titleHtml = preg_match('~^https?://~i', $url)
+        ? '<a href="' . attrEsc($url) . '">' . $title . '</a>'
+        : $title;
+    $head = "<b>{$rubric}</b>\n{$titleHtml}{$lang}\n";
 
     if ($excluded) {
         return $head . "🚫 <i>Исключено из публикации</i>";
@@ -114,6 +123,42 @@ function renderCard(array $item, array $draft): string {
     $body = "<i>" . h($summary) . "</i>";
     if ($edited) $body .= "\n✏️ <i>описание изменено</i>";
     return $head . $body;
+}
+
+// Текстовая версия карточки (без HTML) — фолбэк, если разметка не распарсилась.
+function renderCardPlain(array $item, array $draft): string {
+    $id       = $item['id'] ?? '';
+    $excluded = in_array($id, $draft['excluded'] ?? [], true);
+    $summary  = $draft['edits'][$id] ?? ($item['summary'] ?? '');
+    $rubric   = $item['rubric'] ?? 'Без рубрики';
+    $title    = $item['sourceTitle'] ?? '';
+    $url      = (string) ($item['url'] ?? '');
+    $lang     = !empty($item['languageBadge']) ? ' (' . $item['languageBadge'] . ')' : '';
+    $head     = "{$rubric}\n{$title}{$lang}\n{$url}\n";
+    if ($excluded) return $head . "🚫 Исключено из публикации";
+    return $head . $summary;
+}
+
+// Отправка карточки с фолбэком на обычный текст при ошибке HTML-разбора.
+// Возвращает ответ Telegram (для извлечения message_id и диагностики ошибок).
+function sendCard(array $item, array $draft): array {
+    $id  = $item['id'] ?? '';
+    $res = tg('sendMessage', [
+        'chat_id'                  => MY_CHAT_ID,
+        'text'                     => renderCard($item, $draft),
+        'parse_mode'               => 'HTML',
+        'disable_web_page_preview' => true,
+        'reply_markup'             => cardKeyboard($id, $draft),
+    ]);
+    if (($res['ok'] ?? false) !== true) {
+        $res = tg('sendMessage', [
+            'chat_id'                  => MY_CHAT_ID,
+            'text'                     => renderCardPlain($item, $draft),
+            'disable_web_page_preview' => true,
+            'reply_markup'             => cardKeyboard($id, $draft),
+        ]);
+    }
+    return $res;
 }
 
 function cardKeyboard(string $id, array $draft): array {
@@ -179,7 +224,7 @@ function refreshCard(array $draft, string $id): void {
     $item  = findItem($draft, $id);
     $msgId = $draft['cardMsgIds'][$id] ?? null;
     if (!$item || !$msgId) return;
-    tg('editMessageText', [
+    $res = tg('editMessageText', [
         'chat_id'                  => MY_CHAT_ID,
         'message_id'               => $msgId,
         'text'                     => renderCard($item, $draft),
@@ -187,6 +232,15 @@ function refreshCard(array $draft, string $id): void {
         'disable_web_page_preview' => true,
         'reply_markup'             => cardKeyboard($id, $draft),
     ]);
+    if (($res['ok'] ?? false) !== true) {
+        tg('editMessageText', [
+            'chat_id'                  => MY_CHAT_ID,
+            'message_id'               => $msgId,
+            'text'                     => renderCardPlain($item, $draft),
+            'disable_web_page_preview' => true,
+            'reply_markup'             => cardKeyboard($id, $draft),
+        ]);
+    }
 }
 
 // =====================================================================
@@ -333,17 +387,14 @@ function handleInitDraft(): void {
     $draft['headerMsgId'] = $hdr['result']['message_id'] ?? null;
 
     $cardMsgIds = [];
+    $fails = [];
     foreach ($digest['items'] as $item) {
-        $id  = $item['id'] ?? '';
-        $res = tg('sendMessage', [
-            'chat_id'                  => MY_CHAT_ID,
-            'text'                     => renderCard($item, $draft),
-            'parse_mode'               => 'HTML',
-            'disable_web_page_preview' => true,
-            'reply_markup'             => cardKeyboard($id, $draft),
-        ]);
-        if (!empty($res['result']['message_id'])) {
-            $cardMsgIds[$id] = $res['result']['message_id'];
+        $res = sendCard($item, $draft);
+        $mid = $res['result']['message_id'] ?? null;
+        if ($mid) {
+            $cardMsgIds[$item['id'] ?? ''] = $mid;
+        } else {
+            $fails[] = ($item['id'] ?? '?') . ': ' . ($res['description'] ?? 'no message_id');
         }
         usleep(300000); // ~3 сообщения/сек — бережём флуд-лимит Telegram на чат
     }
@@ -357,7 +408,12 @@ function handleInitDraft(): void {
     $draft['footerMsgId'] = $ftr['result']['message_id'] ?? null;
     saveDraft($draft);
 
-    echo json_encode(['ok' => true, 'count' => $count, 'cards' => count($cardMsgIds)]);
+    echo json_encode([
+        'ok'    => true,
+        'count' => $count,
+        'cards' => count($cardMsgIds),
+        'fails' => $fails,
+    ], JSON_UNESCAPED_UNICODE);
 }
 
 // =====================================================================
