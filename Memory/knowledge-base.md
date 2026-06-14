@@ -1,6 +1,6 @@
 # База знаний проекта DSG
 
-> Актуально на: 2026-06-14  
+> Актуально на: 2026-06-14 (обновлено в конце дня)  
 > Обновлять в конце каждой рабочей сессии.
 
 ---
@@ -61,7 +61,8 @@ DSG/
 │
 ├── .github/workflows/
 │   ├── deploy-ftp.yml              ← деплой при push в main
-│   └── monthly-digest.yml          ← Monthly Digest Rebuild
+│   ├── monthly-digest.yml          ← Monthly Digest Rebuild
+│   └── pages.yml                   ← GitHub Pages (non-main ветки → staging)
 │
 ├── Memory/
 │   └── knowledge-base.md           ← этот файл
@@ -79,9 +80,12 @@ DSG/
   "name": "design-systems-guide",
   "type": "module",
   "scripts": {
+    "scrape":             "sh scripts/scrape.sh",
+    "fetch:blog":         "sh scripts/fetch-blog.sh",
     "content:automation": "node scripts/run-content-automation.mjs",
     "build:digests":      "node scripts/build-digests.mjs",
-    "fetch:blog":         "sh scripts/fetch-blog.sh",
+    "telegram:digest":    "node scripts/send-telegram-digest.mjs",
+    "rebuild:medium":     "node scripts/rebuild-medium-descriptions.mjs",
     "dev":                "node server.mjs",
     "start":              "node server.mjs"
   },
@@ -93,9 +97,23 @@ DSG/
 
 ---
 
-## 4. GitHub Actions воркфлоу
+## 4. Ветки и деплой
 
-### deploy-ftp.yml — деплой сайта
+| Ветка | Куда деплоится | Назначение |
+|-------|---------------|-----------|
+| `main` | FTP → dsg.lorrrem.ru | Продакшн |
+| любая non-main | GitHub Pages → lorrrem-zlnkh.github.io/DSG/ | Staging/тест |
+| `catalog-update` | GitHub Pages | Обновление каталога дизайн-систем |
+| `digest-rebuild` | GitHub Pages | Пересборка всех дайджестов |
+
+**pages.yml** — деплоит все ветки кроме main в GitHub Pages.  
+Ветку нужно добавить в Settings → Environments → `github-pages` → Deployment branches, иначе деплой упадёт с ошибкой «Branch not allowed».
+
+---
+
+## 5. GitHub Actions воркфлоу
+
+### deploy-ftp.yml — деплой сайта на продакшн
 
 **Триггеры:** push в main, workflow_dispatch
 
@@ -588,7 +606,47 @@ body::before — фиксированный градиент:
 
 ---
 
-## 13. Статус задач (2026-06-14)
+## 13. Каталог дизайн-систем (public/data/systems.json)
+
+### Текущее состояние (2026-06-14): 46 систем
+
+**Структура записи:**
+```json
+{
+  "id": "companies-alfabank",
+  "origin": "domestic",        // "domestic" | "foreign"
+  "title": "Альфа-Банк",
+  "description": "...",
+  "logo": "assets/logos/companies-alfabank.png",
+  "links": {
+    "site": null,
+    "github": "https://...",
+    "figma": null
+  }
+}
+```
+
+**Отечественные (26):**
+Альфа-Банк, БАРС Груп, Вконтакте, Газпром нефть, Госуслуги, Дизайн государственных систем, Контур, МегаФон, Райффайзенбанк, Рамблер, Росатом, Ростелеком, Тинькофф, Центр Финансовых Технологий, Яндекс, Atomaro, B2B Center, BSS, Cloud.ru, Gravity UI, HSE, ISPsystem, IVI, Mail.ru Group, Semrush, t2
+
+**Зарубежные (20):**
+Airbnb DLS, Apple UI Kits, Atlassian, BBC GEL, Buzzfeed Solid, Carbon (IBM), Fluent 2 (Microsoft), FutureLearn, IBM Design Language, Lightning (Salesforce), Lonely Planet Rizzo, MailChimp, Material Design (Google), Nordnet, Polaris (Shopify), Primer (GitHub), SAP Fiori, Ubuntu, WeWork Plasma, Yelp
+
+**Логотипы:**
+- Отечественные: `public/assets/logos/companies-{id}.png`
+- Зарубежные: `public/assets/logos/foreign/{id}.png`
+
+**Ветка с обновлением:** `catalog-update` (нужно разрешить в GitHub Pages environments для staging)
+
+**Источники парсинга каталога:**
+- https://ux-journal.ru/design-systems-club-global-version-katalog-zarubezhnyh-dizajn-sistem.html
+- https://vc.ru/design/972707-...
+- artlebedev.ru/design-systems/ (возвращал пустую страницу)
+- designsystemsrepo.com (пользователь отклонил парсинг)
+
+---
+
+## 14. Статус задач (2026-06-14)
 
 | Задача | Статус |
 |--------|--------|
@@ -601,6 +659,7 @@ body::before — фиксированный градиент:
 | Wordstat темы добавлены в Habr/Medium | ✅ |
 | Few-shot примеры + запрет шаблонов в промпте | ✅ |
 | Правила мероприятий в промпте | ✅ |
+| GitHub Pages staging (non-main ветки) | ✅ |
 | **Модерация дайджеста ботом (карточки, правка, исключение)** | 🆕 реализовано, нужен тест на хосте |
 | **Публикация на сайт+канал только после подтверждения** | 🆕 реализовано |
 | **Авто-публикация (день 5 напоминание → день 6 18:30)** | 🆕 реализовано, нужен прогон tick |
@@ -608,3 +667,5 @@ body::before — фиксированный градиент:
 | **Тест бота после деплоя** | ⏳ ожидаем |
 | **Единоразовая пересборка ВСЕХ дайджестов** | 📋 после теста бота |
 | После пересборки — только один месяц за раз | 📋 уже реализовано |
+| **Каталог: 11 новых зарубежных систем + Atomaro** | ✅ добавлено в catalog-update |
+| **Staging деплой catalog-update** | ⏳ нужно разрешить ветку в Pages environments |
