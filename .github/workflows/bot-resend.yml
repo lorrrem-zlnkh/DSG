@@ -1,0 +1,24 @@
+name: Bot Resend Draft
+
+# Повторно отправляет боту уже собранный дайджест (public/blog/digests.json,
+# digests[0]) на модерацию — БЕЗ пересборки (без fetch/OpenAI).
+# Запускать вручную из GitHub Actions.
+on:
+  workflow_dispatch:
+
+jobs:
+  resend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Hand off existing digest to bot
+        env:
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        run: node scripts/send-telegram-digest.mjs
