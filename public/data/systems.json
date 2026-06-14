@@ -529,6 +529,18 @@
       }
     },
     {
+      "id": "companies-atomaro",
+      "origin": "domestic",
+      "title": "Atomaro",
+      "description": "Отчуждаемая дизайн-система от команды Ростелекома — React-компоненты с дизайн-токенами и поддержкой кастомных тем оформления, доступна в виде открытой библиотеки.",
+      "logo": "assets/logos/companies-atomaro.png",
+      "links": {
+        "site": "https://atomaro.design/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
       "id": "nordnet",
       "origin": "foreign",
       "title": "Nordnet",
