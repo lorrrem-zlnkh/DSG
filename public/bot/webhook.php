@@ -130,13 +130,48 @@ function cardKeyboard(string $id, array $draft): array {
 
 function actionKeyboard(): array {
     return [
-        'keyboard' => [[
-            ['text' => '📢 Опубликовать'],
-            ['text' => '🕒 Отложенная публикация'],
-        ]],
+        'keyboard' => [
+            [['text' => '📢 Опубликовать'], ['text' => '🕒 Отложенная публикация']],
+            [['text' => '🚫 Не публиковать']],
+        ],
         'resize_keyboard' => true,
         'is_persistent'   => true,
     ];
+}
+
+// Сообщение владельцу с переподнятием нижней панели (после force_reply Telegram
+// иногда её скрывает — так она остаётся на месте).
+function notifyOwner(string $text): void {
+    tg('sendMessage', [
+        'chat_id'      => MY_CHAT_ID,
+        'text'         => $text,
+        'parse_mode'   => 'HTML',
+        'reply_markup' => actionKeyboard(),
+    ]);
+}
+
+function sendPublishConfirm(): void {
+    tg('sendMessage', [
+        'chat_id'      => MY_CHAT_ID,
+        'text'         => 'Опубликовать дайджест на сайт и анонс в ' . CHANNEL_ID . '?',
+        'reply_markup' => ['inline_keyboard' => [[
+            ['text' => '✅ Да, опубликовать', 'callback_data' => 'pub_confirm'],
+            ['text' => '❌ Отмена',           'callback_data' => 'pub_cancel'],
+        ]]],
+    ]);
+}
+
+function sendScheduleMenu(): void {
+    tg('sendMessage', [
+        'chat_id'      => MY_CHAT_ID,
+        'text'         => 'Когда опубликовать?',
+        'reply_markup' => ['inline_keyboard' => [
+            [['text' => 'Сегодня 18:30',       'callback_data' => 'sched_today']],
+            [['text' => 'Завтра 18:30',        'callback_data' => 'sched_tomorrow']],
+            [['text' => 'Через 3 дня (18:30)', 'callback_data' => 'sched_3d']],
+            [['text' => 'Ввести вручную',      'callback_data' => 'sched_manual']],
+        ]],
+    ]);
 }
 
 // Перерисовать карточку материала по сохранённому message_id.
@@ -356,7 +391,8 @@ function handleTick(): void {
         return;
     }
     $status = $draft['status'] ?? '';
-    if (in_array($status, ['published', 'cancelled'], true)) {
+    // paused — авто-публикация приостановлена владельцем (ждём ручного действия).
+    if (in_array($status, ['published', 'cancelled', 'paused'], true)) {
         echo json_encode(['ok' => true, 'status' => $status]);
         return;
     }
@@ -563,6 +599,18 @@ function handleCallback(array $cb): void {
         return;
     }
 
+    if ($data === 'paused_publish') {
+        sendPublishConfirm();
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
+        return;
+    }
+
+    if ($data === 'paused_schedule') {
+        sendScheduleMenu();
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
+        return;
+    }
+
     if (str_starts_with($data, 'sched_')) {
         $which = substr($data, 6);
         if ($which === 'manual') {
@@ -620,7 +668,7 @@ function handleMessage(array $msg): void {
             $draft['edits'][$id] = $text;
             saveDraft($draft);
             refreshCard($draft, $id);
-            tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => '✅ Описание обновлено.']);
+            notifyOwner('✅ Описание обновлено.');
             return;
         }
 
@@ -628,10 +676,7 @@ function handleMessage(array $msg): void {
             $ts = parseScheduleInput($text);
             if (!$ts) {
                 saveDraft($draft);
-                tg('sendMessage', [
-                    'chat_id' => MY_CHAT_ID,
-                    'text'    => 'Не понял дату. Формат: ДД.ММ ЧЧ:ММ, например 20.06 18:30',
-                ]);
+                notifyOwner('Не понял дату. Формат: ДД.ММ ЧЧ:ММ, например 20.06 18:30');
                 return;
             }
             scheduleAt($draft, $ts, null);
@@ -645,14 +690,7 @@ function handleMessage(array $msg): void {
             tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Активного черновика нет.', 'reply_markup' => ['remove_keyboard' => true]]);
             return;
         }
-        tg('sendMessage', [
-            'chat_id'      => MY_CHAT_ID,
-            'text'         => 'Опубликовать дайджест на сайт и анонс в ' . CHANNEL_ID . '?',
-            'reply_markup' => ['inline_keyboard' => [[
-                ['text' => '✅ Да, опубликовать', 'callback_data' => 'pub_confirm'],
-                ['text' => '❌ Отмена',           'callback_data' => 'pub_cancel'],
-            ]]],
-        ]);
+        sendPublishConfirm();
         return;
     }
 
@@ -661,15 +699,25 @@ function handleMessage(array $msg): void {
             tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Активного черновика нет.', 'reply_markup' => ['remove_keyboard' => true]]);
             return;
         }
+        sendScheduleMenu();
+        return;
+    }
+
+    if ($text === '🚫 Не публиковать') {
+        if (!$draft || in_array($draft['status'] ?? '', ['published', 'cancelled'], true)) {
+            tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Активного черновика нет.', 'reply_markup' => ['remove_keyboard' => true]]);
+            return;
+        }
+        $draft['status'] = 'paused';
+        saveDraft($draft);
         tg('sendMessage', [
             'chat_id'      => MY_CHAT_ID,
-            'text'         => 'Когда опубликовать?',
-            'reply_markup' => ['inline_keyboard' => [
-                [['text' => 'Сегодня 18:30',       'callback_data' => 'sched_today']],
-                [['text' => 'Завтра 18:30',        'callback_data' => 'sched_tomorrow']],
-                [['text' => 'Через 3 дня (18:30)', 'callback_data' => 'sched_3d']],
-                [['text' => 'Ввести вручную',      'callback_data' => 'sched_manual']],
-            ]],
+            'text'         => '⏸ Публикация приостановлена. Авто-публикация не сработает — '
+                            . 'опубликуешь, когда будешь готов. Карточки можно править дальше.',
+            'reply_markup' => ['inline_keyboard' => [[
+                ['text' => '📢 Опубликовать', 'callback_data' => 'paused_publish'],
+                ['text' => '🕒 Задать время', 'callback_data' => 'paused_schedule'],
+            ]]],
         ]);
         return;
     }
