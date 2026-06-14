@@ -46,7 +46,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_DIGEST_MODEL: gpt-5.4-mini
-        run: node scripts/rewrite-digest-descriptions.mjs --latest --draft
+        # Некритичный шаг: при сбое OpenAI/сети выпуск всё равно уходит боту
+        # с описаниями от build-digests, а не ломает весь месячный прогон.
+        run: node scripts/rewrite-digest-descriptions.mjs --latest --draft || echo "::warning::quality rewrite failed, fallback to build-digests summaries"
 
       - name: Commit published-state snapshot
         # Коммитим зеркало опубликованного состояния (база с хоста) как бэкап.
