@@ -201,7 +201,7 @@ function cardKeyboard(string $id, array $draft): array {
 function actionKeyboard(): array {
     return [
         'keyboard' => [
-            [['text' => '📢 Опубликовать'], ['text' => '🕒 Отложенная публикация']],
+            [['text' => '📢 Опубликовать'], ['text' => '🕒 Отложить']],
             [['text' => '🚫 Не публиковать']],
         ],
         'resize_keyboard' => true,
@@ -836,7 +836,7 @@ function handleMessage(array $msg): void {
         return;
     }
 
-    if ($text === '🕒 Отложенная публикация') {
+    if ($text === '🕒 Отложить' || $text === '🕒 Отложенная публикация') {
         if (!$draft || in_array($draft['status'] ?? '', ['published', 'cancelled'], true)) {
             tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Активного черновика нет.', 'reply_markup' => ['remove_keyboard' => true]]);
             return;
