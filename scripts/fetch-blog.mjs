@@ -344,7 +344,7 @@ function stripLeadingHabrTaxonomy(text) {
   return value;
 }
 
-function sanitizeArticleText(value, title = "") {
+export function sanitizeArticleText(value, title = "") {
   const withoutHtml = stripHtml(value);
   const withoutLeadingTitle = removeLeadingTitle(withoutHtml, title);
   const cleaned = stripLeadingHabrTaxonomy(withoutLeadingTitle)
@@ -429,7 +429,7 @@ function isUsefulInput(post) {
   return isRelevantPost(post);
 }
 
-async function fetchText(url) {
+export async function fetchText(url) {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     headers: {
