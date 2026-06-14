@@ -226,14 +226,15 @@ function notifyOwner(string $text): void {
     ]);
 }
 
-function sendPublishConfirm(): void {
-    tg('sendMessage', [
+// Лёгкое переключение кнопки карточки (Исключить↔Вернуть) без перерисовки текста —
+// быстрый отклик; фактическое исключение применяется при публикации.
+function flipCardButton(array $draft, string $id): void {
+    $msgId = $draft['cardMsgIds'][$id] ?? null;
+    if (!$msgId) return;
+    tg('editMessageReplyMarkup', [
         'chat_id'      => MY_CHAT_ID,
-        'text'         => 'Опубликовать дайджест на сайт и анонс в ' . CHANNEL_ID . '?',
-        'reply_markup' => ['inline_keyboard' => [[
-            ['text' => '✅ Да, опубликовать', 'callback_data' => 'pub_confirm'],
-            ['text' => '❌ Отмена',           'callback_data' => 'pub_cancel'],
-        ]]],
+        'message_id'   => $msgId,
+        'reply_markup' => cardKeyboard($id, $draft),
     ]);
 }
 
@@ -311,13 +312,45 @@ function pluralTopics(int $n): string {
 // Публикация: живой digests.json на хост + анонс в канал
 // =====================================================================
 
+// Примерное время внесения изменений (сек) — оно же окно отмены публикации.
+function publishEta(array $draft): int {
+    $n = count($draft['edits'] ?? []) + count($draft['excluded'] ?? []);
+    return max(6, min(20, 4 + $n));
+}
+
+// Запуск публикации без подтверждения: сразу ETA + кнопка прерывания, затем —
+// окно отмены (sleep), после которого публикуем, если не прервали.
+function startPublish(array $draft): void {
+    $eta   = publishEta($draft);
+    $token = bin2hex(random_bytes(4));
+
+    $draft['status']       = 'publishing';
+    $draft['publishToken'] = $token;
+    saveDraft($draft);
+
+    tg('sendMessage', [
+        'chat_id'      => MY_CHAT_ID,
+        'text'         => "⏳ Вношу изменения и публикую — примерно {$eta} сек.\n"
+                        . "Можно прервать кнопкой ниже в любой момент.",
+        'reply_markup' => ['inline_keyboard' => [[
+            ['text' => '🚫 Не публиковать', 'callback_data' => 'pub_abort'],
+        ]]],
+    ]);
+
+    sleep($eta); // окно прерывания: «Не публиковать» переведёт статус в paused
+
+    $fresh = loadDraft();
+    if (!$fresh
+        || ($fresh['status'] ?? '') !== 'publishing'
+        || ($fresh['publishToken'] ?? '') !== $token) {
+        return; // прервано пользователем или запущена другая сессия
+    }
+    publishDraft($fresh, 'manual');
+}
+
 function publishDraft(array $draft, string $mode): void {
-    // Оповещение: начали запись изменений (ручная публикация).
     $editsN = count($draft['edits'] ?? []);
     $exclN  = count($draft['excluded'] ?? []);
-    if ($mode === 'manual') {
-        tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => '⏳ Применяю изменения и публикую…']);
-    }
 
     $final = buildFinalDigest($draft);
     $key   = $final['key'] ?? null;
@@ -668,55 +701,34 @@ function handleCallback(array $cb): void {
     }
 
     if (str_starts_with($data, 'edit_')) {
-        // Сразу гасим «часики» на кнопке — иначе при медленной отправке кажется,
-        // что ничего не происходит.
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
-        $id   = substr($data, 5);
-        $item = findItem($draft, $id);
-        if (!$item) {
-            tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Материал не найден.']);
-            return;
-        }
-        $current = $draft['edits'][$id] ?? ($item['summary'] ?? '');
-        $res = tg('sendMessage', [
-            'chat_id'      => MY_CHAT_ID,
-            'text'         => "✏️ Текущее описание (нажми, чтобы скопировать):\n\n"
-                            . "<code>" . h($current) . "</code>\n\n"
-                            . "Отправь новое описание <b>ответом на это сообщение</b>.",
-            'parse_mode'   => 'HTML',
-            'reply_markup' => [
-                'force_reply'             => true,
-                'input_field_placeholder' => 'Новое описание',
-                'selective'               => true,
-            ],
+        // Оптимистично: мгновенный toast-подсказка, без сообщения и без запроса
+        // на сервер. Новое описание владелец шлёт ответом прямо на карточку.
+        tg('answerCallbackQuery', [
+            'callback_query_id' => $cb['id'],
+            'text'              => '✏️ Ответь на эту карточку новым описанием',
         ]);
-        $pid = $res['result']['message_id'] ?? null;
-        if ($pid) {
-            $draft['prompts'][(string) $pid] = ['kind' => 'edit', 'itemId' => $id];
-            saveDraft($draft);
-        }
         return;
     }
 
     if (str_starts_with($data, 'exclude_')) {
         $id = substr($data, 8);
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал исключён']);
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => '🚫 Исключено']);
         if (!in_array($id, $draft['excluded'], true)) $draft['excluded'][] = $id;
         saveDraft($draft);
-        refreshCard($draft, $id);
+        flipCardButton($draft, $id); // лёгкое переключение кнопки; обработка — при публикации
         return;
     }
 
     if (str_starts_with($data, 'include_')) {
         $id = substr($data, 8);
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал возвращён']);
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => '↩️ Возвращено']);
         $draft['excluded'] = array_values(array_filter($draft['excluded'], fn($x) => $x !== $id));
         saveDraft($draft);
-        refreshCard($draft, $id);
+        flipCardButton($draft, $id);
         return;
     }
 
-    if ($data === 'pub_confirm' || $data === 'remind_publish') {
+    if ($data === 'remind_publish') {
         tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
         if ($msgId) {
             tg('editMessageReplyMarkup', [
@@ -725,19 +737,21 @@ function handleCallback(array $cb): void {
                 'reply_markup' => ['inline_keyboard' => []],
             ]);
         }
-        publishDraft($draft, 'manual');
+        startPublish($draft);
         return;
     }
 
-    if ($data === 'pub_cancel') {
+    if ($data === 'pub_abort') {
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => '🚫 Прервано']);
+        $draft['status'] = 'paused';
+        saveDraft($draft);
         if ($msgId) {
             tg('editMessageText', [
                 'chat_id'    => MY_CHAT_ID,
                 'message_id' => $msgId,
-                'text'       => 'Публикация отменена. Черновик остаётся активным.',
+                'text'       => '🚫 Публикация прервана. Черновик сохранён — можно опубликовать позже.',
             ]);
         }
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
         return;
     }
 
@@ -761,8 +775,8 @@ function handleCallback(array $cb): void {
     }
 
     if ($data === 'paused_publish') {
-        sendPublishConfirm();
         tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
+        startPublish($draft);
         return;
     }
 
@@ -819,45 +833,43 @@ function handleMessage(array $msg): void {
         return;
     }
 
-    // 1) Ответы на force_reply (правка описания / ввод времени).
     $replyTo = $msg['reply_to_message']['message_id'] ?? null;
-    if ($draft && $replyTo !== null && isset($draft['prompts'][(string) $replyTo])) {
-        $ctx = $draft['prompts'][(string) $replyTo];
-        unset($draft['prompts'][(string) $replyTo]);
 
-        if (($ctx['kind'] ?? '') === 'edit') {
-            $id = $ctx['itemId'] ?? '';
-            if ($text === '') {
-                saveDraft($draft);
-                tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Пустое описание — пропускаю.']);
-                return;
-            }
-            $draft['edits'][$id] = $text;
+    // 1) Ответ на ввод времени (force_reply отложенной публикации).
+    if ($draft && $replyTo !== null && isset($draft['prompts'][(string) $replyTo])) {
+        unset($draft['prompts'][(string) $replyTo]);
+        $ts = parseScheduleInput($text);
+        if (!$ts) {
             saveDraft($draft);
-            refreshCard($draft, $id);
-            notifyOwner('✅ Описание обновлено.');
+            notifyOwner('Не понял дату. Формат: ДД.ММ ЧЧ:ММ, например 20.06 18:30');
             return;
         }
+        scheduleAt($draft, $ts, null);
+        return;
+    }
 
-        if (($ctx['kind'] ?? '') === 'schedule') {
-            $ts = parseScheduleInput($text);
-            if (!$ts) {
-                saveDraft($draft);
-                notifyOwner('Не понял дату. Формат: ДД.ММ ЧЧ:ММ, например 20.06 18:30');
-                return;
+    // 2) Правка описания — ответ прямо на карточку (без промпта).
+    if ($draft && $replyTo !== null) {
+        $cardId = array_search($replyTo, $draft['cardMsgIds'] ?? [], true);
+        if ($cardId !== false && $text !== '') {
+            $draft['edits'][(string) $cardId] = $text;
+            saveDraft($draft);
+            refreshCard($draft, (string) $cardId); // показываем новое описание на карточке
+            // убираем сообщение-ответ, чтобы не засорять список карточек
+            if (!empty($msg['message_id'])) {
+                tg('deleteMessage', ['chat_id' => MY_CHAT_ID, 'message_id' => $msg['message_id']]);
             }
-            scheduleAt($draft, $ts, null);
             return;
         }
     }
 
-    // 2) Кнопки нижней панели.
+    // 3) Кнопки нижней панели.
     if ($text === '📢 Опубликовать') {
         if (!$draft || in_array($draft['status'] ?? '', ['published', 'cancelled'], true)) {
             tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Активного черновика нет.', 'reply_markup' => ['remove_keyboard' => true]]);
             return;
         }
-        sendPublishConfirm();
+        startPublish($draft); // без подтверждения, с ETA и окном отмены
         return;
     }
 
