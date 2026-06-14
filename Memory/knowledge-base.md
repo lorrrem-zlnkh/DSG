@@ -166,6 +166,16 @@ DSG/
 **Шаг:** `curl -fsS -H "X-Bot-Secret: …" …/webhook.php?action=tick` — бот сам решает:
 напомнить (день 5), авто-опубликовать (день 6, 18:30 МСК) или дождаться отложенного времени
 
+### Ручные воркфлоу бота (workflow_dispatch)
+
+- **bot-resend.yml** → `…/webhook.php?action=init_draft` с уже собранным `public/blog/digests.json`
+  (digests[0]). Повторно шлёт боту карточки на модерацию БЕЗ пересборки (без fetch/OpenAI).
+  Запуск: `gh workflow run bot-resend.yml`
+- **bot-cleanup.yml** → `…/webhook.php?action=cleanup`. Удаляет сообщения текущего черновика
+  из чата и сбрасывает draft.json. Запуск: `gh workflow run bot-cleanup.yml`
+- ⚠️ Все CI-вызовы webhook.php авторизуются заголовком `X-Bot-Secret: WEBHOOK_SECRET`
+  (или `?secret=`). Telegram-апдейты — заголовком `X-Telegram-Bot-Api-Secret-Token`.
+
 ### GitHub Secrets (используются в воркфлоу)
 
 | Secret | Назначение |
@@ -211,10 +221,20 @@ PHP — единственный, кто публикует: пишет живо
   реализовано как «копируемый текст + поле ответа сфокусировано»
 - `exclude_<id>` / `include_<id>` → тоггл в `excluded`, кнопка меняется на `↩️ Вернуть`
 
-**Нижняя панель (ReplyKeyboardMarkup, держится весь цикл):**
+**Нижняя панель (ReplyKeyboardMarkup, is_persistent, держится весь цикл):**
 - `📢 Опубликовать` → инлайн-подтверждение `pub_confirm`/`pub_cancel` → `publishDraft('manual')`
 - `🕒 Отложенная публикация` → пресеты `sched_today`/`sched_tomorrow`/`sched_3d`/`sched_manual`
   (ручной ввод `ДД.ММ ЧЧ:ММ` МСК через force_reply) → `scheduledAt`, `status=scheduled`
+- `🚫 Не публиковать` → `status=paused` (tick не трогает) + инлайн `paused_publish`/`paused_schedule`
+  для ручного запуска в любой момент
+- Панель переподнимается через `notifyOwner()` после правок (force_reply иногда её скрывает)
+- Команда `/reset` (или `/clear`) — очистка черновика и его сообщений из чата (как action=cleanup)
+
+**Отправка карточек (init_draft):** `sendCard()` — пауза 300мс между сообщениями + ретрай 429
+(до 5 попыток, ждём `retry_after` ≤10с); при ошибке HTML-разбора фолбэк на обычный текст
+(`renderCardPlain`). href только для http(s)-URL, кавычки экранируются (`attrEsc`).
+Ответ init_draft возвращает `cards` (сколько долетело) и `fails` (причины недоставки).
+draft.json хранит `headerMsgId`/`footerMsgId`/`cardMsgIds` для точечной очистки.
 
 **Таймлайн (tick, МСК, вечернее окно hour≥18):**
 - день 5 (status=pending) → напоминание с `remind_publish`/`remind_cancel`, `status=reminded`
