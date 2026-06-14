@@ -388,7 +388,8 @@ function publishDraft(array $draft, string $mode): void {
           . "Собрали {$count} материалов о дизайн-системах, дизайне интерфейсов "
           . "и продуктовом дизайне.\n\n"
           . "<b>В выпуске:</b> " . rubricsSummary($final) . "\n\n"
-          . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>";
+          . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>\n\n"
+          . "#дайджест";
 
     tg('sendMessage', [
         'chat_id'                  => CHANNEL_ID,
