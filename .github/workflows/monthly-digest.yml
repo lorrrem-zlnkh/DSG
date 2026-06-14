@@ -36,7 +36,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/blog/posts.json public/blog/digests.json public/automation/status.json || true
           git diff --cached --quiet || git commit -m "chore: monthly digest rebuild $(date -u +%Y-%m)"
-          git pull --rebase origin main
+          git pull --rebase origin ${GITHUB_REF_NAME}
           git push
 
       - name: Send Telegram preview to owner
