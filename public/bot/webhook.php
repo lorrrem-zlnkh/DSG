@@ -177,6 +177,7 @@ function sendCard(array $item, array $draft): array {
         'text'                     => renderCard($item, $draft),
         'parse_mode'               => 'HTML',
         'disable_web_page_preview' => true,
+        'disable_notification'     => true, // карточки приходят тихо — пуш даёт только финал
         'reply_markup'             => cardKeyboard($id, $draft),
     ]);
     if (isParseError($res)) {
@@ -184,6 +185,7 @@ function sendCard(array $item, array $draft): array {
             'chat_id'                  => MY_CHAT_ID,
             'text'                     => renderCardPlain($item, $draft),
             'disable_web_page_preview' => true,
+            'disable_notification'     => true,
             'reply_markup'             => cardKeyboard($id, $draft),
         ]);
     }
@@ -415,12 +417,13 @@ function handleInitDraft(): void {
     $count  = count($digest['items']);
 
     $hdr = tg('sendMessage', [
-        'chat_id'    => MY_CHAT_ID,
-        'text'       => "🗞 <b>Черновик дайджеста DSG №" . h((string) $number) . " — {$label} {$year}</b>\n"
-                      . "{$count} материалов.\n\n"
-                      . "Проверь карточки ниже: можно изменить описание или исключить материал. "
-                      . "Когда закончишь — кнопки внизу.",
-        'parse_mode' => 'HTML',
+        'chat_id'              => MY_CHAT_ID,
+        'text'                 => "🗞 <b>Черновик дайджеста DSG №" . h((string) $number) . " — {$label} {$year}</b>\n"
+                                . "{$count} материалов.\n\n"
+                                . "Проверь карточки ниже: можно изменить описание или исключить материал. "
+                                . "Когда закончишь — кнопки внизу.",
+        'parse_mode'           => 'HTML',
+        'disable_notification' => true, // шапка тихо — пуш будет один, от финала
     ]);
     $draft['headerMsgId'] = $hdr['result']['message_id'] ?? null;
 
@@ -449,9 +452,12 @@ function handleInitDraft(): void {
     }
     $draft['cardMsgIds'] = $cardMsgIds;
 
+    // Единственное сообщение с пушем — приходит, когда все карточки уже добавлены.
     $ftr = tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
-        'text'         => "👇 Когда закончишь модерацию — выбери действие.",
+        'text'         => "✅ Дайджест №" . h((string) $number) . " готов к модерации — {$count} карточек выше 👆\n"
+                        . "Проверь и выбери действие внизу.",
+        'parse_mode'   => 'HTML',
         'reply_markup' => actionKeyboard(),
     ]);
     $draft['footerMsgId'] = $ftr['result']['message_id'] ?? null;
