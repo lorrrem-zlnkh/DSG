@@ -2,6 +2,9 @@
   "name": "design-systems-guide",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "scrape": "sh scripts/scrape.sh",
     "fetch:blog": "sh scripts/fetch-blog.sh",
