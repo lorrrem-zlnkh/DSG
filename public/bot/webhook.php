@@ -400,16 +400,22 @@ function handleInitDraft(): void {
     $draft['headerMsgId'] = $hdr['result']['message_id'] ?? null;
 
     $cardMsgIds = [];
+    foreach ($digest['items'] as $item) {
+        $mid = sendCard($item, $draft)['result']['message_id'] ?? null;
+        if ($mid) $cardMsgIds[$item['id'] ?? ''] = $mid;
+        usleep(700000); // ~1.4 сообщения/сек — держимся ниже флуд-лимита Telegram на чат
+    }
+
+    // Повторный проход по не дошедшим карточкам (разовые сбои/флуд).
     $fails = [];
     foreach ($digest['items'] as $item) {
+        $id = $item['id'] ?? '';
+        if (isset($cardMsgIds[$id])) continue;
+        sleep(2);
         $res = sendCard($item, $draft);
         $mid = $res['result']['message_id'] ?? null;
-        if ($mid) {
-            $cardMsgIds[$item['id'] ?? ''] = $mid;
-        } else {
-            $fails[] = ($item['id'] ?? '?') . ': ' . ($res['description'] ?? 'no message_id');
-        }
-        usleep(300000); // ~3 сообщения/сек — бережём флуд-лимит Telegram на чат
+        if ($mid) $cardMsgIds[$id] = $mid;
+        else $fails[] = $id . ': ' . ($res['description'] ?? 'no message_id');
     }
     $draft['cardMsgIds'] = $cardMsgIds;
 
