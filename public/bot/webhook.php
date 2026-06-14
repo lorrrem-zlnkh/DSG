@@ -415,7 +415,7 @@ function handleInitDraft(): void {
     foreach ($digest['items'] as $item) {
         $mid = sendCard($item, $draft)['result']['message_id'] ?? null;
         if ($mid) $cardMsgIds[$item['id'] ?? ''] = $mid;
-        usleep(700000); // ~1.4 сообщения/сек — держимся ниже флуд-лимита Telegram на чат
+        usleep(1000000); // 1 сообщение/сек — лимит Telegram на чат, чтобы не копить флуд
     }
 
     // Повторный проход по не дошедшим карточкам (разовые сбои/флуд).
@@ -675,19 +675,19 @@ function handleCallback(array $cb): void {
 
     if (str_starts_with($data, 'exclude_')) {
         $id = substr($data, 8);
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал исключён']);
         if (!in_array($id, $draft['excluded'], true)) $draft['excluded'][] = $id;
         saveDraft($draft);
         refreshCard($draft, $id);
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал исключён']);
         return;
     }
 
     if (str_starts_with($data, 'include_')) {
         $id = substr($data, 8);
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал возвращён']);
         $draft['excluded'] = array_values(array_filter($draft['excluded'], fn($x) => $x !== $id));
         saveDraft($draft);
         refreshCard($draft, $id);
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал возвращён']);
         return;
     }
 
