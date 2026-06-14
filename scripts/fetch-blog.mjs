@@ -442,6 +442,22 @@ export async function fetchText(url) {
   return response.text();
 }
 
+// SPA-сайты (например, dsgners.ru на Inertia.js) отдают данные страницы в JSON
+// по заголовку Accept: application/json — забираем их без headless-браузера.
+async function fetchJson(url) {
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
+        "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+      accept: "application/json",
+    },
+  });
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  return response.json();
+}
+
 function tagContent(block, tag) {
   const match = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
   return match ? unwrapCdata(match[1].trim()) : "";
@@ -589,6 +605,47 @@ function parseArticle(html, url, source, sourceLabel) {
     rewrite: toRewrite(body || description, title),
   };
   return isUsefulInput(post) ? post : null;
+}
+
+// Собирает текст из блочного body (Editor.js) ответа dsgners.
+function dsgnersBlocksToText(body) {
+  if (!Array.isArray(body)) return "";
+  const parts = [];
+  for (const block of body) {
+    const data = block?.data || {};
+    if ((block.type === "paragraph" || block.type === "header" || block.type === "quote") && data.text) {
+      parts.push(stripHtml(data.text));
+    } else if (block.type === "list" && Array.isArray(data.items)) {
+      for (const item of data.items) {
+        parts.push(stripHtml(typeof item === "string" ? item : item?.content || ""));
+      }
+    }
+  }
+  return parts.join("\n");
+}
+
+// Разбирает JSON-ответ dsgners.ru (Inertia) в пост стандартного вида.
+function parseDsgnersArticle(payload, url, source, sourceLabel) {
+  const post = payload?.post;
+  if (!post) return null;
+  const title = cleanTitle(post.title || payload?.meta?.title || "");
+  const author = post.author?.name || null;
+  const publishedAt = toIsoDate(post.published_at) || inferPublishedAtFromUrl(url);
+  if (!isRecent(publishedAt)) return null;
+  const bodyText = sanitizeArticleText(dsgnersBlocksToText(post.body), title);
+  const description = payload?.meta?.description || "";
+  const result = {
+    id: makeId(url),
+    source,
+    sourceLabel,
+    title,
+    url,
+    author,
+    publishedAt,
+    summary: toSummary(description || bodyText, title),
+    rewrite: toRewrite(bodyText || description, title),
+  };
+  return isUsefulInput(result) ? result : null;
 }
 
 function extractLinks(html, pageUrl, include) {
@@ -745,8 +802,10 @@ async function collectDirectArticles() {
   for (const source of DIRECT_ARTICLE_SOURCES) {
     for (const url of source.urls.slice(0, MAX_ARTICLES_PER_SOURCE)) {
       try {
-        const html = await fetchText(url);
-        const post = parseArticle(html, url, source.source, source.sourceLabel);
+        const post =
+          source.source === "designers"
+            ? parseDsgnersArticle(await fetchJson(url), url, source.source, source.sourceLabel)
+            : parseArticle(await fetchText(url), url, source.source, source.sourceLabel);
         if (post) posts.push(post);
       } catch (error) {
         console.warn(`[fetch-blog] article skipped ${url}: ${error.message}`);
