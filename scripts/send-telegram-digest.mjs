@@ -42,6 +42,21 @@ async function main() {
     return;
   }
 
+  // Если этот месяц уже есть на живом сайте (например, июнь, запланированный на
+  // 1 июля через publishAt) — не переотправляем боту: модерация не нужна.
+  try {
+    const liveResp = await fetch("https://dsg.lorrrem.ru/blog/digests.json", { cache: "no-store" });
+    if (liveResp.ok) {
+      const live = await liveResp.json();
+      if ((live.digests || []).some((d) => d.key === digest.key)) {
+        console.log(`Digest ${digest.key} already published on site — skipping hand-off.`);
+        return;
+      }
+    }
+  } catch {
+    // сайт недоступен — продолжаем штатно
+  }
+
   const url = `${INIT_URL}?action=init_draft`;
   const res = await fetch(url, {
     method: "POST",

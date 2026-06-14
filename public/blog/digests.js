@@ -195,7 +195,14 @@ async function loadDigests() {
     data = await response.json();
   }
 
-  digests = data.digests || [];
+  // Скрываем выпуски с будущей датой публикации (publishAt) — например, июньский
+  // выпуск показываем только с 1 июля. Без publishAt — виден всегда.
+  const now = Date.now();
+  digests = (data.digests || []).filter((digest) => {
+    if (!digest.publishAt) return true;
+    const at = Date.parse(digest.publishAt);
+    return Number.isNaN(at) || at <= now;
+  });
 
   initSelectors();
   selectDigest();
