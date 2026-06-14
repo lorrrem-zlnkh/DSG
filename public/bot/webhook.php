@@ -152,8 +152,20 @@ function renderCardPlain(array $item, array $draft): string {
     return $head . $summary;
 }
 
-// Отправка карточки с фолбэком на обычный текст при ошибке HTML-разбора.
-// Возвращает ответ Telegram (для извлечения message_id и диагностики ошибок).
+// Ошибка именно разбора HTML (а не флуд 429 / сеть) — только тогда есть смысл
+// падать в текстовый фолбэк; при флуде заголовок-ссылку сохраняем, помогает ретрай.
+function isParseError(array $res): bool {
+    if (($res['ok'] ?? true) === true) return false;
+    if ((int) ($res['error_code'] ?? 0) !== 400) return false;
+    $desc = mb_strtolower((string) ($res['description'] ?? ''));
+    return strpos($desc, 'pars') !== false
+        || strpos($desc, 'entit') !== false
+        || strpos($desc, 'tag') !== false;
+}
+
+// Отправка карточки. По умолчанию — HTML (заголовок = ссылка). На обычный текст
+// падаем ТОЛЬКО при ошибке разбора HTML; флуд/сеть лечатся ретраем tg() и
+// повторным проходом в init_draft (карточка остаётся со ссылкой).
 function sendCard(array $item, array $draft): array {
     $id  = $item['id'] ?? '';
     $res = tg('sendMessage', [
@@ -163,7 +175,7 @@ function sendCard(array $item, array $draft): array {
         'disable_web_page_preview' => true,
         'reply_markup'             => cardKeyboard($id, $draft),
     ]);
-    if (($res['ok'] ?? false) !== true) {
+    if (isParseError($res)) {
         $res = tg('sendMessage', [
             'chat_id'                  => MY_CHAT_ID,
             'text'                     => renderCardPlain($item, $draft),
@@ -245,7 +257,7 @@ function refreshCard(array $draft, string $id): void {
         'disable_web_page_preview' => true,
         'reply_markup'             => cardKeyboard($id, $draft),
     ]);
-    if (($res['ok'] ?? false) !== true) {
+    if (isParseError($res)) {
         tg('editMessageText', [
             'chat_id'                  => MY_CHAT_ID,
             'message_id'               => $msgId,
@@ -631,10 +643,13 @@ function handleCallback(array $cb): void {
     }
 
     if (str_starts_with($data, 'edit_')) {
+        // Сразу гасим «часики» на кнопке — иначе при медленной отправке кажется,
+        // что ничего не происходит.
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
         $id   = substr($data, 5);
         $item = findItem($draft, $id);
         if (!$item) {
-            tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => 'Материал не найден']);
+            tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Материал не найден.']);
             return;
         }
         $current = $draft['edits'][$id] ?? ($item['summary'] ?? '');
@@ -655,7 +670,6 @@ function handleCallback(array $cb): void {
             $draft['prompts'][(string) $pid] = ['kind' => 'edit', 'itemId' => $id];
             saveDraft($draft);
         }
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
         return;
     }
 
