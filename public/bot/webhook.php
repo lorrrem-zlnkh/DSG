@@ -100,6 +100,17 @@ function attrEsc(string $s): string {
     return str_replace(['&', '<', '>', '"'], ['&amp;', '&lt;', '&gt;', '&quot;'], $s);
 }
 
+// Порядковый номер материала (1-based) в дайджесте — только для карточек в
+// Telegram (в публикуемый digests.json не попадает).
+function itemNumber(array $draft, string $id): int {
+    $i = 1;
+    foreach ($draft['digest']['items'] ?? [] as $it) {
+        if (($it['id'] ?? '') === $id) return $i;
+        $i++;
+    }
+    return 0;
+}
+
 function renderCard(array $item, array $draft): string {
     $id       = $item['id'] ?? '';
     $excluded = in_array($id, $draft['excluded'] ?? [], true);
@@ -115,7 +126,8 @@ function renderCard(array $item, array $draft): string {
     $titleHtml = preg_match('~^https?://~i', $url)
         ? '<a href="' . attrEsc($url) . '">' . $title . '</a>'
         : $title;
-    $head = "<b>{$rubric}</b>\n{$titleHtml}{$lang}\n";
+    $num  = itemNumber($draft, $id);
+    $head = "<b>№{$num} · {$rubric}</b>\n{$titleHtml}{$lang}\n";
 
     if ($excluded) {
         return $head . "🚫 <i>Исключено из публикации</i>";
@@ -134,7 +146,8 @@ function renderCardPlain(array $item, array $draft): string {
     $title    = $item['sourceTitle'] ?? '';
     $url      = (string) ($item['url'] ?? '');
     $lang     = !empty($item['languageBadge']) ? ' (' . $item['languageBadge'] . ')' : '';
-    $head     = "{$rubric}\n{$title}{$lang}\n{$url}\n";
+    $num      = itemNumber($draft, $id);
+    $head     = "№{$num} · {$rubric}\n{$title}{$lang}\n{$url}\n";
     if ($excluded) return $head . "🚫 Исключено из публикации";
     return $head . $summary;
 }
