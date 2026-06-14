@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SAP Design System</title>
+    <link rel="canonical" href="https://www.sap.com/design-system">
+    <meta name="description" content="Based on user roles and business processes, SAP Fiori simplifies doing business. To accelerate the transformation of the world’s digital economy, SAP is applying this ...">
+    <meta property="og:title" content="SAP Design System">
+    <meta property="og:description" content="Based on user roles and business processes, SAP Fiori simplifies doing business. To accelerate the transformation of the world’s digital economy, SAP is applying this ...">
+    <meta property="og:url" content="https://www.sap.com/design-system">
+    <meta property="og:image" content="about:error">
+    <meta property="og:image:secure_url" content="about:error">
+    <meta property="og:image:alt" content="Image">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SAP Design System">
+    <meta name="twitter:description" content="Based on user roles and business processes, SAP Fiori simplifies doing business. To accelerate the transformation of the world’s digital economy, SAP is applying this ...">
+    <meta name="twitter:image" content="about:error">
+    <meta name="saptheme" content="sap_glow">
+    <meta property="og:locale" content="en_US">
+    <meta name="config" content="{&#x22;query.index.path&#x22;:&#x22;/query-index.json&#x22;,&#x22;edge.worker.dgl.assets.endpoint&#x22;:&#x22;https://www.sap.com/api/edge/assets&#x22;,&#x22;edge.worker.productprice.path&#x22;:&#x22;/api/edge/pdp/product-price&#x22;,&#x22;formEngine.platform.host&#x22;:&#x22;https://forms.services.sap.com&#x22;,&#x22;fragement.api.path&#x22;:&#x22;/api/content/contentFragments&#x22;,&#x22;dcpForms.gRecaptchaSiteKey&#x22;:&#x22;6LfYzV4dAAAAADm37Aieh5Mw-ssAE0Q8EdtKA7oZ&#x22;,&#x22;dcpCtaButton.domain&#x22;:&#x22;https://webcomponents-cta-app.p1.services.store.net.sap&#x22;,&#x22;cbdt.check&#x22;:&#x22;true&#x22;,&#x22;edge.worker.price.path&#x22;:&#x22;/api/edge/pdp/price&#x22;,&#x22;index.endpoint&#x22;:&#x22;https://main--builder-prospect-aem-prod--sapudex.aem.live/edge&#x22;,&#x22;external.hostnames&#x22;:&#x22;me.sap.com,partneredge.sap.com&#x22;,&#x22;edge.worker.eccn.path&#x22;:&#x22;/api/edge/eccn&#x22;,&#x22;feed.title&#x22;:&#x22;SAP Sponsorships Archives | SAP News Center&#x22;,&#x22;feed.description&#x22;:&#x22;Company \u0026#38; Customer Stories \u0026#124; Press Room.&#x22;,&#x22;ch.tag.index.path&#x22;:&#x22;/tags-customer-model.json&#x22;,&#x22;edge.worker.domain&#x22;:&#x22;https://www.sap.com&#x22;,&#x22;leadForm.domain&#x22;:&#x22;https://webcomponents-lead-form.p1.services.store.net.sap&#x22;,&#x22;pdp.markets.popup&#x22;:&#x22;{\&#x22;locales\&#x22;: true, \&#x22;cookieCountry\&#x22;: true, \&#x22;companyCountry\&#x22;: true}&#x22;,&#x22;feed.maxPosts&#x22;:&#x22;30&#x22;,&#x22;author.index.path&#x22;:&#x22;/profiles-index.json&#x22;,&#x22;publish.prod&#x22;:&#x22;https://www.sap.com&#x22;,&#x22;productEndpoint&#x22;:&#x22;https://api.s1.services.store.net.sap&#x22;,&#x22;topics.update.frequency&#x22;:&#x22;weekly&#x22;,&#x22;serviceStatus.api.path&#x22;:&#x22;/bin/sapdxc/proxy.ctcsl.products.json&#x22;,&#x22;i18n.placeholders&#x22;:&#x22;{\&#x22;edsSpreadsheetPath\&#x22;:\&#x22;/i18n-placeholders.json\&#x22;,\&#x22;edsSpreadsheetLimit\&#x22;:1000,\&#x22;edsDefaultSpreadsheet\&#x22;:\&#x22;default\&#x22;,\&#x22;group_by_property\&#x22;:\&#x22;translate\&#x22;,\&#x22;resourceSpreadsheetPath\&#x22;:\&#x22;/content/sapcom/edge/i18n-placeholders\&#x22;,\&#x22;columns\&#x22;:[\&#x22;Key\&#x22;,\&#x22;description\&#x22;,\&#x22;translate|{}\&#x22;],\&#x22;sheets\&#x22;:[\&#x22;{\\\&#x22;default\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group1\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;ar_SA\\\&#x22;,\\\&#x22;bg_BG\\\&#x22;,\\\&#x22;cs_CZ\\\&#x22;,\\\&#x22;da_DK\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group2\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;de_DE\\\&#x22;,\\\&#x22;el_GR\\\&#x22;,\\\&#x22;es_CO\\\&#x22;,\\\&#x22;et_EE\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group3\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;fi_FI\\\&#x22;,\\\&#x22;fr_FR\\\&#x22;,\\\&#x22;he_IL\\\&#x22;,\\\&#x22;hr_HR\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group4\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;hu_HU\\\&#x22;,\\\&#x22;it_IT\\\&#x22;,\\\&#x22;ja_JP\\\&#x22;,\\\&#x22;ko_KR\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group5\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;lt_LT\\\&#x22;,\\\&#x22;lv_LV\\\&#x22;,\\\&#x22;nl_NL\\\&#x22;,\\\&#x22;no_NO\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group6\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;pl_PL\\\&#x22;,\\\&#x22;pt_BR\\\&#x22;,\\\&#x22;pt_PT\\\&#x22;,\\\&#x22;ro_RO\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group7\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;ru_RU\\\&#x22;,\\\&#x22;sk_SK\\\&#x22;,\\\&#x22;sl_SL\\\&#x22;,\\\&#x22;sr_RS\\\&#x22;]}}\&#x22;,\&#x22;{\\\&#x22;group8\\\&#x22;:{\\\&#x22;translate\\\&#x22;:[\\\&#x22;default:text\\\&#x22;,\\\&#x22;sv_SE\\\&#x22;,\\\&#x22;tr_TR\\\&#x22;,\\\&#x22;uk_UA\\\&#x22;,\\\&#x22;zh_CN\\\&#x22;,\\\&#x22;zh_TW\\\&#x22;]}}\&#x22;]}&#x22;,&#x22;news.publisher&#x22;:&#x22;SAP News&#x22;,&#x22;registration.formPath&#x22;:&#x22;/registrations/form-universal-reg&#x22;,&#x22;article.index.path&#x22;:&#x22;/articles-index.json&#x22;,&#x22;article.priority.maxDays&#x22;:&#x22;7&#x22;,&#x22;pdfEmbedKey&#x22;:&#x22;139a009aa6534f30a04bdb88cea2cf16&#x22;,&#x22;filter.l3.related&#x22;:&#x22;{ \&#x22;contentTypes\&#x22;: { \&#x22;contenthub:content-type/executive-blog\&#x22;: \&#x22;contenthub:content-type/what-is, contenthub:content-type/business-case, contenthub:content-type/best-practice-how-to-guide, contenthub:content-type/original-research, contenthub:content-type/trends-predictions, contenthub:content-type/expert-opinions, contenthub:content-type/self-assessment, contenthub:content-type/3rd-party-research, contenthub:content-type/business-strategy-guide, contenthub:content-type/technology-strategy-guide, contenthub:content-type/problem-solution-guide, contenthub:content-type/investment-value-scoping, contenthub:content-type/business-case-leaders, contenthub:content-type/project-planning-help, contenthub:content-type/customer-showcase, contenthub:content-type/executive-blog, contenthub:content-type/newsbyte, contenthub:content-type/press-release, contenthub:content-type/statement, contenthub:content-type/support-update, contenthub:content-type/feature, contenthub:content-type/news-guide\&#x22; }, \&#x22;paths\&#x22;: { \&#x22;news\&#x22;: \&#x22;contenthub:content-type/newsbyte, contenthub:content-type/press-release, contenthub:content-type/statement, contenthub:content-type/support-update, contenthub:content-type/feature, contenthub:content-type/news-guide\&#x22; }, \&#x22;default\&#x22;: \&#x22;contenthub:content-type/what-is, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/9b9f6bbb-1d78-4bdf-9ab8-75cbbc7b6df2, contenthub:content-type/business-case, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/29b2e9e3-f026-4492-b3d0-68a5029c5ffc, contenthub:content-type/best-practice-how-to-guide, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/2065dfaf-1ab0-4cd6-a5e5-405e3b225cef, contenthub:content-type/original-research, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/0b0b349b-86d9-4fc7-87d3-5b3d8e8d4009, contenthub:content-type/trends-predictions, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/a7e11141-b4ab-4d25-b640-c52d00aa880d, contenthub:content-type/expert-opinions, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/df87cd87-dd32-4331-bb94-061b4d0ea986, contenthub:content-type/3rd-party-research, 4187ae8c-cd0e-40c1-9c57-b7f4b964faed:71350937-e20c-4c43-a3fb-1172cad3110c/78e9b831-2662-4008-91f2-6c38717ea219\&#x22; }&#x22;,&#x22;leadForm.gRecaptchaSiteKey&#x22;:&#x22;6LfYzV4dAAAAADm37Aieh5Mw-ssAE0Q8EdtKA7oZ&#x22;,&#x22;taxonomy.locale.mapping&#x22;:&#x22;{\&#x22;default\&#x22;:[\&#x22;default\&#x22;],\&#x22;group1\&#x22;:[\&#x22;default\&#x22;,\&#x22;ar_sa\&#x22;,\&#x22;bg_bg\&#x22;,\&#x22;cs_cz\&#x22;,\&#x22;da_dk\&#x22;,\&#x22;de_at\&#x22;,\&#x22;de_ch\&#x22;],\&#x22;group2\&#x22;:[\&#x22;default\&#x22;,\&#x22;de_de\&#x22;,\&#x22;el_gr\&#x22;,\&#x22;en_au\&#x22;,\&#x22;en_ca\&#x22;,\&#x22;en_gb\&#x22;,\&#x22;en_hk\&#x22;],\&#x22;group3\&#x22;:[\&#x22;default\&#x22;,\&#x22;en_in\&#x22;,\&#x22;en_sa\&#x22;,\&#x22;en_sg\&#x22;,\&#x22;en_us\&#x22;,\&#x22;en_za\&#x22;,\&#x22;es_co\&#x22;],\&#x22;group4\&#x22;:[\&#x22;default\&#x22;,\&#x22;es_es\&#x22;,\&#x22;et_ee\&#x22;,\&#x22;fi_fi\&#x22;,\&#x22;fr_be\&#x22;,\&#x22;fr_ca\&#x22;,\&#x22;fr_ch\&#x22;],\&#x22;group5\&#x22;:[\&#x22;default\&#x22;,\&#x22;fr_fr\&#x22;,\&#x22;he_il\&#x22;,\&#x22;hr_hr\&#x22;,\&#x22;hu_hu\&#x22;,\&#x22;it_it\&#x22;,\&#x22;ja_jp\&#x22;],\&#x22;group6\&#x22;:[\&#x22;default\&#x22;,\&#x22;ko_kr\&#x22;,\&#x22;lt_lt\&#x22;,\&#x22;lv_lv\&#x22;,\&#x22;nl_be\&#x22;,\&#x22;nl_nl\&#x22;,\&#x22;no_no\&#x22;],\&#x22;group7\&#x22;:[\&#x22;default\&#x22;,\&#x22;pl_pl\&#x22;,\&#x22;pt_br\&#x22;,\&#x22;pt_pt\&#x22;,\&#x22;ro_ro\&#x22;,\&#x22;ru_ru\&#x22;,\&#x22;sk_sk\&#x22;],\&#x22;group8\&#x22;:[\&#x22;default\&#x22;,\&#x22;sl_si\&#x22;,\&#x22;sr_rs\&#x22;,\&#x22;sv_se\&#x22;,\&#x22;tr_tr\&#x22;,\&#x22;uk_ua\&#x22;,\&#x22;zh_cn\&#x22;],\&#x22;group9\&#x22;:[\&#x22;default\&#x22;,\&#x22;zh_tw\&#x22;]}&#x22;,&#x22;edge.worker.dgl.assets.cn.endpoint&#x22;:&#x22;https://www.sap.cn/api/edge/assets&#x22;,&#x22;domain&#x22;:&#x22;www.sap.com&#x22;,&#x22;productReviewsEndpoint&#x22;:&#x22;https://www.sap.com/api/edge/pdp/reviews&#x22;,&#x22;edge.worker.currency.path&#x22;:&#x22;/api/edge/pdp/currency&#x22;,&#x22;edge.worker.cta.path&#x22;:&#x22;/api/edge/pdp/cta&#x22;,&#x22;edge.worker.tnc.path&#x22;:&#x22;/api/edge/pdp/tnc&#x22;,&#x22;sitemap.page.templates&#x22;:&#x22;hub-l1,hub-l2,article&#x22;,&#x22;publish.dev&#x22;:&#x22;https://www.sap.com&#x22;,&#x22;contacts&#x22;:&#x22;/content/sapcom/languages/en_us/news/press-room/contacts&#x22;}">
+    <meta name="taxonomy_config" content="{&#x22;modelId&#x22;:&#x22;8365aa80-1820-4607-93d7-beeadc70d6e1&#x22;,&#x22;deprecatedConceptId&#x22;:&#x22;4c73468c-cd42-4026-a6f4-7fa673a11d4a&#x22;}">
+    <meta name="personalization-css" content=".promo-container.collection-container .promo-wrapper:nth-child(1)">
+    <meta name="masthead_url" content="/design-system/ds-masthead">
+    <meta name="footer_url" content="/footer/exceptions/item-1771599646610">
+    <meta name="extension" content="design-system-portal">
+    <meta name="sidenav-version" content="/design-system/side-nav-versions">
+    <meta name="template" content="design-system-portal_landing-page">
+    <meta name="published-time" content="2026-06-13T03:00:25.073Z">
+    <meta name="page-template-title" content="Design System Page">
+    <meta name="tracking-pageaccess" content="gated">
+    <meta name="theme" content="design-system">
+    <meta name="page-template" content="designSystemPage">
+    <meta name="category" content="landing">
+    <meta name="modified-time" content="2026-06-05T10:26:55.145Z">
+    <meta name="content-page-ref" content="eg-Drn3ajeG-yr-YC9KIZDol6HjDPtjhPt05hDP4zpM86SIMux2cMYVieeINPE9hglNRRU4ZYm2amEMypOvROX1EvT5QsEfIeW33RQkBuFA">
+    <style>body:not(.appear) { display: none; }</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preload" href="/edge/scripts/assets/css_variables.css?v=2.12.5" as="style" crossorigin="">
+    <link rel="stylesheet" href="/edge/scripts/assets/styles-2.12.5.css">
+    <script src="/edge/scripts/main-2.12.5.js" type="module"></script>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <div class="hero full-background-image">
+          <div>
+            <div>text-white</div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_137dab76033b801a1e49ad50cc651b6312e28d983.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_137dab76033b801a1e49ad50cc651b6312e28d983.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_137dab76033b801a1e49ad50cc651b6312e28d983.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="Image" src="./media_137dab76033b801a1e49ad50cc651b6312e28d983.png?width=750&#x26;format=png&#x26;optimize=medium" width="1920" height="450">
+              </picture>
+            </div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_100a19228566d7537dcf5dc329737e2e5f49fd7d3.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_100a19228566d7537dcf5dc329737e2e5f49fd7d3.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_100a19228566d7537dcf5dc329737e2e5f49fd7d3.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="Img" src="./media_100a19228566d7537dcf5dc329737e2e5f49fd7d3.png?width=750&#x26;format=png&#x26;optimize=medium" width="1113" height="573">
+              </picture>
+            </div>
+          </div>
+          <div>
+            <div></div>
+          </div>
+          <div>
+            <div>SAP Design System</div>
+          </div>
+          <div>
+            <div>
+              <p>Unify and advance enterprise design</p>
+              <p><strong><a href="/design-system/fiori-design-web" title="See what&#x27;s new">See what's new</a></strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>style</div>
+            <div>column-section-1-1</div>
+          </div>
+          <div>
+            <div>background-color</div>
+            <div>hero-section</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cards">
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_175f04e6458103a575f971d6c41a5647b0869afd8.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_175f04e6458103a575f971d6c41a5647b0869afd8.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_175f04e6458103a575f971d6c41a5647b0869afd8.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="Fiori web" src="./media_175f04e6458103a575f971d6c41a5647b0869afd8.png?width=750&#x26;format=png&#x26;optimize=medium" width="642" height="272">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="sap-fiori-for-web">SAP Fiori for Web</h3>
+              <p>The original SAP Fiori user interface for web apps based on the SAPUI5 framework.</p>
+              <p><a href="/design-system/fiori-design-web/v1-145/ui-elements" title="UI elements">UI elements</a></p>
+              <p><a href="/design-system/fiori-design-web/v1-145/resources/libraries/ui-kit-overview" title="UI kits">UI kits</a></p>
+              <p><a href="/design-system/fiori-design-web" title="Web overview">Web overview</a></p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_1e260655895b9d3d9410c175e04ea1b85dbe03d6e.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_1e260655895b9d3d9410c175e04ea1b85dbe03d6e.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_1e260655895b9d3d9410c175e04ea1b85dbe03d6e.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="SAP Android" src="./media_1e260655895b9d3d9410c175e04ea1b85dbe03d6e.png?width=750&#x26;format=png&#x26;optimize=medium" width="642" height="272">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="sap-fiori-for-android">SAP Fiori for Android</h3>
+              <p>SAP Fiori for Android combines Google's Material Design with SAP's enterprise expertise.</p>
+              <p><a href="/design-system/fiori-design-android/v26-4/components/overview" title="UI elements">UI elements</a></p>
+              <p><a href="https://www.figma.com/files/859487099279312422/resources/community/file/1497649798412067020/sap-fiori-for-android-ui-kit?fuid=1406140807293558482" title="UI kits">UI kits</a></p>
+              <p><a href="/design-system/fiori-design-android" title="Android overview">Android overview</a></p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_119d6a5c0595ef8bd88c3556fc4b226bed34d48c3.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_119d6a5c0595ef8bd88c3556fc4b226bed34d48c3.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_119d6a5c0595ef8bd88c3556fc4b226bed34d48c3.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="SAP Fiori for iOS" src="./media_119d6a5c0595ef8bd88c3556fc4b226bed34d48c3.png?width=750&#x26;format=png&#x26;optimize=medium" width="642" height="272">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="sap-fiori-for-ios">SAP Fiori for iOS</h3>
+              <p>SAP Fiori for iOS blends Apple's iOS design with SAP's enterprise expertise.</p>
+              <p><a href="/design-system/fiori-design-ios/v26-4/components/overview" title="UI elements">UI elements</a></p>
+              <p><a href="https://www.figma.com/files/859487099279312422/resources/community/file/1450853598524410675/sap-fiori-for-ios-ui-kit?fuid=1406140807293558482" title="UI kits">UI kits</a></p>
+              <p><a href="/design-system/fiori-design-ios" title="Android overview">iOS overview</a></p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_1319a61f5ff2b53a1e69532581fb3a4b5df0379a5.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_1319a61f5ff2b53a1e69532581fb3a4b5df0379a5.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_1319a61f5ff2b53a1e69532581fb3a4b5df0379a5.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="SAP for Digital Design System" src="./media_1319a61f5ff2b53a1e69532581fb3a4b5df0379a5.png?width=750&#x26;format=png&#x26;optimize=medium" width="1284" height="544">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="sap-digital-design-system">SAP Digital Design System</h3>
+              <p>The SAP Digital Design System provides a unified framework for creating consistent web-interfaces.</p>
+              <p><a href="/design-system/digital/components">UI elements</a></p>
+              <p><a href="/design-system/digital/resources/resources/figma-ui-kit">UI kits</a></p>
+              <p><a href="/design-system/digital">Digital overview</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>section-one</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 id="whats-new">What’s New</h2>
+        <p>Stay up-to-date with the latest releases and enhancements in the SAP Design System, and informed with insights from design experts.</p>
+        <div class="cards">
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_127b2e2a48cb289677995293e8876e55ab1689d4c.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_127b2e2a48cb289677995293e8876e55ab1689d4c.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_127b2e2a48cb289677995293e8876e55ab1689d4c.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="Decorative image" src="./media_127b2e2a48cb289677995293e8876e55ab1689d4c.png?width=750&#x26;format=png&#x26;optimize=medium" width="1108" height="624">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="designing-the-autonomous-enterprise">Designing the Autonomous Enterprise</h3>
+              <p>As announced at Sapphire, Joule Work is an entirely new way to engage with and execute end-to-end business processes with AI collaboration. Read more to learn how SAP’s AI experience is redefining work.</p>
+              <p><a href="https://www.sap.com/design/stories-resources/designing-the-autonomous-enterprise">See the news</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="cards">
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_1e0473d15585f18e5f9826ccefa8800e8ff5f726d.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_1e0473d15585f18e5f9826ccefa8800e8ff5f726d.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_1e0473d15585f18e5f9826ccefa8800e8ff5f726d.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="Compositional Design System" src="./media_1e0473d15585f18e5f9826ccefa8800e8ff5f726d.png?width=750&#x26;format=png&#x26;optimize=medium" width="707" height="326">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="the-compositional-design-system">The Compositional Design System</h3>
+              <p>How SAP is enabling intent-driven, AI-composed experiences at enterprise scale.</p>
+              <p><a href="https://www.sap.com/design/stories-resources/evolving-design-systems-for-ai-driven-ux">Read the story</a></p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_1ba409c6b01c87231dc1f3b23674a6d9e86f0f652.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_1ba409c6b01c87231dc1f3b23674a6d9e86f0f652.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_1ba409c6b01c87231dc1f3b23674a6d9e86f0f652.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="Evolution of Product Illustrations" src="./media_1ba409c6b01c87231dc1f3b23674a6d9e86f0f652.png?width=750&#x26;format=png&#x26;optimize=medium" width="2880" height="1620">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="sap-design-system-is-powering-ai-led-product-design">SAP Design System is powering AI-led product design</h3>
+              <p>Product illustrations as more than decoration; they’re a tool to communicate clearly, quickly, and meaningfully with our users.</p>
+              <p><a href="https://www.sap.com/design/stories-resources/sap-design-system-is-powering-the-next-generation-of-ai-led-prod">See the recap</a></p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_1e8ec83e89ac66da158b5fdbe9380491e0021905e.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_1e8ec83e89ac66da158b5fdbe9380491e0021905e.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_1e8ec83e89ac66da158b5fdbe9380491e0021905e.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="5 Tips for Getting Started with the SAP Fiori for Web UI Kit" src="./media_1e8ec83e89ac66da158b5fdbe9380491e0021905e.png?width=750&#x26;format=png&#x26;optimize=medium" width="963" height="489">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="tips-for-getting-started-with-the-sap-fiori-for-web-ui-kit">5 tips for getting started with the SAP Fiori for Web UI Kit</h3>
+              <p>The SAP Fiori for Web UI Kit is your go-to resource for creating consistent, efficient, and accessible user interfaces.</p>
+              <p><a href="https://community.sap.com/t5/technology-blog-posts-by-sap/5-tips-for-getting-started-with-the-sap-fiori-for-web-ui-kit/ba-p/14232902">Read the story</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>section-two</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 id="building-blocks">Building Blocks</h2>
+        <p>Visual elements, UI components, and technologies come together to build out a cohesive experience for all SAP products and apps. Explore the core building blocks that make up the SAP Design System.</p>
+        <div class="page-tabs">
+          <div>
+            <div>Visual Foundation,UI Elements,UI Technologies</div>
+          </div>
+          <div>
+            <div>true</div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>udexColorPink1</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 id="universal-by-design">Universal by Design</h2>
+        <p>A design system built to adapt to users, devices, and preferences in order to bring out the best in any enterprise.</p>
+        <div class="cards">
+          <div>
+            <div>
+              <picture>
+                <source type="image/webp" srcset="./media_183c4dfb7bb7af92d949de6d9ba6999e01d48fbc6.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_183c4dfb7bb7af92d949de6d9ba6999e01d48fbc6.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                <source type="image/png" srcset="./media_183c4dfb7bb7af92d949de6d9ba6999e01d48fbc6.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="design" src="./media_183c4dfb7bb7af92d949de6d9ba6999e01d48fbc6.png?width=750&#x26;format=png&#x26;optimize=medium" width="1872" height="1052">
+              </picture>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <p>Tailored. User experience.</p>
+              <h3 id="optimized-for-many-form-factors">Optimized for many form factors</h3>
+              <p>The SAP Design System is designed to provide a truly cross-platform experience. Across devices, working conditions, and locations, users get their best work done anywhere, any time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>section-six</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cards">
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_1d2afdf17b52d066e6da0c840b5f4ffb96fca940d.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_1d2afdf17b52d066e6da0c840b5f4ffb96fca940d.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_1d2afdf17b52d066e6da0c840b5f4ffb96fca940d.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="inclusivestart" src="./media_1d2afdf17b52d066e6da0c840b5f4ffb96fca940d.png?width=750&#x26;format=png&#x26;optimize=medium" width="936" height="526">
+                </picture>
+              </p>
+              <p>no-color</p>
+            </div>
+            <div>align-image-right</div>
+            <div>
+              <p>Inclusive. User experience.</p>
+              <h3 id="accessible-and-inclusive-from-the-start">Accessible and inclusive from the start</h3>
+              <p>Making enterprise software as accessible and inclusive as possible is not a nice-to-have but rather a must-have. The SAP Design System is built on a foundation of inclusive and accessible design in order to best serve as many users as possible.</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>udexColorGrey11 text-white</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cards">
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_19153252bcd5c698c6c0674a965801016d6d05d3a.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_19153252bcd5c698c6c0674a965801016d6d05d3a.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_19153252bcd5c698c6c0674a965801016d6d05d3a.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="inclusivestart" src="./media_19153252bcd5c698c6c0674a965801016d6d05d3a.png?width=750&#x26;format=png&#x26;optimize=medium" width="936" height="526">
+                </picture>
+              </p>
+              <p>no-color</p>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <p>Enterprise. User experience.</p>
+              <h3 id="enterprise-grade">Enterprise-grade</h3>
+              <p>No matter how big your business scales, the SAP Design System is built to unify and advance design across all your key touchpoints. Built to work with SAP’s extensive portfolio of technology and apps, our design system is truly enterprise-grade.</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>section-eight</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cards">
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_175bbb922a54e4e21c473e5829da89532e4303937.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_175bbb922a54e4e21c473e5829da89532e4303937.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_175bbb922a54e4e21c473e5829da89532e4303937.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="inclusivestart" src="./media_175bbb922a54e4e21c473e5829da89532e4303937.png?width=750&#x26;format=png&#x26;optimize=medium" width="936" height="526">
+                </picture>
+              </p>
+              <p>no-color</p>
+            </div>
+            <div>align-image-right</div>
+            <div>
+              <p>Intelligent. User experience.</p>
+              <h3 id="empowered-by-ai">Empowered by AI</h3>
+              <p>SAP’s goal is to provide designers with wholistic support for AI, including principles for designing generative AI in a thoughtful, trust-worthy and ethical way. We’re working on building out AI resources for every part of your design and development journey, including guidance on designing for AI, out-of-the-box components for building AI into apps, and implementation for Joule (SAP’s generative AI-based co-pilot).</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>udexColorIndigo1</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 id="built-on-principles">Built on principles</h2>
+        <p>Our design system is built on core principles that drive excellence in every detail</p>
+        <div class="cards icons">
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_1b2ce62a85d714c7e29e685f805b71a7ed24fecd7.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_1b2ce62a85d714c7e29e685f805b71a7ed24fecd7.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_1b2ce62a85d714c7e29e685f805b71a7ed24fecd7.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="record" src="./media_1b2ce62a85d714c7e29e685f805b71a7ed24fecd7.png?width=750&#x26;format=png&#x26;optimize=medium" width="40" height="40">
+                </picture>
+              </p>
+              <p>Background blue 2</p>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="simple">Simple</h3>
+              <p>Includes only what is necessary</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_19f7deac20f57ff52134fe2af764a4dd89dca2b46.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_19f7deac20f57ff52134fe2af764a4dd89dca2b46.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_19f7deac20f57ff52134fe2af764a4dd89dca2b46.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="heart" src="./media_19f7deac20f57ff52134fe2af764a4dd89dca2b46.png?width=750&#x26;format=png&#x26;optimize=medium" width="40" height="40">
+                </picture>
+              </p>
+              <p>Background blue 2</p>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="delightful">Delightful</h3>
+              <p>Makes an emotional connection</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_1470a32e57bc30d58a04b73a615b6bd6f28d5b319.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_1470a32e57bc30d58a04b73a615b6bd6f28d5b319.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_1470a32e57bc30d58a04b73a615b6bd6f28d5b319.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="synchronize" src="./media_1470a32e57bc30d58a04b73a615b6bd6f28d5b319.png?width=750&#x26;format=png&#x26;optimize=medium" width="40" height="40">
+                </picture>
+              </p>
+              <p>Background blue 2</p>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="coherant">Coherant</h3>
+              <p>Provides one fluid, intuitive experience</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_1ae9aac4273f58eb6caf100a68aa807ec7864a657.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_1ae9aac4273f58eb6caf100a68aa807ec7864a657.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_1ae9aac4273f58eb6caf100a68aa807ec7864a657.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="Person" src="./media_1ae9aac4273f58eb6caf100a68aa807ec7864a657.png?width=750&#x26;format=png&#x26;optimize=medium" width="40" height="40">
+                </picture>
+              </p>
+              <p>Background blue 2</p>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="role-based">Role-based</h3>
+              <p>Designed for you, your needs, and how you work</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p>
+                <picture>
+                  <source type="image/webp" srcset="./media_118e6aac6fb19017dc3f1e474822e12b1f9727796.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+                  <source type="image/webp" srcset="./media_118e6aac6fb19017dc3f1e474822e12b1f9727796.png?width=750&#x26;format=webply&#x26;optimize=medium">
+                  <source type="image/png" srcset="./media_118e6aac6fb19017dc3f1e474822e12b1f9727796.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+                  <img loading="lazy" alt="responsive" src="./media_118e6aac6fb19017dc3f1e474822e12b1f9727796.png?width=750&#x26;format=png&#x26;optimize=medium" width="40" height="40">
+                </picture>
+              </p>
+              <p>Background blue 2</p>
+            </div>
+            <div>align-image-left</div>
+            <div>
+              <h3 id="adaptive">Adaptive</h3>
+              <p>Adapts to multiple use cases and devices</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div>
+            <div>background-color</div>
+            <div>built-on-principles-cards</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

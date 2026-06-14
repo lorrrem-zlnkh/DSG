@@ -407,6 +407,138 @@
         "github": null,
         "figma": "https://www.figma.com/@t2digital"
       }
+    },
+    {
+      "id": "bbc-gel",
+      "origin": "foreign",
+      "title": "BBC GEL",
+      "description": "Global Experience Language — дизайн-система BBC, объединяющая принципы, компоненты и паттерны для согласованного опыта пользователей на всех платформах медиакорпорации.",
+      "logo": "assets/logos/foreign/bbc-gel.png",
+      "links": {
+        "site": "https://www.bbc.co.uk/gel",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "buzzfeed-solid",
+      "origin": "foreign",
+      "title": "Buzzfeed Solid",
+      "description": "Дизайн-система медиаплатформы BuzzFeed — компоненты и стили для создания редакционных веб-страниц и продуктовых интерфейсов.",
+      "logo": "assets/logos/foreign/buzzfeed-solid.png",
+      "links": {
+        "site": "https://solid.buzzfeed.com",
+        "github": "https://github.com/buzzfeed/solid",
+        "figma": null
+      }
+    },
+    {
+      "id": "futurelearn",
+      "origin": "foreign",
+      "title": "FutureLearn",
+      "description": "Библиотека паттернов образовательной онлайн-платформы FutureLearn — компоненты, типографика и цветовая система для учебных интерфейсов.",
+      "logo": "assets/logos/foreign/futurelearn.png",
+      "links": {
+        "site": "https://www.futurelearn.com/pattern-library",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "ibm-design-language",
+      "origin": "foreign",
+      "title": "IBM Design Language",
+      "description": "Единый дизайн-язык IBM — принципы, типографика, иконография и визуальный стиль для всей экосистемы продуктов компании. Отличается от Carbon: это философия и эстетика, а не компонентная библиотека.",
+      "logo": "assets/logos/foreign/ibm-design-language.png",
+      "links": {
+        "site": "https://www.ibm.com/design/language",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "lonely-planet-rizzo",
+      "origin": "foreign",
+      "title": "Lonely Planet Rizzo",
+      "description": "Дизайн-система туристического издания Lonely Planet — компоненты и стили для веб-продуктов крупнейшего путеводителя в мире.",
+      "logo": "assets/logos/foreign/lonely-planet-rizzo.png",
+      "links": {
+        "site": "https://rizzo.lonelyplanet.com",
+        "github": "https://github.com/lonelyplanet/rizzo",
+        "figma": null
+      }
+    },
+    {
+      "id": "mailchimp",
+      "origin": "foreign",
+      "title": "MailChimp",
+      "description": "Дизайн-система платформы email-маркетинга MailChimp — компоненты, принципы и голос бренда для создания согласованных пользовательских интерфейсов.",
+      "logo": "assets/logos/foreign/mailchimp.png",
+      "links": {
+        "site": "https://mailchimp.com/design",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "sap-fiori",
+      "origin": "foreign",
+      "title": "SAP Fiori",
+      "description": "Дизайн-система корпоративного ПО SAP — гайдлайны, компоненты и паттерны для создания бизнес-приложений в экосистеме SAP.",
+      "logo": "assets/logos/foreign/sap-fiori.png",
+      "links": {
+        "site": "https://experience.sap.com/fiori-design",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "ubuntu",
+      "origin": "foreign",
+      "title": "Ubuntu",
+      "description": "Дизайн-система операционной системы Ubuntu от Canonical — руководства по брендингу, типографике и UI-компонентам для экосистемы Linux-продуктов.",
+      "logo": "assets/logos/foreign/ubuntu.png",
+      "links": {
+        "site": "https://design.ubuntu.com",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "wework-plasma",
+      "origin": "foreign",
+      "title": "WeWork Plasma",
+      "description": "Дизайн-система компании WeWork — компоненты и стили для цифровых продуктов в сфере гибких рабочих пространств.",
+      "logo": "assets/logos/foreign/wework-plasma.png",
+      "links": {
+        "site": "https://plasma.guide",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
+      "id": "yelp-styleguide",
+      "origin": "foreign",
+      "title": "Yelp",
+      "description": "Стайл-гайд платформы отзывов Yelp — типографика, цветовая система и UI-компоненты для веб-интерфейсов сервиса.",
+      "logo": "assets/logos/foreign/yelp.png",
+      "links": {
+        "site": "https://www.yelp.com/styleguide",
+        "github": "https://github.com/Yelp/yelp-styleguide",
+        "figma": null
+      }
+    },
+    {
+      "id": "nordnet",
+      "origin": "foreign",
+      "title": "Nordnet",
+      "description": "Дизайн-система скандинавской инвестиционной платформы Nordnet — визуальный стиль и компоненты для финансовых продуктов.",
+      "logo": "assets/logos/foreign/nordnet.png",
+      "links": {
+        "site": "https://nordnet.design",
+        "github": null,
+        "figma": null
+      }
     }
   ]
 }
