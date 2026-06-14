@@ -857,15 +857,19 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
 
   // Load existing digests to skip already-generated months
   const existingDigestsMap = new Map();
-  try {
-    const existing = JSON.parse(await fs.readFile(digestsPath, "utf8"));
-    for (const digest of existing.digests || []) {
-      if (digest.count > 0 && digest.items?.length > 0) {
-        existingDigestsMap.set(digest.key, digest);
+  // Try draft path first, fall back to public path (e.g. fresh CI checkout)
+  for (const cachePath of [digestsPath, DEFAULT_DIGESTS_PATH]) {
+    if (existingDigestsMap.size > 0) break;
+    try {
+      const existing = JSON.parse(await fs.readFile(cachePath, "utf8"));
+      for (const digest of existing.digests || []) {
+        if (digest.count > 0 && digest.items?.length > 0) {
+          existingDigestsMap.set(digest.key, digest);
+        }
       }
+    } catch {
+      // file not found — try next
     }
-  } catch {
-    // No existing file — generate everything
   }
 
   const posts = (source.posts || []).filter((post) => !isBlockedBlogPost(post));
