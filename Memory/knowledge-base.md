@@ -210,25 +210,28 @@ PHP — единственный, кто публикует: пишет живо
   `callback_query` + `message`, только от `MY_CHAT_ID`
 
 **draft.json (состояние цикла):**
-`status` (pending→reminded/scheduled→published/cancelled), `createdAt`, `remindedAt`,
-`scheduledAt`, `digest` (объект месяца), `edits` (itemId→текст), `excluded` (itemId[]),
-`cardMsgIds` (itemId→message_id для editMessageText), `prompts` (msgId→{kind,itemId} для force_reply)
+`status` (pending→reminded/scheduled→publishing→published/cancelled/paused), `createdAt`,
+`remindedAt`, `scheduledAt`, `publishToken`, `digest`, `edits` (itemId→текст),
+`excluded` (itemId[]), `cardMsgIds` (itemId→message_id), `prompts` (msgId→{kind} только для отложенной)
 
-**Карточка материала** — inline `✏️ Изменить описание` / `🚫 Исключить`:
-- `edit_<id>` → отправляет текущее описание `<code>` (тап-копирование) + force_reply;
-  ответ владельца пишется в `edits[id]`, карточка перерисовывается.
-  ⚠️ Bot API НЕ умеет предзаполнить редактируемое поле ввода в обычном чате —
-  реализовано как «копируемый текст + поле ответа сфокусировано»
-- `exclude_<id>` / `include_<id>` → тоггл в `excluded`, кнопка меняется на `↩️ Вернуть`
+**Модерация — оптимистичная (мгновенный toast, обработка при публикации):**
+⚠️ У бота нет фронтенда: любое визуальное изменение = запрос к Telegram. «Мгновенность» =
+toast (`answerCallbackQuery`) до перерисовки. Изменения копятся в draft и применяются
+только при публикации (`buildFinalDigest`).
+- `edit_<id>` → только toast «Ответь на эту карточку новым описанием» (без сообщения/запроса).
+  Новое описание — **ответ прямо на карточку**: реверс-поиск по `cardMsgIds` →
+  `edits[id]`, карточка перерисовывается, сообщение-ответ удаляется.
+- `exclude_<id>` / `include_<id>` → toast + `flipCardButton` (editMessageReplyMarkup,
+  без перерисовки текста), кнопка `↩️ Вернуть`.
 
-**Нижняя панель (ReplyKeyboardMarkup, is_persistent, держится весь цикл):**
-- `📢 Опубликовать` → инлайн-подтверждение `pub_confirm`/`pub_cancel` → `publishDraft('manual')`
-- `🕒 Отложить` → пресеты `sched_today`/`sched_tomorrow`/`sched_3d`/`sched_manual`
-  (ручной ввод `ДД.ММ ЧЧ:ММ` МСК через force_reply) → `scheduledAt`, `status=scheduled`
-- `🚫 Не публиковать` → `status=paused` (tick не трогает) + инлайн `paused_publish`/`paused_schedule`
-  для ручного запуска в любой момент
-- Панель переподнимается через `notifyOwner()` после правок (force_reply иногда её скрывает)
-- Команда `/reset` (или `/clear`) — очистка черновика и его сообщений из чата (как action=cleanup)
+**Нижняя панель (ReplyKeyboardMarkup, is_persistent):**
+- `📢 Опубликовать` → `startPublish()` БЕЗ подтверждения: статус `publishing` + `publishToken`,
+  сообщение с ETA (`publishEta` = окно отмены, 6–20с) и кнопкой `🚫 Не публиковать`,
+  затем `sleep(eta)` → если статус всё ещё `publishing` → `publishDraft('manual')`
+- `🕒 Отложить` → пресеты `sched_*` (ручной ввод `ДД.ММ ЧЧ:ММ` МСК через force_reply) → `scheduled`
+- `🚫 Не публиковать` → `status=paused` (tick не трогает); во время `publishing` прерывает
+  публикацию (inline `pub_abort` или панель → статус ≠ publishing → startPublish не пишет)
+- `/reset` (или `/clear`) — очистка черновика и его сообщений (как action=cleanup)
 
 **Бейдж карточки:** `№N · Рубрика`, где N — порядковый номер материала (`itemNumber`).
 ⚠️ Номер только в Telegram-карточке — в публикуемый digests.json НЕ попадает
@@ -263,8 +266,7 @@ draft.json хранит `headerMsgId`/`footerMsgId`/`cardMsgIds` для точе
 - `scheduledAt` достигнут → `publishDraft('scheduled')` на ближайшем тике
 - `remind_cancel` → `status=cancelled`, цикл закрыт
 
-**publishDraft($draft, $mode):**
-0. При `mode=manual` — оповещение «⏳ Применяю изменения и публикую…» (старт записи)
+**publishDraft($draft, $mode):** (ETA-сообщение шлёт `startPublish` до вызова)
 1. `buildFinalDigest` (применить edits, выкинуть excluded, пересчитать count)
 2. Вписать месяц в живой `digests.json` на хосте (убрать дубль по key, в начало, сорт по key↓)
 3. Анонс в `CHANNEL_ID` (HTML, `rubricsSummary` + ссылка на /blog/)
