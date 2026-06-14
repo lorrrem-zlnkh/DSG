@@ -11,18 +11,22 @@ const TZ           = 'Europe/Moscow';
 // =====================================================================
 
 function tg(string $method, array $params): array {
+    // Переиспользуем один curl-handle на весь запрос (keep-alive): второй и
+    // последующие вызовы в рамках одного клика не делают заново TLS-хендшейк.
+    static $ch = null;
+    if ($ch === null) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    }
+
     $json = [];
     for ($attempt = 0; $attempt < 5; $attempt++) {
-        $ch = curl_init('https://api.telegram.org/bot' . BOT_TOKEN . '/' . $method);
-        curl_setopt_array($ch, [
-            CURLOPT_POST           => true,
-            CURLOPT_POSTFIELDS     => json_encode($params),
-            CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT        => 15,
-        ]);
+        curl_setopt($ch, CURLOPT_URL, 'https://api.telegram.org/bot' . BOT_TOKEN . '/' . $method);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
         $result = curl_exec($ch);
-        curl_close($ch);
         $json = json_decode($result, true) ?: [];
 
         if (($json['ok'] ?? false) === true) return $json;
@@ -306,6 +310,13 @@ function pluralTopics(int $n): string {
 // =====================================================================
 
 function publishDraft(array $draft, string $mode): void {
+    // Оповещение: начали запись изменений (ручная публикация).
+    $editsN = count($draft['edits'] ?? []);
+    $exclN  = count($draft['excluded'] ?? []);
+    if ($mode === 'manual') {
+        tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => '⏳ Применяю изменения и публикую…']);
+    }
+
     $final = buildFinalDigest($draft);
     $key   = $final['key'] ?? null;
 
@@ -357,12 +368,14 @@ function publishDraft(array $draft, string $mode): void {
     $draft['publishMode'] = $mode;
     saveDraft($draft);
 
-    // 4) Прибираем чат владельца.
+    // 4) Оповещение о завершении + прибираем чат владельца.
     $modeLabel = $mode === 'auto'      ? ' автоматически'
                : ($mode === 'scheduled' ? ' по расписанию' : '');
+    $changes = ($editsN || $exclN) ? " (правок: {$editsN}, исключено: {$exclN})" : '';
     tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
-        'text'         => "✅ Дайджест опубликован{$modeLabel} на сайт, анонс — в " . CHANNEL_ID . ".",
+        'text'         => "✅ Опубликовано{$modeLabel}: {$count} материалов{$changes}. "
+                        . "Сайт обновлён, анонс — в " . CHANNEL_ID . ".",
         'reply_markup' => ['remove_keyboard' => true],
     ]);
 }
@@ -697,6 +710,7 @@ function handleCallback(array $cb): void {
     }
 
     if ($data === 'pub_confirm' || $data === 'remind_publish') {
+        tg('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
         if ($msgId) {
             tg('editMessageReplyMarkup', [
                 'chat_id'      => MY_CHAT_ID,
@@ -705,7 +719,6 @@ function handleCallback(array $cb): void {
             ]);
         }
         publishDraft($draft, 'manual');
-        tg('answerCallbackQuery', ['callback_query_id' => $cb['id'], 'text' => '✅ Опубликовано', 'show_alert' => true]);
         return;
     }
 
