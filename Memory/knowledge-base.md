@@ -629,8 +629,10 @@ body::before — фиксированный градиент:
 **Отечественные (26):**
 Альфа-Банк, БАРС Груп, Вконтакте, Газпром нефть, Госуслуги, Дизайн государственных систем, Контур, МегаФон, Райффайзенбанк, Рамблер, Росатом, Ростелеком, Тинькофф, Центр Финансовых Технологий, Яндекс, Atomaro, B2B Center, BSS, Cloud.ru, Gravity UI, HSE, ISPsystem, IVI, Mail.ru Group, Semrush, t2
 
-**Зарубежные (20):**
-Airbnb DLS, Apple UI Kits, Atlassian, BBC GEL, Buzzfeed Solid, Carbon (IBM), Fluent 2 (Microsoft), FutureLearn, IBM Design Language, Lightning (Salesforce), Lonely Planet Rizzo, MailChimp, Material Design (Google), Nordnet, Polaris (Shopify), Primer (GitHub), SAP Fiori, Ubuntu, WeWork Plasma, Yelp
+**Зарубежные (17):**
+Airbnb DLS, Apple UI Kits, Atlassian, Buzzfeed Solid, Carbon (IBM), Fluent 2 (Microsoft), FutureLearn, IBM Design Language, Lightning (Salesforce), MailChimp, Material Design (Google), Nordnet, Polaris (Shopify), Primer (GitHub), SAP Fiori, Ubuntu, Yelp
+
+Удалены намеренно: BBC GEL, Lonely Planet Rizzo, WeWork Plasma
 
 **Логотипы:**
 - Отечественные: `public/assets/logos/companies-{id}.png`
@@ -667,5 +669,4 @@ Airbnb DLS, Apple UI Kits, Atlassian, BBC GEL, Buzzfeed Solid, Carbon (IBM), Flu
 | **Тест бота после деплоя** | ⏳ ожидаем |
 | **Единоразовая пересборка ВСЕХ дайджестов** | 📋 после теста бота |
 | После пересборки — только один месяц за раз | 📋 уже реализовано |
-| **Каталог: 11 новых зарубежных систем + Atomaro** | ✅ добавлено в catalog-update |
-| **Staging деплой catalog-update** | ⏳ нужно разрешить ветку в Pages environments |
+| **Каталог: новые системы добавлены, 3 удалены** | ✅ смерджено в main (43 системы) |
