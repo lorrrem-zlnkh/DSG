@@ -1,0 +1,18 @@
+name: Bot Cleanup
+
+# Ручная очистка: удаляет сообщения текущего черновика из чата с ботом
+# и сбрасывает draft.json. Запускать вручную из GitHub Actions.
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger bot cleanup
+        env:
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        run: |
+          RESPONSE=$(curl -fsS -H "X-Bot-Secret: ${WEBHOOK_SECRET}" \
+            "https://dsg.lorrrem.ru/bot/webhook.php?action=cleanup") || RESPONSE="cleanup request failed"
+          echo "Cleanup response: $RESPONSE"

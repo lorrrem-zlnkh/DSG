@@ -322,7 +322,7 @@ function handleInitDraft(): void {
     $year   = $digest['year'] ?? '';
     $count  = count($digest['items']);
 
-    tg('sendMessage', [
+    $hdr = tg('sendMessage', [
         'chat_id'    => MY_CHAT_ID,
         'text'       => "🗞 <b>Черновик дайджеста DSG №" . h((string) $number) . " — {$label} {$year}</b>\n"
                       . "{$count} материалов.\n\n"
@@ -330,6 +330,7 @@ function handleInitDraft(): void {
                       . "Когда закончишь — кнопки внизу.",
         'parse_mode' => 'HTML',
     ]);
+    $draft['headerMsgId'] = $hdr['result']['message_id'] ?? null;
 
     $cardMsgIds = [];
     foreach ($digest['items'] as $item) {
@@ -347,15 +348,61 @@ function handleInitDraft(): void {
         usleep(40000); // бережём лимит Telegram (~1 сообщение/сек в чат)
     }
     $draft['cardMsgIds'] = $cardMsgIds;
-    saveDraft($draft);
 
-    tg('sendMessage', [
+    $ftr = tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
         'text'         => "👇 Когда закончишь модерацию — выбери действие.",
         'reply_markup' => actionKeyboard(),
     ]);
+    $draft['footerMsgId'] = $ftr['result']['message_id'] ?? null;
+    saveDraft($draft);
 
     echo json_encode(['ok' => true, 'count' => $count, 'cards' => count($cardMsgIds)]);
+}
+
+// =====================================================================
+// Очистка: удаление сообщений черновика из чата владельца
+// =====================================================================
+
+// Удаляет сообщения текущего черновика (шапка, карточки, футер, промпты)
+// + небольшой буфер по диапазону id — на случай старых черновиков без
+// сохранённых id шапки/футера. Личный чат: бот удаляет только свои сообщения.
+function cleanupDraftMessages(array $draft): int {
+    $ids = [];
+    foreach (array_values($draft['cardMsgIds'] ?? []) as $v) $ids[] = (int) $v;
+    foreach (['headerMsgId', 'footerMsgId'] as $k) {
+        if (!empty($draft[$k])) $ids[] = (int) $draft[$k];
+    }
+    foreach (array_keys($draft['prompts'] ?? []) as $pid) $ids[] = (int) $pid;
+    if (!$ids) return 0;
+
+    $from = min($ids) - 2;
+    $to   = max($ids) + 15; // захватываем футер и сообщения после правок
+    $deleted = 0;
+    for ($id = $from; $id <= $to; $id++) {
+        $res = tg('deleteMessage', ['chat_id' => MY_CHAT_ID, 'message_id' => $id]);
+        if (($res['ok'] ?? false) === true) $deleted++;
+    }
+    return $deleted;
+}
+
+function resetDraft(): int {
+    $draft = loadDraft();
+    $deleted = $draft ? cleanupDraftMessages($draft) : 0;
+    if (is_file(DRAFT_PATH)) @unlink(DRAFT_PATH);
+    tg('sendMessage', [
+        'chat_id'      => MY_CHAT_ID,
+        'text'         => '🧹 Черновик и его сообщения очищены.',
+        'reply_markup' => ['remove_keyboard' => true],
+    ]);
+    return $deleted;
+}
+
+function handleCleanup(): void {
+    header('Content-Type: application/json');
+    set_time_limit(0);
+    $deleted = resetDraft();
+    echo json_encode(['ok' => true, 'deleted' => $deleted]);
 }
 
 // =====================================================================
@@ -652,6 +699,12 @@ function handleMessage(array $msg): void {
     $text  = trim((string) ($msg['text'] ?? ''));
     $draft = loadDraft();
 
+    // 0) Команда сброса: удалить сообщения черновика и очистить состояние.
+    if ($text === '/reset' || $text === '/clear') {
+        resetDraft();
+        return;
+    }
+
     // 1) Ответы на force_reply (правка описания / ввод времени).
     $replyTo = $msg['reply_to_message']['message_id'] ?? null;
     if ($draft && $replyTo !== null && isset($draft['prompts'][(string) $replyTo])) {
@@ -748,6 +801,12 @@ if (PHP_SAPI !== 'cli') {
     if ($action === 'tick') {
         if (!ciSecretOk()) { http_response_code(403); exit; }
         handleTick();
+        exit;
+    }
+
+    if ($action === 'cleanup') {
+        if (!ciSecretOk()) { http_response_code(403); exit; }
+        handleCleanup();
         exit;
     }
 
