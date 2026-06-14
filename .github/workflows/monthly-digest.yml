@@ -24,43 +24,34 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Seed base from live site
+        # Берём за основу опубликованное состояние с хоста, чтобы генерация
+        # не теряла и не перегенерировала уже одобренные месяцы (хост —
+        # источник правды; публикует бот после подтверждения).
+        run: |
+          curl -fsS https://dsg.lorrrem.ru/blog/digests.json -o public/blog/digests.json \
+            && echo "Seeded base from live site" \
+            || echo "No live digests yet — using repo copy"
+
       - name: Run content automation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_DIGEST_MODEL: gpt-4o-mini
         run: node scripts/run-content-automation.mjs
 
-      - name: Commit updated digest
+      - name: Commit published-state snapshot
+        # Коммитим зеркало опубликованного состояния (база с хоста) как бэкап.
+        # Сгенерированный новый месяц в git НЕ попадает — он уходит боту на
+        # модерацию и публикуется на хост только после подтверждения.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/blog/posts.json public/blog/digests.json public/automation/status.json || true
-          git diff --cached --quiet || git commit -m "chore: monthly digest rebuild $(date -u +%Y-%m)"
+          git diff --cached --quiet || git commit -m "chore: monthly digest snapshot $(date -u +%Y-%m)"
           git pull --rebase origin ${GITHUB_REF_NAME}
           git push
 
-      - name: Send Telegram preview to owner
+      - name: Hand off draft to bot for approval
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_MY_ID: ${{ secrets.TELEGRAM_MY_ID }}
-        run: |
-          YEAR=$(jq '.digests[0].year' public/blog/digests.json)
-          MONTH=$(jq '.digests[0].month' public/blog/digests.json)
-          COUNT=$(jq '.digests[0].count' public/blog/digests.json)
-          LABEL=$(jq -r '.digests[0].monthLabel' public/blog/digests.json)
-
-          TEXT="🗞 Новый дайджест DSG — ${LABEL} ${YEAR}\n\n${COUNT} материалов готовы к публикации в @lorrrem.\n\nОпубликовать анонс?"
-
-          RESPONSE=$(curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"chat_id\": \"${TELEGRAM_MY_ID}\",
-              \"text\": \"${TEXT}\",
-              \"reply_markup\": {
-                \"inline_keyboard\": [[
-                  {\"text\": \"✅ Опубликовать\", \"callback_data\": \"publish_${YEAR}_${MONTH}_${COUNT}\"},
-                  {\"text\": \"❌ Отмена\",       \"callback_data\": \"cancel\"}
-                ]]
-              }
-            }")
-          echo "Telegram response: $RESPONSE"
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        run: node scripts/send-telegram-digest.mjs

@@ -1,0 +1,11 @@
+# Закрываем прямой HTTP-доступ к JSON-файлам бота (черновик digest draft.json
+# не должен быть публично читаем). PHP-скрипты работают как обычно.
+<FilesMatch "\.json$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

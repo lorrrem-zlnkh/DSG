@@ -1,0 +1,20 @@
+name: Digest Tick
+
+on:
+  schedule:
+    - cron: '30 * * * *'   # каждый час в :30 (UTC); 15:30 UTC = 18:30 МСК
+  workflow_dispatch:
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping bot tick
+        # Бот сам решает: напомнить, авто-опубликовать или дождаться
+        # отложенного времени (логика — в public/bot/webhook.php).
+        env:
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        run: |
+          RESPONSE=$(curl -fsS -H "X-Bot-Secret: ${WEBHOOK_SECRET}" \
+            "https://dsg.lorrrem.ru/bot/webhook.php?action=tick") || RESPONSE="tick request failed"
+          echo "Tick response: $RESPONSE"

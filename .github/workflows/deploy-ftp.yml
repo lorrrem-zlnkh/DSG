@@ -48,5 +48,5 @@ jobs:
           RESPONSE=$(curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook" \
             -d "url=https://dsg.lorrrem.ru/bot/webhook.php" \
             -d "secret_token=${WEBHOOK_SECRET}" \
-            -d "allowed_updates=[\"callback_query\"]")
+            -d "allowed_updates=[\"callback_query\",\"message\"]")
           echo "Webhook response: $RESPONSE"
