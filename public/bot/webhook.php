@@ -418,16 +418,21 @@ function handleInitDraft(): void {
         usleep(1000000); // 1 сообщение/сек — лимит Telegram на чат, чтобы не копить флуд
     }
 
-    // Повторный проход по не дошедшим карточкам (разовые сбои/флуд).
+    // Повторные проходы по не дошедшим карточкам (разовые сетевые сбои/флуд) —
+    // до 3 раундов, пока все не доставятся.
     $fails = [];
-    foreach ($digest['items'] as $item) {
-        $id = $item['id'] ?? '';
-        if (isset($cardMsgIds[$id])) continue;
-        sleep(2);
-        $res = sendCard($item, $draft);
-        $mid = $res['result']['message_id'] ?? null;
-        if ($mid) $cardMsgIds[$id] = $mid;
-        else $fails[] = $id . ': ' . ($res['description'] ?? 'no message_id');
+    for ($round = 0; $round < 3; $round++) {
+        $fails = [];
+        foreach ($digest['items'] as $item) {
+            $id = $item['id'] ?? '';
+            if (isset($cardMsgIds[$id])) continue;
+            sleep(2);
+            $res = sendCard($item, $draft);
+            $mid = $res['result']['message_id'] ?? null;
+            if ($mid) $cardMsgIds[$id] = $mid;
+            else $fails[] = $id . ': ' . ($res['description'] ?? 'no message_id');
+        }
+        if (!$fails) break;
     }
     $draft['cardMsgIds'] = $cardMsgIds;
 
