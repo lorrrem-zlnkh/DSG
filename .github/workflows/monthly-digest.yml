@@ -49,14 +49,13 @@ jobs:
           COUNT=$(jq '.digests[0].count' public/blog/digests.json)
           LABEL=$(jq -r '.digests[0].monthLabel' public/blog/digests.json)
 
-          TEXT="🗞 *Новый дайджест DSG — ${LABEL} ${YEAR}*\n\n${COUNT} материалов готовы к публикации в @lorrrem\.\n\nОпубликовать анонс\?"
+          TEXT="🗞 Новый дайджест DSG — ${LABEL} ${YEAR}\n\n${COUNT} материалов готовы к публикации в @lorrrem.\n\nОпубликовать анонс?"
 
           RESPONSE=$(curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -H "Content-Type: application/json" \
             -d "{
               \"chat_id\": \"${TELEGRAM_MY_ID}\",
               \"text\": \"${TEXT}\",
-              \"parse_mode\": \"MarkdownV2\",
               \"reply_markup\": {
                 \"inline_keyboard\": [[
                   {\"text\": \"✅ Опубликовать\", \"callback_data\": \"publish_${YEAR}_${MONTH}_${COUNT}\"},
