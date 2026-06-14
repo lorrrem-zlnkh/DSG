@@ -12,7 +12,7 @@ const TZ           = 'Europe/Moscow';
 
 function tg(string $method, array $params): array {
     $json = [];
-    for ($attempt = 0; $attempt < 3; $attempt++) {
+    for ($attempt = 0; $attempt < 5; $attempt++) {
         $ch = curl_init('https://api.telegram.org/bot' . BOT_TOKEN . '/' . $method);
         curl_setopt_array($ch, [
             CURLOPT_POST           => true,
@@ -29,7 +29,7 @@ function tg(string $method, array $params): array {
         // Перегрузка — подождать и повторить.
         if ((int) ($json['error_code'] ?? 0) === 429) {
             $retry = (int) ($json['parameters']['retry_after'] ?? 1);
-            sleep(min(max($retry, 1), 5));
+            sleep(min(max($retry, 1), 30)); // полностью выжидаем флуд-лимит
             continue;
         }
         error_log("Telegram {$method} error: " . json_encode($json));
@@ -345,7 +345,7 @@ function handleInitDraft(): void {
         if (!empty($res['result']['message_id'])) {
             $cardMsgIds[$id] = $res['result']['message_id'];
         }
-        usleep(40000); // бережём лимит Telegram (~1 сообщение/сек в чат)
+        usleep(300000); // ~3 сообщения/сек — бережём флуд-лимит Telegram на чат
     }
     $draft['cardMsgIds'] = $cardMsgIds;
 
