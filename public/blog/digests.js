@@ -45,6 +45,26 @@ function createBadge(label, modifier = "") {
   return span;
 }
 
+// Детерминированный цвет рубрики: одинаковое название всегда даёт один и тот же
+// оттенок. Так у каждой рубрики свой цвет обводки без ручного списка на 170+ тем.
+function rubricHue(label) {
+  const text = String(label || "");
+  let hash = 0;
+  for (let i = 0; i < text.length; i += 1) {
+    hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+  }
+  return hash % 360;
+}
+
+function createRubricBadge(label) {
+  const span = createBadge(label, "digest-badge--rubric");
+  const hue = rubricHue(label);
+  span.style.borderColor = `hsla(${hue}, 65%, 62%, 0.55)`;
+  span.style.color = `hsl(${hue}, 70%, 82%)`;
+  span.style.background = `hsla(${hue}, 65%, 55%, 0.08)`;
+  return span;
+}
+
 function renderNextBatch() {
   if (!currentDigest) return;
 
@@ -69,7 +89,7 @@ function renderNextBatch() {
 
     const badges = document.createElement("div");
     badges.className = "digest-item__badges";
-    badges.append(createBadge(item.rubric, "digest-badge--rubric"));
+    badges.append(createRubricBadge(item.rubric));
     badges.append(createBadge(item.source));
     if (item.languageBadge) {
       badges.append(createBadge(item.languageBadge, "digest-badge--language"));
