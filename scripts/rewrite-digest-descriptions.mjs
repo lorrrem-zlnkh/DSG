@@ -55,11 +55,12 @@ async function fetchHtml(url, attempt = 0) {
 // --- CLI ---------------------------------------------------------------------
 
 function parseArgs(argv) {
-  const args = { before: "2026-06", only: null, limit: null, dry: false, latest: false, draft: false };
+  const args = { before: "2026-06", only: null, limit: null, dry: false, latest: false, draft: false, fallbackOnly: false };
   for (const arg of argv) {
     if (arg === "--dry") args.dry = true;
     else if (arg === "--latest") args.latest = true;
     else if (arg === "--draft") args.draft = true;
+    else if (arg === "--fallback-only") args.fallbackOnly = true;
     else if (arg.startsWith("--before=")) args.before = arg.slice(9);
     else if (arg.startsWith("--only=")) args.only = arg.slice(7);
     else if (arg.startsWith("--limit=")) args.limit = Number(arg.slice(8)) || null;
@@ -154,8 +155,11 @@ async function fetchContext(item) {
   try {
     const html = await fetchHtml(item.url);
     const { body, annotation } = extractArticleText(html, item.url, item.sourceTitle);
-    const text = body || annotation;
-    return { ok: text.length >= 120, text, annotation };
+    // Если тело статьи извлеклось — нужен содержательный объём. Если нет (SPA),
+    // довольствуемся аннотацией (og:description) — она короче, но это лучше, чем
+    // дефолтная заглушка; модель опишет тему по заголовку + аннотации.
+    const text = body.length >= 120 ? body : annotation;
+    return { ok: text.length >= 30, text, annotation };
   } catch (error) {
     return { ok: false, text: "", annotation: "", error: error.message };
   }
@@ -322,8 +326,13 @@ async function rewriteBatch(requestItems) {
 
 // --- Основной проход ---------------------------------------------------------
 
+// Признак дефолтной заглушки build-digests (когда статья не распарсилась).
+const FALLBACK_RE = /^Материал разбирает тему «|редакторская выжимка без служебных данных/;
+
 async function processDigest(digest, args, stats) {
-  const items = args.limit ? (digest.items || []).slice(0, args.limit) : digest.items || [];
+  let items = digest.items || [];
+  if (args.fallbackOnly) items = items.filter((it) => FALLBACK_RE.test(it.summary || ""));
+  if (args.limit) items = items.slice(0, args.limit);
   if (items.length === 0) return;
 
   console.log(`\n[${digest.key}] №${digest.number} — ${items.length} материалов: загрузка статей…`);
