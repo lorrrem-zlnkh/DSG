@@ -37,17 +37,17 @@ jobs:
         env:
           LLM_PROVIDER: claude
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_MODEL: claude-haiku-4-5-20251001
+          ANTHROPIC_MODEL: claude-sonnet-4-6
         run: node scripts/run-content-automation.mjs
 
       - name: Rewrite descriptions (quality pass)
         # Переписываем описания нового выпуска по правилам качества: свежий фетч
-        # статей, параграфная экстракция, новый промпт, анти-штамп gate, Claude Haiku 4.5.
+        # статей, параграфная экстракция, новый промпт, анти-штамп gate, Claude Sonnet 4.6.
         # Работает по черновику (.cache/draft), который уходит боту на модерацию.
         env:
           LLM_PROVIDER: claude
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_MODEL: claude-haiku-4-5-20251001
+          ANTHROPIC_MODEL: claude-sonnet-4-6
         # Некритичный шаг: при сбое API/сети выпуск всё равно уходит боту
         # с описаниями от build-digests, а не ломает весь месячный прогон.
         run: node scripts/rewrite-digest-descriptions.mjs --latest --draft || echo "::warning::quality rewrite failed, fallback to build-digests summaries"
