@@ -34,6 +34,9 @@ const FIRST_DIGEST_YEAR = 2024;
 const FIRST_DIGEST_MONTH = 1;
 const DEFAULT_MODEL = process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini";
 const OPENAI_TIMEOUT_MS = 180_000;
+// GPT-5.x / o-series — reasoning-модели: используют reasoning.effort вместо
+// temperature, и reasoning-токены расходуют бюджет вывода — даём запас.
+const IS_REASONING = /^(gpt-5|o\d)/i.test(DEFAULT_MODEL);
 
 function isHistoricalDigestKey(digestMonthKey) {
   return /^202[45]-/.test(digestMonthKey);
@@ -690,7 +693,8 @@ async function requestDigestFromOpenAI(digestMeta, posts) {
     },
     body: JSON.stringify({
       model: DEFAULT_MODEL,
-      max_output_tokens: 12000,
+      max_output_tokens: IS_REASONING ? 24000 : 12000,
+      ...(IS_REASONING ? { reasoning: { effort: "low" } } : {}),
       input: [
         {
           role: "system",

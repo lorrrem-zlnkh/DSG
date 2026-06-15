@@ -36,7 +36,7 @@ jobs:
       - name: Run content automation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_DIGEST_MODEL: gpt-4o-mini
+          OPENAI_DIGEST_MODEL: gpt-5.4-mini
         run: node scripts/run-content-automation.mjs
 
       - name: Rewrite descriptions (quality pass)

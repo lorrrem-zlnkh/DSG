@@ -6,7 +6,9 @@ loadEnv();
 const POSTS_PATH = new URL("../public/blog/posts.json", import.meta.url);
 const DIGESTS_PATH = new URL("../public/blog/digests.json", import.meta.url);
 
-const DEFAULT_MODEL = process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini";
+const DEFAULT_MODEL = process.env.OPENAI_DIGEST_MODEL || "gpt-5.4-mini";
+// GPT-5.x / o-series — reasoning-модели: reasoning.effort вместо temperature.
+const IS_REASONING = /^(gpt-5|o\d)/i.test(DEFAULT_MODEL);
 const OPENAI_TIMEOUT_MS = 60_000;
 const BATCH_SIZE = 8;
 const MAX_RETRIES = 2;
@@ -137,7 +139,8 @@ async function requestRewrite(items) {
     },
     body: JSON.stringify({
       model: DEFAULT_MODEL,
-      max_output_tokens: 4000,
+      max_output_tokens: IS_REASONING ? 8000 : 4000,
+      ...(IS_REASONING ? { reasoning: { effort: "low" } } : {}),
       input: [
         {
           role: "system",

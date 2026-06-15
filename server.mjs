@@ -62,7 +62,7 @@ async function handleApi(req, res, url) {
     sendJson(res, 200, {
       ok: true,
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
-      latestModel: process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini",
+      latestModel: process.env.OPENAI_DIGEST_MODEL || "gpt-5.4-mini",
       automationConfigured: Boolean(process.env.CONTENT_AUTOMATION_TOKEN || process.env.DIGEST_REBUILD_TOKEN),
     });
     return true;
