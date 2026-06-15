@@ -35,18 +35,20 @@ jobs:
 
       - name: Run content automation
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_DIGEST_MODEL: gpt-5.4-mini
+          LLM_PROVIDER: claude
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: claude-haiku-4-5-20251001
         run: node scripts/run-content-automation.mjs
 
       - name: Rewrite descriptions (quality pass)
         # Переписываем описания нового выпуска по правилам качества: свежий фетч
-        # статей, параграфная экстракция, новый промпт, анти-штамп gate, gpt-5.4-mini.
+        # статей, параграфная экстракция, новый промпт, анти-штамп gate, Claude Haiku 4.5.
         # Работает по черновику (.cache/draft), который уходит боту на модерацию.
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_DIGEST_MODEL: gpt-5.4-mini
-        # Некритичный шаг: при сбое OpenAI/сети выпуск всё равно уходит боту
+          LLM_PROVIDER: claude
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: claude-haiku-4-5-20251001
+        # Некритичный шаг: при сбое API/сети выпуск всё равно уходит боту
         # с описаниями от build-digests, а не ломает весь месячный прогон.
         run: node scripts/rewrite-digest-descriptions.mjs --latest --draft || echo "::warning::quality rewrite failed, fallback to build-digests summaries"
 

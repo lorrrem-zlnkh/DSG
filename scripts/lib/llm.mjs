@@ -1,33 +1,27 @@
 // Провайдеро-независимый запрос со structured output (JSON-schema).
 //
-// Управление через переменные окружения:
+// Управление через переменные окружения (читаются лениво, в момент вызова —
+// чтобы корректно работать с loadEnv(), который грузит .env после импортов):
 //   LLM_PROVIDER      = openai (по умолчанию) | claude
 //   — OpenAI:  OPENAI_API_KEY, OPENAI_DIGEST_MODEL, OPENAI_BASE_URL
-//   — Claude:  ANTHROPIC_API_KEY, ANTHROPIC_MODEL (по умолчанию claude-haiku-4-5)
+//   — Claude:  ANTHROPIC_API_KEY, ANTHROPIC_MODEL (по умолчанию claude-haiku-4-5-20251001)
 //
 // Возвращает распарсенный объект, соответствующий переданной schema.
 
-const PROVIDER = (process.env.LLM_PROVIDER || "openai").toLowerCase();
-const IS_CLAUDE = PROVIDER === "claude" || PROVIDER === "anthropic";
-
-const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL || "https://api.openai.com/v1";
-const ANTHROPIC_BASE_URL = process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com/v1";
 const REQUEST_TIMEOUT_MS = Number(process.env.LLM_TIMEOUT_MS || 180_000);
 
 export function activeProvider() {
-  return IS_CLAUDE ? "claude" : "openai";
+  const provider = (process.env.LLM_PROVIDER || "openai").toLowerCase();
+  return provider === "claude" || provider === "anthropic" ? "claude" : "openai";
 }
 
 export function activeModel() {
-  return IS_CLAUDE
-    ? process.env.ANTHROPIC_MODEL || "claude-haiku-4-5"
+  return activeProvider() === "claude"
+    ? process.env.ANTHROPIC_MODEL || "claude-haiku-4-5-20251001"
     : process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini";
 }
 
 // --- OpenAI (Responses API) --------------------------------------------------
-
-// GPT-5.x / o-series — reasoning-модели: reasoning.effort вместо temperature.
-const IS_OPENAI_REASONING = /^(gpt-5|o\d)/i.test(activeModel());
 
 function extractOpenAIText(payload) {
   if (typeof payload.output_text === "string" && payload.output_text.length > 0) {
@@ -48,18 +42,23 @@ async function requestOpenAI({ system, user, schema, schemaName, maxTokens }) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
 
+  const model = activeModel();
+  // GPT-5.x / o-series — reasoning-модели: reasoning.effort вместо temperature.
+  const isReasoning = /^(gpt-5|o\d)/i.test(model);
+  const baseUrl = process.env.OPENAI_BASE_URL || "https://api.openai.com/v1";
+
   const body = {
-    model: activeModel(),
-    max_output_tokens: maxTokens || (IS_OPENAI_REASONING ? 8000 : 4000),
+    model,
+    max_output_tokens: maxTokens || (isReasoning ? 8000 : 4000),
     input: [
       { role: "system", content: [{ type: "input_text", text: system }] },
       { role: "user", content: [{ type: "input_text", text: user }] },
     ],
     text: { format: { type: "json_schema", name: schemaName, schema, strict: true } },
   };
-  if (IS_OPENAI_REASONING) body.reasoning = { effort: "low" };
+  if (isReasoning) body.reasoning = { effort: "low" };
 
-  const response = await fetch(`${OPENAI_BASE_URL}/responses`, {
+  const response = await fetch(`${baseUrl}/responses`, {
     method: "POST",
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
@@ -112,7 +111,13 @@ async function requestClaude({ system, user, schema, maxTokens }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY is not set");
 
-  const response = await fetch(`${ANTHROPIC_BASE_URL}/messages`, {
+  // Нормализуем хост: убираем хвостовой слэш и /v1, чтобы добавить /v1/messages
+  // независимо от формата ANTHROPIC_BASE_URL (с /v1, без, или не задан).
+  const host = (process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com")
+    .replace(/\/+$/, "")
+    .replace(/\/v1$/, "");
+
+  const response = await fetch(`${host}/v1/messages`, {
     method: "POST",
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     headers: {
@@ -136,5 +141,5 @@ async function requestClaude({ system, user, schema, maxTokens }) {
 // --- Публичный API -----------------------------------------------------------
 
 export async function requestStructured(opts) {
-  return IS_CLAUDE ? requestClaude(opts) : requestOpenAI(opts);
+  return activeProvider() === "claude" ? requestClaude(opts) : requestOpenAI(opts);
 }
