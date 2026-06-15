@@ -156,6 +156,13 @@ function monthLabelRu(string $ym): string {
     return $months[$m] ?? $ym;
 }
 
+function nextMonth(string $ym): string {
+    $dt = DateTime::createFromFormat('Y-m-d', $ym . '-01', new DateTimeZone(TZ));
+    if (!$dt) return $ym;
+    $dt->modify('first day of next month');
+    return $dt->format('Y-m');
+}
+
 // Склонение «ссылка»: 1 ссылка, 2 ссылки, 5 ссылок.
 function pluralLinks(int $n): string {
     $m100 = $n % 100; $m10 = $n % 10;
@@ -665,6 +672,51 @@ function sendReminder(array $draft): void {
     ]);
 }
 
+// Забор пула для сборки (идемпотентно): первые POOL_TARGET по времени добавления —
+// в выпуск; лишние переносятся в пул следующего месяца (с тем же addedAt → снова
+// в приоритете). Возвращает выбранные ссылки. Повторный вызов отдаёт то же самое.
+function handlePoolConsume(string $month): void {
+    header('Content-Type: application/json');
+    $pool = loadPool($month);
+
+    if (!empty($pool['consumedAt'])) {
+        echo json_encode([
+            'ok' => true, 'month' => $month, 'consumedAt' => $pool['consumedAt'],
+            'selected' => $pool['selected'] ?? [], 'count' => count($pool['selected'] ?? []),
+            'carriedOver' => $pool['carriedOver'] ?? 0,
+        ], JSON_UNESCAPED_UNICODE);
+        return;
+    }
+
+    $items = $pool['items'] ?? [];
+    usort($items, fn($a, $b) => strcmp((string) ($a['addedAt'] ?? ''), (string) ($b['addedAt'] ?? '')));
+    $selected = array_slice($items, 0, POOL_TARGET);
+    $overflow = array_slice($items, POOL_TARGET);
+
+    if ($overflow) {
+        $next  = nextMonth($month);
+        $np    = loadPool($next);
+        $nkeys = array_column($np['items'] ?? [], 'key');
+        foreach ($overflow as $it) {
+            if (!in_array($it['key'] ?? '', $nkeys, true)) {
+                $np['items'][] = $it;
+                $nkeys[] = $it['key'] ?? '';
+            }
+        }
+        savePool($next, $np);
+    }
+
+    $pool['selected'] = array_map(fn($it) => ['id' => $it['id'] ?? '', 'url' => $it['url'] ?? ''], $selected);
+    $pool['consumedAt'] = gmdate('c');
+    $pool['carriedOver'] = count($overflow);
+    savePool($month, $pool);
+
+    echo json_encode([
+        'ok' => true, 'month' => $month, 'selected' => $pool['selected'],
+        'count' => count($pool['selected']), 'carriedOver' => count($overflow),
+    ], JSON_UNESCAPED_UNICODE);
+}
+
 // Оповещение в последний день месяца (≥15:00 МСК): материалы приняты, готовимся к сборке.
 function poolReadyNotice(): void {
     $now = new DateTime('now', new DateTimeZone(TZ));
@@ -1126,6 +1178,13 @@ if (PHP_SAPI !== 'cli') {
         if (!ciSecretOk()) { http_response_code(403); exit; }
         header('Content-Type: application/json');
         echo json_encode(loadPool($_GET['month'] ?? currentMonth()), JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+
+    // Забор пула для сборки: первые 35 в выпуск, лишние — в след. месяц (идемпотентно).
+    if ($action === 'pool_consume') {
+        if (!ciSecretOk()) { http_response_code(403); exit; }
+        handlePoolConsume($_GET['month'] ?? currentMonth());
         exit;
     }
 
