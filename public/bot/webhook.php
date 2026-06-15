@@ -165,6 +165,25 @@ function pluralLinks(int $n): string {
     return 'ссылок';
 }
 
+// Текст + клавиатура списка пула (для /pool и перерисовки после удаления).
+function poolListPayload(string $month): array {
+    $items = loadPool($month)['items'] ?? [];
+    $label = ucfirstRu(monthLabelRu($month));
+    if (!$items) {
+        return ['text' => "📥 Пул за {$label} пуст.", 'reply_markup' => null];
+    }
+    $n = count($items);
+    $lines = ["📥 <b>Пул за {$label}</b> — {$n} " . pluralLinks($n) . " (цель " . POOL_TARGET . "):"];
+    $kb = [];
+    $i = 1;
+    foreach ($items as $it) {
+        $lines[] = "{$i}. " . h($it['url']);
+        $kb[] = [['text' => "❌ {$i}", 'callback_data' => 'pd_' . ($it['id'] ?? '')]];
+        $i++;
+    }
+    return ['text' => implode("\n", $lines), 'reply_markup' => ['inline_keyboard' => $kb]];
+}
+
 // =====================================================================
 // Рендер карточек и клавиатур
 // =====================================================================
@@ -786,6 +805,33 @@ function handleCallback(array $cb): void {
 
     $data  = $cb['data'] ?? '';
     $msgId = $cb['message']['message_id'] ?? null;
+
+    // Удаление ссылки из пула — работает независимо от черновика.
+    if (str_starts_with($data, 'pd_')) {
+        $id    = substr($data, 3);
+        $month = currentMonth();
+        $pool  = loadPool($month);
+        $before = count($pool['items'] ?? []);
+        $pool['items'] = array_values(array_filter($pool['items'] ?? [], fn($x) => ($x['id'] ?? '') !== $id));
+        savePool($month, $pool);
+        tg('answerCallbackQuery', [
+            'callback_query_id' => $cb['id'],
+            'text'              => $before > count($pool['items']) ? '❌ Ссылка удалена' : 'Не найдено',
+        ]);
+        if ($msgId) {
+            $p = poolListPayload($month);
+            tg('editMessageText', [
+                'chat_id'                  => MY_CHAT_ID,
+                'message_id'               => $msgId,
+                'text'                     => $p['text'],
+                'parse_mode'               => 'HTML',
+                'disable_web_page_preview' => true,
+                'reply_markup'             => $p['reply_markup'] ?? ['inline_keyboard' => []],
+            ]);
+        }
+        return;
+    }
+
     $draft = loadDraft();
 
     if ($draft === null || in_array($draft['status'] ?? '', ['published', 'cancelled'], true)) {
@@ -930,6 +976,15 @@ function handleMessage(array $msg): void {
         return;
     }
 
+    // 0b) Список пула с кнопками удаления.
+    if ($text === '/pool' || $text === '/links' || $text === '/материалы') {
+        $p = poolListPayload(currentMonth());
+        $params = ['chat_id' => MY_CHAT_ID, 'text' => $p['text'], 'parse_mode' => 'HTML', 'disable_web_page_preview' => true];
+        if ($p['reply_markup']) $params['reply_markup'] = $p['reply_markup'];
+        tg('sendMessage', $params);
+        return;
+    }
+
     $replyTo = $msg['reply_to_message']['message_id'] ?? null;
 
     // 1) Ответ на ввод времени (force_reply отложенной публикации).
@@ -970,7 +1025,7 @@ function handleMessage(array $msg): void {
         foreach ($urls as $u) {
             $key = normalizeUrl($u);
             if (in_array($key, $keys, true)) { $dup++; continue; }
-            $pool['items'][] = ['url' => $u, 'key' => $key, 'addedAt' => gmdate('c')];
+            $pool['items'][] = ['id' => substr(md5($key), 0, 8), 'url' => $u, 'key' => $key, 'addedAt' => gmdate('c')];
             $keys[] = $key; $added++;
         }
         savePool($month, $pool);
