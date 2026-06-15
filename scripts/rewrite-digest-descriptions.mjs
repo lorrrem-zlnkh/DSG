@@ -4,6 +4,7 @@ import { pathToFileURL } from "node:url";
 import * as cheerio from "cheerio";
 
 import { sanitizeArticleText } from "./fetch-blog.mjs";
+import { activeModel, activeProvider, requestStructured } from "./lib/llm.mjs";
 import { loadEnv } from "./lib/load-env.mjs";
 
 loadEnv();
@@ -11,9 +12,6 @@ loadEnv();
 const DIGESTS_PATH = new URL("../public/blog/digests.json", import.meta.url);
 const DRAFT_DIGESTS_PATH = new URL("../.cache/draft/digests.json", import.meta.url);
 
-const DEFAULT_MODEL = process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini";
-const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL || "https://api.openai.com/v1";
-const OPENAI_TIMEOUT_MS = 60_000;
 const BATCH_SIZE = 8;
 const FETCH_CONCURRENCY = 3;
 const MAX_RETRIES = 2;
@@ -270,65 +268,14 @@ function buildSchema(count) {
   };
 }
 
-function extractResponseText(payload) {
-  if (typeof payload.output_text === "string" && payload.output_text.length > 0) {
-    return payload.output_text;
-  }
-  const chunks = [];
-  for (const item of payload.output || []) {
-    for (const content of item.content || []) {
-      if (content.type === "output_text" && typeof content.text === "string") {
-        chunks.push(content.text);
-      }
-    }
-  }
-  return chunks.join("\n").trim();
-}
-
-// GPT-5.x / o-series — reasoning-модели: не принимают temperature, используют
-// reasoning.effort, а reasoning-токены тоже расходуют бюджет вывода.
-const IS_REASONING = /^(gpt-5|o\d)/i.test(DEFAULT_MODEL);
-
 async function requestRewrite(items) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
-
-  const requestBody = {
-    model: DEFAULT_MODEL,
-    max_output_tokens: IS_REASONING ? 8000 : 4000,
-    input: [
-      { role: "system", content: [{ type: "input_text", text: SYSTEM_PROMPT }] },
-      {
-        role: "user",
-        content: [{ type: "input_text", text: JSON.stringify({ items }, null, 2) }],
-      },
-    ],
-    text: {
-      format: { type: "json_schema", name: "digest_rewrite", schema: buildSchema(items.length), strict: true },
-    },
-  };
-  if (IS_REASONING) {
-    requestBody.reasoning = { effort: "low" };
-  } else {
-    requestBody.temperature = 0.3;
-  }
-
-  const response = await fetch(`${OPENAI_BASE_URL}/responses`, {
-    method: "POST",
-    signal: AbortSignal.timeout(OPENAI_TIMEOUT_MS),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify(requestBody),
+  return requestStructured({
+    system: SYSTEM_PROMPT,
+    user: JSON.stringify({ items }, null, 2),
+    schema: buildSchema(items.length),
+    schemaName: "digest_rewrite",
+    maxTokens: 8000,
   });
-
-  if (!response.ok) {
-    throw new Error(`OpenAI API error ${response.status}: ${await response.text()}`);
-  }
-
-  const payload = await response.json();
-  return JSON.parse(extractResponseText(payload));
 }
 
 async function rewriteBatch(requestItems) {
@@ -451,6 +398,7 @@ async function main() {
     return;
   }
 
+  console.log(`Провайдер: ${activeProvider()} / модель: ${activeModel()}`);
   console.log(
     `Выпусков под обработку: ${targets.length} (${targets[targets.length - 1].key}…${targets[0].key})` +
       `${args.dry ? " [DRY-RUN, без записи]" : ""}`

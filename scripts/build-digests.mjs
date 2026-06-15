@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { isBlockedBlogPost } from "./lib/blog-quality.mjs";
+import { activeProvider, requestStructured } from "./lib/llm.mjs";
 import { loadEnv } from "./lib/load-env.mjs";
 
 loadEnv();
@@ -33,7 +34,6 @@ const FLOATING_SOURCES = new Set(["typejournal", "tilda-education", "alistapart"
 const FIRST_DIGEST_YEAR = 2024;
 const FIRST_DIGEST_MONTH = 1;
 const DEFAULT_MODEL = process.env.OPENAI_DIGEST_MODEL || "gpt-4o-mini";
-const OPENAI_TIMEOUT_MS = 180_000;
 // GPT-5.x / o-series — reasoning-модели: используют reasoning.effort вместо
 // temperature, и reasoning-токены расходуют бюджет вывода — даём запас.
 const IS_REASONING = /^(gpt-5|o\d)/i.test(DEFAULT_MODEL);
@@ -635,25 +635,9 @@ function buildHistoricalSelectionMap(posts) {
   );
 }
 
-function extractResponseText(payload) {
-  if (typeof payload.output_text === "string" && payload.output_text.length > 0) {
-    return payload.output_text;
-  }
-
-  const chunks = [];
-  for (const item of payload.output || []) {
-    for (const content of item.content || []) {
-      if (content.type === "output_text" && typeof content.text === "string") {
-        chunks.push(content.text);
-      }
-    }
-  }
-  return chunks.join("\n").trim();
-}
-
 async function requestDigestFromOpenAI(digestMeta, posts) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return null;
+  const keyEnv = activeProvider() === "claude" ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
+  if (!process.env[keyEnv]) return null;
 
   const schema = {
     type: "object",
@@ -684,24 +668,7 @@ async function requestDigestFromOpenAI(digestMeta, posts) {
     },
   };
 
-  const response = await fetch(`${process.env.OPENAI_BASE_URL || "https://api.openai.com/v1"}/responses`, {
-    method: "POST",
-    signal: AbortSignal.timeout(OPENAI_TIMEOUT_MS),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: DEFAULT_MODEL,
-      max_output_tokens: IS_REASONING ? 24000 : 12000,
-      ...(IS_REASONING ? { reasoning: { effort: "low" } } : {}),
-      input: [
-        {
-          role: "system",
-          content: [
-            {
-              type: "input_text",
-              text:
+  const systemPrompt =
                 "Ты редактор дайджестов по продуктовому дизайну. На основе входных статей создай русскоязычный дайджест. " +
                 "Не выдумывай факты и верни карточку для каждой входной статьи, кроме явно мусорных страниц без полезного содержания. " +
                 "Для каждой статьи верни summary ровно из 3 связных предложений на русском языке. " +
@@ -732,63 +699,41 @@ async function requestDigestFromOpenAI(digestMeta, posts) {
                 "Для материалов о мероприятиях: если событие уже состоялось — используй прошедшее время в summary ('прошло', 'состоялось', 'представили'); если мероприятие ещё впереди — используй анонсную форму ('объявлено', 'пройдёт', 'состоится'). " +
                 "Не включай статью только если текст состоит из навигации, мусора или не относится к дизайну/продуктам. " +
                 "Сохраняй перемешанный порядок входного списка: не группируй статьи одного источника подряд. " +
-                "Рубрика должна быть короткой: 1-2 слова. Перед финальным JSON перечитай каждое summary и перепиши заново, если в нём остался сырой фрагмент статьи, служебные данные или запрещённый шаблон.",
-            },
-          ],
-        },
-        {
-          role: "user",
-          content: [
-            {
-              type: "input_text",
-              text: JSON.stringify(
-                {
-                  digest: {
-                    month: digestMeta.month,
-                    year: digestMeta.year,
-                    monthKey: digestMeta.key,
-                    title: digestMeta.title,
-                    targetItems: DIGEST_SIZE,
-                    rule:
-                      "Используй только статьи из входного списка: основная часть отобрана за месяц выпуска, материалы Бюро и Ководства добавлены как evergreen без повторов, материалы без даты используются только как добор без повторов.",
-                  },
-                  articles: posts.map((post) => ({
-                    id: post.id,
-                    sourceTitle: cleanSourceTitle(post.title),
-                    source: post.sourceLabel || post.source,
-                    author: post.author || "Автор не указан",
-                    summary: post.summary || "",
-                    rewrite: post.rewrite || "",
-                    publishedAt: post.publishedAt || null,
-                    url: post.url,
-                  })),
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        },
-      ],
-      text: {
-        format: {
-          type: "json_schema",
-          name: "digest_payload",
-          schema,
-          strict: true,
-        },
+                "Рубрика должна быть короткой: 1-2 слова. Перед финальным JSON перечитай каждое summary и перепиши заново, если в нём остался сырой фрагмент статьи, служебные данные или запрещённый шаблон.";
+
+  const userPayload = JSON.stringify(
+    {
+      digest: {
+        month: digestMeta.month,
+        year: digestMeta.year,
+        monthKey: digestMeta.key,
+        title: digestMeta.title,
+        targetItems: DIGEST_SIZE,
+        rule:
+          "Используй только статьи из входного списка: основная часть отобрана за месяц выпуска, материалы Бюро и Ководства добавлены как evergreen без повторов, материалы без даты используются только как добор без повторов.",
       },
-    }),
+      articles: posts.map((post) => ({
+        id: post.id,
+        sourceTitle: cleanSourceTitle(post.title),
+        source: post.sourceLabel || post.source,
+        author: post.author || "Автор не указан",
+        summary: post.summary || "",
+        rewrite: post.rewrite || "",
+        publishedAt: post.publishedAt || null,
+        url: post.url,
+      })),
+    },
+    null,
+    2
+  );
+
+  return requestStructured({
+    system: systemPrompt,
+    user: userPayload,
+    schema,
+    schemaName: "digest_payload",
+    maxTokens: IS_REASONING ? 24000 : 12000,
   });
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`OpenAI API error ${response.status}: ${text}`);
-  }
-
-  const payload = await response.json();
-  const text = extractResponseText(payload);
-  return JSON.parse(text);
 }
 
 function mergeGeneratedItems(selectedPosts, generated) {
