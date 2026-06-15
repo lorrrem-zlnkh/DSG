@@ -5,6 +5,7 @@ const DRAFT_PATH   = __DIR__ . '/draft.json';
 const DIGESTS_PATH = __DIR__ . '/../blog/digests.json';
 const SITE_URL     = 'https://dsg.lorrrem.ru/blog/';
 const TZ           = 'Europe/Moscow';
+const POOL_TARGET  = 35; // целевой размер выпуска (DIGEST_SIZE) — для счётчика «добрать ещё»
 
 // =====================================================================
 // Telegram API
@@ -93,6 +94,75 @@ function buildFinalDigest(array $draft): array {
     $digest['items'] = $items;
     $digest['count'] = count($items);
     return $digest;
+}
+
+// =====================================================================
+// Пул присланных ссылок (по месяцам): pool-YYYY-MM.json (пишет только PHP)
+// =====================================================================
+
+function poolPath(string $month): string {
+    return __DIR__ . "/pool-{$month}.json";
+}
+
+function currentMonth(): string {
+    return (new DateTime('now', new DateTimeZone(TZ)))->format('Y-m');
+}
+
+function loadPool(string $month): array {
+    $p = poolPath($month);
+    if (is_readable($p)) {
+        $d = json_decode(file_get_contents($p), true);
+        if (is_array($d)) return $d;
+    }
+    return ['month' => $month, 'target' => POOL_TARGET, 'items' => [], 'notifiedReadyAt' => null];
+}
+
+function savePool(string $month, array $pool): void {
+    file_put_contents(
+        poolPath($month),
+        json_encode($pool, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
+        LOCK_EX
+    );
+}
+
+// Нормализация URL для дедупликации: хост без www, без якоря, без трекинговых
+// параметров, без хвостового слэша.
+function normalizeUrl(string $url): string {
+    $url = trim($url);
+    $p = parse_url($url);
+    if (!$p || empty($p['host'])) return mb_strtolower(rtrim($url, '/'));
+    $host = preg_replace('/^www\./i', '', strtolower($p['host']));
+    $path = rtrim($p['path'] ?? '', '/');
+    $q = '';
+    if (!empty($p['query'])) {
+        parse_str($p['query'], $params);
+        foreach (array_keys($params) as $k) {
+            if (preg_match('/^(utm_|yclid|gclid|fbclid|ref$|from$|igshid)/i', $k)) unset($params[$k]);
+        }
+        if ($params) { ksort($params); $q = '?' . http_build_query($params); }
+    }
+    return $host . $path . $q;
+}
+
+function extractUrls(string $text): array {
+    preg_match_all('~https?://[^\s<>"\']+~iu', $text, $m);
+    return $m[0] ?? [];
+}
+
+function monthLabelRu(string $ym): string {
+    $months = ['', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+               'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+    $m = (int) substr($ym, 5, 2);
+    return $months[$m] ?? $ym;
+}
+
+// Склонение «ссылка»: 1 ссылка, 2 ссылки, 5 ссылок.
+function pluralLinks(int $n): string {
+    $m100 = $n % 100; $m10 = $n % 10;
+    if ($m100 >= 11 && $m100 <= 14) return 'ссылок';
+    if ($m10 === 1)                  return 'ссылка';
+    if ($m10 >= 2 && $m10 <= 4)      return 'ссылки';
+    return 'ссылок';
 }
 
 // =====================================================================
@@ -576,8 +646,34 @@ function sendReminder(array $draft): void {
     ]);
 }
 
+// Оповещение в последний день месяца (≥15:00 МСК): материалы приняты, готовимся к сборке.
+function poolReadyNotice(): void {
+    $now = new DateTime('now', new DateTimeZone(TZ));
+    $lastDay = (int) $now->format('j') === (int) $now->format('t');
+    if (!$lastDay || (int) $now->format('G') < 15) return;
+
+    $month = $now->format('Y-m');
+    $pool  = loadPool($month);
+    if (!empty($pool['notifiedReadyAt'])) return;
+
+    $pool['notifiedReadyAt'] = gmdate('c');
+    savePool($month, $pool);
+
+    $count = count($pool['items']);
+    tg('sendMessage', [
+        'chat_id' => MY_CHAT_ID,
+        'text'    => "📦 Материалы приняты — {$count} " . pluralLinks($count) . " за "
+                   . ucfirstRu(monthLabelRu($month)) . ". Готовлюсь к сборке дайджеста.",
+    ]);
+}
+
 function handleTick(): void {
     header('Content-Type: application/json');
+
+    // В последний день месяца с 15:00 МСК — оповещение «материалы приняты»
+    // (независимо от состояния черновика; один раз за месяц).
+    poolReadyNotice();
+
     $draft = loadDraft();
     if (!$draft) {
         echo json_encode(['ok' => true, 'note' => 'no draft']);
@@ -864,7 +960,40 @@ function handleMessage(array $msg): void {
         }
     }
 
-    // 3) Кнопки нижней панели.
+    // 3) Приём ссылок в пул месяца — работает в любое время, без активного черновика.
+    $urls = extractUrls($text);
+    if ($urls) {
+        $month = currentMonth();
+        $pool  = loadPool($month);
+        $keys  = array_column($pool['items'], 'key');
+        $added = 0; $dup = 0;
+        foreach ($urls as $u) {
+            $key = normalizeUrl($u);
+            if (in_array($key, $keys, true)) { $dup++; continue; }
+            $pool['items'][] = ['url' => $u, 'key' => $key, 'addedAt' => gmdate('c')];
+            $keys[] = $key; $added++;
+        }
+        savePool($month, $pool);
+
+        $count  = count($pool['items']);
+        $remain = max(0, POOL_TARGET - $count);
+        $label  = monthLabelRu($month);
+        $lines  = [];
+        if ($added) $lines[] = "✅ Добавлено в пул: {$added}.";
+        if ($dup)   $lines[] = "↪️ Уже были в пуле: {$dup}.";
+        $lines[] = "📥 В пуле за {$label}: {$count} " . pluralLinks($count) . ".";
+        $lines[] = $remain > 0
+            ? "До цели (" . POOL_TARGET . ") — добрать ещё {$remain}."
+            : "Цель (" . POOL_TARGET . ") набрана.";
+        tg('sendMessage', [
+            'chat_id'                  => MY_CHAT_ID,
+            'text'                     => implode("\n", $lines),
+            'disable_web_page_preview' => true,
+        ]);
+        return;
+    }
+
+    // 4) Кнопки нижней панели.
     if ($text === '📢 Опубликовать') {
         if (!$draft || in_array($draft['status'] ?? '', ['published', 'cancelled'], true)) {
             tg('sendMessage', ['chat_id' => MY_CHAT_ID, 'text' => 'Активного черновика нет.', 'reply_markup' => ['remove_keyboard' => true]]);
@@ -934,6 +1063,14 @@ if (PHP_SAPI !== 'cli') {
     if ($action === 'cleanup') {
         if (!ciSecretOk()) { http_response_code(403); exit; }
         handleCleanup();
+        exit;
+    }
+
+    // Пул присланных ссылок за месяц — для сборки дайджеста в CI.
+    if ($action === 'pool') {
+        if (!ciSecretOk()) { http_response_code(403); exit; }
+        header('Content-Type: application/json');
+        echo json_encode(loadPool($_GET['month'] ?? currentMonth()), JSON_UNESCAPED_UNICODE);
         exit;
     }
 
