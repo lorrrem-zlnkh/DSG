@@ -45,23 +45,46 @@ function createBadge(label, modifier = "") {
   return span;
 }
 
-// Детерминированный цвет рубрики: одинаковое название всегда даёт один и тот же
-// оттенок. Так у каждой рубрики свой цвет обводки без ручного списка на 170+ тем.
-function rubricHue(label) {
-  const text = String(label || "");
-  let hash = 0;
-  for (let i = 0; i < text.length; i += 1) {
-    hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+// Цвет рубрики: оттенки раздаём по всему множеству рубрик равномерно, чтобы
+// у каждой рубрики был свой уникальный hue без совпадений. Хеш не годится —
+// при 170+ рубриках значения сталкиваются (mod 360), и цвета повторяются.
+const rubricHues = new Map();
+
+function gcd(a, b) {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
+// Шаг по кругу, взаимно простой с n (≈золотое сечение), — чтобы соседние по
+// алфавиту рубрики не оказывались соседними по цвету.
+function pickStride(n) {
+  let stride = Math.max(1, Math.round(n * 0.618));
+  while (gcd(stride, n) !== 1) stride += 1;
+  return stride;
+}
+
+function buildRubricHues(allDigests) {
+  const names = new Set();
+  for (const digest of allDigests) {
+    for (const item of digest.items || []) {
+      if (item && item.rubric) names.add(item.rubric);
+    }
   }
-  return hash % 360;
+  const sorted = Array.from(names).sort((a, b) => a.localeCompare(b, "ru"));
+  const n = sorted.length || 1;
+  const stride = pickStride(n);
+  rubricHues.clear();
+  sorted.forEach((name, index) => {
+    const slot = (index * stride) % n;
+    rubricHues.set(name, (slot * 360) / n);
+  });
 }
 
 function createRubricBadge(label) {
   const span = createBadge(label, "digest-badge--rubric");
-  const hue = rubricHue(label);
-  span.style.borderColor = `hsla(${hue}, 65%, 62%, 0.55)`;
-  span.style.color = `hsl(${hue}, 70%, 82%)`;
-  span.style.background = `hsla(${hue}, 65%, 55%, 0.08)`;
+  const hue = rubricHues.has(label) ? rubricHues.get(label) : 0;
+  span.style.borderColor = `hsla(${hue}, 65%, 62%, 0.6)`;
+  span.style.color = `hsl(${hue}, 60%, 80%)`;
+  span.style.background = `hsla(${hue}, 55%, 50%, 0.04)`;
   return span;
 }
 
@@ -224,6 +247,7 @@ async function loadDigests() {
     return Number.isNaN(at) || at <= now;
   });
 
+  buildRubricHues(digests);
   initSelectors();
   selectDigest();
 }
