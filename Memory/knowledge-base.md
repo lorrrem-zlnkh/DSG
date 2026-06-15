@@ -273,6 +273,28 @@ draft.json хранит `headerMsgId`/`footerMsgId`/`cardMsgIds` для точе
 4. `status=published`, оповещение «✅ Опубликовано: N материалов (правок: X, исключено: Y)»,
    убрать reply-клавиатуру
 
+### Пул присланных ссылок (ручная курация выпуска)
+Владелец шлёт боту ссылки в течение месяца → копятся в `pool-YYYY-MM.json`
+(пишет PHP, в git нет, закрыт `.htaccess`). Месяц = текущий календарный при отправке.
+- **Приём:** сообщение со ссылкой(ами) → дедуп по `normalizeUrl` (без www/utm/якоря/слэша),
+  ответ со счётчиком «в пуле M, добрать ещё K до 35». Элемент: `{id, url, key, addedAt}`.
+- **`/pool`** (или `/links`) — список ссылок с кнопкой ❌ (`pd_<id>`), удаление сразу.
+- **Последний день месяца, ≥15:00 МСК** — `poolReadyNotice()`: «материалы приняты» (1 раз).
+- **Эндпоинты (X-Bot-Secret):** `?action=pool&month=` (просмотр), `?action=pool_consume&month=`
+  (идемпотентный забор для сборки: первые 35 по `addedAt` → выпуск, лишние → пул след. месяца
+  с тем же addedAt; повторный вызов отдаёт то же).
+
+### Интеграция пула в сборку (`run-content-automation` / `build-digests` / `fetch-blog`)
+Правила: выпуск ≤35; присланные в приоритете (занимают слоты); если присланных ≥35 — парсинг
+источников НЕ запускается (только присланные); лишние (>35) — на след. месяц; удалённые из пула
+не попадают в выпуск.
+- `run-content-automation`: `consumePoolUrls()` (pool_consume за предыдущий месяц) →
+  `fetchUrlsAsPosts()`. Если ≥`DIGEST_SIZE` — пропуск `fetchBlogPosts`, posts = только присланные.
+- `fetch-blog.fetchUrlsAsPosts(urls)` — `parseArticle` с `skipRecency:true` (дата не важна),
+  источник `manual`/«Подборка», фолбэк-минимум при ошибке парсинга.
+- `build-digests({manualPosts})` — для текущего месяца: `[...manual, ...auto-filler].slice(0, DIGEST_SIZE)`.
+- `monthly-digest.yml` шаг automation получает `WEBHOOK_SECRET`.
+
 ### config.php (генерируется при деплое, НЕ в git)
 ```php
 <?php
