@@ -1,8 +1,8 @@
 import fs from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
-import { buildDigests } from "./build-digests.mjs";
-import { fetchBlogPosts } from "./fetch-blog.mjs";
+import { buildDigests, DIGEST_SIZE } from "./build-digests.mjs";
+import { fetchBlogPosts, fetchUrlsAsPosts } from "./fetch-blog.mjs";
 import { loadEnv } from "./lib/load-env.mjs";
 
 loadEnv();
@@ -11,6 +11,34 @@ const STATUS_PATH = new URL("../public/automation/status.json", import.meta.url)
 const LOCK_PATH = new URL("../.cache/content-automation.lock", import.meta.url);
 const DRAFT_POSTS_PATH = new URL("../.cache/draft/posts.json", import.meta.url);
 const DRAFT_DIGESTS_PATH = new URL("../.cache/draft/digests.json", import.meta.url);
+
+const BOT_URL = process.env.BOT_INIT_URL || "https://dsg.lorrrem.ru/bot/webhook.php";
+
+// Месяц дайджеста = предыдущий календарный (как в build-digests).
+function digestMonthKey() {
+  const now = new Date();
+  const lm = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
+  return `${lm.getUTCFullYear()}-${String(lm.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+// Забор присланных ссылок из пула за месяц дайджеста (идемпотентно на стороне бота).
+// При недоступности/отсутствии секрета — пустой пул (штатная авто-сборка).
+async function consumePoolUrls() {
+  const secret = process.env.WEBHOOK_SECRET;
+  if (!secret) return [];
+  try {
+    const month = digestMonthKey();
+    const res = await fetch(`${BOT_URL}?action=pool_consume&month=${month}`, {
+      method: "POST",
+      headers: { "X-Bot-Secret": secret },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.selected || []).map((s) => s.url).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
 
 let inProcessRun = null;
 
@@ -85,10 +113,26 @@ async function runWithLock() {
   });
 
   try {
-    const postsPayload = await fetchBlogPosts({ outPath: DRAFT_POSTS_PATH });
+    // Присланные ссылки — приоритет; занимают слоты выпуска (≤ DIGEST_SIZE).
+    const poolUrls = await consumePoolUrls();
+    const manualPosts = poolUrls.length ? await fetchUrlsAsPosts(poolUrls) : [];
+    console.log(`[automation] присланных ссылок в пуле: ${manualPosts.length}`);
+
+    let postsPayload;
+    if (manualPosts.length >= DIGEST_SIZE) {
+      // Правило #3: если присланных ≥ DIGEST_SIZE — парсинг источников не запускаем.
+      console.log("[automation] пул заполнил выпуск — пропускаю парсинг источников");
+      postsPayload = { generatedAt: new Date().toISOString(), posts: manualPosts };
+      await fs.mkdir(new URL(".", DRAFT_POSTS_PATH), { recursive: true });
+      await fs.writeFile(DRAFT_POSTS_PATH, `${JSON.stringify(postsPayload, null, 2)}\n`, "utf8");
+    } else {
+      postsPayload = await fetchBlogPosts({ outPath: DRAFT_POSTS_PATH });
+    }
+
     const digestsPayload = await buildDigests({
       postsPath: DRAFT_POSTS_PATH,
       digestsPath: DRAFT_DIGESTS_PATH,
+      manualPosts,
     });
     const finishedAt = new Date().toISOString();
     const status = {

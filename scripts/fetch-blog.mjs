@@ -573,7 +573,7 @@ function inferPublishedAtFromUrl(url) {
   return null;
 }
 
-function parseArticle(html, url, source, sourceLabel) {
+function parseArticle(html, url, source, sourceLabel, { skipRecency = false } = {}) {
   const $ = cheerio.load(html);
   const title =
     cleanTitle(metaContent($, ["og:title", "twitter:title"])) ||
@@ -584,7 +584,7 @@ function parseArticle(html, url, source, sourceLabel) {
     stripHtml($('[rel="author"]').first().text()) ||
     null;
   const publishedAt = extractPublishedAt($) || inferPublishedAtFromUrl(url);
-  if (!isRecent(publishedAt)) return null;
+  if (!skipRecency && !isRecent(publishedAt)) return null;
   $("script, style, nav, header, footer, aside, form, .tm-article-snippet__meta, .tm-article-presenter__meta").remove();
   const description = metaContent($, ["description", "og:description"]);
   const body =
@@ -869,6 +869,38 @@ export async function fetchBlogPosts({ outPath = DEFAULT_OUT_PATH } = {}) {
   );
   console.log(`[fetch-blog] posts: ${posts.length}`);
   return { generatedAt, posts };
+}
+
+// Фетч присланных в бот ссылок как постов (источник «Подборка»). Дату не
+// фильтруем (skipRecency) — присланные материалы включаем независимо от даты.
+// Если статью распарсить не удалось — добавляем минимальный пост, чтобы ссылка
+// всё равно попала в выпуск (описание допишет LLM).
+export async function fetchUrlsAsPosts(urls, { source = "manual", sourceLabel = "Подборка" } = {}) {
+  const posts = [];
+  for (const url of urls) {
+    if (!url) continue;
+    let post = null;
+    try {
+      const html = await fetchText(url);
+      post = parseArticle(html, url, source, sourceLabel, { skipRecency: true });
+    } catch {
+      // ниже — фолбэк-минимум
+    }
+    posts.push(
+      post || {
+        id: makeId(url),
+        source,
+        sourceLabel,
+        title: url,
+        url,
+        author: null,
+        publishedAt: new Date().toISOString(),
+        summary: "",
+        rewrite: "",
+      }
+    );
+  }
+  return posts;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

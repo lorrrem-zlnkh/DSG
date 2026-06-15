@@ -24,7 +24,7 @@ const MONTH_NAMES = [
   "декабрь",
 ];
 
-const DIGEST_SIZE = 35;
+export const DIGEST_SIZE = 35;
 const MONTHLY_BASE_SIZE = 31;
 const MIN_HISTORICAL_DIGEST_SIZE = 20;
 const HISTORICAL_SELECTION_TARGET = 20;
@@ -800,7 +800,7 @@ function mergeGeneratedItems(selectedPosts, generated) {
   return items;
 }
 
-export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath = DEFAULT_DIGESTS_PATH } = {}) {
+export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath = DEFAULT_DIGESTS_PATH, manualPosts = [] } = {}) {
   const source = JSON.parse(await fs.readFile(postsPath, "utf8"));
   const now = new Date();
 
@@ -858,9 +858,18 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
       title: `Выпуск №${number}`,
     };
 
-    const selectedPosts =
+    let selectedPosts =
       historicalSelections.get(monthKey) ||
       selectDigestPosts(posts, monthKey, usedEvergreenKeys, usedFloatingKeys, usedYearFillKeys, usedDigestKeys);
+
+    // Присланные в бот ссылки — приоритет для текущего месяца: занимают слоты
+    // первыми, авто-отбор добирает остаток до DIGEST_SIZE, итог ≤ DIGEST_SIZE.
+    if (monthKey === currentMonthKey && manualPosts.length) {
+      const manualKeys = new Set(manualPosts.map(articleKey));
+      const filler = selectedPosts.filter((post) => !manualKeys.has(articleKey(post)));
+      selectedPosts = [...manualPosts, ...filler].slice(0, DIGEST_SIZE);
+    }
+
     if (selectedPosts.length === 0) {
       digests.push({
         ...digestMeta,
