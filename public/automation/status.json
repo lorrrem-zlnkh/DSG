@@ -1,6 +1,10 @@
 {
-  "ok": null,
-  "state": "running",
-  "startedAt": "2026-06-15T20:45:00.089Z",
-  "updatedAt": "2026-06-15T20:45:00.089Z"
+  "ok": true,
+  "state": "draft_ready",
+  "startedAt": "2026-06-16T06:10:38.822Z",
+  "finishedAt": "2026-06-16T06:46:23.345Z",
+  "updatedAt": "2026-06-16T06:46:23.345Z",
+  "posts": 1070,
+  "digests": 30,
+  "latestKey": "2026-06"
 }
