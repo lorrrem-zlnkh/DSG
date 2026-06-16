@@ -295,6 +295,19 @@ draft.json хранит `headerMsgId`/`footerMsgId`/`cardMsgIds` для точе
 - `build-digests({manualPosts})` — для текущего месяца: `[...manual, ...auto-filler].slice(0, DIGEST_SIZE)`.
 - `monthly-digest.yml` шаг automation получает `WEBHOOK_SECRET`.
 
+**Качество описаний присланных (тема любая, не только дизайн):**
+- V2: `rewriteManualPosts()` (run-content-automation) — нейтральный рерайт каждого присланного
+  до сборки через `requestStructured` (тема любая), результат в `summary/rewrite/rubric`.
+- V1: «Подборка» исключена из дизайн-фильтра в промпте `build-digests`; `mergeGeneratedItems`
+  гарантированно включает присланные (`manualDigestItem`) — без дропа и без шаблона
+  «Материал разбирает тему…»; `rewrite-digest-descriptions` (quality-pass) ПРОПУСКАЕТ
+  элементы с `source==="Подборка"`, сохраняя нейтральный рерайт.
+- Признак присланного: `isManualPost` (`source==="manual"` или `sourceLabel==="Подборка"`).
+
+**Тестовый прогон:** `gh workflow run monthly-digest.yml -f month=YYYY-MM` (DIGEST_MONTH) —
+целится в указанный месяц; `pool_consume?dry=1` (пул не «съедается»); guard «уже на сайте»
+в send-telegram-digest обходится при заданном DIGEST_MONTH.
+
 ### config.php (генерируется при деплое, НЕ в git)
 ```php
 <?php
