@@ -1,0 +1,1132 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI Kit — Design Systems Guide</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" href="../assets/icons/facivon lorrem zelenykh DSG.png" type="image/png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      /* ─── UI Kit Layout ───────────────────────────────────────────── */
+
+      /* Сайдбар + контент */
+      .uik-layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        min-height: 100vh;
+        align-items: start;
+      }
+
+      /* Левый сайдбар навигации */
+      .uik-sidebar {
+        position: sticky;
+        top: 57px; /* высота хэдера */
+        height: calc(100vh - 57px);
+        overflow-y: auto;
+        border-right: 1px solid var(--border);
+        padding: 24px 0;
+        background: rgba(11, 15, 25, 0.6);
+      }
+
+      .uik-sidebar__title {
+        padding: 0 20px 8px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .uik-nav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .uik-nav__item a {
+        display: block;
+        padding: 7px 20px;
+        font-size: 13px;
+        color: var(--muted);
+        transition: color 120ms ease, background 120ms ease;
+        border-left: 2px solid transparent;
+      }
+
+      .uik-nav__item a:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      /* Активная секция в навигации */
+      .uik-nav__item a.is-active {
+        color: #a78bfa;
+        border-left-color: #7c3aed;
+      }
+
+      /* Основной контент */
+      .uik-content {
+        padding: 40px 48px 80px;
+        max-width: 880px;
+      }
+
+      /* ─── Секции ──────────────────────────────────────────────────── */
+
+      .uik-section {
+        margin-bottom: 64px;
+      }
+
+      .uik-section__title {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        margin: 0 0 6px;
+        padding-top: 4px;
+      }
+
+      .uik-section__desc {
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0 0 28px;
+        line-height: 1.5;
+      }
+
+      /* ─── Анкор-метка секции ──────────────────────────────────────── */
+
+      .uik-anchor {
+        display: block;
+        position: relative;
+        top: -80px;
+        visibility: hidden;
+      }
+
+      /* ─── Токены ──────────────────────────────────────────────────── */
+
+      .token-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 12px;
+      }
+
+      .token-swatch {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .token-swatch__color {
+        height: 64px;
+      }
+
+      .token-swatch__info {
+        padding: 10px 12px;
+        background: var(--panel);
+      }
+
+      .token-swatch__name {
+        font-size: 12px;
+        font-weight: 700;
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+        color: var(--text);
+        margin: 0 0 2px;
+      }
+
+      .token-swatch__value {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+      }
+
+      /* ─── Типографика ─────────────────────────────────────────────── */
+
+      .type-row {
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .type-row:last-child { border-bottom: none; }
+
+      .type-label {
+        flex: 0 0 140px;
+        font-size: 11px;
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+        color: var(--muted);
+      }
+
+      /* ─── Сетка состояний ─────────────────────────────────────────── */
+
+      .state-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .state-item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .state-label {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+        letter-spacing: 0.3px;
+      }
+
+      /* ─── Карточки компонентов ────────────────────────────────────── */
+
+      .comp-block {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      /* Область превью */
+      .comp-preview {
+        padding: 32px 28px;
+        background: rgba(255, 255, 255, 0.015);
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .comp-preview--dark {
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      .comp-preview--center {
+        justify-content: center;
+      }
+
+      /* Мета под превью */
+      .comp-meta {
+        padding: 14px 20px;
+        background: var(--panel);
+      }
+
+      .comp-meta__name {
+        font-size: 13px;
+        font-weight: 700;
+        margin: 0 0 2px;
+      }
+
+      .comp-meta__desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+        margin: 0;
+      }
+
+      /* ─── Тени ────────────────────────────────────────────────────── */
+
+      .shadow-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .shadow-box {
+        width: 100px;
+        height: 80px;
+        border-radius: 12px;
+        background: var(--panel-2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+        color: var(--muted);
+        text-align: center;
+        padding: 8px;
+      }
+
+      /* ─── Радиусы ─────────────────────────────────────────────────── */
+
+      .radius-row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: flex-end;
+      }
+
+      .radius-box {
+        background: rgba(124, 58, 237, 0.18);
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+        color: var(--muted);
+      }
+
+      /* ─── Иконки ──────────────────────────────────────────────────── */
+
+      .icons-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .icon-demo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .icon-demo__box {
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--panel);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      .icon-demo__label {
+        font-size: 10px;
+        color: var(--muted);
+        font-family: 'SF Mono', 'Fira Mono', monospace;
+      }
+
+      /* ─── Карточка скелетон ───────────────────────────────────────── */
+
+      .skeleton-demo {
+        max-width: 320px;
+        width: 100%;
+      }
+
+      /* ─── Пустое состояние ────────────────────────────────────────── */
+
+      .empty-demo {
+        width: 100%;
+      }
+
+      /* ─── Мобильная навигация (превью) ───────────────────────────── */
+
+      .mobile-nav-demo {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        padding: 6px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: rgba(11, 15, 25, 0.8);
+        backdrop-filter: blur(16px);
+        box-shadow: var(--shadow);
+        width: fit-content;
+      }
+
+      /* Принудительный показ мобильной навигации в превью */
+      .mobile-nav-demo .mobile-nav__link {
+        display: flex !important;
+      }
+
+      /* ─── Бейджи состояний ────────────────────────────────────────── */
+
+      .uik-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      .uik-badge--stable {
+        background: rgba(16, 185, 129, 0.15);
+        color: #6ee7b7;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      .uik-badge--draft {
+        background: rgba(245, 158, 11, 0.15);
+        color: #fcd34d;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+      }
+
+      /* ─── Disabled-состояние ──────────────────────────────────────── */
+
+      .btn--disabled,
+      button:disabled {
+        opacity: 0.38;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
+      /* ─── Разделитель секций ──────────────────────────────────────── */
+
+      .uik-divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0 0 48px;
+      }
+
+      /* ─── Адаптив: скрываем сайдбар на узких экранах ─────────────── */
+
+      @media (max-width: 860px) {
+        .uik-layout {
+          grid-template-columns: 1fr;
+        }
+        .uik-sidebar {
+          display: none;
+        }
+        .uik-content {
+          padding: 28px 20px 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Шапка сайта (переиспользует компонент .header из styles.css) -->
+    <header class="header">
+      <div class="container header__row">
+        <a class="brand" href="../" aria-label="Design Systems Guide">
+          <img class="brand__logo" src="../assets/brand/logo.png" alt="Логотип DSG" />
+        </a>
+        <div class="header__actions">
+          <a class="btn btn--ghost" href="../">Каталог</a>
+          <a class="btn btn--ghost" href="../blog/">Дайджесты</a>
+          <!-- Текущая страница — UI Kit -->
+          <span class="btn btn--ghost btn--active" aria-current="page">UI Kit</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="uik-layout">
+
+      <!-- ─── Сайдбар навигации ─────────────────────────────────────── -->
+      <aside class="uik-sidebar" aria-label="Навигация по UI Kit">
+        <p class="uik-sidebar__title">Содержание</p>
+        <ul class="uik-nav">
+          <li class="uik-nav__item"><a href="#tokens">Токены</a></li>
+          <li class="uik-nav__item"><a href="#typography">Типографика</a></li>
+          <li class="uik-nav__item"><a href="#buttons">Кнопки</a></li>
+          <li class="uik-nav__item"><a href="#toggle">Toggle</a></li>
+          <li class="uik-nav__item"><a href="#cards">Карточки</a></li>
+          <li class="uik-nav__item"><a href="#icon-links">Icon Links</a></li>
+          <li class="uik-nav__item"><a href="#mobile-nav">Mobile Nav</a></li>
+          <li class="uik-nav__item"><a href="#empty">Пустое состояние</a></li>
+          <li class="uik-nav__item"><a href="#shadows">Тени</a></li>
+          <li class="uik-nav__item"><a href="#radii">Радиусы</a></li>
+          <li class="uik-nav__item"><a href="#icons">Иконки</a></li>
+        </ul>
+      </aside>
+
+      <!-- ─── Основной контент ─────────────────────────────────────── -->
+      <main class="uik-content">
+
+        <!-- Заголовок страницы -->
+        <div style="margin-bottom: 40px;">
+          <h1 style="margin: 0 0 8px; font-size: 32px; font-weight: 900; letter-spacing: -0.3px;">
+            UI Kit
+          </h1>
+          <p style="margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5;">
+            Визуальный язык проекта DSG — токены, компоненты и их состояния.<br>
+            Файл: <code style="font-family: monospace; color: #a78bfa;">public/styles.css</code>
+          </p>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Токены                                            -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="tokens"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Токены</h2>
+          <p class="uik-section__desc">
+            CSS-переменные в <code>:root</code> — единственный источник цветов, теней и радиусов.
+            Менять тему достаточно здесь.
+          </p>
+
+          <!-- Цвета фона -->
+          <h3 style="font-size: 14px; color: var(--muted); margin: 0 0 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;">Фоны</h3>
+          <div class="token-grid" style="margin-bottom: 20px;">
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: #0b0f19; border-bottom: 1px solid rgba(255,255,255,0.08);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--bg</p>
+                <p class="token-swatch__value">#0b0f19</p>
+              </div>
+            </div>
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: rgba(255,255,255,0.06);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--panel</p>
+                <p class="token-swatch__value">rgba(255,255,255, .06)</p>
+              </div>
+            </div>
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: rgba(255,255,255,0.08);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--panel-2</p>
+                <p class="token-swatch__value">rgba(255,255,255, .08)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Текст -->
+          <h3 style="font-size: 14px; color: var(--muted); margin: 0 0 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;">Текст</h3>
+          <div class="token-grid" style="margin-bottom: 20px;">
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: rgba(255,255,255,0.92);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--text</p>
+                <p class="token-swatch__value">rgba(255,255,255, .92)</p>
+              </div>
+            </div>
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: rgba(255,255,255,0.64);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--muted</p>
+                <p class="token-swatch__value">rgba(255,255,255, .64)</p>
+              </div>
+            </div>
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--border</p>
+                <p class="token-swatch__value">rgba(255,255,255, .12)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Акцент -->
+          <h3 style="font-size: 14px; color: var(--muted); margin: 0 0 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;">Акцент</h3>
+          <div class="token-grid">
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: #7c3aed;"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--accent</p>
+                <p class="token-swatch__value">#7c3aed</p>
+              </div>
+            </div>
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: #5b21b6;"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">--accent-2</p>
+                <p class="token-swatch__value">#5b21b6</p>
+              </div>
+            </div>
+            <!-- Дополнительный акцент — голубой из градиента фона -->
+            <div class="token-swatch">
+              <div class="token-swatch__color" style="background: rgba(34,211,238,0.13);"></div>
+              <div class="token-swatch__info">
+                <p class="token-swatch__name">bg-glow-cyan</p>
+                <p class="token-swatch__value">rgba(34,211,238, .13)</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Типографика                                       -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="typography"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Типографика</h2>
+          <p class="uik-section__desc">
+            Шрифт: <strong>Inter</strong>, fallback — system-ui, -apple-system, Segoe UI, Roboto, Arial.
+          </p>
+
+          <div>
+            <div class="type-row">
+              <span class="type-label">26px / 850 / 1.15</span>
+              <h1 class="catalog-title" style="font-size:26px;">Заголовок каталога</h1>
+            </div>
+            <div class="type-row">
+              <span class="type-label">22px / 800</span>
+              <h2 style="margin:0; font-size:22px; font-weight:800;">Заголовок секции</h2>
+            </div>
+            <div class="type-row">
+              <span class="type-label">16px / 700</span>
+              <h3 class="card__title">Заголовок карточки</h3>
+            </div>
+            <div class="type-row">
+              <span class="type-label">14px / 400 / 1.35</span>
+              <p class="card__desc" style="margin:0;">Описание системы — вторичный текст, цвет <code>--muted</code></p>
+            </div>
+            <div class="type-row">
+              <span class="type-label">14px / 600</span>
+              <span style="font-size:14px; font-weight:600;">Текст кнопки</span>
+            </div>
+            <div class="type-row">
+              <span class="type-label">13px / 400 / 1.4</span>
+              <p class="catalog-desc" style="margin:0;">Подпись каталога — мелкий вспомогательный текст</p>
+            </div>
+            <div class="type-row">
+              <span class="type-label">13px — icon-link</span>
+              <span style="font-size:13px;">Текст ссылки с иконкой</span>
+            </div>
+            <div class="type-row">
+              <span class="type-label">12px / mobile</span>
+              <span style="font-size:12px; color: var(--muted);">Текст toggle на мобильных</span>
+            </div>
+            <div class="type-row">
+              <span class="type-label">10px / 600 — nav</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:0.2px; color: var(--muted);">Метка мобильной навигации</span>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Кнопки                                            -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="buttons"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Кнопки <span class="uik-badge uik-badge--stable">stable</span></h2>
+          <p class="uik-section__desc">
+            Базовый класс <code>.btn</code> + модификатор. Все кнопки — <code>inline-flex</code>,
+            border-radius 999px. Переход 120ms ease на фон и трансформацию.
+          </p>
+
+          <!-- Primary -->
+          <div class="comp-block">
+            <div class="comp-preview">
+              <div class="state-item">
+                <span class="state-label">default</span>
+                <!-- Основное действие: градиент accent → accent-2 с opacity 0.92 -->
+                <a class="btn btn--primary" href="#" onclick="return false">Добавить систему</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">:hover</span>
+                <!-- При hover — та же градиент без opacity (opacity: 1) -->
+                <a class="btn btn--primary" href="#" onclick="return false" style="background: linear-gradient(180deg, rgba(124,58,237,1), rgba(91,33,182,1));">Добавить систему</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">:active</span>
+                <!-- translateY(1px) — тактильный отклик нажатия -->
+                <a class="btn btn--primary" href="#" onclick="return false" style="transform: translateY(1px);">Добавить систему</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">disabled</span>
+                <!-- opacity 0.38, pointer-events: none -->
+                <a class="btn btn--primary btn--disabled" aria-disabled="true">Добавить систему</a>
+              </div>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.btn.btn--primary</p>
+              <p class="comp-meta__desc">Главное действие. Используется в футере (CTA «Добавить систему»). Градиент <code>--accent → --accent-2</code>, граница с opacity 0.55.</p>
+            </div>
+          </div>
+
+          <!-- Ghost -->
+          <div class="comp-block">
+            <div class="comp-preview">
+              <div class="state-item">
+                <span class="state-label">default</span>
+                <!-- Почти прозрачный фон, граница --border -->
+                <a class="btn btn--ghost" href="#" onclick="return false">Каталог</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">:hover</span>
+                <!-- Фон чуть светлее: rgba(255,255,255,.06) -->
+                <a class="btn btn--ghost" href="#" onclick="return false" style="background: rgba(255,255,255,0.06);">Каталог</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">active / current</span>
+                <!-- Текущая страница: фон --panel-2, граница rgba(255,255,255,.18) -->
+                <a class="btn btn--ghost btn--active" href="#" onclick="return false" aria-current="page">Каталог</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">:active</span>
+                <a class="btn btn--ghost" href="#" onclick="return false" style="transform: translateY(1px);">Каталог</a>
+              </div>
+              <div class="state-item">
+                <span class="state-label">disabled</span>
+                <a class="btn btn--ghost btn--disabled" aria-disabled="true">Каталог</a>
+              </div>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.btn.btn--ghost</p>
+              <p class="comp-meta__desc">Навигационные кнопки в хэдере и «Поддержать» в футере. Модификатор <code>.btn--active</code> добавляется JS при совпадении <code>href</code> с текущим URL.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Toggle                                            -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="toggle"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Toggle <span class="uik-badge uik-badge--stable">stable</span></h2>
+          <p class="uik-section__desc">
+            Переключатель фильтра каталога. Оболочка <code>.toggle</code> — pill-контейнер,
+            внутри — <code>.toggle__item</code>. Активный элемент получает <code>.toggle__item--active</code>.
+          </p>
+
+          <div class="comp-block">
+            <div class="comp-preview" style="flex-direction: column; gap: 24px;">
+
+              <!-- Состояние: Отечественные активны -->
+              <div class="state-item">
+                <span class="state-label">«Отечественные» активен</span>
+                <div class="toggle" role="group" aria-label="Фильтр каталога">
+                  <!-- Активный пункт: фон --panel-2, цвет --text, тень -->
+                  <span class="toggle__item toggle__item--active">Отечественные</span>
+                  <!-- Неактивный: цвет --muted, фон прозрачный -->
+                  <span class="toggle__item">Зарубежные</span>
+                </div>
+              </div>
+
+              <!-- Состояние: Зарубежные активны -->
+              <div class="state-item">
+                <span class="state-label">«Зарубежные» активен</span>
+                <div class="toggle" role="group" aria-label="Фильтр каталога">
+                  <span class="toggle__item">Отечественные</span>
+                  <span class="toggle__item toggle__item--active">Зарубежные</span>
+                </div>
+              </div>
+
+              <!-- Мобильная версия (уменьшенный padding) -->
+              <div class="state-item">
+                <span class="state-label">mobile — уменьшенный padding</span>
+                <div class="toggle" role="group" style="padding: 3px;" aria-label="Фильтр каталога">
+                  <span class="toggle__item toggle__item--active" style="padding: 7px 10px; font-size: 12px;">Отечественные</span>
+                  <span class="toggle__item" style="padding: 7px 10px; font-size: 12px;">Зарубежные</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.toggle / .toggle__item / .toggle__item--active</p>
+              <p class="comp-meta__desc">
+                На десктопе: padding 4px, items 8px 12px, font-size 14px.<br>
+                На мобильных (≤620px): padding 3px, items 7px 10px, font-size 12px.<br>
+                Мобильная версия фиксируется снизу экрана с backdrop-filter blur(12px).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Карточки                                          -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="cards"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Карточки <span class="uik-badge uik-badge--stable">stable</span></h2>
+          <p class="uik-section__desc">
+            Базовый блок каталога. Минимальная высота 170px, flex-column с gap 14px.
+            Ссылки прижаты к низу через <code>margin-top: auto</code> на <code>.card__links</code>.
+          </p>
+
+          <!-- Полная карточка -->
+          <div class="comp-block" style="margin-bottom: 16px;">
+            <div class="comp-preview comp-preview--dark">
+              <article class="card" style="max-width: 320px; width: 100%;">
+                <div class="card__top">
+                  <!-- Логотип: круг 56×56, object-fit: cover -->
+                  <img
+                    class="card__logo"
+                    src="../assets/logos/foreign/material.png"
+                    alt="Material Design"
+                    width="56" height="56"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <!-- Фолбэк при ошибке загрузки логотипа: инициалы с акцентным фоном -->
+                  <div class="card__logo-fallback" aria-hidden="true">MD</div>
+                  <div class="card__meta">
+                    <h3 class="card__title">Material Design</h3>
+                    <p class="card__desc">Дизайн-система от Google для создания продуктов на всех платформах.</p>
+                  </div>
+                </div>
+                <div class="card__links" aria-label="Ссылки">
+                  <a class="icon-link" href="#" onclick="return false" target="_blank" rel="noreferrer">
+                    <span class="icon" aria-hidden="true">🌐</span><span>Сайт</span>
+                  </a>
+                  <a class="icon-link" href="#" onclick="return false" target="_blank" rel="noreferrer">
+                    <span class="icon" aria-hidden="true">💻</span><span>GitHub</span>
+                  </a>
+                  <a class="icon-link" href="#" onclick="return false" target="_blank" rel="noreferrer">
+                    <span class="icon" aria-hidden="true">🖌️</span><span>Figma</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.card — default</p>
+              <p class="comp-meta__desc">
+                Полный вид: логотип + мета (заголовок + описание) + ссылки. При ошибке загрузки логотипа
+                показывается <code>.card__logo-fallback</code> с инициалами и акцентным фоном.
+              </p>
+            </div>
+          </div>
+
+          <!-- Скелетон загрузки -->
+          <div class="comp-block" style="margin-bottom: 16px;">
+            <div class="comp-preview comp-preview--dark">
+              <article class="card card--skeleton skeleton-demo" aria-hidden="true">
+                <div class="card__top">
+                  <!-- Анимированный placeholder логотипа -->
+                  <div class="card-sk card-sk--logo"></div>
+                  <div class="card__meta" style="flex:1;min-width:0">
+                    <!-- Placeholder заголовка: 55% ширины -->
+                    <div class="card-sk card-sk--title"></div>
+                    <!-- Placeholder текста: 90% ширины -->
+                    <div class="card-sk card-sk--text"></div>
+                    <!-- Короткий placeholder: 65% ширины -->
+                    <div class="card-sk card-sk--text-short"></div>
+                  </div>
+                </div>
+                <div class="card__links">
+                  <!-- Placeholder кнопки ссылки -->
+                  <div class="card-sk card-sk--btn"></div>
+                  <div class="card-sk card-sk--btn"></div>
+                </div>
+              </article>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.card.card--skeleton — loading state</p>
+              <p class="comp-meta__desc">
+                Показывается пока <code>systems.json</code> не загружен. Анимация <code>card-sk-pulse</code>:
+                opacity 1→0.4→1 за 1.4s. Каждый элемент имеет свой <code>animation-delay</code> для волнового эффекта.
+                <code>pointer-events: none</code>, <code>user-select: none</code>, <code>aria-hidden="true"</code>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Карточка с фолбэком логотипа -->
+          <div class="comp-block">
+            <div class="comp-preview comp-preview--dark">
+              <article class="card" style="max-width: 320px; width: 100%;">
+                <div class="card__top">
+                  <img class="card__logo" src="broken-url.png" alt="" width="56" height="56"
+                    style="display:none;" />
+                  <!-- Фолбэк всегда виден в этом демо -->
+                  <div class="card__logo-fallback" style="display:flex;" aria-hidden="true">DS</div>
+                  <div class="card__meta">
+                    <h3 class="card__title">Без логотипа</h3>
+                    <p class="card__desc">Карточка с фолбэком: инициалы системы на акцентном фоне вместо изображения.</p>
+                  </div>
+                </div>
+                <div class="card__links" aria-label="Ссылки">
+                  <a class="icon-link" href="#" onclick="return false">
+                    <span class="icon" aria-hidden="true">🌐</span><span>Сайт</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.card__logo-fallback — logo error state</p>
+              <p class="comp-meta__desc">
+                JS вешает <code>onerror</code> на <code>img.card__logo</code>: скрывает картинку и показывает fallback.
+                Цвет: <code>rgba(124,58,237,.18)</code> фон, граница <code>rgba(124,58,237,.35)</code>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Icon Links                                        -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="icon-links"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Icon Links <span class="uik-badge uik-badge--stable">stable</span></h2>
+          <p class="uik-section__desc">
+            Ссылки на сайт, GitHub и Figma внутри карточки. Pill-форма с иконкой слева.
+          </p>
+
+          <div class="comp-block">
+            <div class="comp-preview">
+              <!-- Default -->
+              <div class="state-item">
+                <span class="state-label">default</span>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                  <!-- Сайт: иконка глобуса -->
+                  <a class="icon-link" href="#" onclick="return false" target="_blank" rel="noreferrer">
+                    <span class="icon" aria-hidden="true">🌐</span><span>Сайт</span>
+                  </a>
+                  <!-- GitHub: иконка монитора -->
+                  <a class="icon-link" href="#" onclick="return false" target="_blank" rel="noreferrer">
+                    <span class="icon" aria-hidden="true">💻</span><span>GitHub</span>
+                  </a>
+                  <!-- Figma: иконка кисти -->
+                  <a class="icon-link" href="#" onclick="return false" target="_blank" rel="noreferrer">
+                    <span class="icon" aria-hidden="true">🖌️</span><span>Figma</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Hover -->
+              <div class="state-item">
+                <span class="state-label">:hover</span>
+                <div style="display:flex; gap:8px;">
+                  <!-- При hover: фон rgba(255,255,255,.06) -->
+                  <a class="icon-link" href="#" onclick="return false" style="background: rgba(255,255,255,0.06);">
+                    <span class="icon" aria-hidden="true">🌐</span><span>Сайт</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.icon-link</p>
+              <p class="comp-meta__desc">
+                Padding 8px 10px, border-radius 999px, font-size 13px. Иконка — 18×18px emoji в контейнере <code>.icon</code>.
+                Ссылки без нужного href скрываются JS-ом (<code>hidden</code>).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Mobile Nav                                        -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="mobile-nav"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Mobile Nav <span class="uik-badge uik-badge--stable">stable</span></h2>
+          <p class="uik-section__desc">
+            Нижняя навигационная панель — видна только на экранах ≤620px или на touch-устройствах
+            (<code>hover: none</code>). Фиксируется снизу экрана с учётом <code>safe-area-inset-bottom</code>.
+          </p>
+
+          <div class="comp-block">
+            <div class="comp-preview comp-preview--center comp-preview--dark">
+              <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%;">
+
+                <!-- Каталог активен -->
+                <div class="state-item" style="align-items: center;">
+                  <span class="state-label" style="margin-bottom: 4px;">«Каталог» активен</span>
+                  <div class="mobile-nav-demo">
+                    <!-- Активная вкладка: цвет #8b5cf6, прозрачный фон и граница -->
+                    <a class="mobile-nav__link" style="display:flex; color:#8b5cf6;" aria-current="page">
+                      <span class="mobile-nav__icon" aria-hidden="true">🗂️</span>
+                      <span class="mobile-nav__label">Каталог</span>
+                    </a>
+                    <!-- Неактивные: цвет --muted, прозрачный фон -->
+                    <a class="mobile-nav__link" style="display:flex;">
+                      <span class="mobile-nav__icon" aria-hidden="true">📰</span>
+                      <span class="mobile-nav__label">Дайджесты</span>
+                    </a>
+                    <a class="mobile-nav__link" style="display:flex;">
+                      <span class="mobile-nav__icon" aria-hidden="true">❤️</span>
+                      <span class="mobile-nav__label">Поддержать</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Дайджесты активны -->
+                <div class="state-item" style="align-items: center;">
+                  <span class="state-label" style="margin-bottom: 4px;">«Дайджесты» активен</span>
+                  <div class="mobile-nav-demo">
+                    <a class="mobile-nav__link" style="display:flex;">
+                      <span class="mobile-nav__icon" aria-hidden="true">🗂️</span>
+                      <span class="mobile-nav__label">Каталог</span>
+                    </a>
+                    <a class="mobile-nav__link" style="display:flex; color:#8b5cf6;" aria-current="page">
+                      <span class="mobile-nav__icon" aria-hidden="true">📰</span>
+                      <span class="mobile-nav__label">Дайджесты</span>
+                    </a>
+                    <a class="mobile-nav__link" style="display:flex;">
+                      <span class="mobile-nav__icon" aria-hidden="true">❤️</span>
+                      <span class="mobile-nav__label">Поддержать</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.mobile-nav / .mobile-nav__link / .mobile-nav__link--active</p>
+              <p class="comp-meta__desc">
+                Grid 3 колонки, gap 8px, border-radius 24px. Кнопка: min-height 32px, flex-column, иконка 16px + лейбл 10px.
+                Активная вкладка: цвет <code>#8b5cf6</code>, фон и граница — прозрачные (без заливки, только цвет).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Пустое состояние                                  -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="empty"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Пустое состояние <span class="uik-badge uik-badge--stable">stable</span></h2>
+          <p class="uik-section__desc">
+            Отображается когда в выбранной категории (Отечественные / Зарубежные) нет ни одной карточки.
+            Управляется атрибутом <code>hidden</code> через JS.
+          </p>
+
+          <div class="comp-block">
+            <div class="comp-preview">
+              <!-- Пунктирная рамка, цвет --muted -->
+              <div class="empty empty-demo">
+                В этой категории пока нет карточек.
+              </div>
+            </div>
+            <div class="comp-meta">
+              <p class="comp-meta__name">.empty</p>
+              <p class="comp-meta__desc">
+                Border: <code>1px dashed rgba(255,255,255,.22)</code>, border-radius <code>--radius</code>, padding 14px 16px.
+                JS переключает атрибут <code>hidden</code> на элементе в зависимости от количества видимых карточек.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Тени                                              -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="shadows"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Тени</h2>
+          <p class="uik-section__desc">
+            Одна глобальная тень <code>--shadow</code> используется везде: карточки, кнопки в активном состоянии, мобильный тогл.
+          </p>
+
+          <div class="shadow-row">
+            <div class="shadow-box" style="box-shadow: var(--shadow);">
+              --shadow<br>0 10px 30px<br>rgba(0,0,0,.35)
+            </div>
+            <!-- Нет тени — базовый вид элемента -->
+            <div class="shadow-box" style="box-shadow: none;">
+              none<br>(default)
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Радиусы                                           -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="radii"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Радиусы</h2>
+          <p class="uik-section__desc">
+            Два главных радиуса: <code>--radius</code> для карточек и контейнеров, <code>999px</code> — для pill-элементов (кнопки, toggle, icon-link).
+          </p>
+
+          <div class="radius-row">
+            <div class="state-item">
+              <span class="state-label">--radius: 16px</span>
+              <!-- Карточки, скелетон-контейнеры, empty -->
+              <div class="radius-box" style="border-radius: 16px;">cards</div>
+            </div>
+            <div class="state-item">
+              <span class="state-label">999px — pill</span>
+              <!-- Кнопки, toggle, icon-link, логотипы -->
+              <div class="radius-box" style="border-radius: 999px;">btn / toggle</div>
+            </div>
+            <div class="state-item">
+              <span class="state-label">24px</span>
+              <!-- Мобильная навигация -->
+              <div class="radius-box" style="border-radius: 24px;">mobile-nav</div>
+            </div>
+            <div class="state-item">
+              <span class="state-label">14px</span>
+              <!-- Пункты мобильной навигации -->
+              <div class="radius-box" style="border-radius: 14px;">nav item</div>
+            </div>
+            <div class="state-item">
+              <span class="state-label">12px</span>
+              <!-- Мелкие элементы: skeleton btn, badge -->
+              <div class="radius-box" style="border-radius: 12px;">sk-btn</div>
+            </div>
+            <div class="state-item">
+              <span class="state-label">6px</span>
+              <!-- Базовый skeleton block -->
+              <div class="radius-box" style="border-radius: 6px;">card-sk</div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="uik-divider" />
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- СЕКЦИЯ: Иконки                                            -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <span class="uik-anchor" id="icons"></span>
+        <section class="uik-section">
+          <h2 class="uik-section__title">Иконки <span class="uik-badge uik-badge--draft">emoji</span></h2>
+          <p class="uik-section__desc">
+            Иконки — нативные emoji в контейнере <code>.icon</code> (18×18px, opacity 0.9).
+            Не требуют шрифтов или SVG-спрайтов. В мобильной навигации — 16px.
+          </p>
+
+          <div class="icons-row">
+            <div class="icon-demo">
+              <div class="icon-demo__box"><span class="icon">🌐</span></div>
+              <span class="icon-demo__label">site</span>
+            </div>
+            <div class="icon-demo">
+              <div class="icon-demo__box"><span class="icon">💻</span></div>
+              <span class="icon-demo__label">github</span>
+            </div>
+            <div class="icon-demo">
+              <div class="icon-demo__box"><span class="icon">🖌️</span></div>
+              <span class="icon-demo__label">figma</span>
+            </div>
+            <div class="icon-demo">
+              <div class="icon-demo__box" style="font-size: 16px;">🗂️</div>
+              <span class="icon-demo__label">catalog nav</span>
+            </div>
+            <div class="icon-demo">
+              <div class="icon-demo__box" style="font-size: 16px;">📰</div>
+              <span class="icon-demo__label">digest nav</span>
+            </div>
+            <div class="icon-demo">
+              <div class="icon-demo__box" style="font-size: 16px;">❤️</div>
+              <span class="icon-demo__label">support nav</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script>
+      // Подсветка активного пункта в сайдбаре при скролле
+      const sections = document.querySelectorAll('.uik-anchor');
+      const navLinks = document.querySelectorAll('.uik-nav__item a');
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach((link) => {
+                link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+              });
+            }
+          }),
+          { rootMargin: '-20% 0px -70% 0px' }
+        }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    </script>
+
+  </body>
+</html>
