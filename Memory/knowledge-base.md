@@ -1,6 +1,6 @@
 # База знаний проекта DSG
 
-> Актуально на: 2026-06-14 (обновлено в конце дня)  
+> Актуально на: 2026-06-16  
 > Обновлять в конце каждой рабочей сессии.
 
 ---
@@ -64,8 +64,16 @@ DSG/
 │   ├── monthly-digest.yml          ← Monthly Digest Rebuild
 │   └── pages.yml                   ← GitHub Pages (non-main ветки → staging)
 │
+├── public/ui-kit/
+│   └── index.html                  ← UI Kit — документация компонентов (ветка UI-kit)
+│
+├── .claude/
+│   ├── settings.json               ← хук автосинка DSG-Analytics.md в Obsidian
+│   └── launch.json                 ← конфиг локального превью (node server.mjs)
+│
 ├── Memory/
-│   └── knowledge-base.md           ← этот файл
+│   ├── knowledge-base.md           ← этот файл
+│   └── DSG-Analytics.md            ← полная аналитика проекта (синкается в Obsidian)
 │
 ├── .gitignore                      ← node_modules/, .cache/, .DS_Store, .env, public/bot/config.php
 └── package.json
@@ -105,6 +113,7 @@ DSG/
 | любая non-main | GitHub Pages → lorrrem-zlnkh.github.io/DSG/ | Staging/тест |
 | `catalog-update` | GitHub Pages | Обновление каталога дизайн-систем |
 | `digest-rebuild` | GitHub Pages | Пересборка всех дайджестов |
+| `UI-kit` | GitHub Pages | Документационная страница UI Kit |
 
 **pages.yml** — деплоит все ветки кроме main в GitHub Pages.  
 Ветку нужно добавить в Settings → Environments → `github-pages` → Deployment branches, иначе деплой упадёт с ошибкой «Branch not allowed».
