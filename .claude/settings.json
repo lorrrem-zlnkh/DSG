@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // .tool_response.filePath'); if echo \"$f\" | grep -q 'Memory/DSG-Analytics.md'; then cp \"$f\" \"/Users/denis_zelenykh/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zelenykh/👾 Lorrrem/Проекты Lorrrem/DSG/DSG-Analytics.md\"; fi",
+            "statusMessage": "Синк в Obsidian..."
+          }
+        ]
+      }
+    ]
+  }
+}
