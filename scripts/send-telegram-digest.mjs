@@ -42,9 +42,12 @@ async function main() {
     return;
   }
 
+  // Тестовый прогон (DIGEST_MONTH задан) — всегда шлём боту, минуя guard ниже.
+  const isTestRun = /^\d{4}-\d{2}$/.test((process.env.DIGEST_MONTH || "").trim());
+
   // Если этот месяц уже есть на живом сайте (например, июнь, запланированный на
   // 1 июля через publishAt) — не переотправляем боту: модерация не нужна.
-  try {
+  if (!isTestRun) try {
     const liveResp = await fetch("https://dsg.lorrrem.ru/blog/digests.json", { cache: "no-store" });
     if (liveResp.ok) {
       const live = await liveResp.json();

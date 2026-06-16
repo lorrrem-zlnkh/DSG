@@ -675,11 +675,12 @@ function sendReminder(array $draft): void {
 // Забор пула для сборки (идемпотентно): первые POOL_TARGET по времени добавления —
 // в выпуск; лишние переносятся в пул следующего месяца (с тем же addedAt → снова
 // в приоритете). Возвращает выбранные ссылки. Повторный вызов отдаёт то же самое.
-function handlePoolConsume(string $month): void {
+function handlePoolConsume(string $month, bool $dry = false): void {
     header('Content-Type: application/json');
     $pool = loadPool($month);
 
-    if (!empty($pool['consumedAt'])) {
+    // Уже обработан (не dry) — отдаём сохранённый выбор.
+    if (!empty($pool['consumedAt']) && !$dry) {
         echo json_encode([
             'ok' => true, 'month' => $month, 'consumedAt' => $pool['consumedAt'],
             'selected' => $pool['selected'] ?? [], 'count' => count($pool['selected'] ?? []),
@@ -692,28 +693,31 @@ function handlePoolConsume(string $month): void {
     usort($items, fn($a, $b) => strcmp((string) ($a['addedAt'] ?? ''), (string) ($b['addedAt'] ?? '')));
     $selected = array_slice($items, 0, POOL_TARGET);
     $overflow = array_slice($items, POOL_TARGET);
+    $selOut   = array_map(fn($it) => ['id' => $it['id'] ?? '', 'url' => $it['url'] ?? ''], $selected);
 
-    if ($overflow) {
-        $next  = nextMonth($month);
-        $np    = loadPool($next);
-        $nkeys = array_column($np['items'] ?? [], 'key');
-        foreach ($overflow as $it) {
-            if (!in_array($it['key'] ?? '', $nkeys, true)) {
-                $np['items'][] = $it;
-                $nkeys[] = $it['key'] ?? '';
+    // dry — только просмотр выбора, без мутации (для тестовых прогонов).
+    if (!$dry) {
+        if ($overflow) {
+            $next  = nextMonth($month);
+            $np    = loadPool($next);
+            $nkeys = array_column($np['items'] ?? [], 'key');
+            foreach ($overflow as $it) {
+                if (!in_array($it['key'] ?? '', $nkeys, true)) {
+                    $np['items'][] = $it;
+                    $nkeys[] = $it['key'] ?? '';
+                }
             }
+            savePool($next, $np);
         }
-        savePool($next, $np);
+        $pool['selected'] = $selOut;
+        $pool['consumedAt'] = gmdate('c');
+        $pool['carriedOver'] = count($overflow);
+        savePool($month, $pool);
     }
 
-    $pool['selected'] = array_map(fn($it) => ['id' => $it['id'] ?? '', 'url' => $it['url'] ?? ''], $selected);
-    $pool['consumedAt'] = gmdate('c');
-    $pool['carriedOver'] = count($overflow);
-    savePool($month, $pool);
-
     echo json_encode([
-        'ok' => true, 'month' => $month, 'selected' => $pool['selected'],
-        'count' => count($pool['selected']), 'carriedOver' => count($overflow),
+        'ok' => true, 'month' => $month, 'dry' => $dry, 'selected' => $selOut,
+        'count' => count($selOut), 'carriedOver' => count($overflow),
     ], JSON_UNESCAPED_UNICODE);
 }
 
@@ -1182,9 +1186,10 @@ if (PHP_SAPI !== 'cli') {
     }
 
     // Забор пула для сборки: первые 35 в выпуск, лишние — в след. месяц (идемпотентно).
+    // dry=1 — просмотр выбора без мутации (тестовые прогоны).
     if ($action === 'pool_consume') {
         if (!ciSecretOk()) { http_response_code(403); exit; }
-        handlePoolConsume($_GET['month'] ?? currentMonth());
+        handlePoolConsume($_GET['month'] ?? currentMonth(), !empty($_GET['dry']));
         exit;
     }
 

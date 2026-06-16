@@ -800,7 +800,7 @@ function mergeGeneratedItems(selectedPosts, generated) {
   return items;
 }
 
-export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath = DEFAULT_DIGESTS_PATH, manualPosts = [] } = {}) {
+export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath = DEFAULT_DIGESTS_PATH, manualPosts = [], targetMonth = null } = {}) {
   const source = JSON.parse(await fs.readFile(postsPath, "utf8"));
   const now = new Date();
 
@@ -829,7 +829,11 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
   const historicalSelections = buildHistoricalSelectionMap(posts);
   const usedDigestKeys = new Set([...historicalSelections.values()].flat().map(articleKey));
   const cursor = new Date(Date.UTC(FIRST_DIGEST_YEAR, FIRST_DIGEST_MONTH - 1, 1));
-  const lastMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
+  // targetMonth (YYYY-MM) — для тестового прогона целимся в конкретный месяц
+  // (например текущий), иначе как обычно: предыдущий календарный.
+  const lastMonth = targetMonth && /^\d{4}-\d{2}$/.test(targetMonth)
+    ? new Date(Date.UTC(Number(targetMonth.slice(0, 4)), Number(targetMonth.slice(5, 7)) - 1, 1))
+    : new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
   const currentMonthKey = monthKeyFromDate(lastMonth);
 
   while (cursor <= lastMonth) {

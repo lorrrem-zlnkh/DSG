@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 8 1 * *'   # 1-го числа каждого месяца в 08:00 UTC (11:00 МСК)
   workflow_dispatch:        # можно запустить вручную из GitHub
+    inputs:
+      month:
+        description: 'Тестовый месяц YYYY-MM (пусто = предыдущий календарный)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -39,6 +44,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: claude-sonnet-4-6
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+          DIGEST_MONTH: ${{ inputs.month }}
         run: node scripts/run-content-automation.mjs
 
       - name: Rewrite descriptions (quality pass)
@@ -68,4 +74,5 @@ jobs:
       - name: Hand off draft to bot for approval
         env:
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+          DIGEST_MONTH: ${{ inputs.month }}
         run: node scripts/send-telegram-digest.mjs

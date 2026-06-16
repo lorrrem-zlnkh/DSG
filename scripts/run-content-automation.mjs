@@ -14,8 +14,11 @@ const DRAFT_DIGESTS_PATH = new URL("../.cache/draft/digests.json", import.meta.u
 
 const BOT_URL = process.env.BOT_INIT_URL || "https://dsg.lorrrem.ru/bot/webhook.php";
 
-// Месяц дайджеста = предыдущий календарный (как в build-digests).
+// Месяц дайджеста = предыдущий календарный; DIGEST_MONTH (YYYY-MM) переопределяет
+// для тестового прогона (например текущий месяц).
 function digestMonthKey() {
+  const override = (process.env.DIGEST_MONTH || "").trim();
+  if (/^\d{4}-\d{2}$/.test(override)) return override;
   const now = new Date();
   const lm = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
   return `${lm.getUTCFullYear()}-${String(lm.getUTCMonth() + 1).padStart(2, "0")}`;
@@ -28,7 +31,9 @@ async function consumePoolUrls() {
   if (!secret) return [];
   try {
     const month = digestMonthKey();
-    const res = await fetch(`${BOT_URL}?action=pool_consume&month=${month}`, {
+    // Тестовый прогон (DIGEST_MONTH задан) — dry: смотрим выбор, не «съедаем» пул.
+    const dry = /^\d{4}-\d{2}$/.test((process.env.DIGEST_MONTH || "").trim()) ? "&dry=1" : "";
+    const res = await fetch(`${BOT_URL}?action=pool_consume&month=${month}${dry}`, {
       method: "POST",
       headers: { "X-Bot-Secret": secret },
     });
@@ -133,6 +138,7 @@ async function runWithLock() {
       postsPath: DRAFT_POSTS_PATH,
       digestsPath: DRAFT_DIGESTS_PATH,
       manualPosts,
+      targetMonth: (process.env.DIGEST_MONTH || "").trim() || null,
     });
     const finishedAt = new Date().toISOString();
     const status = {
