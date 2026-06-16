@@ -347,6 +347,34 @@ function fallbackDigestItem(post) {
   };
 }
 
+// Присланные владельцем ссылки (ручной выбор редактора, источник «Подборка»).
+function isManualPost(post) {
+  return post.source === "manual" || post.sourceLabel === "Подборка";
+}
+
+// Карточка для присланного материала: берём нейтральный рерайт (summary/rewrite,
+// предзаписанный на этапе автоматизации), НИКОГДА не уходим в шаблон «Материал
+// разбирает тему…» — присланное всегда в выпуске и с живым описанием.
+function manualDigestItem(post) {
+  let summary = sanitizeDigestText(post.summary || "", post.title);
+  if (!isGoodSummary(summary, post.title)) {
+    summary = pickSummarySentences(post.rewrite || post.summary || "", post.title) || summary;
+  }
+  if (!summary) summary = sanitizeDigestText(post.title || "", post.title);
+  return {
+    id: post.id,
+    url: post.url,
+    sourceTitle: cleanSourceTitle(post.title),
+    summary,
+    excerpt: "",
+    rubric: post.rubric || inferRubric(post) || "Подборка",
+    author: post.author || "Автор не указан",
+    source: post.sourceLabel || "Подборка",
+    publishedAt: post.publishedAt || null,
+    languageBadge: looksEnglish(`${post.title} ${summary}`) ? "Eng" : null,
+  };
+}
+
 function selectMonthlyPosts(posts, digestMonthKey, usedDigestKeys) {
   const bySource = new Map();
   const seen = new Set();
@@ -698,6 +726,8 @@ async function requestDigestFromOpenAI(digestMeta, posts) {
                 "Мероприятия (конференции, фестивали, хакатоны, ивенты) включай только от крупных и широко известных компаний (Google, Apple, Figma, Microsoft, Adobe, Meta, Яндекс, ВКонтакте) или отраслевых конференций уровня WWDC, Google I/O, Config. Мероприятия от неизвестных организаций, небольших школ, агентств или сугубо локальные события — пропускай. " +
                 "Для материалов о мероприятиях: если событие уже состоялось — используй прошедшее время в summary ('прошло', 'состоялось', 'представили'); если мероприятие ещё впереди — используй анонсную форму ('объявлено', 'пройдёт', 'состоится'). " +
                 "Не включай статью только если текст состоит из навигации, мусора или не относится к дизайну/продуктам. " +
+                "ИСКЛЮЧЕНИЕ: материалы источника «Подборка» — ручной выбор редактора. Их включай ВСЕГДА и пересказывай " +
+                "по сути в 3 предложениях, даже если тема не про дизайн; шаблон «Материал разбирает тему…» к ним не применяй. " +
                 "Сохраняй перемешанный порядок входного списка: не группируй статьи одного источника подряд. " +
                 "Рубрика должна быть короткой: 1-2 слова. Перед финальным JSON перечитай каждое summary и перепиши заново, если в нём остался сырой фрагмент статьи, служебные данные или запрещённый шаблон.";
 
@@ -737,19 +767,23 @@ async function requestDigestFromOpenAI(digestMeta, posts) {
 }
 
 function mergeGeneratedItems(selectedPosts, generated) {
-  if (!generated) {
-    return selectedPosts
-      .map(fallbackDigestItem)
-      .filter((item) => isGoodSummary(item.summary, item.sourceTitle))
-      .slice(0, DIGEST_SIZE);
-  }
-
   const itemMap = new Map(selectedPosts.map((post) => [post.id, post]));
   const items = [];
   const seen = new Set();
   const seenArticles = new Set();
 
-  for (const item of generated.items || []) {
+  // Присланные («Подборка») — всегда включаем первыми, с нейтральным рерайтом,
+  // минуя дизайн-промпт и дроп/шаблон.
+  for (const post of selectedPosts) {
+    if (!isManualPost(post) || seen.has(post.id)) continue;
+    const key = articleKey(post);
+    if (seenArticles.has(key)) continue;
+    seen.add(post.id);
+    seenArticles.add(key);
+    items.push(manualDigestItem(post));
+  }
+
+  for (const item of (generated && generated.items) || []) {
     const sourcePost = itemMap.get(item.id);
     if (!sourcePost || seen.has(sourcePost.id)) continue;
     const key = articleKey(sourcePost);
@@ -789,15 +823,17 @@ function mergeGeneratedItems(selectedPosts, generated) {
 
   for (const post of selectedPosts) {
     if (items.length >= DIGEST_SIZE) break;
+    if (seen.has(post.id)) continue;
     const key = articleKey(post);
     if (seenArticles.has(key)) continue;
     const fallback = fallbackDigestItem(post);
     if (!isGoodSummary(fallback.summary, post.title)) continue;
+    seen.add(post.id);
     seenArticles.add(key);
     items.push(fallback);
   }
 
-  return items;
+  return items.slice(0, DIGEST_SIZE);
 }
 
 export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath = DEFAULT_DIGESTS_PATH, manualPosts = [], targetMonth = null } = {}) {

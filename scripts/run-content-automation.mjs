@@ -3,6 +3,7 @@ import { pathToFileURL } from "node:url";
 
 import { buildDigests, DIGEST_SIZE } from "./build-digests.mjs";
 import { fetchBlogPosts, fetchUrlsAsPosts } from "./fetch-blog.mjs";
+import { requestStructured } from "./lib/llm.mjs";
 import { loadEnv } from "./lib/load-env.mjs";
 
 loadEnv();
@@ -43,6 +44,48 @@ async function consumePoolUrls() {
   } catch {
     return [];
   }
+}
+
+// Вариант 2: нейтральный рерайт присланных материалов до сборки — тема ЛЮБАЯ,
+// чтобы дизайн-промпт не «ронял» офф-топик в шаблон. Результат кладём в
+// summary/rewrite/rubric поста (build-digests их сохраняет для «Подборки»).
+// Best-effort: при сбое оставляем то, что распарсилось из статьи.
+const MANUAL_REWRITE_SYSTEM =
+  "Ты редактор подборки материалов. Перескажи присланную статью РОВНО в 3 связных " +
+  "предложениях на русском, нейтральным редакторским тоном, строго по сути материала — " +
+  "тема может быть любой (не обязательно про дизайн). Начинай сразу с тезиса, без слов " +
+  "«Статья», «В статье», «Автор», «Материал», «В этом выпуске»; без воды вроде «будет " +
+  "полезен тем, кто» и «полезный ресурс». Также дай короткую рубрику из 1–2 слов по теме.";
+
+const MANUAL_REWRITE_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["summary", "rubric"],
+  properties: { summary: { type: "string" }, rubric: { type: "string" } },
+};
+
+export async function rewriteManualPosts(posts) {
+  for (const post of posts) {
+    const text = (post.rewrite || post.summary || post.title || "").slice(0, 6000);
+    if (!text) continue;
+    try {
+      const out = await requestStructured({
+        system: MANUAL_REWRITE_SYSTEM,
+        user: JSON.stringify({ title: post.title || "", text }, null, 2),
+        schema: MANUAL_REWRITE_SCHEMA,
+        schemaName: "manual_rewrite",
+        maxTokens: 1000,
+      });
+      if (out && typeof out.summary === "string" && out.summary.trim()) {
+        post.summary = out.summary.trim();
+        post.rewrite = out.summary.trim();
+        if (out.rubric && typeof out.rubric === "string") post.rubric = out.rubric.trim();
+      }
+    } catch (error) {
+      console.warn(`[automation] нейтральный рерайт не удался для ${post.url}: ${error.message}`);
+    }
+  }
+  return posts;
 }
 
 let inProcessRun = null;
@@ -121,6 +164,7 @@ async function runWithLock() {
     // Присланные ссылки — приоритет; занимают слоты выпуска (≤ DIGEST_SIZE).
     const poolUrls = await consumePoolUrls();
     const manualPosts = poolUrls.length ? await fetchUrlsAsPosts(poolUrls) : [];
+    if (manualPosts.length) await rewriteManualPosts(manualPosts); // V2: нейтральный рерайт
     console.log(`[automation] присланных ссылок в пуле: ${manualPosts.length}`);
 
     let postsPayload;

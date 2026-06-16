@@ -331,6 +331,9 @@ const FALLBACK_RE = /^Материал разбирает тему «|редак
 
 async function processDigest(digest, args, stats) {
   let items = digest.items || [];
+  // «Подборка» (присланные) уже имеют нейтральный рерайт — quality-pass их не трогает
+  // (иначе дизайн-промпт переписал бы офф-топик хуже). Сами карточки остаются в digest.
+  items = items.filter((it) => it.source !== "Подборка");
   if (args.fallbackOnly) items = items.filter((it) => FALLBACK_RE.test(it.summary || ""));
   if (args.limit) items = items.slice(0, args.limit);
   if (items.length === 0) return;
