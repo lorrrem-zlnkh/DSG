@@ -515,6 +515,18 @@
         "github": null,
         "figma": null
       }
+    },
+    {
+      "id": "shadcn-ui",
+      "origin": "foreign",
+      "title": "shadcn/ui",
+      "description": "Открытая коллекция переиспользуемых React-компонентов от shadcn на базе Radix UI и Tailwind CSS. Не библиотека-зависимость, а набор компонентов, которые копируются прямо в проект и полностью кастомизируются.",
+      "logo": "assets/logos/foreign/shadcn-ui.png",
+      "links": {
+        "site": "https://ui.shadcn.com/",
+        "github": "https://github.com/shadcn-ui/ui",
+        "figma": null
+      }
     }
   ]
 }
