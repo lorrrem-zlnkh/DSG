@@ -871,17 +871,51 @@ export async function fetchBlogPosts({ outPath = DEFAULT_OUT_PATH } = {}) {
   return { generatedAt, posts };
 }
 
-// Фетч присланных в бот ссылок как постов (источник «Подборка»). Дату не
-// фильтруем (skipRecency) — присланные материалы включаем независимо от даты.
-// Если статью распарсить не удалось — добавляем минимальный пост, чтобы ссылка
-// всё равно попала в выпуск (описание допишет LLM).
+// Загрузка HTML с браузерным User-Agent и ретраями — для ПРИСЛАННЫХ ссылок
+// (любые сторонние сайты). Многие ресурсы отдают 403 на бот-UA, поэтому здесь
+// прикидываемся браузером и повторяем при 403/429/5xx и сетевых сбоях.
+const MANUAL_BROWSER_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
+  "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
+
+async function fetchHtmlBrowser(url, attempt = 0) {
+  try {
+    const r = await fetch(url, {
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      redirect: "follow",
+      headers: {
+        "user-agent": MANUAL_BROWSER_UA,
+        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "accept-language": "ru,en;q=0.9",
+      },
+    });
+    if ((r.status === 403 || r.status === 429 || r.status >= 500) && attempt < 2) {
+      await new Promise((res) => setTimeout(res, 600 * 2 ** attempt));
+      return fetchHtmlBrowser(url, attempt + 1);
+    }
+    if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+    return r.text();
+  } catch (error) {
+    if (attempt < 2 && /timeout|aborted|network|fetch failed|terminated/i.test(error.message)) {
+      await new Promise((res) => setTimeout(res, 600 * 2 ** attempt));
+      return fetchHtmlBrowser(url, attempt + 1);
+    }
+    throw error;
+  }
+}
+
+// Фетч присланных в бот ссылок как постов (источник «Подборка»). Принимаем ЛЮБЫЕ
+// ссылки (не только одобренные источники): браузерный UA + ретраи. Дату не
+// фильтруем (skipRecency) — включаем независимо от даты. Если распарсить не
+// удалось — минимальный пост, чтобы ссылка всё равно попала в выпуск (описание
+// допишет LLM/можно поправить в боте).
 export async function fetchUrlsAsPosts(urls, { source = "manual", sourceLabel = "Подборка" } = {}) {
   const posts = [];
   for (const url of urls) {
     if (!url) continue;
     let post = null;
     try {
-      const html = await fetchText(url);
+      const html = await fetchHtmlBrowser(url);
       post = parseArticle(html, url, source, sourceLabel, { skipRecency: true });
     } catch {
       // ниже — фолбэк-минимум
