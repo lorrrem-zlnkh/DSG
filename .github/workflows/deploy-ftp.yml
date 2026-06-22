@@ -40,13 +40,6 @@ jobs:
           server-dir: /
           timeout: 60000
 
-      - name: Register Telegram webhook
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
-        run: |
-          RESPONSE=$(curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook" \
-            -d "url=https://dsg.lorrrem.ru/bot/webhook.php" \
-            -d "secret_token=${WEBHOOK_SECRET}" \
-            -d "allowed_updates=[\"callback_query\",\"message\"]")
-          echo "Webhook response: $RESPONSE"
+      # ВАЖНО: webhook Telegram теперь указывает на VPS (195.133.15.12:8443).
+      # Шаг setWebhook→REG.RU убран намеренно — иначе деплой сайта «утаскивал» бы
+      # webhook обратно на REG.RU и ломал бота на сервере. Бот живёт на VPS.

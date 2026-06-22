@@ -1,8 +1,8 @@
 name: Digest Tick
 
 on:
-  schedule:
-    - cron: '30 * * * *'   # каждый час в :30 (UTC); 15:30 UTC = 18:30 МСК
+  # Расписание отключено: tick теперь крутит системный таймер на VPS
+  # (dsg-tick.timer). Бот живёт на VPS, REG.RU-вебхук снят.
   workflow_dispatch:
 
 jobs:
