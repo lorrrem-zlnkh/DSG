@@ -472,6 +472,15 @@ function publishDraft(array $draft, string $mode): void {
         LOCK_EX
     );
 
+    // 1b) Синхронизируем опубликованный digests.json на сайт (REG.RU, FTPS).
+    // Скрипт читает FTP-креды из .env; если его нет — публикация всё равно проходит.
+    $synced = false;
+    $syncScript = dirname(__DIR__, 2) . '/scripts/sync-site.sh';
+    if (is_executable($syncScript)) {
+        @exec(escapeshellarg($syncScript) . ' 2>&1', $syncOut, $syncRc);
+        $synced = ($syncRc === 0);
+    }
+
     // 2) Анонс в канал.
     $count  = (int) ($final['count'] ?? 0);
     $number = $final['number'] ?? null;
@@ -507,7 +516,8 @@ function publishDraft(array $draft, string $mode): void {
     tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
         'text'         => "✅ Опубликовано{$modeLabel}: {$count} материалов{$changes}. "
-                        . "Сайт обновлён, анонс — в " . CHANNEL_ID . ".",
+                        . ($synced ? "Сайт обновлён" : "⚠️ сайт НЕ синхронизирован (проверь FTP)")
+                        . ", анонс — в " . CHANNEL_ID . ".",
         'reply_markup' => ['remove_keyboard' => true],
     ]);
 }
