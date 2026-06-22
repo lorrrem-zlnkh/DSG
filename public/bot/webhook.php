@@ -4,6 +4,9 @@ require_once __DIR__ . '/config.php';
 const DRAFT_PATH   = __DIR__ . '/draft.json';
 const DIGESTS_PATH = __DIR__ . '/../blog/digests.json';
 const SITE_URL     = 'https://dsg.lorrrem.ru/blog/';
+// Канал, куда после подтверждения публикуется дайджест отдельными карточками
+// (помимо сводного анонса в CHANNEL_ID). Можно переопределить в config.php.
+if (!defined('DIGEST_CHANNEL_ID')) define('DIGEST_CHANNEL_ID', '@digest_dsgn');
 const TZ           = 'Europe/Moscow';
 const POOL_TARGET  = 35; // целевой размер выпуска (DIGEST_SIZE) — для счётчика «добрать ещё»
 
@@ -444,7 +447,65 @@ function startPublish(array $draft): void {
     publishDraft($fresh, 'manual');
 }
 
+// Карточка для канала: тот же рендер, что владельцу, но БЕЗ кнопок и тихо
+// (disable_notification). В $final правки уже вшиты в summary, исключённые убраны,
+// поэтому рендерим через псевдо-черновик с пустыми edits/excluded — без пометок.
+function sendChannelCard(array $item, array $pseudo, string $channelId): bool {
+    $res = tg('sendMessage', [
+        'chat_id'                  => $channelId,
+        'text'                     => renderCard($item, $pseudo),
+        'parse_mode'               => 'HTML',
+        'disable_web_page_preview' => true,
+        'disable_notification'     => true,
+    ]);
+    if (isParseError($res)) {
+        $res = tg('sendMessage', [
+            'chat_id'                  => $channelId,
+            'text'                     => renderCardPlain($item, $pseudo),
+            'disable_web_page_preview' => true,
+            'disable_notification'     => true,
+        ]);
+    }
+    return ($res['result']['message_id'] ?? null) !== null;
+}
+
+// Публикует дайджест в канал: сводный анонс (единственное сообщение С уведомлением),
+// затем карточки по одной — тихо. Возвращает число доставленных карточек.
+function publishCardsToChannel(array $final, string $channelId, string $headerText): int {
+    // Шапка — это и есть единственное уведомление в канале.
+    tg('sendMessage', [
+        'chat_id'                  => $channelId,
+        'text'                     => $headerText,
+        'parse_mode'               => 'HTML',
+        'disable_web_page_preview' => false,
+    ]);
+
+    $items  = $final['items'] ?? [];
+    $pseudo = ['digest' => $final, 'edits' => [], 'excluded' => []];
+    $sent   = [];
+
+    foreach ($items as $i => $item) {
+        $key = ($item['id'] ?? '') !== '' ? $item['id'] : (string) $i;
+        if (sendChannelCard($item, $pseudo, $channelId)) $sent[$key] = true;
+        usleep(50000); // быстрый залп: клиент группирует тихие баннеры
+    }
+    // Ремонтные раунды по не дошедшим карточкам (флуд/сеть) — до 3 раз.
+    for ($round = 0; $round < 3; $round++) {
+        $allOk = true;
+        foreach ($items as $i => $item) {
+            $key = ($item['id'] ?? '') !== '' ? $item['id'] : (string) $i;
+            if (isset($sent[$key])) continue;
+            sleep(2);
+            if (sendChannelCard($item, $pseudo, $channelId)) $sent[$key] = true;
+            else $allOk = false;
+        }
+        if ($allOk) break;
+    }
+    return count($sent);
+}
+
 function publishDraft(array $draft, string $mode): void {
+    set_time_limit(0); // публикация карточек в канал может занять время (~35 сообщений)
     $editsN = count($draft['edits'] ?? []);
     $exclN  = count($draft['excluded'] ?? []);
 
@@ -503,6 +564,13 @@ function publishDraft(array $draft, string $mode): void {
         'disable_web_page_preview' => false,
     ]);
 
+    // 2b) Канал дайджеста: тот же сводный анонс (единственное уведомление),
+    //     затем материалы отдельными карточками — тихо, без кнопок.
+    $cardsSent = 0;
+    if (DIGEST_CHANNEL_ID) {
+        $cardsSent = publishCardsToChannel($final, DIGEST_CHANNEL_ID, $text);
+    }
+
     // 3) Финализируем черновик.
     $draft['status']      = 'published';
     $draft['publishedAt'] = gmdate('c');
@@ -517,7 +585,8 @@ function publishDraft(array $draft, string $mode): void {
         'chat_id'      => MY_CHAT_ID,
         'text'         => "✅ Опубликовано{$modeLabel}: {$count} материалов{$changes}. "
                         . ($synced ? "Сайт обновлён" : "⚠️ сайт НЕ синхронизирован (проверь FTP)")
-                        . ", анонс — в " . CHANNEL_ID . ".",
+                        . ", анонс — в " . CHANNEL_ID
+                        . ", дайджест карточками — в " . DIGEST_CHANNEL_ID . " ({$cardsSent}).",
         'reply_markup' => ['remove_keyboard' => true],
     ]);
 }
