@@ -1,8 +1,8 @@
 name: Monthly Digest Rebuild
 
 on:
-  schedule:
-    - cron: '0 8 1 * *'   # 1-го числа каждого месяца в 08:00 UTC (11:00 МСК)
+  # Расписание отключено: месячную сборку теперь делает системный таймер на VPS
+  # (dsg-monthly.timer, 1-го числа). Ручной запуск оставлен на всякий случай.
   workflow_dispatch:        # можно запустить вручную из GitHub
     inputs:
       month:
