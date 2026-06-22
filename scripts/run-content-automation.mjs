@@ -107,22 +107,65 @@ async function readStatus() {
   }
 }
 
-async function acquireLock() {
-  await fs.mkdir(new URL(".", LOCK_PATH), { recursive: true });
+// Лок старше этого считаем залипшим, даже если PID жив (защита от переиспользования PID).
+const LOCK_STALE_MS = 60 * 60 * 1000; // 1 час — с запасом больше реальной сборки (~25 мин)
+
+function isPidAlive(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return false;
   try {
-    const handle = await fs.open(LOCK_PATH, "wx");
-    await handle.writeFile(
-      JSON.stringify({
-        pid: process.pid,
-        startedAt: new Date().toISOString(),
-      })
-    );
-    await handle.close();
+    process.kill(pid, 0); // сигнал 0 — только проверка существования
     return true;
   } catch (error) {
-    if (error.code === "EEXIST") return false;
-    throw error;
+    return error.code === "EPERM"; // процесс есть, но не наш — всё равно жив
   }
+}
+
+async function readLockMeta() {
+  try {
+    return JSON.parse(await fs.readFile(LOCK_PATH, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+// Лок «залип», если процесс мёртв ИЛИ файл старше LOCK_STALE_MS.
+async function isLockStale() {
+  const meta = await readLockMeta();
+  if (!meta) return true; // нечитаемый/битый лок — снимаем
+  const ageMs = meta.startedAt ? Date.now() - Date.parse(meta.startedAt) : Infinity;
+  const alive = isPidAlive(meta.pid);
+  return !alive || (Number.isFinite(ageMs) && ageMs > LOCK_STALE_MS);
+}
+
+async function acquireLock() {
+  await fs.mkdir(new URL(".", LOCK_PATH), { recursive: true });
+  // Две попытки: вторая — после снятия залипшего лока.
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const handle = await fs.open(LOCK_PATH, "wx");
+      await handle.writeFile(
+        JSON.stringify({
+          pid: process.pid,
+          startedAt: new Date().toISOString(),
+        })
+      );
+      await handle.close();
+      return true;
+    } catch (error) {
+      if (error.code !== "EEXIST") throw error;
+      if (!(await isLockStale())) return false; // лок держит живой процесс
+      const meta = await readLockMeta();
+      console.warn(
+        `[automation] снимаю залипший лок (pid=${meta?.pid ?? "?"}, startedAt=${meta?.startedAt ?? "?"})`
+      );
+      try {
+        await fs.unlink(LOCK_PATH);
+      } catch (unlinkError) {
+        if (unlinkError.code !== "ENOENT") throw unlinkError;
+      }
+    }
+  }
+  return false;
 }
 
 async function releaseLock() {

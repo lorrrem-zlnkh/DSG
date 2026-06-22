@@ -8,6 +8,34 @@ loadEnv();
 
 const DEFAULT_POSTS_PATH = new URL("../public/blog/posts.json", import.meta.url);
 const DEFAULT_DIGESTS_PATH = new URL("../public/blog/digests.json", import.meta.url);
+const DIGEST_OVERRIDES_PATH = new URL("../public/blog/digest-overrides.json", import.meta.url);
+
+// Поля, которые НЕ генерируются заново, а переносятся при пересборке месяца.
+const STICKY_DIGEST_FIELDS = ["publishAt"];
+
+// Читает версионируемые оверрайды бизнес-гейтов: { "2026-06": { "publishAt": "..." } }.
+async function loadDigestOverrides() {
+  try {
+    const raw = JSON.parse(await fs.readFile(DIGEST_OVERRIDES_PATH, "utf8"));
+    return raw && typeof raw === "object" ? raw : {};
+  } catch {
+    return {}; // файла нет — гейтов нет
+  }
+}
+
+// Проставляет sticky-поля: явный оверрайд имеет приоритет, иначе переносим из
+// прошлого состояния (prev), иначе не трогаем.
+function applyStickyFields(digest, prev, overrides) {
+  const ov = overrides?.[digest.key] || {};
+  for (const field of STICKY_DIGEST_FIELDS) {
+    if (ov[field] !== undefined) {
+      digest[field] = ov[field];
+    } else if (digest[field] === undefined && prev?.[field] !== undefined) {
+      digest[field] = prev[field];
+    }
+  }
+  return digest;
+}
 
 const MONTH_NAMES = [
   "январь",
@@ -857,6 +885,11 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
     }
   }
 
+  // Бизнес-гейты публикации (напр. «июнь выходит в июле») живут в версионируемом
+  // digest-overrides.json и применяются при КАЖДОЙ пересборке — иначе publishAt
+  // слетает, т.к. неопубликованного месяца ещё нет ни в живом digests.json, ни в кэше.
+  const publishOverrides = await loadDigestOverrides();
+
   const posts = (source.posts || []).filter((post) => !isBlockedBlogPost(post));
   const digests = [];
   const usedEvergreenKeys = new Set();
@@ -877,7 +910,9 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
 
     // Skip already-generated months (keep only current month regeneration)
     if (monthKey !== currentMonthKey && existingDigestsMap.has(monthKey)) {
-      digests.push(existingDigestsMap.get(monthKey));
+      const kept = existingDigestsMap.get(monthKey);
+      applyStickyFields(kept, kept, publishOverrides); // оверрайд гейта имеет приоритет
+      digests.push(kept);
       // Still register used keys to avoid duplicates in current month
       for (const item of existingDigestsMap.get(monthKey).items || []) {
         if (item.url) usedDigestKeys.add(`url:${normalizeUrl(item.url)}`);
@@ -897,6 +932,9 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
       monthLabel: MONTH_NAMES[cursor.getUTCMonth()],
       title: `Выпуск №${number}`,
     };
+    // Переносим бизнес-гейты (publishAt) на свежесобранный месяц, чтобы они
+    // не слетали при пересборке. Спредится в оба push ниже (count:0 и обычный).
+    applyStickyFields(digestMeta, existingDigestsMap.get(monthKey), publishOverrides);
 
     let selectedPosts =
       historicalSelections.get(monthKey) ||
