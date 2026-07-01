@@ -550,16 +550,23 @@ function publishDraft(array $draft, string $mode): void {
     $title  = $number ? "Дайджест DSG №{$number} — {$label} {$year}"
                       : "Дайджест DSG — {$label} {$year}";
 
-    $text = "🗞 <b>" . h($title) . "</b>\n\n"
+    $body = "🗞 <b>" . h($title) . "</b>\n\n"
           . "Собрали {$count} материалов о дизайн-системах, дизайне интерфейсов "
           . "и продуктовом дизайне.\n\n"
           . "<b>В выпуске:</b> " . rubricsSummary($final) . "\n\n"
-          . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>\n\n"
-          . "#дайджест";
+          . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>";
+
+    // Шапка @digest_dsgn — без ссылки на самого себя.
+    $text = $body . "\n\n#дайджест";
+
+    // Анонс @lorrrem — с промо отдельного канала дайджеста.
+    $lorremText = $body
+                . "\n\n📩 Отдельный канал с ежемесячным дайджестом → " . DIGEST_CHANNEL_ID
+                . "\n\n#дайджест";
 
     tg('sendMessage', [
         'chat_id'                  => CHANNEL_ID,
-        'text'                     => $text,
+        'text'                     => $lorremText,
         'parse_mode'               => 'HTML',
         'disable_web_page_preview' => false,
     ]);
