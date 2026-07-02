@@ -175,6 +175,14 @@ function pluralLinks(int $n): string {
     return 'ссылок';
 }
 
+function pluralMaterials(int $n): string {
+    $m100 = $n % 100; $m10 = $n % 10;
+    if ($m100 >= 11 && $m100 <= 14) return 'материалов';
+    if ($m10 === 1)                  return 'материал';
+    if ($m10 >= 2 && $m10 <= 4)      return 'материала';
+    return 'материалов';
+}
+
 // Текст + клавиатура списка пула (для /pool и перерисовки после удаления).
 function poolListPayload(string $month): array {
     $items = loadPool($month)['items'] ?? [];
@@ -559,7 +567,7 @@ function publishDraft(array $draft, string $mode): void {
     $themes = rtrim($themes, '.');
 
     $body = "🗞 <b>" . h($title) . "</b>\n\n"
-          . "Мы с Юлей и Lori (нашей ИИ моделькой) собрали {$count} материалов "
+          . "Мы с Юлей и Lori (нашей ИИ моделькой) собрали {$count} " . pluralMaterials($count) . " "
           . h($themes) . ".\n\n"
           . "<b>В выпуске:</b> " . rubricsSummary($final) . "\n\n"
           . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>";
@@ -598,7 +606,7 @@ function publishDraft(array $draft, string $mode): void {
     $changes = ($editsN || $exclN) ? " (правок: {$editsN}, исключено: {$exclN})" : '';
     tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
-        'text'         => "✅ Опубликовано{$modeLabel}: {$count} материалов{$changes}. "
+        'text'         => "✅ Опубликовано{$modeLabel}: {$count} " . pluralMaterials($count) . "{$changes}. "
                         . ($synced ? "Сайт обновлён" : "⚠️ сайт НЕ синхронизирован (проверь FTP)")
                         . ", анонс — в " . CHANNEL_ID
                         . ", дайджест карточками — в " . DIGEST_CHANNEL_ID . " ({$cardsSent}).",
@@ -643,7 +651,7 @@ function handleInitDraft(): void {
     $hdr = tg('sendMessage', [
         'chat_id'              => MY_CHAT_ID,
         'text'                 => "🗞 <b>Черновик дайджеста DSG №" . h((string) $number) . " — {$label} {$year}</b>\n"
-                                . "{$count} материалов.\n\n"
+                                . "{$count} " . pluralMaterials($count) . ".\n\n"
                                 . "Проверь карточки ниже: можно изменить описание или исключить материал. "
                                 . "Когда закончишь — кнопки внизу.",
         'parse_mode'           => 'HTML',
@@ -758,7 +766,7 @@ function sendReminder(array $draft): void {
     tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
         'text'         => "⏰ Черновик дайджеста ждёт уже 5 дней (правок: {$edits}, исключено: {$excl}).\n"
-                        . "Если ничего не сделать, завтра в 18:30 он опубликуется автоматически — {$count} материалов.",
+                        . "Если ничего не сделать, завтра в 18:30 он опубликуется автоматически — {$count} " . pluralMaterials($count) . ".",
         'reply_markup' => ['inline_keyboard' => [[
             ['text' => '✅ Опубликовать',          'callback_data' => 'remind_publish'],
             ['text' => '❌ Отменить публикацию',   'callback_data' => 'remind_cancel'],
