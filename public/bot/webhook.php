@@ -550,9 +550,17 @@ function publishDraft(array $draft, string $mode): void {
     $title  = $number ? "Дайджест DSG №{$number} — {$label} {$year}"
                       : "Дайджест DSG — {$label} {$year}";
 
+    // Фраза тем выпуска — из контекста дайджеста (генерируется при сборке);
+    // фолбэк на общую формулировку, если поля нет.
+    $themes = trim((string) ($final['themesLine'] ?? ''));
+    if ($themes === '') {
+        $themes = 'о дизайн-системах, дизайне интерфейсов и продуктовом дизайне';
+    }
+    $themes = rtrim($themes, '.');
+
     $body = "🗞 <b>" . h($title) . "</b>\n\n"
-          . "Собрали {$count} материалов о дизайн-системах, дизайне интерфейсов "
-          . "и продуктовом дизайне.\n\n"
+          . "Мы с Юлей и Lori (нашей ИИ моделькой) собрали {$count} материалов "
+          . h($themes) . ".\n\n"
           . "<b>В выпуске:</b> " . rubricsSummary($final) . "\n\n"
           . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>";
 

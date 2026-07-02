@@ -794,6 +794,47 @@ async function requestDigestFromOpenAI(digestMeta, posts) {
   });
 }
 
+// Фраза-описание тем всего выпуска для анонса: продолжает
+// «…собрали N материалов ___.» Возвращает короткую фразу в родительном/предложном
+// падеже, напр. «о дизайн-системах, ИИ в дизайне и ребрендингах». Фолбэк — null.
+export async function generateThemesLine(digestMeta, items) {
+  const keyEnv = activeProvider() === "claude" ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
+  if (!process.env[keyEnv] || !Array.isArray(items) || items.length === 0) return null;
+
+  const schema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["themesLine"],
+    properties: { themesLine: { type: "string" } },
+  };
+
+  const system =
+    "Ты редактор дайджеста по дизайну. По списку материалов выпуска составь ОДНУ короткую фразу " +
+    "с ключевыми темами номера — она станет продолжением предложения «…собрали N материалов ___.». " +
+    "Требования: строчная буква в начале; фраза начинается с предлога «о»/«об»; " +
+    "3–5 главных тем этого выпуска через запятую с «и» перед последней; в родительном/предложном падеже; " +
+    "без точки в конце; без кавычек; только сами темы, без слов «материалы», «статьи», «выпуск». " +
+    "Пример формата: «о дизайн-системах, ИИ в дизайне, ребрендингах и продуктовой аналитике».";
+
+  const user = JSON.stringify(
+    {
+      month: digestMeta.month,
+      year: digestMeta.year,
+      items: items.map((it) => ({ title: it.sourceTitle, rubric: it.rubric })),
+    },
+    null,
+    2
+  );
+
+  try {
+    const res = await requestStructured({ system, user, schema, schemaName: "themes_line", maxTokens: 400 });
+    const line = (res?.themesLine || "").trim().replace(/^["'«»]+|["'«».]+$/g, "").trim();
+    return line || null;
+  } catch {
+    return null;
+  }
+}
+
 function mergeGeneratedItems(selectedPosts, generated) {
   const itemMap = new Map(selectedPosts.map((post) => [post.id, post]));
   const items = [];
@@ -973,10 +1014,13 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
           console.warn(`[build-digests] retry fallback for ${monthKey}: ${error.message}`);
         }
       }
+      const finalItems = spreadSources(items, `${monthKey}:items`);
+      const themesLine = await generateThemesLine(digestMeta, finalItems);
       digests.push({
         ...digestMeta,
-        count: items.length,
-        items: spreadSources(items, `${monthKey}:items`),
+        ...(themesLine ? { themesLine } : {}),
+        count: finalItems.length,
+        items: finalItems,
       });
     }
 
