@@ -263,6 +263,22 @@ function renderCardPlain(array $item, array $draft): string {
     return $head . $summary;
 }
 
+// Очищает присланное описание от служебных строк карточки: если владелец
+// скопировал текст карточки целиком, в правку могли попасть пометки бота
+// (✏️ описание изменено / 🚫 Исключено). Они НЕ должны попадать в summary.
+function sanitizeEditText(string $text): string {
+    $lines = preg_split('/\r\n|\r|\n/', $text);
+    $out = [];
+    foreach ($lines as $line) {
+        // Сравниваем строку без эмодзи/пробелов — ловим пометку с эмодзи и без.
+        $norm = mb_strtolower(trim(preg_replace('~[\x{2600}-\x{27BF}\x{FE0F}\x{1F300}-\x{1FAFF}]~u', '', $line)));
+        if ($norm === 'описание изменено') continue;
+        if ($norm === 'исключено из публикации') continue;
+        $out[] = $line;
+    }
+    return trim(implode("\n", $out));
+}
+
 // Ошибка именно разбора HTML (а не флуд 429 / сеть) — только тогда есть смысл
 // падать в текстовый фолбэк; при флуде заголовок-ссылку сохраняем, помогает ретрай.
 function isParseError(array $res): bool {
@@ -1162,8 +1178,9 @@ function handleMessage(array $msg): void {
     // 2) Правка описания — ответ прямо на карточку (без промпта).
     if ($draft && $replyTo !== null) {
         $cardId = array_search($replyTo, $draft['cardMsgIds'] ?? [], true);
-        if ($cardId !== false && $text !== '') {
-            $draft['edits'][(string) $cardId] = $text;
+        $clean  = $cardId !== false ? sanitizeEditText($text) : '';
+        if ($cardId !== false && $clean !== '') {
+            $draft['edits'][(string) $cardId] = $clean;
             saveDraft($draft);
             refreshCard($draft, (string) $cardId); // показываем новое описание на карточке
             // убираем сообщение-ответ, чтобы не засорять список карточек
