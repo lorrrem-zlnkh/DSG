@@ -566,17 +566,18 @@ function publishDraft(array $draft, string $mode): void {
     }
     $themes = rtrim($themes, '.');
 
-    $body = "🗞 <b>" . h($title) . "</b>\n\n"
-          . "Мы с Юлей и Lori (нашей ИИ моделькой) собрали {$count} " . pluralMaterials($count) . " "
-          . h($themes) . ".\n\n"
-          . "<b>В выпуске:</b> " . rubricsSummary($final) . "\n\n"
-          . "👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>";
+    $intro = "🗞 <b>" . h($title) . "</b>\n\n"
+           . "Мы с Юлей и Lori (нашей ИИ моделькой) собрали {$count} " . pluralMaterials($count) . " "
+           . h($themes) . ".\n\n"
+           . "<b>В выпуске:</b> " . rubricsSummary($final);
 
-    // Шапка @digest_dsgn — без ссылки на самого себя.
-    $text = $body . "\n\n#дайджест";
+    // Шапка @digest_dsgn: без «Читать дайджест» и без промо канала —
+    // материалы идут карточками сразу ниже.
+    $text = $intro . "\n\n#дайджест";
 
-    // Анонс @lorrrem — с промо отдельного канала дайджеста.
-    $lorremText = $body
+    // Анонс @lorrrem: со ссылкой на сайт и промо отдельного канала дайджеста.
+    $lorremText = $intro
+                . "\n\n👉 <a href=\"" . SITE_URL . "\">Читать дайджест</a>"
                 . "\n\n📩 Отдельный канал с ежемесячным дайджестом → " . DIGEST_CHANNEL_ID
                 . "\n\n#дайджест";
 
