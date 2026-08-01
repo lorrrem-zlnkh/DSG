@@ -444,6 +444,9 @@ function publishEta(array $draft): int {
 // Запуск публикации без подтверждения: сразу ETA + кнопка прерывания, затем —
 // окно отмены (sleep), после которого публикуем, если не прервали.
 function startPublish(array $draft): void {
+    // Уже опубликовано (напр. ретрай вебхука после завершения) — не запускаем повторно.
+    if (($draft['status'] ?? '') === 'published') return;
+
     $eta   = publishEta($draft);
     $token = bin2hex(random_bytes(4));
 
@@ -459,6 +462,8 @@ function startPublish(array $draft): void {
             ['text' => '🚫 Не публиковать', 'callback_data' => 'pub_abort'],
         ]]],
     ]);
+
+    endHttpEarly(); // Telegram получает 200 сразу и не ретраит долгую публикацию
 
     sleep($eta); // окно прерывания: «Не публиковать» переведёт статус в paused
 
@@ -506,30 +511,51 @@ function publishCardsToChannel(array $final, string $channelId, string $headerTe
 
     $items  = $final['items'] ?? [];
     $pseudo = ['digest' => $final, 'edits' => [], 'excluded' => []];
-    $sent   = [];
+    $sent   = 0;
 
-    foreach ($items as $i => $item) {
-        $key = ($item['id'] ?? '') !== '' ? $item['id'] : (string) $i;
-        if (sendChannelCard($item, $pseudo, $channelId)) $sent[$key] = true;
-        usleep(50000); // быстрый залп: клиент группирует тихие баннеры
-    }
-    // Ремонтные раунды по не дошедшим карточкам (флуд/сеть) — до 3 раз.
-    for ($round = 0; $round < 3; $round++) {
-        $allOk = true;
-        foreach ($items as $i => $item) {
-            $key = ($item['id'] ?? '') !== '' ? $item['id'] : (string) $i;
-            if (isset($sent[$key])) continue;
-            sleep(2);
-            if (sendChannelCard($item, $pseudo, $channelId)) $sent[$key] = true;
-            else $allOk = false;
+    // Строго по порядку: каждую карточку добиваем на месте (до 3 попыток) и
+    // только потом переходим к следующей. Так канал получает список ровно в
+    // порядке выпуска — без досылки упавших в конец и без перемешивания.
+    foreach ($items as $item) {
+        for ($try = 0; $try < 3; $try++) {
+            if (sendChannelCard($item, $pseudo, $channelId)) { $sent++; break; }
+            sleep(1); // транзиентный сбой/флуд — короткая пауза и повтор той же карточки
         }
-        if ($allOk) break;
+        usleep(40000);
     }
-    return count($sent);
+    return $sent;
+}
+
+// Путь claim-лока публикации (по ключу выпуска).
+function publishLockPath(array $draft): string {
+    $key = preg_replace('~[^A-Za-z0-9_-]~', '', (string) ($draft['digest']['key'] ?? 'draft'));
+    return __DIR__ . '/.publish-' . ($key !== '' ? $key : 'draft') . '.lock';
+}
+
+// Атомарно «застолбить» публикацию выпуска. false — уже застолблено (ретрай
+// вебхука Telegram или повторный вызов) → второй раз не публикуем.
+function claimPublish(array $draft): bool {
+    $fh = @fopen(publishLockPath($draft), 'x'); // O_EXCL — атомарная проверка+создание
+    if ($fh === false) return false;
+    fwrite($fh, gmdate('c') . ' pid=' . getmypid());
+    fclose($fh);
+    return true;
+}
+
+// Снять claim-локи публикации (новый цикл/сброс) — чтобы месяц можно было опубликовать заново.
+function clearPublishLocks(): void {
+    foreach (glob(__DIR__ . '/.publish-*.lock') ?: [] as $f) @unlink($f);
+}
+
+// Отдать Telegram 200 сразу, чтобы он не ретраил долгую публикацию (php-fpm).
+function endHttpEarly(): void {
+    if (function_exists('fastcgi_finish_request')) @fastcgi_finish_request();
 }
 
 function publishDraft(array $draft, string $mode): void {
     set_time_limit(0); // публикация карточек в канал может занять время (~35 сообщений)
+    // Идемпотентность: ровно одна публикация выпуска, несмотря на ретраи/двойные вызовы.
+    if (!claimPublish($draft)) return;
     $editsN = count($draft['edits'] ?? []);
     $exclN  = count($draft['excluded'] ?? []);
 
@@ -638,6 +664,7 @@ function publishDraft(array $draft, string $mode): void {
 function handleInitDraft(): void {
     header('Content-Type: application/json');
     set_time_limit(0);
+    clearPublishLocks(); // новый цикл — снимаем claim-локи прошлой публикации
 
     $payload = json_decode(file_get_contents('php://input'), true);
     $digest  = $payload['digest'] ?? $payload;
@@ -751,6 +778,7 @@ function resetDraft(): int {
     $draft = loadDraft();
     $deleted = $draft ? cleanupDraftMessages($draft) : 0;
     if (is_file(DRAFT_PATH)) @unlink(DRAFT_PATH);
+    clearPublishLocks(); // сброс — снимаем claim-локи, чтобы можно было опубликовать заново
     tg('sendMessage', [
         'chat_id'      => MY_CHAT_ID,
         'text'         => '🧹 Черновик и его сообщения очищены.',
