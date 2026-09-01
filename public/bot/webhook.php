@@ -674,6 +674,12 @@ function handleInitDraft(): void {
         return;
     }
 
+    // Один черновик: перед постингом нового сносим сообщения предыдущего
+    // (шапку, карточки, футер). Иначе в чате копятся дубли — например, ручной
+    // прогон поверх автосборки VPS 1-го числа даёт два черновика.
+    $prev = loadDraft();
+    if ($prev) cleanupDraftMessages($prev);
+
     $draft = [
         'status'      => 'pending',
         'createdAt'   => gmdate('c'),
