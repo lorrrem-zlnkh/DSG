@@ -351,12 +351,24 @@ function buildFallbackSummary(post) {
   if (isGoodSummary(fromRewrite, post.title)) return fromRewrite;
   const fromSummary = pickSummarySentences(post.summary || "", post.title);
   if (isGoodSummary(fromSummary, post.title)) return fromSummary;
-  const title = cleanSourceTitle(post.title || "материала");
-  return `Материал разбирает тему «${title}» в контексте продуктового дизайна и цифровых интерфейсов. В карточке оставлена краткая редакторская выжимка без служебных данных, навигации и метаданных источника. Оригинальная публикация помогает подробнее изучить подход автора и понять, насколько тема применима в работе.`;
+  // Нет пригодного текста — НИКОГДА не подставляем заглушку-слоп. Возвращаем
+  // пусто: карточка без честного описания будет отброшена на сборке.
+  return "";
+}
+
+// Слоп — дефолтные заглушки/шаблоны, которых в выпуске быть не должно НИКОГДА.
+const SLOP_RE = /Материал разбирает тему «|редакторск(?:ая|ой) выжимк|Оригинальная публикация помогает подробнее/i;
+
+// Карточку можно публиковать, только если описание честное: не слоп и проходит
+// проверку качества (русский, ≥2 предложений, не мусор, не пустое).
+function isPublishableSummary(summary) {
+  const s = String(summary || "");
+  if (SLOP_RE.test(s)) return false;
+  return isGoodSummary(s);
 }
 
 function hasGenericFallback(items) {
-  return items.some((item) => /^Материал разбирает тему «/.test(item.summary || ""));
+  return items.some((item) => !isPublishableSummary(item.summary));
 }
 
 function fallbackDigestItem(post) {
@@ -939,6 +951,13 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
     if (monthKey !== currentMonthKey && existingDigestsMap.has(monthKey)) {
       const kept = existingDigestsMap.get(monthKey);
       applyStickyFields(kept, kept, publishOverrides); // оверрайд гейта имеет приоритет
+      // ГАРД и на seed-данных с хоста: слопа не должно быть даже в перенесённых месяцах.
+      const keptBefore = (kept.items || []).length;
+      kept.items = (kept.items || []).filter((it) => isPublishableSummary(it.summary));
+      if (kept.items.length < keptBefore) {
+        kept.count = kept.items.length;
+        console.warn(`[build-digests] ${monthKey} (перенос): отброшено слопа — ${keptBefore - kept.items.length}`);
+      }
       digests.push(kept);
       // Still register used keys to avoid duplicates in current month
       for (const item of existingDigestsMap.get(monthKey).items || []) {
@@ -999,6 +1018,13 @@ export async function buildDigests({ postsPath = DEFAULT_POSTS_PATH, digestsPath
         } catch (error) {
           console.warn(`[build-digests] retry fallback for ${monthKey}: ${error.message}`);
         }
+      }
+      // ГАРД: карточки без честного описания (слоп/пусто/слабое) НЕ публикуем —
+      // выкидываем целиком. Лучше меньше карточек, чем заглушка в выпуске.
+      const beforeDrop = items.length;
+      items = items.filter((it) => isPublishableSummary(it.summary));
+      if (items.length < beforeDrop) {
+        console.warn(`[build-digests] ${monthKey}: отброшено без честного описания — ${beforeDrop - items.length}`);
       }
       const finalItems = spreadSources(items, `${monthKey}:items`);
       const themesLine = await generateThemesLine(digestMeta, finalItems);
