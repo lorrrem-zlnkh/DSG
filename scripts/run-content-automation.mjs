@@ -206,9 +206,16 @@ async function runWithLock() {
   try {
     // Присланные ссылки — приоритет; занимают слоты выпуска (≤ DIGEST_SIZE).
     const poolUrls = await consumePoolUrls();
-    const manualPosts = poolUrls.length ? await fetchUrlsAsPosts(poolUrls) : [];
+    // Доп. ссылки можно прокинуть напрямую через MANUAL_URLS (запятая/пробел/
+    // перенос) — не завися от месяца пула (напр. сборка прошлого месяца 1-го числа).
+    const extraUrls = (process.env.MANUAL_URLS || "")
+      .split(/[\s,]+/)
+      .map((u) => u.trim())
+      .filter(Boolean);
+    const manualUrls = [...new Set([...poolUrls, ...extraUrls])];
+    const manualPosts = manualUrls.length ? await fetchUrlsAsPosts(manualUrls) : [];
     if (manualPosts.length) await rewriteManualPosts(manualPosts); // V2: нейтральный рерайт
-    console.log(`[automation] присланных ссылок в пуле: ${manualPosts.length}`);
+    console.log(`[automation] присланных ссылок: пул ${poolUrls.length} + доп ${extraUrls.length} → постов ${manualPosts.length}`);
 
     let postsPayload;
     if (manualPosts.length >= DIGEST_SIZE) {

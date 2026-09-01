@@ -9,6 +9,10 @@ on:
         description: 'Тестовый месяц YYYY-MM (пусто = предыдущий календарный)'
         required: false
         default: ''
+      manual_urls:
+        description: 'Доп. ссылки в выпуск через пробел/запятую (в обход пула)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -45,6 +49,7 @@ jobs:
           ANTHROPIC_MODEL: claude-sonnet-4-6
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
           DIGEST_MONTH: ${{ inputs.month }}
+          MANUAL_URLS: ${{ inputs.manual_urls }}
         run: node scripts/run-content-automation.mjs
 
       - name: Rewrite descriptions (quality pass)
