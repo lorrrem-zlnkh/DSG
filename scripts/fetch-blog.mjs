@@ -909,14 +909,59 @@ async function fetchHtmlBrowser(url, attempt = 0) {
 // фильтруем (skipRecency) — включаем независимо от даты. Если распарсить не
 // удалось — минимальный пост, чтобы ссылка всё равно попала в выпуск (описание
 // допишет LLM/можно поправить в боте).
+// Хвиттор Дениса (zelenykh.ru/xwittor) — SPA: статьи грузятся JS-ом из
+// /articles.json по id из фрагмента (#article-art_<ID>). Достаём текст из JSON.
+const XWITTOR_RE = /zelenykh\.ru\/xwittor\/?#article-(art_[a-z0-9]+)/i;
+let xwittorArticlesCache = null;
+
+async function loadXwittorArticles() {
+  if (xwittorArticlesCache) return xwittorArticlesCache;
+  const json = await fetchJson("https://zelenykh.ru/articles.json");
+  xwittorArticlesCache = Array.isArray(json) ? json : [];
+  return xwittorArticlesCache;
+}
+
+function isoFromXwittor(article) {
+  if (Number.isFinite(article.timestamp)) return new Date(article.timestamp * 1000).toISOString();
+  const m = /(\d{1,2})\.(\d{1,2})\.(\d{4})/.exec(article.date || "");
+  if (m) return new Date(Date.UTC(Number(m[3]), Number(m[2]) - 1, Number(m[1]))).toISOString();
+  return new Date().toISOString();
+}
+
+async function fetchXwittorPost(url, source, sourceLabel) {
+  const id = (XWITTOR_RE.exec(url) || [])[1];
+  if (!id) return null;
+  const article = (await loadXwittorArticles()).find((x) => x.id === id);
+  if (!article) return null;
+  const body = sanitizeArticleText(stripHtml(article.content || ""), article.title || "");
+  const excerpt = sanitizeArticleText(stripHtml(article.excerpt || ""), article.title || "");
+  const text = body || excerpt;
+  if (!article.title || text.length < 40) return null;
+  return {
+    id: makeId(url),
+    source,
+    sourceLabel,
+    title: cleanTitle(article.title),
+    url,
+    author: "Денис Зеленых",
+    publishedAt: isoFromXwittor(article),
+    summary: (excerpt || text).slice(0, 300),
+    rewrite: text.slice(0, 6000),
+  };
+}
+
 export async function fetchUrlsAsPosts(urls, { source = "manual", sourceLabel = "Подборка" } = {}) {
   const posts = [];
   for (const url of urls) {
     if (!url) continue;
     let post = null;
     try {
-      const html = await fetchHtmlBrowser(url);
-      post = parseArticle(html, url, source, sourceLabel, { skipRecency: true });
+      if (XWITTOR_RE.test(url)) {
+        post = await fetchXwittorPost(url, source, sourceLabel);
+      } else {
+        const html = await fetchHtmlBrowser(url);
+        post = parseArticle(html, url, source, sourceLabel, { skipRecency: true });
+      }
     } catch {
       // ниже — фолбэк-минимум
     }
