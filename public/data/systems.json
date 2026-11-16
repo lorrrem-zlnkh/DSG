@@ -1,6 +1,19 @@
 {
   "systems": [
     {
+      "id": "companies-atomic-rd",
+      "origin": "domestic",
+      "pinned": true,
+      "title": "Atomic RD",
+      "description": "Atomic Russian Doll — дизайн-система продуктов Lorrrem по методологии «Атомарная матрёшка» Дениса Зеленых.",
+      "logo": "assets/logos/companies-atomic-rd.png",
+      "links": {
+        "site": "https://ard.lorrrem.ru/",
+        "github": null,
+        "figma": null
+      }
+    },
+    {
       "id": "companies-alfabank",
       "origin": "domestic",
       "title": "Альфа-Банк",

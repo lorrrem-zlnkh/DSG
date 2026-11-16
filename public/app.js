@@ -54,7 +54,9 @@ function getStableOrder(origin, systems) {
     if (!seen.has(system.id)) remaining.push(system);
   }
 
-  const next = ordered.concat(shuffle(remaining));
+  const combined = ordered.concat(shuffle(remaining));
+  const next = combined.filter((system) => system.pinned === true)
+    .concat(combined.filter((system) => system.pinned !== true));
 
   const nextIds = next.map((s) => s.id);
   if (nextIds.length !== storedIds.length || nextIds.some((id, i) => id !== storedIds[i])) {
